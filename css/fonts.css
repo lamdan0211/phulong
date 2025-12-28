@@ -1,0 +1,81 @@
+/* Web Fonts - PhuLong Project */
+
+/* SFU Franklin Gothic Book */
+@font-face {
+    font-family: 'SFU Franklin Gothic';
+    src: url('../fonts/SFUFranklinGothicBook.woff2') format('woff2'),
+         url('../fonts/SFUFranklinGothicBook.woff') format('woff'),
+         url('../fonts/SFUFranklinGothicBook.TTF') format('truetype');
+    font-weight: 400;
+    font-style: normal;
+    font-display: swap;
+}
+
+/* SFU Franklin Gothic Book Oblique */
+@font-face {
+    font-family: 'SFU Franklin Gothic';
+    src: url('../fonts/SFUFranklinGothicBookOblique.woff2') format('woff2'),
+         url('../fonts/SFUFranklinGothicBookOblique.woff') format('woff'),
+         url('../fonts/SFUFranklinGothicBookOblique.TTF') format('truetype');
+    font-weight: 400;
+    font-style: italic;
+    font-display: swap;
+}
+
+/* SFU Franklin Gothic Demi */
+@font-face {
+    font-family: 'SFU Franklin Gothic';
+    src: url('../fonts/SFUFranklinGothicDemi.woff2') format('woff2'),
+         url('../fonts/SFUFranklinGothicDemi.woff') format('woff'),
+         url('../fonts/SFUFranklinGothicDemi.TTF') format('truetype');
+    font-weight: 600;
+    font-style: normal;
+    font-display: swap;
+}
+
+/* SFU Franklin Gothic Heavy */
+@font-face {
+    font-family: 'SFU Franklin Gothic';
+    src: url('../fonts/SFUFranklinGothicHeavy.woff2') format('woff2'),
+         url('../fonts/SFUFranklinGothicHeavy.woff') format('woff'),
+         url('../fonts/SFUFranklinGothicHeavy.TTF') format('truetype');
+    font-weight: 900;
+    font-style: normal;
+    font-display: swap;
+}
+
+/* SVN Harman Script */
+@font-face {
+    font-family: 'SVN Harman Script';
+    src: url('../fonts/SVN-Harman Script.woff2') format('woff2'),
+         url('../fonts/SVN-Harman Script.woff') format('woff'),
+         url('../fonts/SVN-Harman Script.ttf') format('truetype');
+    font-weight: 400;
+    font-style: normal;
+    font-display: swap;
+}
+
+/* Times Sans Serif */
+@font-face {
+    font-family: 'Times Sans Serif';
+    src: url('../fonts/Times Sans Serif 400.woff2') format('woff2'),
+         url('../fonts/Times Sans Serif 400.woff') format('woff'),
+         url('../fonts/Times Sans Serif 400.ttf') format('truetype');
+    font-weight: 400;
+    font-style: normal;
+    font-display: swap;
+}
+
+/* Font Family Classes for Easy Use */
+.font-sfu-franklin {
+    font-family: 'SFU Franklin Gothic', Arial, sans-serif;
+}
+
+.font-svn-harman {
+    font-family: 'SVN Harman Script', cursive;
+}
+
+.font-times-sans {
+    font-family: 'Times Sans Serif', 'Times New Roman', serif;
+}
+
