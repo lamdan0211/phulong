@@ -345,16 +345,13 @@ function showCustomTooltip(content, event) {
     })
   }
 
-  // Hiển thị tooltip ngay lập tức
   tooltip.classList.remove("hidden")
   tooltip.style.display = "block"
 
-  // Tính toán vị trí tooltip ngay
   if (event) {
     positionTooltip(event)
   }
   
-  // Thêm class show sau một chút để animation hoạt động
   requestAnimationFrame(() => {
     tooltip.classList.add("show")
   })
@@ -364,7 +361,6 @@ function setupSpecialPath() {
   const mapSvg = document.getElementById("mapSvg")
   if (!mapSvg) return
 
-  // Định nghĩa các path đặc biệt cần xử lý
   const specialPaths = [
     {
       d: 'M240.918 368.835',
@@ -378,26 +374,21 @@ function setupSpecialPath() {
     }
   ]
 
-  // Tìm và xử lý các path đặc biệt
   const paths = mapSvg.querySelectorAll('path')
   paths.forEach((path) => {
     const d = path.getAttribute('d')
     const fill = path.getAttribute('fill')
     
-    // Tìm path khớp với danh sách specialPaths
     const specialPath = specialPaths.find(sp => 
       d && d.includes(sp.d) && fill === sp.fill
     )
     
     if (specialPath) {
-      // Thêm pointer-events và cursor
       path.style.pointerEvents = 'all'
       path.style.cursor = 'pointer'
       
-      // Thêm event listener hover
       path.addEventListener("mouseenter", (e) => {
         e.stopPropagation()
-        // Thêm border đỏ khi hover
         path.style.stroke = '#ff0000'
         path.style.strokeWidth = '3px'
         showCustomTooltip(specialPath.tooltip, e)
@@ -405,7 +396,6 @@ function setupSpecialPath() {
       
       path.addEventListener("mouseleave", (e) => {
         e.stopPropagation()
-        // Xóa border đỏ
         path.style.stroke = ''
         path.style.strokeWidth = ''
         closeTooltipWithDelay()
@@ -426,14 +416,12 @@ function positionTooltip(event) {
   const tooltip = document.getElementById("tooltip")
   const tooltipRect = tooltip.getBoundingClientRect()
 
-  // Sử dụng clientX và clientY từ mouse event
   const mouseX = event.clientX || event.pageX
   const mouseY = event.clientY || event.pageY
 
   let left = mouseX + 20
   let top = mouseY - tooltipRect.height / 2
 
-  // Đảm bảo tooltip không vượt ra ngoài màn hình
   if (left + tooltipRect.width > window.innerWidth - 20) {
     left = mouseX - tooltipRect.width - 20
   }
@@ -451,12 +439,10 @@ function positionTooltip(event) {
 }
 
 function closeTooltipWithDelay() {
-  // Hủy timeout cũ nếu có
   if (tooltipCloseTimeout) {
     clearTimeout(tooltipCloseTimeout)
   }
   
-  // Tạo timeout mới với delay nhỏ hơn để responsive hơn
   tooltipCloseTimeout = setTimeout(() => {
     const tooltip = document.getElementById("tooltip")
     if (tooltip && !tooltip.matches(':hover')) {
@@ -469,7 +455,7 @@ function closeTooltipWithDelay() {
       }, 200)
     }
     tooltipCloseTimeout = null
-  }, 150) // Delay 150ms để tránh đóng ngay khi di chuyển chuột
+  }, 150) 
 }
 
 function closeTooltip() {
@@ -496,6 +482,3 @@ function getStatusText(status) {
   }
   return statusMap[status] || status
 }
-
-// Không cần resize handler nữa vì SVG đã có sẵn tọa độ và hover
-// Các interactions được setup một lần khi trang load

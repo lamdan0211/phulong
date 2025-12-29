@@ -5543,6 +5543,9 @@ section[id] {
     }
 }
 @media (max-width: 1440px) {
+    .nav-contact.group-1 {
+        bottom: 10%;
+      }
     .strategic-location-section{
         margin-top: -50px;
     }
@@ -5759,12 +5762,13 @@ section[id] {
 }
 
 @media (max-width: 768px) {
-    
+    .nav-contact.group-1 {
+        bottom: 8%;
+      }
     .contact-footer {
         padding: 25px 15px;
     }
     
-   
     .strategic-location-container{
         gap: 0%;
         display: block;
