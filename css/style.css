@@ -5276,6 +5276,7 @@ section[id] {
     .info-highlights-title-img {
         max-width: 100%;
         padding: 0 15px;
+        margin: 0 auto;
     }
     
     .info-slider-wrapper {
@@ -5762,6 +5763,15 @@ section[id] {
 }
 
 @media (max-width: 768px) {
+    
+
+    .popup-banner img{
+        max-width: 100%;
+    }
+    .travel-time-row .travel-time-item{
+        flex: unset !important;
+        width: auto;
+    }
     .nav-contact.group-1 {
         bottom: 8%;
       }
@@ -6140,12 +6150,68 @@ section[id] {
 }
 
 @media (max-width: 768px) {
+    .optimal-floor-text-img {
+        height: auto;
+        display: block;
+        max-width: 100% !important;
+        margin: 30px auto;
+        width: auto !important;
+    }
+    .building-rendering-img-desktop,
+    .optimal-floor-plan-img-desktop {
+        display: none !important;
+    }
+    
+    .building-rendering-img-mobile,
+    .optimal-floor-plan-img-mobile {
+        display: block !important;
+    }
+    
     .optimal-floor-plan-section {
-        padding: 40px 20px;
+        padding: 40px 15px !important;
+    }
+    
+    .optimal-floor-plan-content {
+        flex-direction: column !important;
+        gap: 20px !important;
+        display: flex !important;
+    }
+    
+    .optimal-floor-plan-row {
+        display: flex;
+        flex-direction: row ;
+        gap: 70px ;
+        align-content: center;
+        justify-content: center;
+    }
+    
+    .optimal-floor-right-item img {
+        max-width: 100% !important;
+    }
+    
+    .optimal-floor-left-item img {
+        max-width: 100% !important;
+    }
+    
+    .optimal-floor-plan-left, .optimal-floor-plan-right {
+        flex: unset !important;
+    }
+    
+    .optimal-floor-plan-header, .optimal-floor-plan-content {
+        margin-bottom: 20px !important;
     }
     
     .optimal-floor-plan-left {
-        width: 100%;
+        flex: 0 0 auto;
+        width: auto;
+    }
+    
+    .optimal-floor-plan-left-wrapper {
+        width: auto;
+    }
+    
+    .optimal-floor-plan-right {
+        flex: 1;
     }
     
     .optimal-floor-plan-title {
@@ -6158,6 +6224,16 @@ section[id] {
     
     .optimal-floor-plan-legend {
         padding: 20px;
+    }
+    
+    .optimal-floor-plan-text {
+        display: block !important;
+        width: 100% !important;
+        margin-top: 0;
+    }
+    
+    .optimal-floor-text-item.active {
+        display: block !important;
     }
 }
 
