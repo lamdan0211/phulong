@@ -124,12 +124,16 @@ body > * {
 /* ============================================
    Container & Layout
    ============================================ */
-.mobile{
-    display: none !important;
-}
-.desktop{
-    display: block;
-    display: flex ;
+
+
+@media (min-width: 768.99px) {
+    .mobile{
+        display: none !important;
+    }
+    .desktop{
+        display: block;
+        display: flex ;
+    }
 }
 
 @media (max-width: 768px) {
@@ -1678,6 +1682,12 @@ section[id] {
 }
 
 @media (max-width: 768px) {
+    .strategic-location-header{
+        margin-top: 50px;
+    }
+    .strategic-location-map.desktop {
+        display: none !important;
+    }
     .floor-plan-item{
         margin-top: 12%;
     }
@@ -5505,6 +5515,9 @@ section[id] {
         max-width: 100%;
         right: 0;
     }
+    .master-plan-title-section img{
+        max-width: 75%;
+    }
 }
 @media (max-width: 1440px) {
     .strategic-location-section{
@@ -5517,9 +5530,7 @@ section[id] {
     .section{
         padding: 0;
     }
-    .master-plan-title-section img{
-        max-width: 80%;
-    }
+
     .scroll-indicator-wrapper{
         margin-top: -30px;
      }
@@ -5591,6 +5602,7 @@ section[id] {
     }
     .perfect-arrangement-legend{
         padding: 10px ;
+        margin-top: 20px;
     }
 
     .info-slider-wrapper{
@@ -5632,11 +5644,11 @@ section[id] {
 
 @media (min-width: 1350px) and (max-width: 1440px) {
     .connect-today-section::before{
-        width: 305px;
+        width: 308px;
         background-position: right top;
     }
     .connect-today-section::after{
-        width: 305px;
+        width: 308px;
         background-position: left top;
     }
 }
