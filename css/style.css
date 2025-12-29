@@ -22,6 +22,20 @@ body {
    Animation Classes
    ============================================ */
    
+.db-pc{
+  display: block !important;
+}
+.db-mobile{
+  display: none !important;
+}
+@media (max-width: 768px) {
+  .db-pc{
+    display: none !important;
+  }
+  .db-mobile{
+    display: block !important;
+  }
+}
 
 .fade-in {
     opacity: 0;
@@ -799,7 +813,7 @@ section[id] {
     line-height: 20px;
     color: #111111;
     font-family: 'SFU Franklin Gothic';
-    text-align: center;
+    text-align: justify;
     font-weight: 600;
 }
 
@@ -933,7 +947,7 @@ section[id] {
     line-height: 20px;
     color: #111111;
     font-family: 'SFU Franklin Gothic';
-    text-align: center;
+    text-align: justify;
     margin-bottom: 10px;
 }
 
@@ -2709,7 +2723,7 @@ section[id] {
     line-height: 20px;
     color: #fff;
     font-family: 'SFU Franklin Gothic';
-    text-align: center;
+    text-align: justify;
     margin-bottom: 10px;
 }
 
@@ -3127,7 +3141,6 @@ section[id] {
     
     .strategic-location-text {
         font-size: 16px;
-        text-align: center;
     }
     
     .travel-time-item {
@@ -3599,7 +3612,7 @@ section[id] {
     
     .hotline-btn {
         padding: 8px 10px;
-        min-width: 60px;
+        max-width: 40px;
         border-radius: 20px;
     }
     
@@ -4989,7 +5002,7 @@ section[id] {
     line-height: 20px;
     flex: 1;
     font-family: 'SFU Franklin Gothic';
-    text-align: center;
+    text-align: justify;
     display: -webkit-box;
     -webkit-line-clamp: 3;
     line-clamp: 3;
@@ -5855,7 +5868,7 @@ section[id] {
         width: auto;
     }
     .nav-contact.group-1 {
-        bottom: 8%;
+        bottom: 0%;
       }
     .contact-footer {
         padding: 25px 15px;
@@ -6802,6 +6815,43 @@ section[id] {
         background-color: #902b2b;
         color: #ffffff;
         opacity: 1;
+    }
+}
+
+/* ============================================
+   Responsive Desktop/Mobile Slider Controls
+   ============================================ */
+
+/* Desktop only - hide on mobile */
+.desktop-only {
+    display: block;
+}
+
+.mobile-only {
+    display: none;
+}
+
+/* Mobile slider styles */
+.frame-slide-image-mobile {
+    width: 100%;
+    height: auto;
+    display: block;
+    object-fit: contain;
+    min-height: auto;
+    background-color: #f5f0e8;
+}
+
+@media (max-width: 768px) {
+    .desktop-only {
+        display: none;
+    }
+
+    .mobile-only {
+        display: block;
+    }
+
+    .frame-slide-image-mobile {
+        min-height: 300px;
     }
 }
 

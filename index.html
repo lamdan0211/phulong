@@ -956,8 +956,11 @@
       <a href="https://www.facebook.com/EssensiaNSG?locale=vi_VN" target="_blank" class="contact-icon" aria-label="Facebook">
         <img src="images/fb-icon.png" alt="Facebook">
       </a>
+      <a href="tel:0906296868" target="_blank" class="contact-icon db-mobile" aria-label="Facebook">
+        <img src="images/icon-hotline.png" alt="Hotline 24/7">
+      </a>
     </div>
-    <div class="nav-contact group-2">
+    <div class="nav-contact group-2 db-pc">
       <a href="tel:0906296868" target="_blank" class="hotline-btn">
         <img src="images/HOTLINE.png" alt="Hotline 24/7">
       </a>
@@ -1706,8 +1709,8 @@
         </div>
       </div>
 
-      <!-- Frame Slider Section -->
-      <div class="frame-slider-section">
+      <!-- Frame Slider Section - Desktop -->
+      <div class="frame-slider-section desktop-only">
         <div class="frame-slider-container">
           <div class="frame-slider-track">
             <div class="frame-slide active" data-tab="tong-the">
@@ -1740,6 +1743,45 @@
             <img src="images/pre-news.png" alt="">
           </button>
           <button class="frame-slider-arrow frame-slider-next" onclick="moveRoleFrameSlide(1)">
+            <img src="images/next-news.png" alt="">
+          </button>
+        </div>
+      </div>
+
+      <!-- Frame Slider Section - Mobile -->
+      <div class="frame-slider-section mobile-only">
+        <div class="frame-slider-container frame-slider-container-mobile">
+          <div class="frame-slider-track frame-slider-track-mobile">
+            <div class="frame-slide frame-slide-mobile active" data-tab="tong-the">
+              <img src="images/slide-thuongmai/top-1.png" alt="Tổng thể - Chuẩn mực sống mới" loading="lazy" class="frame-slide-image-mobile">
+            </div>
+
+            <div class="frame-slide frame-slide-mobile" data-tab="shophouse">
+              <img src="images/slide-thuongmai/top-2.jpg" alt="Shophouse - Chuẩn mực sống mới"
+                class="frame-slide-image-mobile">
+            </div>
+
+            <div class="frame-slide frame-slide-mobile" data-tab="townhouse">
+              <img src="images/slide-thuongmai/top-3.jpg" alt="Townhouse - Chuẩn mực sống mới"
+                class="frame-slide-image-mobile">
+            </div>
+
+            <div class="frame-slide frame-slide-mobile" data-tab="clubhouse">
+              <img src="images/slide-thuongmai/top-4.jpg" alt="Clubhouse - Chuẩn mực sống mới"
+                class="frame-slide-image-mobile">
+            </div>
+
+            <div class="frame-slide frame-slide-mobile" data-tab="cong-vien">
+              <img src="images/slide-thuongmai/top-5.jpg" alt="Công viên - Chuẩn mực sống mới"
+                class="frame-slide-image-mobile">
+            </div>
+          </div>
+
+          <!-- Navigation Arrows -->
+          <button class="frame-slider-arrow frame-slider-prev frame-slider-prev-mobile" onclick="moveRoleFrameSlideMobile(-1)">
+            <img src="images/pre-news.png" alt="">
+          </button>
+          <button class="frame-slider-arrow frame-slider-next frame-slider-next-mobile" onclick="moveRoleFrameSlideMobile(1)">
             <img src="images/next-news.png" alt="">
           </button>
         </div>
@@ -1915,8 +1957,8 @@
 
       </div>
 
-      <!-- Frame Slider Section -->
-      <div class="frame-slider-section role-second-modal-first-slider">
+      <!-- Frame Slider Section - Desktop -->
+      <div class="frame-slider-section role-second-modal-first-slider desktop-only">
         <div class="frame-slider-container role-second-modal-first-container">
           <div class="frame-slider-track role-second-modal-first-track">
             <!-- Slide 1: TỔNG THỂ -->
@@ -1939,6 +1981,35 @@
           </button>
           <button class="frame-slider-arrow frame-slider-next role-second-modal-first-next"
             onclick="moveRoleSecondModalFirstSlide(1)">
+            <img src="images/next-news.png" alt="">
+          </button>
+        </div>
+      </div>
+
+      <!-- Frame Slider Section - Mobile -->
+      <div class="frame-slider-section role-second-modal-first-slider-mobile mobile-only">
+        <div class="frame-slider-container role-second-modal-first-container-mobile">
+          <div class="frame-slider-track role-second-modal-first-track-mobile">
+            <!-- Slide 1: TỔNG THỂ -->
+            <div class="frame-slide role-second-modal-first-slide-mobile active" data-tab="tong-the-second-modal">
+              <img src="images/slide-nhapholienke/top-1.png" alt="Tổng thể - Chuẩn mực sống mới"
+                class="frame-slide-image-mobile">
+            </div>
+
+            <!-- Slide 2: SHOPHOUSE -->
+            <div class="frame-slide role-second-modal-first-slide-mobile" data-tab="shophouse-second-modal">
+              <img src="images/slide-nhapholienke/top-2.jpg" alt="Shophouse - Chuẩn mực sống mới"
+                class="frame-slide-image-mobile">
+            </div>
+          </div>
+
+          <!-- Navigation Arrows -->
+          <button class="frame-slider-arrow frame-slider-prev role-second-modal-first-prev-mobile"
+            onclick="moveRoleSecondModalFirstSlideMobile(-1)">
+            <img src="images/pre-news.png" alt="">
+          </button>
+          <button class="frame-slider-arrow frame-slider-next role-second-modal-first-next-mobile"
+            onclick="moveRoleSecondModalFirstSlideMobile(1)">
             <img src="images/next-news.png" alt="">
           </button>
         </div>

@@ -496,3 +496,103 @@ function getStatusText(status) {
   }
   return statusMap[status] || status
 }
+
+// ============================================
+// Role Second Modal First Slider - Desktop
+// ============================================
+let roleSecondModalFirstCurrentSlide = 0
+
+function moveRoleSecondModalFirstSlide(direction) {
+  const slides = document.querySelectorAll('.role-second-modal-first-slide')
+  const track = document.querySelector('.role-second-modal-first-track')
+
+  if (!slides.length || !track) return
+
+  // Remove active class from current slide
+  slides[roleSecondModalFirstCurrentSlide].classList.remove('active')
+
+  // Calculate new slide index
+  roleSecondModalFirstCurrentSlide = (roleSecondModalFirstCurrentSlide + direction + slides.length) % slides.length
+
+  // Add active class to new slide
+  slides[roleSecondModalFirstCurrentSlide].classList.add('active')
+
+  // Move the track
+  const offset = -roleSecondModalFirstCurrentSlide * 100
+  track.style.transform = `translateX(${offset}%)`
+}
+
+// ============================================
+// Role Second Modal First Slider - Mobile
+// ============================================
+let roleSecondModalFirstCurrentSlideMobile = 0
+
+function moveRoleSecondModalFirstSlideMobile(direction) {
+  const slides = document.querySelectorAll('.role-second-modal-first-slide-mobile')
+  const track = document.querySelector('.role-second-modal-first-track-mobile')
+
+  if (!slides.length || !track) return
+
+  // Remove active class from current slide
+  slides[roleSecondModalFirstCurrentSlideMobile].classList.remove('active')
+
+  // Calculate new slide index
+  roleSecondModalFirstCurrentSlideMobile = (roleSecondModalFirstCurrentSlideMobile + direction + slides.length) % slides.length
+
+  // Add active class to new slide
+  slides[roleSecondModalFirstCurrentSlideMobile].classList.add('active')
+
+  // Move the track
+  const offset = -roleSecondModalFirstCurrentSlideMobile * 100
+  track.style.transform = `translateX(${offset}%)`
+}
+
+// ============================================
+// Role Frame Slider - Desktop
+// ============================================
+let roleFrameCurrentSlide = 0
+
+function moveRoleFrameSlide(direction) {
+  const slides = document.querySelectorAll('.desktop-only .frame-slide')
+  const track = document.querySelector('.desktop-only .frame-slider-track')
+
+  if (!slides.length || !track) return
+
+  // Remove active class from current slide
+  slides[roleFrameCurrentSlide].classList.remove('active')
+
+  // Calculate new slide index
+  roleFrameCurrentSlide = (roleFrameCurrentSlide + direction + slides.length) % slides.length
+
+  // Add active class to new slide
+  slides[roleFrameCurrentSlide].classList.add('active')
+
+  // Move the track
+  const offset = -roleFrameCurrentSlide * 100
+  track.style.transform = `translateX(${offset}%)`
+}
+
+// ============================================
+// Role Frame Slider - Mobile
+// ============================================
+let roleFrameCurrentSlideMobile = 0
+
+function moveRoleFrameSlideMobile(direction) {
+  const slides = document.querySelectorAll('.mobile-only .frame-slide-mobile')
+  const track = document.querySelector('.mobile-only .frame-slider-track-mobile')
+
+  if (!slides.length || !track) return
+
+  // Remove active class from current slide
+  slides[roleFrameCurrentSlideMobile].classList.remove('active')
+
+  // Calculate new slide index
+  roleFrameCurrentSlideMobile = (roleFrameCurrentSlideMobile + direction + slides.length) % slides.length
+
+  // Add active class to new slide
+  slides[roleFrameCurrentSlideMobile].classList.add('active')
+
+  // Move the track
+  const offset = -roleFrameCurrentSlideMobile * 100
+  track.style.transform = `translateX(${offset}%)`
+}
