@@ -1170,6 +1170,7 @@ section[id] {
     z-index: 1;
     animation: popupDescriptionFadeIn 1s ease-out forwards;
     opacity: 0;
+    text-align: justify;
 }
 
 .popup-description .toamancu-description{
