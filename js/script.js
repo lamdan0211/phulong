@@ -38,9 +38,23 @@ const facilityTooltips = {
   'cir24': 'Sân chơi trẻ em'
 }
 
-// Khởi tạo khi trang load xong
+// Khởi tạo khi trang load xong và SVG đã được load
 document.addEventListener("DOMContentLoaded", () => {
-  initializeMap()
+  // Kiểm tra xem SVG đã được load chưa
+  const checkSvgLoaded = () => {
+    const mapSvg = document.getElementById("mapSvg")
+    if (mapSvg) {
+      initializeMap()
+    } else {
+      // Nếu chưa có SVG, đợi event svgLoaded
+      window.addEventListener('svgLoaded', () => {
+        initializeMap()
+      }, { once: true })
+    }
+  }
+
+  // Delay nhỏ để đảm bảo SVG fetch đã chạy
+  setTimeout(checkSvgLoaded, 100)
 })
 
 function initializeMap() {
