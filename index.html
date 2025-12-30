@@ -72,7 +72,7 @@
       </div>
 
 
-      <!-- Navigation Bar with Beige Background -->
+      <!-- Navigation Bar -->
       <nav class="main-nav">
         <div class="scroll-indicator-wrapper">
           <div class="scroll-indicator">
@@ -80,15 +80,7 @@
           </div>
         </div>
 
-        <!-- Mobile Navigation Button -->
-        <div class="mobile-nav-button-wrapper">
-          <button class="mobile-nav-button" onclick="toggleMobileNav()" aria-label="Menu">
-            <span class="mobile-nav-text">TRANG CHỦ</span>
-            <img src="images/arrow-nav-mobile.png" alt="Arrow" loading="lazy" class="mobile-nav-arrow">
-          </button>
-        </div>
-
-        <div class="nav-container">
+        <div class="nav-container db-pc">
           <ul class="nav-list">
             <li><a href="#trang-chu" class="nav-link active">TRANG CHỦ</a></li>
             <li><a href="#vi-tri" class="nav-link">VỊ TRÍ</a></li>
@@ -102,6 +94,33 @@
     </section>
   </header>
 
+  <!-- Mobile Hamburger Button -->
+  <div class="hamburger-btn mobile" onclick="toggleMobileNav()">
+    <div class="hamburger-icon">
+      <span></span>
+      <span></span>
+      <span></span>
+    </div>
+  </div>
+
+  <!-- Mobile Navigation Panel -->
+  <div class="mobile-nav-panel db-mobile">
+    <div class="mobile-nav-overlay" onclick="toggleMobileNav()"></div>
+    <div class="mobile-nav-content">
+      <ul class="mobile-nav-list">
+        <li><a href="#trang-chu" onclick="toggleMobileNav()">TRANG CHỦ</a></li>
+        <li><a href="#vi-tri" onclick="toggleMobileNav()">VỊ TRÍ</a></li>
+        <li><a href="#dac-quyen" onclick="toggleMobileNav()">ĐẶC QUYỀN</a></li>
+        <li><a href="#clubhouse" onclick="toggleMobileNav()">CLUBHOUSE</a></li>
+        <li><a href="#mat-bang" onclick="toggleMobileNav()">MẶT BẰNG</a></li>
+        <li><a href="#tam-diem-thong-tin" onclick="toggleMobileNav()">TIN TỨC</a></li>
+      </ul>
+
+      <div class="mobile-nav-footer">
+        <img src="images/pic-view.png" alt="Decorative Balcony">
+      </div>
+    </div>
+  </div>
   <!-- Main Content -->
   <main>
     <!-- Lifestyle & Location Section -->
@@ -956,6 +975,9 @@
   <!-- Floating Contact Icons -->
   <div class="floating-contact">
     <div class="nav-contact group-1">
+      <a href="tel:0906296868" target="_blank" class="contact-icon db-mobile" aria-label="Facebook">
+        <img src="images/icon-hotline.png" alt="Hotline 24/7">
+      </a>
       <a tabindex="0" role="button" class="contact-icon" aria-label="360 Virtual Tour">
         <img src="images/360-icon.png" alt="360 Virtual Tour">
       </a>
@@ -965,9 +987,6 @@
       <a href="https://www.facebook.com/EssensiaNSG?locale=vi_VN" target="_blank" class="contact-icon"
         aria-label="Facebook">
         <img src="images/fb-icon.png" alt="Facebook">
-      </a>
-      <a href="tel:0906296868" target="_blank" class="contact-icon db-mobile" aria-label="Facebook">
-        <img src="images/icon-hotline.png" alt="Hotline 24/7">
       </a>
     </div>
     <div class="nav-contact group-2 db-pc">
@@ -2216,7 +2235,7 @@
         // Use XMLHttpRequest for file:// protocol
         const xhr = new XMLHttpRequest();
         xhr.open('GET', svgPath, true);
-        xhr.onload = function() {
+        xhr.onload = function () {
           if (xhr.status === 200 || xhr.status === 0) { // 0 for file://
             if (container && loadingDiv) {
               loadingDiv.remove();
@@ -2228,7 +2247,7 @@
             showError('Lỗi tải SVG (Status: ' + xhr.status + ')');
           }
         };
-        xhr.onerror = function() {
+        xhr.onerror = function () {
           showError('Không thể tải file SVG. Đảm bảo file tồn tại tại: ' + svgPath);
         };
         xhr.send();
