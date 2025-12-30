@@ -569,31 +569,25 @@ body > * {
 }
 
 .floating-contact{
-    gap: 20px;
+    gap: 0px;
     right: 1%;
     bottom: 0;
     display: flex;
     flex-direction: column;
     align-items: flex-end;
     z-index: 9999;
-}
-
-.nav-contact {
-    right: 1%;
-    bottom: 0;
-    display: flex;
-    flex-direction: column;
-    align-items: flex-end;
-    z-index: 9999;
-    padding: 20px 15px;
     position: fixed;
 }
-.nav-contact.group-1{
-    bottom: 7%;
+@media (max-width: 780px)  {
+  .floating-contact{
+    bottom: 100px;
+  }
 }
-.nav-contact.group-2{
-    bottom: 0;
-    right: 0;
+.nav-contact {
+    display: flex;
+    flex-direction: column;
+    align-items: flex-end;
+    z-index: 9999;
 }
 
 .contact-icon {
@@ -4167,7 +4161,7 @@ section[id] {
     font-family: 'SFU Franklin Gothic';
     line-height: 1.2;
     margin-bottom: 20px;
-    text-align: center;
+    text-align: justify;
 }
 
 .developer-text:last-child {
@@ -4758,6 +4752,11 @@ section[id] {
     color: #111111;
     font-family: 'SFU Franklin Gothic', Arial, sans-serif;
     line-height: 1.6;
+}
+
+.contact-info-text a{
+    color: #111111;
+    text-decoration: none;
 }
 
 .form-description-wrapper {
@@ -6696,8 +6695,9 @@ section[id] {
 }
 
 .notification-popup.success .notification-title {
-    color: #4CAF50;
+    color: #902b2b;
 }
+
 
 .notification-popup.error .notification-title {
     color: #f44336;
@@ -6737,12 +6737,13 @@ section[id] {
 }
 
 .notification-popup.success .notification-btn {
-    background: #4CAF50;
+    background: #902b2b;
+    color: #eed377;
 }
 
 .notification-popup.success .notification-btn:hover {
-    background: #45a049;
-    box-shadow: 0 4px 12px rgba(76, 175, 80, 0.3);
+    background: #fdf2d0;
+    box-shadow: 0 4px 12px rgba(238, 211, 119, 0.3);
 }
 
 .notification-popup.error .notification-btn {

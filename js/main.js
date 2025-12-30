@@ -754,57 +754,6 @@ function toggleMobileNav() {
   }
 }
 
-// Form Submission Handler
-document.addEventListener('DOMContentLoaded', () => {
-  const connectTodayForm = document.getElementById('connect-today-form');
-
-  if (connectTodayForm) {
-    connectTodayForm.addEventListener('submit', (e) => {
-      e.preventDefault();
-      console.log('Connect Today Form submitted');
-    });
-  }
-
-  initConnectTodayButtonAnimation();
-});
-
-// Connect Today Form Button Call-to-Action Animation
-function initConnectTodayButtonAnimation() {
-  const connectSubmitBtn = document.querySelector('#connect-today-form .connect-form-submit-btn');
-  const connectTodaySection = document.querySelector('.connect-today-section');
-
-  if (!connectSubmitBtn || !connectTodaySection) return;
-
-  const formObserverOptions = {
-    threshold: 0.3,
-    rootMargin: '0px'
-  };
-
-  const formObserver = new IntersectionObserver((entries) => {
-    entries.forEach(entry => {
-      if (entry.isIntersecting) {
-        connectSubmitBtn.classList.add('call-to-action-animate');
-      } else {
-      }
-    });
-  }, formObserverOptions);
-
-  formObserver.observe(connectTodaySection);
-
-  connectSubmitBtn.addEventListener('mouseenter', () => {
-    connectSubmitBtn.classList.remove('call-to-action-animate');
-  });
-
-  connectSubmitBtn.addEventListener('mouseleave', () => {
-    setTimeout(() => {
-      const rect = connectTodaySection.getBoundingClientRect();
-      const isInView = rect.top < window.innerHeight && rect.bottom > 0;
-      if (isInView) {
-        connectSubmitBtn.classList.add('call-to-action-animate');
-      }
-    }, 500);
-  });
-}
 
 // CÔNG VIÊN Popup Functions
 // CongVien Modal Slider - Separate instance
@@ -3239,4 +3188,130 @@ function handleFrameTabClick(tabName, event) {
       frameTabNav.classList.remove('dropdown-open');
     }
   }
+}
+
+
+document.getElementById("connect-today-form").addEventListener("submit", async (e) => {
+  e.preventDefault();
+
+  const form = e.currentTarget;
+
+  const fullname = form.querySelector('#connect-fullname').value.trim();
+  const phone = form.querySelector('#connect-phone').value.trim();
+  const email = form.querySelector('#connect-email').value.trim();
+
+  if (!fullname || !phone || !email) {
+    showNotificationPopup('error', 'Lỗi!', 'Vui lòng điền đầy đủ các trường bắt buộc: Họ và tên, Số điện thoại và Email.');
+    return;
+  }
+
+  const emailRegex = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
+  if (!emailRegex.test(email)) {
+    showNotificationPopup('error', 'Lỗi!', 'Vui lòng nhập địa chỉ email hợp lệ.');
+    return;
+  }
+
+  const phoneNumbersOnly = phone.replace(/[\s\-\+\(\)]/g, '');
+  const vietnamPhoneRegex = /^(0|\+84|84)[2-9]\d{8}$/;
+  if (!vietnamPhoneRegex.test(phoneNumbersOnly)) {
+    showNotificationPopup('error', 'Lỗi!', 'Vui lòng nhập số điện thoại Việt Nam hợp lệ (10 số, bắt đầu bằng 0, hoặc +84/84).');
+    return;
+  }
+
+  const submitBtn = form.querySelector('.connect-form-submit-btn');
+  const submitBtnImg = form.querySelector('.connect-submit-btn-img');
+  const originalBtnContent = submitBtnImg.outerHTML;
+
+  // Disable button and show loading state
+  submitBtn.disabled = true;
+  submitBtn.classList.add('loading');
+  submitBtnImg.style.opacity = '0.6';
+
+  // Create loading spinner
+  const loadingSpinner = document.createElement('div');
+  loadingSpinner.className = 'submit-loading-spinner';
+  loadingSpinner.innerHTML = '<div class="spinner"></div><span class="loading-text">Đang gửi...</span>';
+  submitBtn.appendChild(loadingSpinner);
+
+  try {
+    const fd = new FormData(form);
+    const payload = Object.fromEntries(fd.entries());
+    // Vietnam local time in yyyy-mm-dd hh:mm:ss
+    const vnFormatter = new Intl.DateTimeFormat('en-GB', {
+      timeZone: 'Asia/Ho_Chi_Minh',
+      year: 'numeric',
+      month: '2-digit',
+      day: '2-digit',
+      hour: '2-digit',
+      minute: '2-digit',
+      second: '2-digit',
+      hour12: false,
+    });
+    const vnParts = vnFormatter.formatToParts(new Date());
+    const vnMap = Object.fromEntries(vnParts.map((p) => [p.type, p.value]));
+    payload.time = `${vnMap.year}-${vnMap.month}-${vnMap.day} ${vnMap.hour}:${vnMap.minute}:${vnMap.second}`;
+
+    const res = await fetch(WEBAPP_URL, {
+      method: "POST",
+      headers: { "Content-Type": "text/plain;charset=utf-8" },
+      body: JSON.stringify(payload),
+    });
+    const data = await res.json();
+    if (data.ok) {
+      // Success - show popup and reset form
+      showNotificationPopup('success', 'Thành công!', 'Thông tin của bạn đã được gửi thành công.<br>Chúng tôi sẽ liên hệ với bạn sớm nhất có thể.');
+      form.reset();
+    } else {
+      // Error - show popup with error message
+      showNotificationPopup('error', 'Lỗi!', data.message || 'Đã có lỗi xảy ra. Vui lòng thử lại sau.');
+    }
+  } catch (error) {
+    showNotificationPopup('error', 'Lỗi!', 'Đã có lỗi xảy ra khi gửi form. Vui lòng kiểm tra kết nối internet và thử lại.');
+  } finally {
+    // Re-enable button and restore original state
+    submitBtn.disabled = false;
+    submitBtn.classList.remove('loading');
+    submitBtnImg.style.opacity = '1';
+    loadingSpinner.remove();
+  }
+});
+
+
+// Function to show notification popup
+function showNotificationPopup(type, title, message) {
+  const popup = document.getElementById("notificationPopup");
+  const icon = document.getElementById("notificationIcon");
+  const titleEl = document.getElementById("notificationTitle");
+  const messageEl = document.getElementById("notificationMessage");
+
+  // Set content
+  titleEl.innerHTML = title;
+  messageEl.innerHTML = message;
+
+  // Set icon based on type
+  if (type === 'success') {
+    icon.innerHTML = `
+                    <circle cx="12" cy="12" r="10" fill="#eed377" opacity="0.1"/>
+                    <path d="M9 12l2 2 4-4" stroke="#902b2b" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" fill="none"/>
+                    <circle cx="12" cy="12" r="10" stroke="#902b2b" stroke-width="2" fill="none"/>
+                `;
+    popup.classList.remove('error');
+    popup.classList.add('success');
+  } else {
+    icon.innerHTML = `
+                    <circle cx="12" cy="12" r="10" fill="#f44336" opacity="0.1"/>
+                    <path d="M12 8v4M12 16h.01" stroke="#f44336" stroke-width="2" stroke-linecap="round"/>
+                    <circle cx="12" cy="12" r="10" stroke="#f44336" stroke-width="2" fill="none"/>
+                `;
+    popup.classList.remove('success');
+    popup.classList.add('error');
+  }
+
+  popup.classList.add('active');
+}
+
+// Function to close notification popup
+function closeNotificationPopup() {
+  const popup = document.getElementById("notificationPopup");
+  popup.classList.remove('active');
 }
