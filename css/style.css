@@ -191,6 +191,64 @@ body > * {
     animation: fadeInText 1s ease-in forwards 0.5s;
   }
 
+  /* Preloader Animations */
+  @keyframes float {
+    0%, 100% {
+      transform: translateY(0px);
+    }
+    50% {
+      transform: translateY(-20px);
+    }
+  }
+
+  @keyframes fadeInText {
+    0% {
+      opacity: 0;
+      transform: translateY(10px);
+    }
+    100% {
+      opacity: 1;
+      transform: translateY(0);
+    }
+  }
+
+  /* Loading spinner below text */
+  .loader-spinner {
+    width: 40px;
+    height: 40px;
+    border: 3px solid rgba(255, 255, 255, 0.3);
+    border-top-color: #ffffff;
+    border-radius: 50%;
+    animation: spin 1s linear infinite;
+    margin-top: 10px;
+  }
+
+  @keyframes spin {
+    0% {
+      transform: rotate(0deg);
+    }
+    100% {
+      transform: rotate(360deg);
+    }
+  }
+
+  /* Pulse effect for logo */
+  @keyframes pulse {
+    0%, 100% {
+      opacity: 1;
+      filter: drop-shadow(0 0 10px rgba(255, 255, 255, 0.3));
+    }
+    50% {
+      opacity: 0.8;
+      filter: drop-shadow(0 0 20px rgba(255, 255, 255, 0.6));
+    }
+  }
+
+  /* Alternative: Add subtle pulse to logo */
+  .loader-icon {
+    animation: float 2s infinite ease-in-out, pulse 2s infinite ease-in-out;
+  }
+
 
 @media (min-width: 768.99px) {
     .mobile{
@@ -6853,5 +6911,69 @@ section[id] {
     .frame-slide-image-mobile {
         min-height: 300px;
     }
+}
+
+/* ============================================
+   Lazy Loading Styles
+   ============================================ */
+
+/* Lazy image default state */
+img.lazy {
+    opacity: 0;
+    transition: opacity 0.6s ease-in-out;
+}
+
+/* Image while loading */
+img.lazy-loading {
+    opacity: 0;
+}
+
+/* Image after loaded */
+img.lazy-loaded {
+    opacity: 1;
+}
+
+/* Image loading error */
+img.lazy-error {
+    opacity: 0.5;
+    filter: grayscale(100%);
+}
+
+/* Blur effect while loading (optional premium effect) */
+img.lazy:not(.lazy-loaded) {
+    filter: blur(5px);
+    transform: scale(1.05);
+}
+
+img.lazy-loaded {
+    filter: blur(0);
+    transform: scale(1);
+}
+
+/* Loading skeleton/placeholder animation */
+@keyframes shimmer {
+    0% {
+        background-position: -1000px 0;
+    }
+    100% {
+        background-position: 1000px 0;
+    }
+}
+
+img.lazy:not(.lazy-loaded)::before {
+    content: '';
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background: linear-gradient(
+        90deg,
+        rgba(255, 255, 255, 0) 0%,
+        rgba(255, 255, 255, 0.2) 50%,
+        rgba(255, 255, 255, 0) 100%
+    );
+    background-size: 1000px 100%;
+    animation: shimmer 2s infinite;
 }
 
