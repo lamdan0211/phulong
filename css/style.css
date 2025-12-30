@@ -2457,7 +2457,7 @@ section[id] {
     line-height: 20px;
     color: #111111;
     font-family: 'SFU Franklin Gothic';
-    text-align: center;
+    text-align: justify;
 }
 
 /* ============================================
@@ -4271,8 +4271,8 @@ section[id] {
         top: 20px;
         right: 20px;
         z-index: 2000;
-        width: 55px; /* Slightly larger */
-        height: 55px;
+        width: 40px;
+        height: 40px;
         background: #902b2b;
         border-radius: 50%;
         display: flex !important;
@@ -6059,7 +6059,7 @@ section[id] {
         width: auto;
     }
     .nav-contact.group-1 {
-        bottom: 0%;
+        bottom: 100px;
       }
     .contact-footer {
         padding: 25px 15px;
