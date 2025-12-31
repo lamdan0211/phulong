@@ -1,18 +1,12 @@
-
-
 .map-wrapper {
   position: relative;
   width: 100%;
 }
-
 #mapSvg {
   width: 100%;
   height: auto;
   display: block;
 }
-
-
-/* Tooltip */
 .tooltip {
   position: fixed;
   background: #fff;
@@ -25,26 +19,21 @@
   opacity: 0;
   pointer-events: none;
   transition: all 0.3s ease;
-  font-family: 'SFU Franklin Gothic';
+  font-family: "SFU Franklin Gothic";
 }
-
 .tooltip.show {
   opacity: 1;
   transform: translateY(0);
   pointer-events: all;
 }
-
 .tooltip.hidden {
   display: none;
 }
-
-
 .tooltip-info {
   display: flex;
   flex-direction: column;
   gap: 0;
 }
-
 .info-row {
   display: flex;
   align-items: center;
@@ -52,42 +41,33 @@
   font-size: 14px;
   color: #333;
 }
-
 .info-icon {
   width: 12px;
   height: 12px;
   border-radius: 2px;
   flex-shrink: 0;
 }
-
 .info-icon.icon-unit {
   background: #4a90e2;
 }
-
 .info-icon.icon-floor {
   background: #f5a623;
 }
-
 .info-icon.icon-area {
   background: #e74c3c;
 }
-
 .info-text {
   color: #333;
   font-weight: 400;
 }
-
-
-/* Responsive */
 @media (max-width: 768px) {
   h1 {
     font-size: 1.2rem;
   }
-
   .tooltip {
     min-width: fit-content;
   }
-  .info-row{
+  .info-row {
     font-size: 12px;
   }
 }

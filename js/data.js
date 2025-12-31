@@ -1,6 +1,6 @@
-// Dữ liệu mẫu cho các ô - Bạn có thể chỉnh sửa theo nhu cầu
+
 const propertyData = {
-  // Shophouse
+
   SH02: { name: "Shophouse 02", unit: "SH - 02", floor: "3 tầng + 1 tum", area: "172,50 m2" },
   SH04: { name: "Shophouse 04", unit: "SH - 04", floor: "3 tầng + 1 tum", area: "172,50 m2" },
   SH06: { name: "Shophouse 06", unit: "SH - 06", floor: "3 tầng + 1 tum", area: "172,50 m2" },
@@ -33,8 +33,6 @@ const propertyData = {
   SH60: { name: "Shophouse 60", unit: "SH - 60", floor: "3 tầng + 1 tum", area: "172,50 m2" },
   SH62: { name: "Shophouse 62", unit: "SH - 62", floor: "3 tầng + 1 tum", area: "392,50 m2" },
 
-  // Townhouse - Danh sách đầy đủ
-  // Hàng Townhouse 60-40
   TH60: { name: "Townhouse 60", unit: "TH - 60", floor: "3 tầng + 1 tum", area: "150,00 m2" },
   TH58: { name: "Townhouse 58", unit: "TH - 58", floor: "3 tầng + 1 tum", area: "153,75 m2" },
   TH56: { name: "Townhouse 56", unit: "TH - 56", floor: "3 tầng + 1 tum", area: "153,75 m2" },
@@ -46,8 +44,7 @@ const propertyData = {
   TH44: { name: "Townhouse 44", unit: "TH - 44", floor: "3 tầng + 1 tum", area: "153,75 m2" },
   TH42: { name: "Townhouse 42", unit: "TH - 42", floor: "3 tầng + 1 tum", area: "153,75 m2" },
   TH40: { name: "Townhouse 40", unit: "TH - 40", floor: "3 tầng + 1 tum", area: "145,80 m2" },
-  
-  // Hàng Townhouse 38-02
+
   TH38: { name: "Townhouse 38", unit: "TH - 38", floor: "3 tầng + 1 tum", area: "145,80 m2" },
   TH36: { name: "Townhouse 36", unit: "TH - 36", floor: "3 tầng + 1 tum", area: "153,75 m2" },
   TH34: { name: "Townhouse 34", unit: "TH - 34", floor: "3 tầng + 1 tum", area: "153,75 m2" },
@@ -67,8 +64,7 @@ const propertyData = {
   TH06: { name: "Townhouse 06", unit: "TH - 06", floor: "3 tầng + 1 tum", area: "153,75 m2" },
   TH04: { name: "Townhouse 04", unit: "TH - 04", floor: "3 tầng + 1 tum", area: "153,75 m2" },
   TH02: { name: "Townhouse 02", unit: "TH - 02", floor: "3 tầng + 1 tum", area: "344,50 m2" },
-  
-  // Hàng Townhouse 55-01
+
   TH55: { name: "Townhouse 55", unit: "TH - 55", floor: "3 tầng + 1 tum", area: "150,00 m2" },
   TH53: { name: "Townhouse 53", unit: "TH - 53", floor: "3 tầng + 1 tum", area: "153,75 m2" },
   TH51: { name: "Townhouse 51", unit: "TH - 51", floor: "3 tầng + 1 tum", area: "153,75 m2" },
@@ -97,9 +93,6 @@ const propertyData = {
   TH01: { name: "Townhouse 01", unit: "TH - 01", floor: "3 tầng + 1 tum", area: "344,50 m2" },
 }
 
-// Tọa độ các ô theo phần trăm (%) trong viewBox (0 0 1290 527)
-// Format: { id: 'SH02', x: x_pixel, y: y_pixel, width: w_pixel, height: h_pixel }
-// Tọa độ được extract tự động từ SVG paths trong index.html
 const propertyCoordinates = [
   { id: "SH02", x: 26.5432, y: 45.1803, width: 1.9623, height: 10.9317 },
   { id: "SH04", x: 28.5054, y: 45.1803, width: 1.9623, height: 10.9317 },
