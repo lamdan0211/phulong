@@ -131,7 +131,7 @@ body::before {
   left: 0;
   width: 100%;
   height: 100%;
-  background-image: url("../images/pattern.png");
+  background-image: url("../images/pattern.png?v=0.0.1");
   background-repeat: repeat;
   background-position: 0 0;
   background-attachment: fixed;
@@ -534,7 +534,7 @@ body > * {
   flex-wrap: wrap;
   justify-content: center;
   flex: 1;
-  background-image: url("../images/bg-main-menu.png");
+  background-image: url("../images/bg-main-menu.png?v=0.0.1");
   background-repeat: no-repeat;
   background-position: center;
   border-radius: 8px;
@@ -1193,7 +1193,7 @@ section[id] {
   width: 100%;
   min-height: 100%;
   background-color: #fff;
-  background-image: url("../images/pattern.png");
+  background-image: url("../images/pattern.png?v=0.0.1");
   background-repeat: repeat;
   background-position: 0 0;
   background-attachment: local;
@@ -1376,7 +1376,7 @@ section[id] {
   width: 100%;
   min-height: 100%;
   background-color: #fff;
-  background-image: url("../images/pattern.png");
+  background-image: url("../images/pattern.png?v=0.0.1");
   background-repeat: repeat;
   background-position: 0 0;
   background-attachment: local;
@@ -1447,8 +1447,8 @@ section[id] {
   gap: 0;
   align-items: stretch;
   position: relative;
-  background-image: url("../images/bg-left-clubhouse-modal.png.png"),
-    url("../images/bg-right-clubhouse-modal.png");
+  background-image: url("../images/bg-left-clubhouse-modal.png.png?v=0.0.1"),
+    url("../images/bg-right-clubhouse-modal.png?v=0.0.1");
   background-position: left center, right center;
   background-repeat: no-repeat, no-repeat;
   justify-content: center;
@@ -1671,7 +1671,7 @@ section[id] {
   width: 100%;
   min-height: 100%;
   background-color: #fff;
-  background-image: url("../images/pattern.png");
+  background-image: url("../images/pattern.png?v=0.0.1");
   background-repeat: repeat;
   background-position: 0 0;
   background-attachment: local;
@@ -1967,7 +1967,7 @@ section[id] {
     right: 0;
     height: 45%;
     background-color: #fff;
-    background-image: url("../images/pattern.png");
+    background-image: url("../images/pattern.png?v=0.0.1");
     background-repeat: repeat;
     background-position: 0 0;
     opacity: 0.12;
@@ -2184,7 +2184,7 @@ section[id] {
   width: 100%;
   min-height: 100%;
   background-color: #fff;
-  background-image: url("../images/pattern.png");
+  background-image: url("../images/pattern.png?v=0.0.1");
   background-repeat: repeat;
   background-position: 0 0;
   background-attachment: local;
@@ -2489,7 +2489,7 @@ section[id] {
   top: 0;
   width: 435px;
   height: 100%;
-  background-image: url("../images/bg-red.png");
+  background-image: url("../images/bg-red.png?v=0.0.1");
   background-repeat: repeat-y;
   background-position: left top;
   z-index: 1;
@@ -2504,7 +2504,7 @@ section[id] {
   top: 0;
   width: 435px;
   height: 100%;
-  background-image: url("../images/bg-red.png");
+  background-image: url("../images/bg-red.png?v=0.0.1");
   background-repeat: repeat-y;
   background-position: right top;
   transform: scaleX(-1);
@@ -2713,7 +2713,7 @@ section[id] {
   right: 0;
   width: 100%;
   height: 264px;
-  background-image: url("../images/shape-top.png");
+  background-image: url("../images/shape-top.png?v=0.0.1");
   background-size: cover;
   background-position: top left;
   background-repeat: no-repeat;
@@ -2729,7 +2729,7 @@ section[id] {
   right: 0;
   width: 100%;
   height: 272px;
-  background-image: url("../images/shape-bottom.png");
+  background-image: url("../images/shape-bottom.png?v=0.0.1");
   background-size: cover;
   background-position: bottom center;
   background-repeat: no-repeat;
@@ -4608,7 +4608,7 @@ section[id] {
   top: 0;
   width: 477px;
   height: 100%;
-  background-image: url("../images/bg-footer.png");
+  background-image: url("../images/bg-footer.png?v=0.0.1");
   z-index: 1;
   pointer-events: none;
   background-repeat: no-repeat;
@@ -4624,7 +4624,7 @@ section[id] {
   top: 0;
   width: 477px;
   height: 100%;
-  background-image: url("../images/bg-footer-1.png");
+  background-image: url("../images/bg-footer-1.png?v=0.0.1");
   z-index: 1;
   pointer-events: none;
   background-repeat: no-repeat;
@@ -6114,7 +6114,7 @@ section[id] {
   width: 100%;
   min-height: 100%;
   background-color: #fff;
-  background-image: url("../images/pattern.png");
+  background-image: url("../images/pattern.png?v=0.0.1");
   background-repeat: repeat;
   background-position: 0 0;
   background-attachment: local;
