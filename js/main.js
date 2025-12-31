@@ -3220,7 +3220,6 @@ document.getElementById("connect-today-form").addEventListener("submit", async (
 
   const submitBtn = form.querySelector('.connect-form-submit-btn');
   const submitBtnImg = form.querySelector('.connect-submit-btn-img');
-  const originalBtnContent = submitBtnImg.outerHTML;
 
   // Disable button and show loading state
   submitBtn.disabled = true;
@@ -3234,8 +3233,10 @@ document.getElementById("connect-today-form").addEventListener("submit", async (
   submitBtn.appendChild(loadingSpinner);
 
   try {
-    const fd = new FormData(form);
-    const payload = Object.fromEntries(fd.entries());
+    const fullNameVal = (form.querySelector('#connect-fullname')?.value || "").trim();
+    const phoneVal = (form.querySelector('#connect-phone')?.value || "").trim();
+    const emailVal = (form.querySelector('#connect-email')?.value || "").trim();
+
     // Vietnam local time in yyyy-mm-dd hh:mm:ss
     const vnFormatter = new Intl.DateTimeFormat('en-GB', {
       timeZone: 'Asia/Ho_Chi_Minh',
@@ -3249,7 +3250,15 @@ document.getElementById("connect-today-form").addEventListener("submit", async (
     });
     const vnParts = vnFormatter.formatToParts(new Date());
     const vnMap = Object.fromEntries(vnParts.map((p) => [p.type, p.value]));
-    payload.time = `${vnMap.year}-${vnMap.month}-${vnMap.day} ${vnMap.hour}:${vnMap.minute}:${vnMap.second}`;
+    const formattedTime = `${vnMap.year}-${vnMap.month}-${vnMap.day} ${vnMap.hour}:${vnMap.minute}:${vnMap.second}`;
+
+    // Create payload with both Vietnamese column headers and English keys for safety
+    const payload = {
+      'Dấu thời gian': formattedTime,
+      'Họ và Tên': fullNameVal,
+      'Số điện thoại': phoneVal,
+      'Email': emailVal
+    };
 
     const res = await fetch(WEBAPP_URL, {
       method: "POST",

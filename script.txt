@@ -1,0 +1,98 @@
+function doPost(e) {
+  try {
+    // 1. Mở Sheet - Lưu ý: Hãy đảm bảo ID và Tên Tab chính xác
+    const ss = SpreadsheetApp.openById('1v_-NhQUkbaD7ewQED52Lsu-JhPE92YqzbCfrxCQuJPY');
+    
+    // Nếu tên tab bên dưới cùng của sheet không phải "Câu trả lời biểu mẫu 1", hãy sửa lại tên ở đây
+    const sheetName = 'Câu trả lời biểu mẫu 1'; 
+    const sheet = ss.getSheetByName(sheetName);
+    
+    if (!sheet) {
+      return json({ ok: false, message: 'Không tìm thấy Tab: ' + sheetName });
+    }
+
+    // 2. Parse dữ liệu gửi lên
+    let body;
+    try {
+      body = JSON.parse(e.postData.contents);
+    } catch (f) {
+      return json({ ok: false, message: 'Dữ liệu JSON không hợp lệ' });
+    }
+    
+    // Lấy Email từ payload (thử nhiều trường hợp key khác nhau)
+    const emailValue = String(body['Email'] || body['email'] || body['EMAIL'] || '').trim();
+    if (!emailValue) {
+      return json({ ok: false, message: 'Payload thiếu trường Email hoặc email rỗng' });
+    }
+
+    // 3. Lấy Headers thực tế từ Sheet (Hàng 1)
+    const lastCol = sheet.getLastColumn();
+    if (lastCol === 0) {
+      return json({ ok: false, message: 'Sheet đang trống, hãy tạo tiêu đề ở hàng 1' });
+    }
+    
+    const headers = sheet.getRange(1, 1, 1, lastCol).getValues()[0].map(v => String(v || '').trim());
+    
+    // TÌM CỘT EMAIL (Sửa lỗi so sánh chữ hoa thường ở đây)
+    const emailColIndex = headers.findIndex(h => h.toLowerCase() === 'email');
+
+    if (emailColIndex === -1) {
+      return json({ 
+        ok: false, 
+        message: 'Không tìm thấy cột "Email" trong Sheet. Các cột hiện có: [' + headers.join(', ') + ']' 
+      });
+    }
+
+    // 4. Tìm dòng trùng dựa trên Email
+    const lastRow = sheet.getLastRow();
+    let foundRow = -1;
+    if (lastRow >= 2) {
+      const emailData = sheet.getRange(2, emailColIndex + 1, lastRow - 1, 1).getValues();
+      for (let i = 0; i < emailData.length; i++) {
+        if (String(emailData[i][0]).trim().toLowerCase() === emailValue.toLowerCase()) {
+          foundRow = i + 2; // Cộng 2 vì index mảng từ 0 và dữ liệu bắt đầu từ hàng 2
+          break;
+        }
+      }
+    }
+
+    // 5. Chuẩn bị hàng dữ liệu để lưu
+    let rowData;
+    if (foundRow > 0) {
+      // Nếu tìm thấy: Lấy dữ liệu cũ của hàng đó để cập nhật chèn đè
+      rowData = sheet.getRange(foundRow, 1, 1, lastCol).getValues()[0];
+    } else {
+      // Nếu không thấy: Tạo hàng mới trắng
+      rowData = new Array(lastCol).fill('');
+    }
+
+    // Map dữ liệu từ payload vào đúng vị trí cột dựa trên tiêu đề (Header)
+    headers.forEach((header, index) => {
+      // Duyệt qua các key trong payload để tìm cái khớp với Header của Sheet
+      // Chấp nhận khớp cả khi sai hoa thường hoặc thừa dấu cách
+      for (let key in body) {
+        if (key.trim().toLowerCase() === header.toLowerCase()) {
+          rowData[index] = body[key];
+        }
+      }
+    });
+
+    // 6. Thực hiện lưu vào Sheet
+    if (foundRow > 0) {
+      sheet.getRange(foundRow, 1, 1, lastCol).setValues([rowData]);
+      return json({ ok: true, action: 'updated', row: foundRow });
+    } else {
+      sheet.appendRow(rowData);
+      return json({ ok: true, action: 'inserted' });
+    }
+
+  } catch (err) {
+    return json({ ok: false, message: 'Lỗi hệ thống: ' + err.toString() });
+  }
+}
+
+// Hàm hỗ trợ trả về JSON
+function json(obj) {
+  return ContentService.createTextOutput(JSON.stringify(obj))
+    .setMimeType(ContentService.MimeType.JSON);
+}
