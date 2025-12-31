@@ -1224,6 +1224,10 @@ section[id] {
     text-align: justify;
 }
 
+.popup-description .title-tab-clubhouse{
+    text-align: center;
+}
+
 .popup-description .toamancu-description{
     margin-bottom: 30px;
 }
@@ -4572,7 +4576,7 @@ section[id] {
         justify-self: center;
         width: 100%;
         max-width: 300px;
-        margin: 0 auto;
+        margin: 0 auto 50px auto;
     }
     
     .partner-logo-wrapper {
@@ -4758,6 +4762,7 @@ section[id] {
     color: #111111;
     text-decoration: none;
 }
+
 
 .form-description-wrapper {
     margin-bottom: 15px;
@@ -4950,6 +4955,16 @@ section[id] {
 }
 
 @media (max-width: 768px) {
+    .contact-icon img {
+        width: 40px;
+        height: 40px;
+      }
+    .connect-today-right{
+        padding: 50px 0 20px 0;
+    }
+    .contact-info-divider.mobile{
+        text-align: center;
+    }
     .connect-today-section {
         padding: 60px 0;
     }
@@ -5435,7 +5450,7 @@ section[id] {
         justify-self: center;
         width: 100%;
         max-width: 250px;
-        margin: 0 auto;
+        margin: 0 auto 20px auto;
     }
     
     .optimal-floor-plan-left img{
