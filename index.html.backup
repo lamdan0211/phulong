@@ -1972,12 +1972,6 @@
       }, 500); // Slight delay for smoother transition
     });
   </script>
-
-  <!-- Firebase Content Loader -->
-  <script type="module" src="js/essensia-loader.js"></script>
-
-  <!-- Firebase Images Loader -->
-  <script type="module" src="js/images-loader.js"></script>
 </body>
 
 </html>
