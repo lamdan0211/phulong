@@ -1,349 +1,311 @@
 <!DOCTYPE html>
 <html lang="vi">
+
 <head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Admin - Essensia Broadway</title>
-    <link rel="stylesheet" href="css/admin.css">
-    <style>
-        /* Image grid styles */
-        .image-grid {
-            display: grid;
-            grid-template-columns: repeat(auto-fill, minmax(200px, 1fr));
-            gap: 1.5rem;
-            margin-top: 1.5rem;
-        }
-        .image-item {
-            border: 2px solid #e5e7eb;
-            border-radius: 8px;
-            padding: 1rem;
-            background: #fff;
-        }
-        .image-item:hover {
-            border-color: #2563eb;
-        }
-        .image-item img {
-            width: 100%;
-            height: 150px;
-            object-fit: cover;
-            border-radius: 4px;
-            margin-bottom: 0.5rem;
-        }
-        .image-item label {
-            display: block;
-            font-size: 0.85rem;
-            font-weight: 600;
-            color: #374151;
-            margin-bottom: 0.5rem;
-        }
-        .image-item small {
-            display: block;
-            color: #6b7280;
-            font-size: 0.75rem;
-            margin-top: 0.25rem;
-        }
-        .upload-btn {
-            width: 100%;
-            padding: 0.5rem;
-            background: #f3f4f6;
-            border: 1px solid #d1d5db;
-            border-radius: 4px;
-            cursor: pointer;
-            font-size: 0.85rem;
-            transition: all 0.2s;
-        }
-        .upload-btn:hover {
-            background: #2563eb;
-            color: white;
-            border-color: #2563eb;
-        }
-        .image-status {
-            display: inline-block;
-            padding: 0.25rem 0.5rem;
-            border-radius: 4px;
-            font-size: 0.75rem;
-            font-weight: 600;
-            margin-top: 0.5rem;
-        }
-        .status-uploaded {
-            background: #d1fae5;
-            color: #065f46;
-        }
-        .status-pending {
-            background: #fef3c7;
-            color: #92400e;
-        }
-    </style>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Admin - Essensia Broadway</title>
+  <link rel="stylesheet" href="css/admin.css">
 </head>
+
 <body>
-    <!-- Login Container -->
-    <div id="login-container">
-        <div class="login-box">
-            <h1>🏢 Admin Panel</h1>
-            <p style="text-align: center; color: #6b7280; margin-bottom: 2rem;">Essensia Broadway</p>
-            <div id="login-error" class="error-message" style="display: none;"></div>
-            <form id="login-form">
-                <div class="form-group">
-                    <label for="email">Email</label>
-                    <input type="email" id="email" required placeholder="admin@phulong.com">
-                </div>
-                <div class="form-group">
-                    <label for="password">Password</label>
-                    <input type="password" id="password" required placeholder="••••••••">
-                </div>
-                <button type="submit" class="btn btn-primary" id="login-btn">
-                    Đăng nhập
-                </button>
-            </form>
+  <!-- Login Container -->
+  <div id="login-container">
+    <div class="login-box">
+      <h1>🏢 Admin Panel</h1>
+      <p style="text-align: center; color: #6b7280; margin-bottom: 2rem;">Essensia Broadway</p>
+      <div id="login-error" class="error-message" style="display: none;"></div>
+      <form id="login-form">
+        <div class="form-group">
+          <label for="email">Email</label>
+          <input type="email" id="email" required placeholder="admin@phulong.com">
         </div>
+        <div class="form-group">
+          <label for="password">Password</label>
+          <input type="password" id="password" required placeholder="••••••••">
+        </div>
+        <button type="submit" class="btn btn-primary" id="login-btn">
+          Đăng nhập
+        </button>
+      </form>
+    </div>
+  </div>
+
+  <!-- Admin Container -->
+  <div id="admin-container">
+    <!-- Header -->
+    <div class="admin-header">
+      <h1>🏢 QUẢN LÝ ESSENSIA BROADWAY</h1>
+      <div class="user-info">
+        <span class="user-email" id="user-email"></span>
+        <button class="btn-logout" id="logout-btn">Đăng xuất</button>
+      </div>
     </div>
 
-    <!-- Admin Container -->
-    <div id="admin-container">
-        <!-- Header -->
-        <div class="admin-header">
-            <h1>🏢 QUẢN LÝ ESSENSIA BROADWAY</h1>
-            <div class="user-info">
-                <span class="user-email" id="user-email"></span>
-                <button class="btn-logout" id="logout-btn">Đăng xuất</button>
-            </div>
-        </div>
-
-        <div class="success-message" id="success-message" style="display: none;">
-            ✅ Đã lưu thành công!
-        </div>
-
-        <!-- Main Navigation Tabs -->
-        <div class="tabs">
-            <button class="tab-btn active" data-tab="content">📝 Nội dung Text</button>
-            <button class="tab-btn" data-tab="images">🖼️ Quản lý Hình ảnh</button>
-        </div>
-
-        <!-- ============================================= -->
-        <!-- TAB 1: NỘI DUNG TEXT -->
-        <!-- ============================================= -->
-        <div class="tab-content active" id="tab-content">
-            <!-- Sub-tabs for text content -->
-            <div class="tabs" style="margin-top: 1rem; border-top: 1px solid #e5e7eb; padding-top: 1rem;">
-                <button class="subtab-btn active" data-subtab="hero">🏠 Hero</button>
-                <button class="subtab-btn" data-subtab="location">📍 Vị trí</button>
-                <button class="subtab-btn" data-subtab="product">🏗️ Sản phẩm</button>
-                <button class="subtab-btn" data-subtab="news">📰 Tin tức</button>
-                <button class="subtab-btn" data-subtab="contact">📞 Liên hệ</button>
-                <button class="subtab-btn" data-subtab="all-text">🧩 Tất cả sections</button>
-            </div>
-
-            <!-- Hero Section -->
-            <div class="subtab-content active" id="subtab-hero">
-                <div class="section-editor">
-                    <h2>🏠 Hero Section</h2>
-                    <div class="form-group">
-                        <label>Tiêu đề chính</label>
-                        <input type="text" id="hero-title" placeholder="Essensia Broadway">
-                    </div>
-                    <div class="form-group">
-                        <label>Phụ đề</label>
-                        <input type="text" id="hero-subtitle" placeholder="Bất Chất Sống Riêng">
-                    </div>
-                    <div class="form-group">
-                        <label>Mô tả 1</label>
-                        <textarea id="hero-desc1" rows="3"></textarea>
-                    </div>
-                    <div class="form-group">
-                        <label>Mô tả 2</label>
-                        <textarea id="hero-desc2" rows="3"></textarea>
-                    </div>
-                    <div class="form-group">
-                        <label>Mô tả 3</label>
-                        <textarea id="hero-desc3" rows="3"></textarea>
-                    </div>
-                </div>
-            </div>
-
-            <!-- Location Section -->
-            <div class="subtab-content" id="subtab-location">
-                <div class="section-editor">
-                    <h2>📍 Vị trí</h2>
-                    <div class="form-group">
-                        <label>Tiêu đề</label>
-                        <input type="text" id="location-title">
-                    </div>
-                    <div class="form-group">
-                        <label>Mô tả</label>
-                        <textarea id="location-desc" rows="5"></textarea>
-                    </div>
-                </div>
-            </div>
-
-            <!-- Product Section -->
-            <div class="subtab-content" id="subtab-product">
-                <div class="section-editor">
-                    <h2>🏗️ Sản phẩm</h2>
-                    <div class="form-group">
-                        <label>Tiêu đề</label>
-                        <input type="text" id="product-title">
-                    </div>
-                    <div class="form-group">
-                        <label>Mô tả</label>
-                        <textarea id="product-desc" rows="5"></textarea>
-                    </div>
-                </div>
-            </div>
-
-            <!-- News Section -->
-            <div class="subtab-content" id="subtab-news">
-                <div class="section-editor">
-                    <h2>📰 Tin tức</h2>
-                    <div class="form-group">
-                        <label>Tiêu đề section</label>
-                        <input type="text" id="news-title">
-                    </div>
-                    <div id="news-items-container"></div>
-                    <button class="btn-add" id="add-news-btn">+ Thêm tin mới</button>
-                </div>
-            </div>
-
-            <!-- Contact Section -->
-            <div class="subtab-content" id="subtab-contact">
-                <div class="section-editor">
-                    <h2>📞 Liên hệ</h2>
-                    <div class="form-group">
-                        <label>Hotline</label>
-                        <input type="text" id="contact-hotline">
-                    </div>
-                    <div class="form-group">
-                        <label>Email</label>
-                        <input type="email" id="contact-email">
-                    </div>
-                    <div class="form-group">
-                        <label>Địa chỉ văn phòng</label>
-                        <textarea id="contact-address" rows="2"></textarea>
-                    </div>
-                    <div class="form-group">
-                        <label>Địa chỉ dự án</label>
-                        <textarea id="contact-project-address" rows="2"></textarea>
-                    </div>
-                </div>
-            </div>
-
-            <!-- All Sections (Auto) -->
-            <div class="subtab-content" id="subtab-all-text">
-                <div class="section-editor">
-                    <h2>🧩 Tất cả sections (Auto)</h2>
-                    <p style="color: #6b7280;">Chỉnh sửa toàn bộ text theo từng section</p>
-                    <div id="all-text-sections"></div>
-                </div>
-            </div>
-        </div>
-
-        <!-- ============================================= -->
-        <!-- TAB 2: QUẢN LÝ HÌNH ẢNH -->
-        <!-- ============================================= -->
-        <div class="tab-content" id="tab-images">
-            <!-- Sub-tabs for image groups -->
-            <div class="tabs" style="margin-top: 1rem; border-top: 1px solid #e5e7eb; padding-top: 1rem;">
-                <button class="subtab-btn active" data-subtab="logos">🏢 Logos (5)</button>
-                <button class="subtab-btn" data-subtab="hero-images">🎨 Hero/Banners (6)</button>
-                <button class="subtab-btn" data-subtab="features">⭐ Features (10)</button>
-                <button class="subtab-btn" data-subtab="gallery">📸 Gallery (20)</button>
-                <button class="subtab-btn" data-subtab="all-images">🧩 Tất cả hình</button>
-            </div>
-
-            <!-- Logos Group -->
-            <div class="subtab-content active" id="subtab-logos">
-                <div class="section-editor">
-                    <h2>🏢 Logos & Branding</h2>
-                    <p style="color: #6b7280;">Logo và các graphic chính của dự án</p>
-                    <div class="image-grid" id="logos-grid"></div>
-                </div>
-            </div>
-
-            <!-- Hero Images Group -->
-            <div class="subtab-content" id="subtab-hero-images">
-                <div class="section-editor">
-                    <h2>🎨 Hero Section & Banners</h2>
-                    <p style="color: #6b7280;">Banner chính, hero images</p>
-                    <div class="image-grid" id="hero-grid"></div>
-                </div>
-            </div>
-
-            <!-- Features Group -->
-            <div class="subtab-content" id="subtab-features">
-                <div class="section-editor">
-                    <h2>⭐ Features & Amenities</h2>
-                    <p style="color: #6b7280;">Hình ảnh tiện ích, đặc quyền</p>
-                    <div class="image-grid" id="features-grid"></div>
-                </div>
-            </div>
-
-            <!-- Gallery Group -->
-            <div class="subtab-content" id="subtab-gallery">
-                <div class="section-editor">
-                    <h2>📸 Gallery & Lifestyle</h2>
-                    <p style="color: #6b7280;">Gallery hình ảnh dự án</p>
-                    <div class="image-grid" id="gallery-grid"></div>
-                </div>
-            </div>
-
-            <!-- All Images (Auto) -->
-            <div class="subtab-content" id="subtab-all-images">
-                <div class="section-editor">
-                    <h2>🧩 Tất cả hình (Auto)</h2>
-                    <p style="color: #6b7280;">Thay đổi toàn bộ hình theo từng section</p>
-                    <div class="image-grid" id="all-images-grid"></div>
-                </div>
-            </div>
-        </div>
-
-        <!-- Action Buttons -->
-        <div class="action-buttons">
-            <button class="btn-save" id="save-all-btn">
-                💾 Lưu tất cả thay đổi
-            </button>
-        </div>
+    <div class="success-message" id="success-message" style="display: none;">
+      ✅ Đã lưu thành công!
     </div>
 
-    <!-- Admin JS -->
-    <script type="module" src="js/admin.js"></script>
+    <!-- Main Navigation Tabs -->
+    <div class="tabs">
+      <button class="tab-btn active" data-tab="content">📝 Nội dung Text</button>
+      <button class="tab-btn" data-tab="images">🖼️ Quản lý Hình ảnh</button>
+    </div>
 
-    <script>
-        // Main tab switching (Nội dung vs Hình ảnh)
-        document.addEventListener('DOMContentLoaded', () => {
-            const tabBtns = document.querySelectorAll('.tabs > .tab-btn');
-            const tabContents = document.querySelectorAll('#admin-container > .tab-content');
+    <!-- ============================================= -->
+    <!-- TAB 1: NỘI DUNG TEXT -->
+    <!-- ============================================= -->
+    <div class="tab-content active" id="tab-content">
+      <!-- Sub-tabs for text content -->
+      <div class="tabs" style="margin-top: 1rem; border-top: 1px solid #e5e7eb; padding-top: 1rem;">
+        <button class="subtab-btn active" data-subtab="hero">🏠  Trang chủ</button>
+        <button class="subtab-btn" data-subtab="location">📍 Vị trí</button>
+        <button class="subtab-btn" data-subtab="product">🏗️ Sản phẩm</button>
+        <button class="subtab-btn" data-subtab="news">📰 Tin tức</button>
+        <button class="subtab-btn" data-subtab="contact">📞 Liên hệ</button>
+        <button class="subtab-btn" data-subtab="all-text">🧩 Khác</button>
+      </div>
 
-            tabBtns.forEach(btn => {
-                btn.addEventListener('click', () => {
-                    tabBtns.forEach(b => b.classList.remove('active'));
-                    tabContents.forEach(c => c.classList.remove('active'));
+      <!-- Hero Section -->
+      <div class="subtab-content active" id="subtab-hero">
+        <div class="section-editor">
+          <h2>🏠 Trang chủ</h2>
+          <div class="form-group">
+            <label>Tiêu đề chính</label>
+            <input type="text" id="hero-title" placeholder="Essensia Broadway">
+          </div>
+          <div class="form-group">
+            <label>Phụ đề</label>
+            <input type="text" id="hero-subtitle" placeholder="Bất Chất Sống Riêng">
+          </div>
+          <div class="form-group">
+            <label>Mô tả 1</label>
+            <textarea id="hero-desc1" rows="3"></textarea>
+          </div>
+          <div class="form-group">
+            <label>Mô tả 2</label>
+            <textarea id="hero-desc2" rows="3"></textarea>
+          </div>
+          <div class="form-group">
+            <label>Mô tả 3</label>
+            <textarea id="hero-desc3" rows="3"></textarea>
+          </div>
+        </div>
+      </div>
 
-                    btn.classList.add('active');
-                    const tabId = btn.getAttribute('data-tab');
-                    document.getElementById(`tab-${tabId}`).classList.add('active');
-                });
-            });
+      <!-- Location Section -->
+      <div class="subtab-content" id="subtab-location">
+        <div class="section-editor">
+          <h2>📍 Vị trí</h2>
+          <div class="form-group">
+            <label>Tiêu đề</label>
+            <input type="text" id="location-title">
+          </div>
+          <div class="form-group">
+            <label>Mô tả</label>
+            <textarea id="location-desc" rows="5"></textarea>
+          </div>
+        </div>
+      </div>
 
-            // Sub-tab switching
-            document.querySelectorAll('.subtab-btn').forEach(btn => {
-                btn.addEventListener('click', () => {
-                    const parentTab = btn.closest('.tab-content');
-                    if (!parentTab) return;
+      <!-- Product Section -->
+      <div class="subtab-content" id="subtab-product">
+        <div class="section-editor">
+          <h2>🏗️ Sản phẩm</h2>
+          <div class="form-group">
+            <label>Tiêu đề</label>
+            <input type="text" id="product-title">
+          </div>
+          <div class="form-group">
+            <label>Mô tả</label>
+            <textarea id="product-desc" rows="5"></textarea>
+          </div>
+        </div>
+      </div>
 
-                    const subtabBtns = parentTab.querySelectorAll('.subtab-btn');
-                    const subtabContents = parentTab.querySelectorAll('.subtab-content');
+      <!-- News Section -->
+      <div class="subtab-content" id="subtab-news">
+        <div class="section-editor">
+          <h2>📰 Tin tức</h2>
+          <div class="form-group">
+            <label>Tiêu đề section</label>
+            <input type="text" id="news-title">
+          </div>
+          <div id="news-items-container"></div>
+          <button class="btn-add" id="add-news-btn">+ Thêm tin mới</button>
+        </div>
+      </div>
 
-                    subtabBtns.forEach(b => b.classList.remove('active'));
-                    subtabContents.forEach(c => c.classList.remove('active'));
+      <!-- Contact Section -->
+      <div class="subtab-content" id="subtab-contact">
+        <div class="section-editor">
+          <h2>📞 Liên hệ</h2>
+          <div class="form-group">
+            <label>Hotline</label>
+            <input type="text" id="contact-hotline">
+          </div>
+          <div class="form-group">
+            <label>Email</label>
+            <input type="email" id="contact-email">
+          </div>
+          <div class="form-group">
+            <label>Địa chỉ văn phòng</label>
+            <textarea id="contact-address" rows="2"></textarea>
+          </div>
+          <div class="form-group">
+            <label>Địa chỉ dự án</label>
+            <textarea id="contact-project-address" rows="2"></textarea>
+          </div>
+        </div>
+      </div>
 
-                    btn.classList.add('active');
-                    const subtabId = btn.getAttribute('data-subtab');
-                    const targetSubtab = parentTab.querySelector(`#subtab-${subtabId}`);
-                    if (targetSubtab) {
-                        targetSubtab.classList.add('active');
-                    }
-                });
-            });
+      <!-- All Sections (Auto) -->
+      <div class="subtab-content" id="subtab-all-text">
+        <div class="section-editor">
+          <h2>🧩 Menu</h2>
+          <div class="form-group">
+            <label>TRANG CHỦ</label>
+            <input type="text" id="nav_1">
+          </div>
+          <div class="form-group">
+            <label>VỊ TRÍ</label>
+            <input type="text" id="nav_2">
+          </div>
+          <div class="form-group">
+            <label>SẢN PHẨM</label>
+            <input type="text" id="nav_3">
+          </div>
+          <div class="form-group">
+            <label>ĐẶC QUYỀN</label>
+            <input type="text" id="nav_4">
+          </div>
+          <div class="form-group">
+            <label>MẶT BẰNG</label>
+            <input type="text" id="nav_5">
+          </div>
+          <div class="form-group">
+            <label>TIN TỨC</label>
+            <input type="text" id="nav_6">
+          </div>
+
+          <h2>🧩 Abc</h2>
+          <div class="form-group">
+            <label>Hotline</label>
+            <input type="text" id="contact-hotline___">
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <!-- ============================================= -->
+    <!-- TAB 2: QUẢN LÝ HÌNH ẢNH -->
+    <!-- ============================================= -->
+    <div class="tab-content" id="tab-images">
+      <!-- Sub-tabs for image groups -->
+      <div class="tabs" style="margin-top: 1rem; border-top: 1px solid #e5e7eb; padding-top: 1rem;">
+        <button class="subtab-btn active" data-subtab="logos">🏢 Logos (5)</button>
+        <button class="subtab-btn" data-subtab="hero-images">🎨 Hero/Banners (6)</button>
+        <button class="subtab-btn" data-subtab="features">⭐ Features (10)</button>
+        <button class="subtab-btn" data-subtab="gallery">📸 Gallery (20)</button>
+        <button class="subtab-btn" data-subtab="all-images">🧩 Tất cả hình</button>
+      </div>
+
+      <!-- Logos Group -->
+      <div class="subtab-content active" id="subtab-logos">
+        <div class="section-editor">
+          <h2>🏢 Logos & Branding</h2>
+          <p style="color: #6b7280;">Logo và các graphic chính của dự án</p>
+          <div class="image-grid" id="logos-grid"></div>
+        </div>
+      </div>
+
+      <!-- Hero Images Group -->
+      <div class="subtab-content" id="subtab-hero-images">
+        <div class="section-editor">
+          <h2>🎨 Hero Section & Banners</h2>
+          <p style="color: #6b7280;">Banner chính, hero images</p>
+          <div class="image-grid" id="hero-grid"></div>
+        </div>
+      </div>
+
+      <!-- Features Group -->
+      <div class="subtab-content" id="subtab-features">
+        <div class="section-editor">
+          <h2>⭐ Features & Amenities</h2>
+          <p style="color: #6b7280;">Hình ảnh tiện ích, đặc quyền</p>
+          <div class="image-grid" id="features-grid"></div>
+        </div>
+      </div>
+
+      <!-- Gallery Group -->
+      <div class="subtab-content" id="subtab-gallery">
+        <div class="section-editor">
+          <h2>📸 Gallery & Lifestyle</h2>
+          <p style="color: #6b7280;">Gallery hình ảnh dự án</p>
+          <div class="image-grid" id="gallery-grid"></div>
+        </div>
+      </div>
+
+      <!-- All Images (Auto) -->
+      <div class="subtab-content" id="subtab-all-images">
+        <div class="section-editor">
+          <h2>🧩 Tất cả hình (Auto)</h2>
+          <p style="color: #6b7280;">Thay đổi toàn bộ hình theo từng section</p>
+          <div class="image-grid" id="all-images-grid"></div>
+        </div>
+      </div>
+    </div>
+
+    <!-- Action Buttons -->
+    <div class="action-buttons">
+      <button class="btn-save" id="save-all-btn">
+        💾 Lưu tất cả thay đổi
+      </button>
+    </div>
+  </div>
+
+  <!-- Admin JS -->
+  <script type="module" src="js/admin.js"></script>
+
+  <script>
+    // Main tab switching (Nội dung vs Hình ảnh)
+    document.addEventListener('DOMContentLoaded', () => {
+      const tabBtns = document.querySelectorAll('.tabs > .tab-btn');
+      const tabContents = document.querySelectorAll('#admin-container > .tab-content');
+
+      tabBtns.forEach(btn => {
+        btn.addEventListener('click', () => {
+          tabBtns.forEach(b => b.classList.remove('active'));
+          tabContents.forEach(c => c.classList.remove('active'));
+
+          btn.classList.add('active');
+          const tabId = btn.getAttribute('data-tab');
+          document.getElementById(`tab-${tabId}`).classList.add('active');
         });
-    </script>
+      });
+
+      // Sub-tab switching
+      document.querySelectorAll('.subtab-btn').forEach(btn => {
+        btn.addEventListener('click', () => {
+          const parentTab = btn.closest('.tab-content');
+          if (!parentTab) return;
+
+          const subtabBtns = parentTab.querySelectorAll('.subtab-btn');
+          const subtabContents = parentTab.querySelectorAll('.subtab-content');
+
+          subtabBtns.forEach(b => b.classList.remove('active'));
+          subtabContents.forEach(c => c.classList.remove('active'));
+
+          btn.classList.add('active');
+          const subtabId = btn.getAttribute('data-subtab');
+          const targetSubtab = parentTab.querySelector(`#subtab-${subtabId}`);
+          if (targetSubtab) {
+            targetSubtab.classList.add('active');
+          }
+        });
+      });
+    });
+  </script>
 </body>
+
 </html>
