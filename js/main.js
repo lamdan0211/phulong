@@ -14,36 +14,49 @@ let clubhouseAmenitiesSliderWrapper = null;
 let clubhouseAmenitiesAutoPlayInterval = null;
 let clubhouseAmenitiesActivePanels = new Set();
 let clubhouseAmenitiesPanelsOnRight = new Set();
+
+// Park Slider variables
+let parkCurrentSlide = 0;
+let parkSlides = null;
+let parkTotalSlides = 0;
+let parkSliderWrapper = null;
+
 function initSlider() {
-  const mainSlider = document.querySelector('.clubhouse-slider:not(.popup-container .clubhouse-slider)');
+  // Clear existing interval nếu có (phòng trường hợp được gọi lại nhiều lần)
+  if (autoPlayInterval) {
+    clearInterval(autoPlayInterval);
+    autoPlayInterval = null;
+  }
+
+  // Tìm clubhouse slider ở trang chủ (có data-slider-group="clubhouse_slider")
+  let mainSlider = document.querySelector('.clubhouse-slider[data-slider-group="clubhouse_slider"]');
+  // Fallback: tìm slider không trong popup
+  if (!mainSlider) {
+    mainSlider = document.querySelector('.clubhouse-slider:not(.popup-container .clubhouse-slider)');
+  }
   if (!mainSlider) {
     return false;
   }
+
   slides = mainSlider.querySelector('.slides');
   sliderWrapper = mainSlider.querySelector('.slider-wrapper');
   if (!slides || !sliderWrapper) {
     return false;
   }
+
   totalSlides = mainSlider.querySelectorAll('.slide').length;
   tabs = mainSlider.querySelectorAll('.vertical-text');
   if (totalSlides === 0) {
     return false;
   }
+
+  // Luôn bắt đầu từ slide 0 và đồng bộ description
   currentSlide = 0;
   updateSlider();
-  autoPlayInterval = setInterval(() => {
-    moveSlide(1);
-  }, 5000);
-  sliderWrapper.addEventListener('mouseenter', () => {
-    if (autoPlayInterval) {
-      clearInterval(autoPlayInterval);
-    }
-  });
-  sliderWrapper.addEventListener('mouseleave', () => {
-    autoPlayInterval = setInterval(() => {
-      moveSlide(1);
-    }, 5000);
-  });
+
+  // Tắt autoplay để tránh cảm giác "trượt liên tục" và lệch text
+  // Người dùng điều khiển slider bằng arrow / keyboard / swipe
+
   document.addEventListener('keydown', (e) => {
     if (e.key === 'ArrowLeft') {
       moveSlide(-1);
@@ -70,6 +83,120 @@ function initSlider() {
   }
   return true;
 }
+
+// Expose initSlider to window scope để có thể gọi từ images-loader
+// Phải đặt SAU khi function được định nghĩa
+window.initSlider = initSlider;
+
+function initParkSlider() {
+  // Tìm park slider
+  const parkSlider = document.querySelector('.clubhouse-slider[data-slider-group="park_slider"]');
+  if (!parkSlider) {
+    return false;
+  }
+
+  parkSlides = parkSlider.querySelector('.slides');
+  parkSliderWrapper = parkSlider.querySelector('.slider-wrapper');
+  if (!parkSlides || !parkSliderWrapper) {
+    return false;
+  }
+
+  parkTotalSlides = parkSlider.querySelectorAll('.slide').length;
+  if (parkTotalSlides === 0) {
+    return false;
+  }
+
+  // Luôn bắt đầu từ slide 0 và đồng bộ description
+  parkCurrentSlide = 0;
+  updateParkSlider();
+
+  // Keyboard navigation
+  const handleKeydown = (e) => {
+    const parkSliderElement = document.querySelector('.clubhouse-slider[data-slider-group="park_slider"]');
+    if (parkSliderElement && parkSliderElement.closest('.popup-modal')?.classList.contains('active')) {
+      return; // Skip if in popup
+    }
+    // Only handle if park slider is visible
+    const rect = parkSliderElement?.getBoundingClientRect();
+    if (rect && rect.top < window.innerHeight && rect.bottom > 0) {
+      if (e.key === 'ArrowLeft') {
+        moveParkSlide(-1);
+      } else if (e.key === 'ArrowRight') {
+        moveParkSlide(1);
+      }
+    }
+  };
+  document.addEventListener('keydown', handleKeydown);
+
+  // Touch swipe
+  let touchStartX = 0;
+  let touchEndX = 0;
+  parkSliderWrapper.addEventListener('touchstart', (e) => {
+    touchStartX = e.changedTouches[0].screenX;
+  });
+  parkSliderWrapper.addEventListener('touchend', (e) => {
+    touchEndX = e.changedTouches[0].screenX;
+    handleSwipe();
+  });
+  function handleSwipe() {
+    if (touchEndX < touchStartX - 50) {
+      moveParkSlide(1);
+    }
+    if (touchEndX > touchStartX + 50) {
+      moveParkSlide(-1);
+    }
+  }
+
+  return true;
+}
+
+function updateParkSlider() {
+  if (!parkSlides) return;
+  
+  parkSlides.style.transition = 'transform 0.6s cubic-bezier(0.4, 0, 0.2, 1)';
+  parkSlides.style.transform = `translateX(-${parkCurrentSlide * 100}%)`;
+  
+  // Tìm park slider container
+  const parkSlider = document.querySelector('.clubhouse-slider[data-slider-group="park_slider"]');
+  if (!parkSlider) return;
+  
+  // Update slide active state
+  const allSlides = parkSlider.querySelectorAll('.slide');
+  allSlides.forEach((slide, index) => {
+    if (index === parkCurrentSlide) {
+      slide.classList.add('active');
+    } else {
+      slide.classList.remove('active');
+    }
+  });
+  
+  // Update slide descriptions
+  const descriptions = parkSlider.querySelectorAll('.slide-description');
+  descriptions.forEach((desc) => {
+    const descSlide = parseInt(desc.getAttribute('data-slide'));
+    if (descSlide === parkCurrentSlide) {
+      desc.classList.add('active');
+    } else {
+      desc.classList.remove('active');
+    }
+  });
+}
+
+function moveParkSlide(direction) {
+  if (!parkSlides || parkTotalSlides === 0) return;
+  parkCurrentSlide += direction;
+  if (parkCurrentSlide < 0) {
+    parkCurrentSlide = parkTotalSlides - 1;
+  } else if (parkCurrentSlide >= parkTotalSlides) {
+    parkCurrentSlide = 0;
+  }
+  updateParkSlider();
+}
+
+// Expose to window scope
+window.initParkSlider = initParkSlider;
+window.moveParkSlide = moveParkSlide;
+
 function initClubhouseAmenitiesSlider() {
   const popup = document.getElementById('clubhousePopup');
   if (!popup) {
@@ -287,8 +414,14 @@ function goToClubhouseAmenitiesSlideFromTab(index) {
 function updateSlider() {
   if (!slides) return;
   slides.style.transform = `translateX(-${currentSlide * 100}%)`;
-  const mainSlider = document.querySelector('.clubhouse-slider:not(.popup-container .clubhouse-slider)');
+  
+  // Tìm đúng slider - ưu tiên tìm slider có data-slider-group="clubhouse_slider"
+  let mainSlider = document.querySelector('.clubhouse-slider[data-slider-group="clubhouse_slider"]');
+  if (!mainSlider) {
+    mainSlider = document.querySelector('.clubhouse-slider:not(.popup-container .clubhouse-slider)');
+  }
   if (!mainSlider) return;
+  
   const panels = mainSlider.querySelectorAll('.panel-item');
   panels.forEach((panel) => {
     const panelSlide = parseInt(panel.getAttribute('data-slide'));
@@ -301,6 +434,8 @@ function updateSlider() {
       if (text) text.classList.remove('active');
     }
   });
+  
+  // Update slide descriptions - QUAN TRỌNG!
   const descriptions = mainSlider.querySelectorAll('.slide-description');
   descriptions.forEach((desc) => {
     const descSlide = parseInt(desc.getAttribute('data-slide'));
@@ -310,6 +445,7 @@ function updateSlider() {
       desc.classList.remove('active');
     }
   });
+  
   const legacyPanels = mainSlider.querySelectorAll('.left-panel, .right-panel');
   if (tabs) {
     tabs.forEach((tab) => {
@@ -414,6 +550,7 @@ document.addEventListener('DOMContentLoaded', () => {
     }
   }
   initSlider();
+  initParkSlider();
   initHeroAnimations();
   const animatedElements = document.querySelectorAll(
     '.fade-in, .slide-in-left, .slide-in-right, .slide-in-bottom, .slide-in-top, .scale-in, .reveal'
@@ -428,6 +565,7 @@ document.addEventListener('DOMContentLoaded', () => {
     startInfoAutoPlay();
   }
   initFrameSlider();
+  initSliderGroup1();
   initMasterPlanMapScroll();
   let resizeTimeout;
   window.addEventListener('resize', () => {
@@ -1860,6 +1998,11 @@ function startInfoAutoPlay() {
     }, 5000);
   }
 }
+
+// Expose functions globally for essensia-loader.js
+window.initInfoSlider = initInfoSlider;
+window.startInfoAutoPlay = startInfoAutoPlay;
+
 function initMasterPlanMapScroll() {
   const mapContainer = document.querySelector('.master-plan-map-container');
   if (!mapContainer) {
@@ -1911,6 +2054,14 @@ function initMasterPlanMapScroll() {
 let currentFrameSlide = 0;
 let frameSlides = null;
 let totalFrameSlides = 0;
+let frameAutoPlayInterval = null;
+
+// Slider Group 1 (Commercial slider)
+let currentSliderGroup1Slide = 0;
+let sliderGroup1Slides = null;
+let totalSliderGroup1Slides = 0;
+let sliderGroup1AutoPlayInterval = null;
+
 const sliderDragStates = {};
 function initSliderDragState(sliderId, config) {
   sliderDragStates[sliderId] = {
@@ -1930,6 +2081,11 @@ function setupSliderDrag(sliderId, trackElement) {
   const state = sliderDragStates[sliderId];
   if (!state) return;
   state.track = trackElement;
+
+  // Add grab cursor
+  trackElement.style.cursor = 'grab';
+  trackElement.style.userSelect = 'none';
+
   trackElement.addEventListener('mousedown', (e) => handleSliderDragStart(e, sliderId));
   trackElement.addEventListener('touchstart', (e) => handleSliderDragStart(e, sliderId), { passive: false });
   const images = trackElement.querySelectorAll('img');
@@ -1946,6 +2102,14 @@ function handleSliderDragStart(e, sliderId) {
   state.isDragging = true;
   state.track.style.cursor = 'grabbing';
   state.track.style.transition = 'none';
+
+  // Stop autoplay when dragging frame slider
+  if (sliderId === 'frameSlider') {
+    stopFrameAutoPlay();
+  } else if (sliderId === 'sliderGroup1') {
+    stopSliderGroup1AutoPlay();
+  }
+
   if (sliderId === 'roleFrameSlider' || sliderId === 'roleSecondSlider' ||
     sliderId === 'roleSecondModalFirstSlider' || sliderId === 'roleSecondModalSecondSlider') {
     disableSliderButtons(sliderId);
@@ -1995,6 +2159,8 @@ function handleSliderDragMove(e, sliderId) {
     totalSlides = totalRoleSecondModalSecondSlides;
   } else if (sliderId === 'frameSlider') {
     totalSlides = totalFrameSlides;
+  } else if (sliderId === 'sliderGroup1') {
+    totalSlides = totalSliderGroup1Slides;
   }
   const minPosition = 0;
   const maxPosition = -(totalSlides - 1) * 100;
@@ -2013,6 +2179,14 @@ function handleSliderDragEnd(e, sliderId) {
   state.isDragging = false;
   state.track.style.cursor = 'grab';
   state.track.style.transition = '';
+
+  // Resume autoplay when drag ends for frame slider
+  if (sliderId === 'frameSlider') {
+    startFrameAutoPlay();
+  } else if (sliderId === 'sliderGroup1') {
+    startSliderGroup1AutoPlay();
+  }
+
   if (sliderId === 'roleFrameSlider' || sliderId === 'roleSecondSlider' ||
     sliderId === 'roleSecondModalFirstSlider' || sliderId === 'roleSecondModalSecondSlider') {
     enableSliderButtons(sliderId);
@@ -2041,6 +2215,8 @@ function handleSliderDragEnd(e, sliderId) {
     totalSlides = totalRoleSecondModalSecondSlides;
   } else if (sliderId === 'frameSlider') {
     totalSlides = totalFrameSlides;
+  } else if (sliderId === 'sliderGroup1') {
+    totalSlides = totalSliderGroup1Slides;
   }
   const threshold = 30;
   if (Math.abs(dragPercent) > threshold) {
@@ -2245,6 +2421,20 @@ function initFrameSlider() {
     });
     setupSliderDrag('frameSlider', frameSliderTrack);
   }
+
+  // Start autoplay
+  startFrameAutoPlay();
+
+  // Stop autoplay on hover
+  if (mainFrameSlider) {
+    mainFrameSlider.addEventListener('mouseenter', () => {
+      stopFrameAutoPlay();
+    });
+    mainFrameSlider.addEventListener('mouseleave', () => {
+      startFrameAutoPlay();
+    });
+  }
+
   return true;
 }
 function updateFrameSlider() {
@@ -2264,6 +2454,13 @@ function updateFrameSlider() {
 }
 function moveFrameSlide(direction) {
   if (!frameSlides || totalFrameSlides === 0) return;
+
+  // Check if dragging - don't move if dragging
+  const dragState = sliderDragStates['frameSlider'];
+  if (dragState && dragState.isDragging) {
+    return;
+  }
+
   currentFrameSlide += direction;
   if (currentFrameSlide < 0) {
     currentFrameSlide = totalFrameSlides - 1;
@@ -2272,7 +2469,133 @@ function moveFrameSlide(direction) {
   }
   updateFrameSlider();
   updateFrameTabs();
+
+  // Reset autoplay when manually moving slides
+  startFrameAutoPlay();
 }
+
+function startFrameAutoPlay() {
+  stopFrameAutoPlay(); // Clear any existing interval
+  if (totalFrameSlides > 1) {
+    frameAutoPlayInterval = setInterval(() => {
+      moveFrameSlide(1);
+    }, 5000); // Auto advance every 5 seconds
+  }
+}
+
+function stopFrameAutoPlay() {
+  if (frameAutoPlayInterval) {
+    clearInterval(frameAutoPlayInterval);
+    frameAutoPlayInterval = null;
+  }
+}
+
+// ===== SLIDER GROUP 1 FUNCTIONS (Commercial Slider) =====
+window.initSliderGroup1 = function() {
+  const sliderGroup1Container = document.querySelector('.frame-slider-section[data-slider-group="slider_group_1"]');
+  if (!sliderGroup1Container) {
+    return false;
+  }
+
+  sliderGroup1Slides = sliderGroup1Container.querySelectorAll('.frame-slide');
+  const sliderGroup1Track = sliderGroup1Container.querySelector('.frame-slider-track');
+
+  if (!sliderGroup1Slides || sliderGroup1Slides.length === 0) {
+    return false;
+  }
+
+  totalSliderGroup1Slides = sliderGroup1Slides.length;
+  currentSliderGroup1Slide = 0;
+
+  // Update initial state
+  updateSliderGroup1();
+
+  // Setup drag functionality
+  if (sliderGroup1Track) {
+    initSliderDragState('sliderGroup1', {
+      getCurrentSlide: () => currentSliderGroup1Slide,
+      moveSlide: (direction) => moveSliderGroup1Slide(direction),
+      updateSlider: () => updateSliderGroup1(),
+      checkActive: () => true
+    });
+    setupSliderDrag('sliderGroup1', sliderGroup1Track);
+  }
+
+  // Start autoplay
+  startSliderGroup1AutoPlay();
+
+  // Stop autoplay on hover
+  if (sliderGroup1Container) {
+    sliderGroup1Container.addEventListener('mouseenter', () => {
+      stopSliderGroup1AutoPlay();
+    });
+    sliderGroup1Container.addEventListener('mouseleave', () => {
+      startSliderGroup1AutoPlay();
+    });
+  }
+
+  return true;
+};
+
+function updateSliderGroup1() {
+  if (!sliderGroup1Slides || sliderGroup1Slides.length === 0) return;
+
+  const sliderGroup1Track = document.querySelector('.frame-slider-section[data-slider-group="slider_group_1"] .frame-slider-track');
+  if (sliderGroup1Track) {
+    const translateX = -currentSliderGroup1Slide * 100;
+    sliderGroup1Track.style.transform = `translateX(${translateX}%)`;
+  }
+
+  sliderGroup1Slides.forEach((slide, index) => {
+    if (index === currentSliderGroup1Slide) {
+      slide.classList.add('active');
+    } else {
+      slide.classList.remove('active');
+    }
+  });
+}
+
+window.moveSliderGroup1Slide = function(direction) {
+  if (!sliderGroup1Slides || totalSliderGroup1Slides === 0) {
+    initSliderGroup1();
+    return;
+  }
+
+  // Check if dragging - don't move if dragging
+  const dragState = sliderDragStates['sliderGroup1'];
+  if (dragState && dragState.isDragging) {
+    return;
+  }
+
+  currentSliderGroup1Slide += direction;
+  if (currentSliderGroup1Slide < 0) {
+    currentSliderGroup1Slide = totalSliderGroup1Slides - 1;
+  } else if (currentSliderGroup1Slide >= totalSliderGroup1Slides) {
+    currentSliderGroup1Slide = 0;
+  }
+
+  updateSliderGroup1();
+
+  // Reset autoplay when manually moving slides
+  startSliderGroup1AutoPlay();
+};
+
+function startSliderGroup1AutoPlay() {
+  stopSliderGroup1AutoPlay(); // Clear any existing interval
+  if (totalSliderGroup1Slides > 1) {
+    sliderGroup1AutoPlayInterval = setInterval(() => {
+      moveSliderGroup1Slide(1);
+    }, 5000); // Auto advance every 5 seconds
+  }
+}
+
+function stopSliderGroup1AutoPlay() {
+  if (sliderGroup1AutoPlayInterval) {
+    clearInterval(sliderGroup1AutoPlayInterval);
+    sliderGroup1AutoPlayInterval = null;
+  }
+}
+
 function switchFrameTab(tabName) {
   if (!frameSlides) return;
   const mainFrameSlider = document.querySelector('.frame-depiction-section .frame-slider-container');
@@ -2291,6 +2614,9 @@ function switchFrameTab(tabName) {
     if (frameTabNav && window.innerWidth <= 768) {
       frameTabNav.classList.remove('dropdown-open');
     }
+
+    // Reset autoplay when switching tabs
+    startFrameAutoPlay();
   }
 }
 function updateFrameTabs() {

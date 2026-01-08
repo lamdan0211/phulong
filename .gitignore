@@ -22,3 +22,6 @@ npm-debug.log*
 # Temporary files
 *.tmp
 .cache/
+
+# GitHub Config (contains secret token)
+js/github-config.js

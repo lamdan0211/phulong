@@ -2102,6 +2102,9 @@ section[id] {
   opacity: 0;
   transform: translateY(20px);
 }
+.clubhouse-slider .slide-description.fade-in.active {
+  opacity: 1;
+}
 .clubhouse-slider .slide-description.fade-in.animate {
   opacity: 1;
   transform: translateY(0);
@@ -3312,15 +3315,14 @@ section[id] {
 }
 .frame-depiction-header {
   text-align: center;
-  max-width: 1200px;
+  width: 100%;
   margin-left: auto;
   margin-right: auto;
   padding: 0 40px;
   position: absolute;
   z-index: 99;
-  top: 4%;
+  top: 0;
   left: 0;
-  right: 0;
 }
 .frame-depiction-section .container {
   max-width: 100%;
@@ -3384,12 +3386,8 @@ section[id] {
   position: relative;
 }
 .frame-slide-image {
-  width: 100%;
-  height: auto;
   display: block;
   object-fit: cover;
-  min-height: 500px;
-  background-color: #f5f0e8;
 }
 .frame-slider-arrow {
   position: absolute;
@@ -3543,6 +3541,15 @@ section[id] {
   letter-spacing: 2px;
 }
 .developer-text {
+  font-size: 18px;
+  font-weight: 400;
+  color: #111111;
+  font-family: "SFU Franklin Gothic";
+  line-height: 1.2;
+  margin-bottom: 20px;
+  text-align: justify;
+}
+.developer-description > p{
   font-size: 18px;
   font-weight: 400;
   color: #111111;
