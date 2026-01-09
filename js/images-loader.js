@@ -12,21 +12,13 @@ document.addEventListener('DOMContentLoaded', async () => {
     if (imagesData) {
       applyGroupImages(imagesData);
 
-      // Combine both slider groups (Product & Privilege)
       let allSliderGroups = [];
       if (imagesData.sliderGroupsProduct) {
-        console.log('📦 Found sliderGroupsProduct:', imagesData.sliderGroupsProduct);
         allSliderGroups = allSliderGroups.concat(imagesData.sliderGroupsProduct);
       }
       if (imagesData.sliderGroupsPrivilege) {
-        console.log('📦 Found sliderGroupsPrivilege:', imagesData.sliderGroupsPrivilege);
         allSliderGroups = allSliderGroups.concat(imagesData.sliderGroupsPrivilege);
       }
-
-      console.log('📦 Total slider groups to apply:', allSliderGroups.length);
-      allSliderGroups.forEach((group, index) => {
-        console.log(`  ${index + 1}. ${group.name} (key: ${group.key}, images: ${group.images?.length || 0})`);
-      });
 
       if (allSliderGroups.length > 0) {
         applySliderGroups(allSliderGroups);
@@ -36,7 +28,6 @@ document.addEventListener('DOMContentLoaded', async () => {
       }
     }
   } catch (error) {
-    console.error('❌ Error loading images from Firebase:', error);
     }
 });
 
@@ -235,7 +226,6 @@ function applyGroupImages(imagesData) {
 
 function applySliderGroups(sliderGroups) {
   if (!sliderGroups || sliderGroups.length === 0) {
-    console.log('⚠️ applySliderGroups: No slider groups provided');
     return;
   }
 
@@ -245,24 +235,20 @@ function applySliderGroups(sliderGroups) {
     const { key, images } = group;
 
     if (!key || !images || images.length === 0) {
-      console.log(`⚠️ Skipping group: key="${key}", has ${images?.length || 0} images`);
       return;
     }
 
     const sliderContainer = document.querySelector(`[data-slider-group="${key}"]`);
 
     if (!sliderContainer) {
-      console.log(`❌ Container not found for key: "${key}"`);
       return;
     }
 
     const track = sliderContainer.querySelector('.frame-slider-track');
     if (!track) {
-      console.log(`❌ Track not found in container for key: "${key}"`);
       return;
     }
 
-    console.log(`✅ Applying slider group "${key}" with ${images.length} images`);
     track.innerHTML = '';
 
     const extraSlideClass = getSliderExtraSlideClass(sliderContainer);

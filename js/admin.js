@@ -443,15 +443,24 @@ function collectNewsData() {
   const newsCount = document.querySelectorAll('[id^="news-item-title-"]').length;
 
   for (let i = 0; i < newsCount; i++) {
-    const thumbnail = uploadedDynamicImages[`news_thumbnail_${i}`] || (contentData.news?.items?.[i]?.thumbnail || null);
+    const thumbnail = uploadedDynamicImages[`news_thumbnail_${i}`] || (contentData.news?.items?.[i]?.thumbnail || '');
+    const orderInput = document.getElementById(`news-item-order-${i}`);
+    const order = orderInput ? parseInt(orderInput.value) || (i + 1) : (i + 1);
 
     if (contentData.news.items[i]) {
-      contentData.news.items[i].thumbnail = thumbnail;
-      contentData.news.items[i].title = getValue(`news-item-title-${i}`);
-      contentData.news.items[i].summary = getValue(`news-item-summary-${i}`);
-      contentData.news.items[i].link = getValue(`news-item-link-${i}`);
+      contentData.news.items[i].thumbnail = thumbnail || '';
+      contentData.news.items[i].title = getValue(`news-item-title-${i}`) || '';
+      contentData.news.items[i].summary = getValue(`news-item-summary-${i}`) || '';
+      contentData.news.items[i].link = getValue(`news-item-link-${i}`) || '';
+      contentData.news.items[i].order = order;
     }
   }
+
+  contentData.news.items.sort((a, b) => {
+    const orderA = a.order !== undefined ? a.order : 999;
+    const orderB = b.order !== undefined ? b.order : 999;
+    return orderA - orderB;
+  });
 }
 
 function renderNewsList(items) {
@@ -462,41 +471,56 @@ function renderNewsList(items) {
   items.forEach((item, index) => {
     const div = document.createElement('div');
     div.className = 'item-card';
+    div.style.cssText = 'border: 1px solid #e5e7eb; margin-bottom: 1rem; border-radius: 8px; overflow: hidden;';
 
     const thumbnailPreview = item.thumbnail
       ? `<img src="${item.thumbnail}" alt="Thumbnail" style="max-width: 200px; max-height: 120px; object-fit: cover; border-radius: 4px; margin-top: 8px; cursor: pointer;" onclick="window.showImageModal('news-${index}-thumbnail', 'Thumbnail ${index + 1}', this.src)">`
       : '<p style="color: #9ca3af; font-size: 0.875rem; margin-top: 8px;">Chưa có hình</p>';
 
     div.innerHTML = `
-            <div class="item-card-header">
-                <h3>Tin ${index + 1}</h3>
-                <button class="btn-delete" onclick="window.deleteNews(${index})">🗑️ Xóa</button>
-            </div>
-            <div class="form-group">
-                <label>Thumbnail (hình đại diện)</label>
-                <input type="file"
-                       id="news-item-thumbnail-input-${index}"
-                       accept="image/*"
-                       style="display: none"
-                       onchange="window.handleNewsThumbnailUpload(event, ${index})">
-                <button class="upload-btn" onclick="document.getElementById('news-item-thumbnail-input-${index}').click()">
-                  📁 Chọn hình
-                </button>
-                ${thumbnailPreview}
-            </div>
-            <div class="form-group">
-                <label>Tiêu đề</label>
-                <input type="text" id="news-item-title-${index}" value="${item.title || ''}" placeholder="Tiêu đề tin tức">
-            </div>
-            <div class="form-group">
-                <label>Tóm tắt</label>
-                <textarea id="news-item-summary-${index}" rows="3" placeholder="Tóm tắt ngắn gọn">${item.summary || ''}</textarea>
-            </div>
-            <div class="form-group">
-                <label>Link</label>
-                <input type="url" id="news-item-link-${index}" value="${item.link || ''}" placeholder="https://...">
-            </div>
-        `;
+      <div style="display: flex; justify-content: space-between; align-items: center; padding: 1rem; background: #f9fafb; cursor: pointer;"
+           onclick="window.toggleNewsItem(${index})">
+        <div style="display: flex; align-items: center; gap: 0.5rem;">
+          <span id="toggle-icon-news-${index}" style="font-size: 1.2rem; transition: transform 0.2s;">▼</span>
+          <strong>Tin ${index + 1}</strong>
+          <small style="color: #6b7280;">(${item.title?.substring(0, 30) || 'chưa có tiêu đề'}...)</small>
+          <span style="margin-left: 1rem; color: #6b7280; font-size: 0.875rem;">Thứ tự:</span>
+          <input type="number"
+                 id="news-item-order-${index}"
+                 value="${item.order !== undefined ? item.order : index + 1}"
+                 onclick="event.stopPropagation();"
+                 style="width: 60px; padding: 0.25rem 0.5rem; border: 1px solid #d1d5db; border-radius: 4px; font-size: 0.875rem;"
+                 min="1">
+        </div>
+        <button class="btn-delete" onclick="event.stopPropagation(); window.deleteNews(${index});" style="padding: 0.5rem 1rem;">🗑️ Xóa</button>
+      </div>
+      <div id="news-content-${index}" style="display: none; padding: 1rem; background: white;">
+        <div class="form-group">
+          <label>Thumbnail (hình đại diện)</label>
+          <input type="file"
+                 id="news-item-thumbnail-input-${index}"
+                 accept="image/*"
+                 style="display: none"
+                 onchange="window.handleNewsThumbnailUpload(event, ${index})">
+          <button class="upload-btn" onclick="document.getElementById('news-item-thumbnail-input-${index}').click()">
+            📁 Chọn hình
+          </button>
+          ${thumbnailPreview}
+        </div>
+        <div class="form-group">
+          <label>Tiêu đề</label>
+          <input type="text" id="news-item-title-${index}" value="${item.title || ''}" placeholder="Tiêu đề tin tức">
+        </div>
+        <div class="form-group">
+          <label>Tóm tắt</label>
+          <textarea id="news-item-summary-${index}" rows="3" placeholder="Tóm tắt ngắn gọn">${item.summary || ''}</textarea>
+        </div>
+        <div class="form-group">
+          <label>Link</label>
+          <input type="url" id="news-item-link-${index}" value="${item.link || ''}" placeholder="https://...">
+        </div>
+      </div>
+    `;
 
     container.appendChild(div);
 
@@ -506,6 +530,17 @@ function renderNewsList(items) {
     }
   });
 }
+
+window.toggleNewsItem = function(index) {
+  const content = document.getElementById(`news-content-${index}`);
+  const icon = document.getElementById(`toggle-icon-news-${index}`);
+
+  if (content && icon) {
+    const isVisible = content.style.display !== 'none';
+    content.style.display = isVisible ? 'none' : 'block';
+    icon.style.transform = isVisible ? 'rotate(-90deg)' : 'rotate(0deg)';
+  }
+};
 
 window.handleNewsThumbnailUpload = async function(event, index) {
   const file = event.target.files[0];
@@ -517,15 +552,27 @@ window.handleNewsThumbnailUpload = async function(event, index) {
   }
 
   try {
+    let imageUrl;
     const base64 = await fileToBase64(file);
-    uploadedDynamicImages[`news_thumbnail_${index}`] = base64;
+
+    if (uploadImageToCloudinary) {
+      const filename = file.name;
+      const imageKey = `news_thumbnail_${index}`;
+      imageUrl = await uploadImageToCloudinary(imageKey, base64, filename);
+    } else {
+      imageUrl = base64;
+    }
+
+    uploadedDynamicImages[`news_thumbnail_${index}`] = imageUrl;
 
     const preview = document.querySelector(`#news-items-container .item-card:nth-child(${index + 1}) img`);
     if (preview) {
-      preview.src = base64;
+      preview.src = imageUrl;
     }
+
+    showSuccessNotification('✓ Thành công!', 'Đã tải lên hình thumbnail');
   } catch (error) {
-    showErrorNotification('❌ Lỗi!', 'Không thể xử lý hình');
+    showErrorNotification('❌ Lỗi!', 'Không thể tải lên hình: ' + error.message);
   }
 };
 
@@ -542,7 +589,7 @@ document.getElementById('add-news-btn')?.addEventListener('click', () => {
   collectNewsData();
   if (!contentData.news) contentData.news = { items: [] };
   contentData.news.items.push({
-    thumbnail: null,
+    thumbnail: '',
     title: '',
     summary: '',
     link: ''
@@ -745,15 +792,25 @@ function collectTextData() {
   const newsItems = [];
   const newsCount = document.querySelectorAll('[id^="news-item-title-"]').length;
   for (let i = 0; i < newsCount; i++) {
-    const thumbnail = uploadedDynamicImages[`news_thumbnail_${i}`] || (contentData.news?.items?.[i]?.thumbnail || null);
+    const thumbnail = uploadedDynamicImages[`news_thumbnail_${i}`] || (contentData.news?.items?.[i]?.thumbnail || '');
+    const orderInput = document.getElementById(`news-item-order-${i}`);
+    const order = orderInput ? parseInt(orderInput.value) || (i + 1) : (i + 1);
 
     newsItems.push({
-      thumbnail: thumbnail,
-      title: getValue(`news-item-title-${i}`),
-      summary: getValue(`news-item-summary-${i}`),
-      link: getValue(`news-item-link-${i}`)
+      thumbnail: thumbnail || '',
+      title: getValue(`news-item-title-${i}`) || '',
+      summary: getValue(`news-item-summary-${i}`) || '',
+      link: getValue(`news-item-link-${i}`) || '',
+      order: order
     });
   }
+
+  newsItems.sort((a, b) => {
+    const orderA = a.order !== undefined ? a.order : 999;
+    const orderB = b.order !== undefined ? b.order : 999;
+    return orderA - orderB;
+  });
+
   contentData.news = {
     items: newsItems
   };
@@ -1141,18 +1198,27 @@ window.handleSliderImageUpload = async function(event, groupIndex, imgIndex, ima
   }
 
   try {
+    let imageUrl;
     const base64 = await fileToBase64(file);
+
+    if (uploadImageToCloudinary) {
+      const filename = file.name;
+      const imageKey = `slider_${sliderType}_${groupIndex}_${imgIndex}_${imageType}`;
+      imageUrl = await uploadImageToCloudinary(imageKey, base64, filename);
+    } else {
+      imageUrl = base64;
+    }
 
     const groups = sliderType === 'product' ? sliderGroupsProduct : sliderGroupsPrivilege;
 
     if (!groups[groupIndex].images[imgIndex]) {
       groups[groupIndex].images[imgIndex] = {};
     }
-    groups[groupIndex].images[imgIndex][imageType] = base64;
+    groups[groupIndex].images[imgIndex][imageType] = imageUrl;
 
     const preview = document.getElementById(`preview-slider-${sliderType}-${groupIndex}-${imgIndex}-${imageType}`);
     if (preview) {
-      preview.src = base64;
+      preview.src = imageUrl;
     }
 
     } catch (error) {
@@ -1259,8 +1325,20 @@ saveAllBtn?.addEventListener('click', async () => {
     collectImagesData();
     collectNewsData();
 
-    await setDoc(doc(db, TEXT_COLLECTION, 'content'), contentData);
-    await setDoc(doc(db, IMAGES_COLLECTION, 'data'), imagesData);
+    const sanitizeData = (obj) => {
+      return JSON.parse(JSON.stringify(obj, (key, value) => {
+        if (value === null || value === undefined) {
+          return '';
+        }
+        return value;
+      }));
+    };
+
+    const cleanContentData = sanitizeData(contentData);
+    const cleanImagesData = sanitizeData(imagesData);
+
+    await setDoc(doc(db, TEXT_COLLECTION, 'content'), cleanContentData);
+    await setDoc(doc(db, IMAGES_COLLECTION, 'data'), cleanImagesData);
 
     showSuccessNotification('✓ Thành công!', 'Đã lưu tất cả dữ liệu');
   } catch (error) {
