@@ -1,7 +1,4 @@
-/**
- * ESSENSIA BROADWAY - UNIFIED ADMIN PANEL
- * Quản lý toàn bộ nội dung text và hình ảnh trong 1 file duy nhất
- */
+
 
 import { auth, db } from './firebase-config.js';
 import {
@@ -15,21 +12,16 @@ import {
   setDoc
 } from 'https://www.gstatic.com/firebasejs/10.7.1/firebase-firestore.js';
 
-// Import Cloudinary uploader (optional - nếu có config)
 let uploadImageToCloudinary = null;
 try {
   const cloudinaryModule = await import('./cloudinary-uploader.js');
   uploadImageToCloudinary = cloudinaryModule.uploadImageToCloudinary;
-  console.log('✅ Cloudinary uploader enabled');
-} catch (err) {
-  console.warn('⚠️ Cloudinary uploader not configured, using Base64 mode');
-}
+  } catch (err) {
+  }
 
-// Collections
 const TEXT_COLLECTION = 'essensia_broadway';
 const IMAGES_COLLECTION = 'essensia_images';
 
-// DOM Elements
 const loginContainer = document.getElementById('login-container');
 const adminContainer = document.getElementById('admin-container');
 const loginForm = document.getElementById('login-form');
@@ -38,22 +30,17 @@ const loginBtn = document.getElementById('login-btn');
 const logoutBtn = document.getElementById('logout-btn');
 const userEmailSpan = document.getElementById('user-email');
 const saveAllBtn = document.getElementById('save-all-btn');
+const exportDataBtn = document.getElementById('export-data-btn');
 const successMessage = document.getElementById('success-message');
 
-// State
 let currentUser = null;
-let contentData = {}; // Text content
-let imagesData = {}; // Images data
-let uploadedImages = {}; // Temporary uploaded images (Base64)
-let uploadedDynamicImages = {}; // Temporary uploaded dynamic images (Base64)
-let sliderGroupsProduct = []; // Product slider groups data
-let sliderGroupsPrivilege = []; // Privilege slider groups data
+let contentData = {};
+let imagesData = {};
+let uploadedImages = {};
+let uploadedDynamicImages = {};
+let sliderGroupsProduct = [];
+let sliderGroupsPrivilege = [];
 
-/**
- * ==============================================
- * IMAGE GROUPS DEFINITION
- * ==============================================
- */
 const IMAGE_GROUPS = {
   homepage: {
     title: 'Homepage',
@@ -121,7 +108,7 @@ const IMAGE_GROUPS = {
       { key: 'popup_shophouse_tang_4_group_3_mobile', label: 'shophouse tầng 4 group 3', original: 'floor/text-tang-4-mobile.png' },
     ]
   },
-  
+
   popupRewrittenHouse: {
     title: 'Popup Rewritten House',
     images: [
@@ -152,7 +139,7 @@ const IMAGE_GROUPS = {
       { key: 'popup_rewrittenhouse_tang_4_group_3_mobile', label: 'shophouse tầng 4 group 3', original: 'town/town-text-4-mobile.png' },
     ]
   },
-  
+
   popupClubhouse: {
     title: 'Popup Club House',
     images: [
@@ -249,12 +236,6 @@ const IMAGE_GROUPS = {
   }
 };
 
-/**
- * ==============================================
- * AUTHENTICATION
- * ==============================================
- */
-
 onAuthStateChanged(auth, (user) => {
   if (user) {
     currentUser = user;
@@ -278,7 +259,6 @@ loginForm.addEventListener('submit', async (e) => {
   try {
     await signInWithEmailAndPassword(auth, email, password);
   } catch (error) {
-    console.error('❌ Lỗi:', error);
     showError(getErrorMessage(error.code));
     loginBtn.disabled = false;
     loginBtn.textContent = 'Đăng nhập';
@@ -320,17 +300,8 @@ function getErrorMessage(code) {
   return messages[code] || 'Đăng nhập thất bại';
 }
 
-/**
- * ==============================================
- * LOAD ALL DATA (TEXT + IMAGES)
- * ==============================================
- */
-
 async function loadAllData() {
   try {
-    console.log('📡 Đang tải dữ liệu...');
-
-    // Load text content
     const textDoc = await getDoc(doc(db, TEXT_COLLECTION, 'content'));
     if (textDoc.exists()) {
       contentData = textDoc.data();
@@ -339,7 +310,6 @@ async function loadAllData() {
       contentData = {};
     }
 
-    // Load images
     const imagesDoc = await getDoc(doc(db, IMAGES_COLLECTION, 'data'));
     if (imagesDoc.exists()) {
       imagesData = imagesDoc.data();
@@ -347,10 +317,8 @@ async function loadAllData() {
       imagesData = {};
     }
 
-    // Render image groups
     renderAllImageGroups();
 
-    // Load slider groups
     if (imagesData.sliderGroupsProduct) {
       sliderGroupsProduct = imagesData.sliderGroupsProduct;
     }
@@ -360,42 +328,29 @@ async function loadAllData() {
     renderSliderGroups('product');
     renderSliderGroups('privilege');
 
-    console.log('✅ Đã tải dữ liệu');
-  } catch (error) {
-    console.error('❌ Lỗi:', error);
-  }
+    } catch (error) {
+    }
 }
 
-/**
- * ==============================================
- * TEXT CONTENT MANAGEMENT
- * ==============================================
- */
-
 function populateTextForm(data) {
-  // Homepage
   if (data.homepage) {
     setValue('homepage-desc1', data.homepage.description1);
     setValue('homepage-desc2', data.homepage.description2);
     setValue('homepage-desc3', data.homepage.description3);
   }
 
-  // Location
   if (data.location) {
     setValue('location-desc1', data.location.description1);
     setValue('location-desc2', data.location.description2);
   }
 
-  // Product
   if (data.product) {
-    console.log('data.product', data.product);
-    
     setValue('product-desc1', data.product.description1);
     setValue('product-desc2', data.product.description2);
     setValue('product-popup1-desc1', data.product.popup1description1);
     setValue('product-popup1-desc2', data.product.popup1description2);
     setValue('product-popup2-desc1', data.product.popup2description1);
-    
+
     setValue('product-popup3-desc1', data.product.popup3description1);
     setValue('product-popup3-desc2', data.product.popup3description2);
 
@@ -423,25 +378,15 @@ function populateTextForm(data) {
     setValue('product-popup4-detail', data.product.popup4detail);
   }
 
-  // Floorplan
   if (data.floorplan) {
     setValue('floorplan-desc1', data.floorplan.description1);
     setValue('floorplan-desc2', data.floorplan.description2);
   }
 
-  // News
   if (data.news) {
     renderNewsList(data.news.items || []);
   }
 
-
-  // Floorplan
-  if (data.floorplan) {
-    setValue('floorplan-desc1', data.floorplan.description1);
-    setValue('floorplan-desc2', data.floorplan.description2);
-  }
-
-  // Contact
   if (data.framedepicting) {
     setValue('framedepicting-tong-the', data.framedepicting.tongthe);
     setValue('framedepicting-shophouse', data.framedepicting.shophouse);
@@ -450,7 +395,6 @@ function populateTextForm(data) {
     setValue('framedepicting-cong-vien', data.framedepicting.congvien);
   }
 
-  // Contact
   if (data.contact) {
     setValue('contact-company', data.contact.company);
     setValue('contact-hotline', data.contact.hotline);
@@ -462,7 +406,6 @@ function populateTextForm(data) {
     setValue('social-link-facebook', data.contact.sociallinkfacebook);
   }
 
-  // Menu
   if (data.menu) {
     setValue('nav_1', data.menu.nav_1);
     setValue('nav_2', data.menu.nav_2);
@@ -471,8 +414,7 @@ function populateTextForm(data) {
     setValue('nav_5', data.menu.nav_5);
     setValue('nav_6', data.menu.nav_6);
   }
-  
-  // Developer
+
   if (data.developer) {
     setValue('developer-description', data.developer.description);
     setValue('partners_description_title', data.developer.partnerstitle);
@@ -495,17 +437,14 @@ function getValue(id) {
   return el ? el.value : '';
 }
 
-// Helper function to collect news data from form inputs
 function collectNewsData() {
   if (!contentData.news) contentData.news = { items: [] };
 
   const newsCount = document.querySelectorAll('[id^="news-item-title-"]').length;
 
   for (let i = 0; i < newsCount; i++) {
-    // Get thumbnail from temporary storage or existing data
     const thumbnail = uploadedDynamicImages[`news_thumbnail_${i}`] || (contentData.news?.items?.[i]?.thumbnail || null);
 
-    // Update existing item
     if (contentData.news.items[i]) {
       contentData.news.items[i].thumbnail = thumbnail;
       contentData.news.items[i].title = getValue(`news-item-title-${i}`);
@@ -524,7 +463,6 @@ function renderNewsList(items) {
     const div = document.createElement('div');
     div.className = 'item-card';
 
-    // Preview thumbnail if exists
     const thumbnailPreview = item.thumbnail
       ? `<img src="${item.thumbnail}" alt="Thumbnail" style="max-width: 200px; max-height: 120px; object-fit: cover; border-radius: 4px; margin-top: 8px; cursor: pointer;" onclick="window.showImageModal('news-${index}-thumbnail', 'Thumbnail ${index + 1}', this.src)">`
       : '<p style="color: #9ca3af; font-size: 0.875rem; margin-top: 8px;">Chưa có hình</p>';
@@ -540,60 +478,36 @@ function renderNewsList(items) {
                        id="news-item-thumbnail-input-${index}"
                        accept="image/*"
                        style="display: none"
-                       onchange="window.handleNewsImageUpload(event, ${index})">
+                       onchange="window.handleNewsThumbnailUpload(event, ${index})">
                 <button class="upload-btn" onclick="document.getElementById('news-item-thumbnail-input-${index}').click()">
-                    📁 Chọn hình thumbnail
+                  📁 Chọn hình
                 </button>
                 ${thumbnailPreview}
             </div>
             <div class="form-group">
                 <label>Tiêu đề</label>
-                <input type="text" id="news-item-title-${index}" value="${item.title || ''}" placeholder="Nhập tiêu đề tin tức">
+                <input type="text" id="news-item-title-${index}" value="${item.title || ''}" placeholder="Tiêu đề tin tức">
             </div>
             <div class="form-group">
-                <label>Tóm tắt (Summary)</label>
-                <textarea id="news-item-summary-${index}" rows="3" placeholder="Nhập tóm tắt ngắn gọn về tin tức">${item.summary || ''}</textarea>
+                <label>Tóm tắt</label>
+                <textarea id="news-item-summary-${index}" rows="3" placeholder="Tóm tắt ngắn gọn">${item.summary || ''}</textarea>
             </div>
             <div class="form-group">
-                <label>Link bài viết</label>
+                <label>Link</label>
                 <input type="url" id="news-item-link-${index}" value="${item.link || ''}" placeholder="https://...">
             </div>
         `;
+
     container.appendChild(div);
+
+    const fileInput = document.getElementById(`news-item-thumbnail-input-${index}`);
+    if (fileInput) {
+      fileInput.addEventListener('change', (e) => handleNewsThumbnailUpload(e, index));
+    }
   });
 }
 
-document.getElementById('add-news-btn')?.addEventListener('click', () => {
-  if (!contentData.news) contentData.news = { items: [] };
-  if (!contentData.news.items) contentData.news.items = [];
-
-  // Collect current data before adding new item
-  collectNewsData();
-
-  contentData.news.items.push({
-    thumbnail: null,
-    title: 'Tin mới',
-    summary: '',
-    link: ''
-  });
-
-  renderNewsList(contentData.news.items);
-});
-
-window.deleteNews = (index) => {
-  if (confirm('Xóa tin này?')) {
-    // Collect current data before deleting
-    collectNewsData();
-
-    contentData.news.items.splice(index, 1);
-    // Also remove uploaded thumbnail if exists
-    delete uploadedDynamicImages[`news_thumbnail_${index}`];
-    renderNewsList(contentData.news.items);
-  }
-};
-
-// Handle news thumbnail upload
-window.handleNewsImageUpload = async function (event, newsIndex) {
+window.handleNewsThumbnailUpload = async function(event, index) {
   const file = event.target.files[0];
   if (!file) return;
 
@@ -602,38 +516,39 @@ window.handleNewsImageUpload = async function (event, newsIndex) {
     return;
   }
 
-  if (file.size > 2 * 1024 * 1024) {
-    showErrorNotification('⚠️ Lỗi!', 'Hình quá lớn! Tối đa 2MB. Vui lòng nén hình trước.');
-    return;
-  }
-
   try {
-    console.log(`📤 Đang convert ${file.name}...`);
     const base64 = await fileToBase64(file);
+    uploadedDynamicImages[`news_thumbnail_${index}`] = base64;
 
-    // Store temporarily
-    uploadedDynamicImages[`news_thumbnail_${newsIndex}`] = base64;
-
-    // Update the current item's thumbnail
-    if (contentData.news?.items?.[newsIndex]) {
-      contentData.news.items[newsIndex].thumbnail = base64;
+    const preview = document.querySelector(`#news-items-container .item-card:nth-child(${index + 1}) img`);
+    if (preview) {
+      preview.src = base64;
     }
-
-    // Re-render to show preview
-    renderNewsList(contentData.news.items);
-
-    console.log(`✅ Đã convert thumbnail cho tin ${newsIndex + 1}`);
   } catch (error) {
-    console.error('❌ Lỗi:', error);
     showErrorNotification('❌ Lỗi!', 'Không thể xử lý hình');
   }
 };
 
-/**
- * ==============================================
- * IMAGE MANAGEMENT
- * ==============================================
- */
+window.deleteNews = function(index) {
+  if (confirm('Xóa tin này?')) {
+    const newsItems = contentData.news?.items || [];
+    newsItems.splice(index, 1);
+    contentData.news = { items: newsItems };
+    renderNewsList(newsItems);
+  }
+};
+
+document.getElementById('add-news-btn')?.addEventListener('click', () => {
+  collectNewsData();
+  if (!contentData.news) contentData.news = { items: [] };
+  contentData.news.items.push({
+    thumbnail: null,
+    title: '',
+    summary: '',
+    link: ''
+  });
+  renderNewsList(contentData.news.items);
+});
 
 function renderAllImageGroups() {
   Object.keys(IMAGE_GROUPS).forEach(groupKey => {
@@ -647,7 +562,7 @@ function renderImageGroup(groupKey) {
   if (!container) return;
 
   container.innerHTML = '';
-  container.className = 'image-list-container'; // Change from grid to list
+  container.className = 'image-list-container';
 
   group.images.forEach(imageConfig => {
     const imageItem = createImageItem(imageConfig, groupKey);
@@ -660,7 +575,6 @@ function createImageItem(imageConfig, groupKey) {
   const div = document.createElement('div');
   div.className = 'image-list-item';
 
-  // Lấy hình từ imagesData hoặc dùng placeholder
   const currentImage = imagesData[key] || `images/${original}`;
   const isUploaded = imagesData[key] && imagesData[key].startsWith('data:');
 
@@ -684,24 +598,23 @@ function createImageItem(imageConfig, groupKey) {
                    id="input-${key}"
                    accept="image/*"
                    style="display: none"
-                   data-key="${key}">
+                   onchange="window.handleImageUpload(event, '${key}', '${groupKey}')">
             <button class="upload-btn" onclick="document.getElementById('input-${key}').click()">
-                📁 Chọn hình mới
+              ${isUploaded ? '🔄 Thay đổi' : '📁 Upload hình'}
             </button>
-            <span class="image-status ${isUploaded ? 'status-uploaded' : 'status-pending'}">
-                ${isUploaded ? '✓ Đã upload' : 'Gốc'}
-            </span>
+            ${isUploaded ? '<small style="color: #10b981; display: block; margin-top: 0.5rem;">✓ Đã upload</small>' : ''}
         </div>
     `;
 
-  // Setup upload listener
-  const input = div.querySelector(`#input-${key}`);
-  input.addEventListener('change', (e) => handleImageUpload(e, key));
+  const fileInput = div.querySelector(`#input-${key}`);
+  if (fileInput) {
+    fileInput.addEventListener('change', (e) => handleImageUpload(e, key, groupKey));
+  }
 
   return div;
 }
 
-async function handleImageUpload(event, imageKey) {
+window.handleImageUpload = async function(event, imageKey, groupKey) {
   const file = event.target.files[0];
   if (!file) return;
 
@@ -716,33 +629,42 @@ async function handleImageUpload(event, imageKey) {
   }
 
   try {
-    console.log(`📤 Đang convert ${file.name}...`);
-    const base64 = await fileToBase64(file);
+    let imageUrl;
 
-    // Lưu vào temporary state
-    uploadedImages[imageKey] = base64;
+    if (uploadImageToCloudinary) {
+      const base64 = await fileToBase64(file);
+      const filename = getOriginalFilename(imageKey);
+      imageUrl = await uploadImageToCloudinary(imageKey, base64, filename);
+    } else {
+      imageUrl = await fileToBase64(file);
+    }
 
-    // Update preview
+    uploadedImages[imageKey] = imageUrl;
+    imagesData[imageKey] = imageUrl;
+
     const preview = document.getElementById(`preview-${imageKey}`);
     if (preview) {
-      preview.src = base64;
+      preview.src = imageUrl;
     }
 
-    // Update status
-    const status = preview.parentElement.querySelector('.image-status');
-    if (status) {
-      status.className = 'image-status status-uploaded';
-      status.textContent = '✓ Sẵn sàng lưu';
+    const uploadBtn = event.target.nextElementSibling;
+    if (uploadBtn) {
+      uploadBtn.innerHTML = '🔄 Thay đổi';
+      if (uploadBtn.nextElementSibling && uploadBtn.nextElementSibling.tagName === 'SMALL') {
+        uploadBtn.nextElementSibling.style.display = 'block';
+      } else {
+        const checkmark = document.createElement('small');
+        checkmark.style.cssText = 'color: #10b981; display: block; margin-top: 0.5rem;';
+        checkmark.textContent = '✓ Đã upload';
+        uploadBtn.parentElement.appendChild(checkmark);
+      }
     }
-
-    console.log(`✅ Đã convert ${imageKey}`);
   } catch (error) {
-    console.error('❌ Lỗi:', error);
-    showErrorNotification('❌ Lỗi!', 'Không thể xử lý hình');
+    showErrorNotification('❌ Lỗi!', 'Không thể upload hình');
   }
-}
+};
 
-function fileToBase64(file) {
+async function fileToBase64(file) {
   return new Promise((resolve, reject) => {
     const reader = new FileReader();
     reader.onload = () => resolve(reader.result);
@@ -751,251 +673,6 @@ function fileToBase64(file) {
   });
 }
 
-saveAllBtn.addEventListener('click', async () => {
-  try {
-    saveAllBtn.disabled = true;
-    saveAllBtn.innerHTML = '<span class="spinner"></span> Đang lưu...';
-
-    // Collect text data
-    collectTextData();
-
-    // ==========================================
-    // CLOUDINARY UPLOAD LOGIC
-    // ==========================================
-    if (uploadImageToCloudinary && Object.keys(uploadedImages).length > 0) {
-      console.log('📤 Uploading images to Cloudinary...');
-      saveAllBtn.innerHTML = '<span class="spinner"></span> Đang upload lên Cloudinary...';
-
-      let successCount = 0;
-      let failedCount = 0;
-
-      for (const [imageKey, base64Data] of Object.entries(uploadedImages)) {
-        const previousUrl = imagesData[imageKey];
-        try {
-          // Detect extension từ Base64 data
-          const mimeType = base64Data.split(';')[0].split(':')[1]; // e.g., "image/png"
-          const extension = mimeType.split('/')[1]; // e.g., "png", "svg+xml"
-          const cleanExtension = extension.replace('+xml', ''); // svg+xml -> svg
-
-          // Lấy base filename (không có extension)
-          const baseFilename = getOriginalFilename(imageKey).replace(/\.[^.]+$/, '');
-
-          // Cache busting: Thêm timestamp vào filename
-          const timestamp = Date.now();
-          const filename = `${baseFilename}-${timestamp}.${cleanExtension}`;
-
-          // Upload lên Cloudinary
-          const cloudinaryURL = await uploadImageToCloudinary(imageKey, base64Data, filename);
-
-          // Lưu Cloudinary URL thay vì Base64
-          imagesData[imageKey] = cloudinaryURL;
-          successCount++;
-
-          console.log(`✅ Uploaded ${imageKey}: ${cloudinaryURL}`);
-        } catch (error) {
-          console.error(`❌ Failed to upload ${imageKey}:`, error);
-          // Fallback: giữ URL cũ để tránh lưu Base64 lớn vào Firestore
-          imagesData[imageKey] = previousUrl;
-          failedCount++;
-        }
-      }
-
-      if (failedCount > 0) {
-        showErrorNotification(
-          '⚠️ Upload không hoàn toàn',
-          `${successCount} ảnh thành công, ${failedCount} ảnh thất bại (dùng Base64 backup)`
-        );
-      }
-    } else if (!uploadImageToCloudinary) {
-      // Không có Cloudinary config - dùng Base64 mode
-      console.log('📦 Using Base64 mode (Cloudinary not configured)');
-      Object.assign(imagesData, uploadedImages);
-    }
-
-    // Dynamic images
-    imagesData.dynamicImages = imagesData.dynamicImages || {};
-    Object.assign(imagesData.dynamicImages, uploadedDynamicImages);
-
-    // Collect slider groups data
-    collectSliderGroupsData('product');
-    collectSliderGroupsData('privilege');
-
-    // ==========================================
-    // UPLOAD SLIDER IMAGES TO CLOUDINARY
-    // ==========================================
-    if (uploadImageToCloudinary) {
-      console.log('📤 Uploading slider images to Cloudinary...');
-      saveAllBtn.innerHTML = '<span class="spinner"></span> Đang upload slider images...';
-
-      let sliderSuccessCount = 0;
-      let sliderFailedCount = 0;
-
-      // Upload Product slider images
-      for (const group of sliderGroupsProduct) {
-        if (!group.images) continue;
-
-        for (const image of group.images) {
-          // Upload desktop image
-          if (image.desktop && image.desktop.startsWith('data:')) {
-            try {
-              const mimeType = image.desktop.split(';')[0].split(':')[1];
-              const extension = mimeType.split('/')[1].replace('+xml', '');
-              const timestamp = Date.now();
-              const filename = `slider-product-${group.key}-desktop-${timestamp}.${extension}`;
-
-              const cloudinaryURL = await uploadImageToCloudinary(`slider_product_${group.key}_desktop`, image.desktop, filename);
-              image.desktop = cloudinaryURL;
-              sliderSuccessCount++;
-              console.log(`✅ Uploaded product slider desktop: ${cloudinaryURL}`);
-            } catch (error) {
-              console.error(`❌ Failed to upload product slider desktop:`, error);
-              image.desktop = '';
-              sliderFailedCount++;
-            }
-          }
-
-          // Upload mobile image
-          if (image.mobile && image.mobile.startsWith('data:')) {
-            try {
-              const mimeType = image.mobile.split(';')[0].split(':')[1];
-              const extension = mimeType.split('/')[1].replace('+xml', '');
-              const timestamp = Date.now();
-              const filename = `slider-product-${group.key}-mobile-${timestamp}.${extension}`;
-
-              const cloudinaryURL = await uploadImageToCloudinary(`slider_product_${group.key}_mobile`, image.mobile, filename);
-              image.mobile = cloudinaryURL;
-              sliderSuccessCount++;
-              console.log(`✅ Uploaded product slider mobile: ${cloudinaryURL}`);
-            } catch (error) {
-              console.error(`❌ Failed to upload product slider mobile:`, error);
-              image.mobile = '';
-              sliderFailedCount++;
-            }
-          }
-        }
-      }
-
-      // Upload Privilege slider images
-      for (const group of sliderGroupsPrivilege) {
-        if (!group.images) continue;
-
-        for (const image of group.images) {
-          // Upload desktop image
-          if (image.desktop && image.desktop.startsWith('data:')) {
-            try {
-              const mimeType = image.desktop.split(';')[0].split(':')[1];
-              const extension = mimeType.split('/')[1].replace('+xml', '');
-              const timestamp = Date.now();
-              const filename = `slider-privilege-${group.key}-desktop-${timestamp}.${extension}`;
-
-              const cloudinaryURL = await uploadImageToCloudinary(`slider_privilege_${group.key}_desktop`, image.desktop, filename);
-              image.desktop = cloudinaryURL;
-              sliderSuccessCount++;
-              console.log(`✅ Uploaded privilege slider desktop: ${cloudinaryURL}`);
-            } catch (error) {
-              console.error(`❌ Failed to upload privilege slider desktop:`, error);
-              image.desktop = '';
-              sliderFailedCount++;
-            }
-          }
-
-          // Upload mobile image
-          if (image.mobile && image.mobile.startsWith('data:')) {
-            try {
-              const mimeType = image.mobile.split(';')[0].split(':')[1];
-              const extension = mimeType.split('/')[1].replace('+xml', '');
-              const timestamp = Date.now();
-              const filename = `slider-privilege-${group.key}-mobile-${timestamp}.${extension}`;
-
-              const cloudinaryURL = await uploadImageToCloudinary(`slider_privilege_${group.key}_mobile`, image.mobile, filename);
-              image.mobile = cloudinaryURL;
-              sliderSuccessCount++;
-              console.log(`✅ Uploaded privilege slider mobile: ${cloudinaryURL}`);
-            } catch (error) {
-              console.error(`❌ Failed to upload privilege slider mobile:`, error);
-              image.mobile = '';
-              sliderFailedCount++;
-            }
-          }
-        }
-      }
-
-      if (sliderFailedCount > 0) {
-        showErrorNotification(
-          '⚠️ Upload slider không hoàn toàn',
-          `${sliderSuccessCount} ảnh thành công, ${sliderFailedCount} ảnh thất bại`
-        );
-      }
-
-      // ==========================================
-      // UPLOAD NEWS THUMBNAILS TO CLOUDINARY
-      // ==========================================
-      console.log('📤 Uploading news thumbnails to Cloudinary...');
-      saveAllBtn.innerHTML = '<span class="spinner"></span> Đang upload news thumbnails...';
-
-      let newsSuccessCount = 0;
-      let newsFailedCount = 0;
-
-      for (let i = 0; i < contentData.news.items.length; i++) {
-        const newsItem = contentData.news.items[i];
-        if (newsItem.thumbnail && newsItem.thumbnail.startsWith('data:')) {
-          try {
-            const mimeType = newsItem.thumbnail.split(';')[0].split(':')[1];
-            const extension = mimeType.split('/')[1].replace('+xml', '');
-            const timestamp = Date.now();
-            const filename = `news-thumbnail-${i}-${timestamp}.${extension}`;
-
-            const cloudinaryURL = await uploadImageToCloudinary(`news_thumbnail_${i}`, newsItem.thumbnail, filename);
-            newsItem.thumbnail = cloudinaryURL;
-            newsSuccessCount++;
-            console.log(`✅ Uploaded news thumbnail ${i}: ${cloudinaryURL}`);
-          } catch (error) {
-            console.error(`❌ Failed to upload news thumbnail ${i}:`, error);
-            newsItem.thumbnail = '';
-            newsFailedCount++;
-          }
-        }
-      }
-
-      if (newsFailedCount > 0) {
-        showErrorNotification(
-          '⚠️ Upload news thumbnails không hoàn toàn',
-          `${newsSuccessCount} ảnh thành công, ${newsFailedCount} ảnh thất bại`
-        );
-      }
-    }
-
-    imagesData.sliderGroupsProduct = sliderGroupsProduct;
-    imagesData.sliderGroupsPrivilege = sliderGroupsPrivilege;
-
-    // Save both collections to Firestore
-    saveAllBtn.innerHTML = '<span class="spinner"></span> Đang lưu vào database...';
-    await setDoc(doc(db, TEXT_COLLECTION, 'content'), contentData);
-    await setDoc(doc(db, IMAGES_COLLECTION, 'data'), imagesData);
-
-    // Clear uploaded cache
-    uploadedImages = {};
-    uploadedDynamicImages = {};
-
-    // Show success notification
-    showSuccessNotification('🎉 Cập nhật thành công!', 'Tất cả thay đổi đã được lưu vào hệ thống.');
-
-    console.log('✅ Đã lưu thành công!');
-
-    // Re-render để update status
-    renderAllImageGroups();
-  } catch (error) {
-    console.error('❌ Lỗi:', error);
-    showErrorNotification('❌ Lỗi!', 'Không thể lưu. Vui lòng thử lại.');
-  } finally {
-    saveAllBtn.disabled = false;
-    saveAllBtn.innerHTML = '💾 Lưu tất cả thay đổi';
-  }
-});
-
-/**
- * Helper: Lấy original filename từ imageKey
- */
 function getOriginalFilename(imageKey) {
   for (const group of Object.values(IMAGE_GROUPS)) {
     const image = group.images.find(img => img.key === imageKey);
@@ -1003,25 +680,21 @@ function getOriginalFilename(imageKey) {
       return image.original;
     }
   }
-  // Fallback
   return `${imageKey}.png`;
 }
 
 function collectTextData() {
-  // Homepage
   contentData.homepage = {
     description1: getValue('homepage-desc1') || '',
     description2: getValue('homepage-desc2') || '',
     description3: getValue('homepage-desc3') || ''
   };
 
-  // Location
   contentData.location = {
     description1: getValue('location-desc1') || '',
     description2: getValue('location-desc2') || ''
   };
 
-  // Product
   contentData.product = {
     description1: getValue('product-desc1') || '',
     description2: getValue('product-desc2') || '',
@@ -1052,18 +725,15 @@ function collectTextData() {
     popup3tang3detail: getValue('product-popup3-tang3-detail') || '',
     popup3tang4detail: getValue('product-popup3-tang4-detail') || '',
 
-
     popup4desc: getValue('product-popup4-desc') || '',
     popup4detail: getValue('product-popup4-detail') || '',
   };
 
-  // Floorplan
   contentData.floorplan = {
     description1: getValue('floorplan-desc1') || '',
     description2: getValue('floorplan-desc2') || ''
   };
 
-  // FrameDepicting
   contentData.framedepicting = {
     tongthe: getValue('framedepicting-tong-the') || '',
     shophouse: getValue('framedepicting-shophouse') || '',
@@ -1072,11 +742,9 @@ function collectTextData() {
     congvien: getValue('framedepicting-cong-vien') || '',
   };
 
-  // News
   const newsItems = [];
   const newsCount = document.querySelectorAll('[id^="news-item-title-"]').length;
   for (let i = 0; i < newsCount; i++) {
-    // Get thumbnail from temporary storage or existing data
     const thumbnail = uploadedDynamicImages[`news_thumbnail_${i}`] || (contentData.news?.items?.[i]?.thumbnail || null);
 
     newsItems.push({
@@ -1090,7 +758,6 @@ function collectTextData() {
     items: newsItems
   };
 
-  // Contact
   contentData.contact = {
     company: getValue('contact-company') || '',
     hotline: getValue('contact-hotline') || '',
@@ -1102,7 +769,6 @@ function collectTextData() {
     sociallinkfacebook: getValue('social-link-facebook') || '',
   };
 
-  // Menu
   contentData.menu = {
     nav_1: getValue('nav_1') || '',
     nav_2: getValue('nav_2') || '',
@@ -1111,8 +777,7 @@ function collectTextData() {
     nav_5: getValue('nav_5') || '',
     nav_6: getValue('nav_6') || '',
   };
-  
-  // Developer
+
   contentData.developer = {
     description: getValue('developer-description') || '',
     partnerstitle: getValue('partners_description_title') || '',
@@ -1121,34 +786,14 @@ function collectTextData() {
     partnersdescription3: getValue('partners_description_3') || '',
   }
 
-  // Dynamic text
-  const dynamicText = {};
-  document.querySelectorAll('[data-text-key]').forEach(input => {
-    const key = input.getAttribute('data-text-key');
-    const mode = input.getAttribute('data-text-mode');
-    let value = input.value || '';
-    if (mode === 'html') {
-      value = value.replace(/\n/g, '<br>');
-    }
-    dynamicText[key] = value;
-  });
-  contentData.dynamicText = dynamicText;
 }
 
-/**
- * ==============================================
- * IMAGE MODAL POPUP
- * ==============================================
- */
-
 window.showImageModal = function(key, label, src) {
-  // Remove existing modal if any
   const existingModal = document.getElementById('image-modal');
   if (existingModal) {
     existingModal.remove();
   }
 
-  // Create modal
   const modal = document.createElement('div');
   modal.id = 'image-modal';
   modal.className = 'image-modal';
@@ -1177,12 +822,10 @@ window.showImageModal = function(key, label, src) {
 
   document.body.appendChild(modal);
 
-  // Trigger animation
   setTimeout(() => {
     modal.classList.add('show');
   }, 10);
 
-  // Close on ESC key
   const handleEsc = (e) => {
     if (e.key === 'Escape') {
       modal.remove();
@@ -1192,35 +835,10 @@ window.showImageModal = function(key, label, src) {
   document.addEventListener('keydown', handleEsc);
 };
 
-console.log('🏢 Essensia Admin initialized');
-
-function escapeHtml(value) {
-  return String(value)
-    .replace(/&/g, '&amp;')
-    .replace(/</g, '&lt;')
-    .replace(/>/g, '&gt;')
-    .replace(/\"/g, '&quot;');
-}
-
-function normalizeLineBreaks(value) {
-  if (!value) return '';
-  return value
-    .split('<br />').join('\n')
-    .split('<br/>').join('\n')
-    .split('<br>').join('\n');
-}
-
-/**
- * ==============================================
- * NOTIFICATION SYSTEM
- * ==============================================
- */
-
 function showSuccessNotification(title, message) {
-  // Tạo notification element
   const notification = document.createElement('div');
   notification.className = 'custom-notification success';
-  
+
   notification.innerHTML = `
     <div class="notification-content">
       <div class="notification-icon">✓</div>
@@ -1232,16 +850,13 @@ function showSuccessNotification(title, message) {
     </div>
     <div class="notification-progress"></div>
   `;
-  
-  // Thêm vào body
+
   document.body.appendChild(notification);
-  
-  // Trigger animation
+
   setTimeout(() => {
     notification.classList.add('show');
   }, 10);
-  
-  // Tự động ẩn sau 4 giây
+
   setTimeout(() => {
     notification.classList.remove('show');
     setTimeout(() => {
@@ -1250,8 +865,7 @@ function showSuccessNotification(title, message) {
       }
     }, 300);
   }, 4000);
-  
-  // Animation progress bar
+
   const progressBar = notification.querySelector('.notification-progress');
   progressBar.style.animation = 'progress 4s linear forwards';
 }
@@ -1291,12 +905,6 @@ function showErrorNotification(title, message) {
   progressBar.style.animation = 'progress 4s linear forwards';
 }
 
-/**
- * ==============================================
- * SLIDER GROUPS MANAGEMENT
- * ==============================================
- */
-
 function renderSliderGroups(type = 'product') {
   const containerId = type === 'product' ? 'slider-groups-product-container' : 'slider-groups-privilege-container';
   const container = document.getElementById(containerId);
@@ -1324,74 +932,89 @@ function createSliderGroupCard(group, groupIndex, type = 'product') {
   div.style.marginBottom = '2rem';
 
   const imagesHTML = (group.images || []).map((img, imgIndex) => {
-    const desktopSrc = img.desktop || 'images/placeholder.png';
-    const mobileSrc = img.mobile || 'images/placeholder.png';
+    const desktopSrc = img.desktop || 'data:image/svg+xml,%3Csvg xmlns="http://www.w3.org/2000/svg" width="400" height="300"%3E%3Crect width="400" height="300" fill="%23f3f4f6"/%3E%3Ctext x="50%25" y="50%25" dominant-baseline="middle" text-anchor="middle" font-family="sans-serif" font-size="18" fill="%239ca3af"%3EChưa có hình%3C/text%3E%3C/svg%3E';
+    const mobileSrc = img.mobile || 'data:image/svg+xml,%3Csvg xmlns="http://www.w3.org/2000/svg" width="400" height="300"%3E%3Crect width="400" height="300" fill="%23f3f4f6"/%3E%3Ctext x="50%25" y="50%25" dominant-baseline="middle" text-anchor="middle" font-family="sans-serif" font-size="18" fill="%239ca3af"%3EChưa có hình%3C/text%3E%3C/svg%3E';
 
     return `
-      <div class="slider-image-item" style="border: 1px solid #e5e7eb; padding: 1rem; margin-bottom: 1rem; border-radius: 8px;">
-        <div style="display: flex; justify-content: space-between; align-items: center; margin-bottom: 0.5rem;">
-          <strong>Hình ${imgIndex + 1}</strong>
-          <button class="btn-delete" onclick="window.deleteSliderImage(${groupIndex}, ${imgIndex}, '${type}')" style="font-size: 0.875rem;">🗑️ Xóa</button>
+      <div class="slider-image-item"
+           style="border: 1px solid #e5e7eb; margin-bottom: 1rem; border-radius: 8px; overflow: hidden;">
+        <div style="display: flex; justify-content: space-between; align-items: center; padding: 1rem; background: #f9fafb;"
+             onclick="window.toggleSliderImageItem(${groupIndex}, ${imgIndex}, '${type}')">
+          <div style="display: flex; align-items: center; gap: 0.5rem; cursor: pointer;">
+            <span id="toggle-icon-${type}-${groupIndex}-${imgIndex}" style="font-size: 1.2rem; transition: transform 0.2s;">▼</span>
+            <strong>Hình ${imgIndex + 1}</strong>
+            <small style="color: #6b7280;">(${img.tab || 'chưa có tab'})</small>
+            <span style="margin-left: 1rem; color: #6b7280; font-size: 0.875rem;">Thứ tự:</span>
+            <input type="number"
+                   id="slider-${type}-${groupIndex}-${imgIndex}-order"
+                   value="${img.order !== undefined ? img.order : imgIndex + 1}"
+                   onclick="event.stopPropagation();"
+                   style="width: 60px; padding: 0.25rem 0.5rem; border: 1px solid #d1d5db; border-radius: 4px; font-size: 0.875rem;"
+                   min="1">
+          </div>
+          <button class="btn-delete" onclick="event.stopPropagation(); window.deleteSliderImage(${groupIndex}, ${imgIndex}, '${type}')" style="font-size: 0.875rem;">🗑️ Xóa</button>
         </div>
 
-        <div class="form-group">
-          <label>Tab ID (data-tab attribute)</label>
-          <input type="text"
-                 id="slider-${type}-${groupIndex}-${imgIndex}-tab"
-                 value="${img.tab || ''}"
-                 placeholder="vd: tong-the, shophouse, townhouse...">
-        </div>
-
-        <div class="form-group">
-          <label>Alt text</label>
-          <input type="text"
-                 id="slider-${type}-${groupIndex}-${imgIndex}-alt"
-                 value="${img.alt || ''}"
-                 placeholder="Mô tả hình">
-        </div>
-
-        <div class="form-group">
-          <label>Description text</label>
-          <textarea id="slider-${type}-${groupIndex}-${imgIndex}-description" rows="5">${img.des || ''}</textarea>
-        </div>
-
-        <div style="display: grid; grid-template-columns: 1fr 1fr; gap: 1rem;">
-          <div>
-            <label style="display: block; font-weight: 600; margin-bottom: 0.5rem;">🖥️ Desktop</label>
-            <img src="${desktopSrc}"
-                 alt="Desktop preview"
-                 id="preview-slider-${type}-${groupIndex}-${imgIndex}-desktop"
-                 style="width: 100%; max-height: 150px; object-fit: cover; border-radius: 4px; margin-bottom: 0.5rem; cursor: pointer;"
-                 onclick="window.showImageModal('slider-${type}-${groupIndex}-${imgIndex}-desktop', 'Desktop ${imgIndex + 1}', this.src)">
-            <input type="file"
-                   id="input-slider-${type}-${groupIndex}-${imgIndex}-desktop"
-                   accept="image/*"
-                   style="display: none"
-                   onchange="window.handleSliderImageUpload(event, ${groupIndex}, ${imgIndex}, 'desktop', '${type}')">
-            <button class="upload-btn"
-                    onclick="document.getElementById('input-slider-${type}-${groupIndex}-${imgIndex}-desktop').click()"
-                    style="width: 100%; font-size: 0.875rem;">
-              📁 Chọn Desktop
-            </button>
+        <div id="slider-content-${type}-${groupIndex}-${imgIndex}" style="display: none; padding: 1rem;">
+          <div class="form-group">
+            <label>Tab ID (data-tab attribute)</label>
+            <input type="text"
+                   id="slider-${type}-${groupIndex}-${imgIndex}-tab"
+                   value="${img.tab || ''}"
+                   placeholder="vd: tong-the, shophouse, townhouse...">
           </div>
 
-          <div>
-            <label style="display: block; font-weight: 600; margin-bottom: 0.5rem;">📱 Mobile</label>
-            <img src="${mobileSrc}"
-                 alt="Mobile preview"
-                 id="preview-slider-${type}-${groupIndex}-${imgIndex}-mobile"
-                 style="width: 100%; max-height: 150px; object-fit: cover; border-radius: 4px; margin-bottom: 0.5rem; cursor: pointer;"
-                 onclick="window.showImageModal('slider-${type}-${groupIndex}-${imgIndex}-mobile', 'Mobile ${imgIndex + 1}', this.src)">
-            <input type="file"
-                   id="input-slider-${type}-${groupIndex}-${imgIndex}-mobile"
-                   accept="image/*"
-                   style="display: none"
-                   onchange="window.handleSliderImageUpload(event, ${groupIndex}, ${imgIndex}, 'mobile', '${type}')">
-            <button class="upload-btn"
-                    onclick="document.getElementById('input-slider-${type}-${groupIndex}-${imgIndex}-mobile').click()"
-                    style="width: 100%; font-size: 0.875rem;">
-              📁 Chọn Mobile
-            </button>
+          <div class="form-group">
+            <label>Alt text</label>
+            <input type="text"
+                   id="slider-${type}-${groupIndex}-${imgIndex}-alt"
+                   value="${img.alt || ''}"
+                   placeholder="Mô tả hình">
+          </div>
+
+          <div class="form-group">
+            <label>Description text</label>
+            <textarea id="slider-${type}-${groupIndex}-${imgIndex}-description" rows="5">${img.des || ''}</textarea>
+          </div>
+
+          <div style="display: grid; grid-template-columns: 1fr 1fr; gap: 1rem;">
+            <div>
+              <label style="display: block; font-weight: 600; margin-bottom: 0.5rem;">🖥️ Desktop</label>
+              <img src="${desktopSrc}"
+                   alt="Desktop preview"
+                   id="preview-slider-${type}-${groupIndex}-${imgIndex}-desktop"
+                   style="width: 100%; max-height: 150px; object-fit: cover; border-radius: 4px; margin-bottom: 0.5rem; cursor: pointer;"
+                   onclick="window.showImageModal('slider-${type}-${groupIndex}-${imgIndex}-desktop', 'Desktop ${imgIndex + 1}', this.src)">
+              <input type="file"
+                     id="input-slider-${type}-${groupIndex}-${imgIndex}-desktop"
+                     accept="image/*"
+                     style="display: none"
+                     onchange="window.handleSliderImageUpload(event, ${groupIndex}, ${imgIndex}, 'desktop', '${type}')">
+              <button class="upload-btn"
+                      onclick="document.getElementById('input-slider-${type}-${groupIndex}-${imgIndex}-desktop').click()"
+                      style="width: 100%; font-size: 0.875rem;">
+                📁 Chọn Desktop
+              </button>
+            </div>
+
+            <div>
+              <label style="display: block; font-weight: 600; margin-bottom: 0.5rem;">📱 Mobile</label>
+              <img src="${mobileSrc}"
+                   alt="Mobile preview"
+                   id="preview-slider-${type}-${groupIndex}-${imgIndex}-mobile"
+                   style="width: 100%; max-height: 150px; object-fit: cover; border-radius: 4px; margin-bottom: 0.5rem; cursor: pointer;"
+                   onclick="window.showImageModal('slider-${type}-${groupIndex}-${imgIndex}-mobile', 'Mobile ${imgIndex + 1}', this.src)">
+              <input type="file"
+                     id="input-slider-${type}-${groupIndex}-${imgIndex}-mobile"
+                     accept="image/*"
+                     style="display: none"
+                     onchange="window.handleSliderImageUpload(event, ${groupIndex}, ${imgIndex}, 'mobile', '${type}')">
+              <button class="upload-btn"
+                      onclick="document.getElementById('input-slider-${type}-${groupIndex}-${imgIndex}-mobile').click()"
+                      style="width: 100%; font-size: 0.875rem;">
+                📁 Chọn Mobile
+              </button>
+            </div>
           </div>
         </div>
       </div>
@@ -1423,15 +1046,16 @@ function createSliderGroupCard(group, groupIndex, type = 'product') {
     </div>
 
     <div style="margin-top: 1rem;">
-      <div style="display: flex; justify-content: space-between; align-items: center; margin-bottom: 1rem;">
-        <h4>Hình trong nhóm (${(group.images || []).length})</h4>
+      <h4 style="margin-bottom: 1rem;">Hình trong nhóm (${(group.images || []).length})</h4>
+
+      <div id="slider-group-images-${groupIndex}">
+        ${imagesHTML || '<p style="color: #9ca3af; text-align: center; padding: 1rem;">Chưa có hình nào. Nhấn "Thêm hình" ở dưới để bắt đầu.</p>'}
+      </div>
+
+      <div style="margin-top: 1rem; text-align: center;">
         <button class="btn-add" onclick="window.addImageToSliderGroup(${groupIndex}, '${type}')" style="font-size: 0.875rem;">
           + Thêm hình
         </button>
-      </div>
-
-      <div id="slider-group-images-${groupIndex}">
-        ${imagesHTML || '<p style="color: #9ca3af; text-align: center; padding: 1rem;">Chưa có hình nào. Nhấn "Thêm hình" để bắt đầu.</p>'}
       </div>
     </div>
   `;
@@ -1439,9 +1063,23 @@ function createSliderGroupCard(group, groupIndex, type = 'product') {
   return div;
 }
 
-// Global functions for slider management
+
+window.toggleSliderImageItem = function(groupIndex, imgIndex, type) {
+  const contentDiv = document.getElementById(`slider-content-${type}-${groupIndex}-${imgIndex}`);
+  const iconSpan = document.getElementById(`toggle-icon-${type}-${groupIndex}-${imgIndex}`);
+
+  if (contentDiv && iconSpan) {
+    if (contentDiv.style.display === 'none') {
+      contentDiv.style.display = 'block';
+      iconSpan.style.transform = 'rotate(180deg)';
+    } else {
+      contentDiv.style.display = 'none';
+      iconSpan.style.transform = 'rotate(0deg)';
+    }
+  }
+};
+
 window.addImageToSliderGroup = function(groupIndex, sliderType = 'product') {
-  // Preserve current inputs before re-render
   collectSliderGroupsData(sliderType);
 
   const groups = sliderType === 'product' ? sliderGroupsProduct : sliderGroupsPrivilege;
@@ -1450,19 +1088,22 @@ window.addImageToSliderGroup = function(groupIndex, sliderType = 'product') {
     groups[groupIndex].images = [];
   }
 
+  // Get next order number
+  const nextOrder = groups[groupIndex].images.length + 1;
+
   groups[groupIndex].images.push({
     tab: '',
     alt: '',
     des: '',
     desktop: null,
-    mobile: null
+    mobile: null,
+    order: nextOrder
   });
 
   renderSliderGroups(sliderType);
 };
 
 window.deleteSliderImage = function(groupIndex, imgIndex, sliderType = 'product') {
-  // Preserve current inputs before re-render
   collectSliderGroupsData(sliderType);
 
   const groups = sliderType === 'product' ? sliderGroupsProduct : sliderGroupsPrivilege;
@@ -1474,7 +1115,6 @@ window.deleteSliderImage = function(groupIndex, imgIndex, sliderType = 'product'
 };
 
 window.deleteSliderGroup = function(groupIndex, sliderType = 'product') {
-  // Preserve current inputs before re-render
   collectSliderGroupsData(sliderType);
 
   const groups = sliderType === 'product' ? sliderGroupsProduct : sliderGroupsPrivilege;
@@ -1501,33 +1141,26 @@ window.handleSliderImageUpload = async function(event, groupIndex, imgIndex, ima
   }
 
   try {
-    console.log(`📤 Đang convert ${file.name}...`);
     const base64 = await fileToBase64(file);
 
     const groups = sliderType === 'product' ? sliderGroupsProduct : sliderGroupsPrivilege;
 
-    // Update image data
     if (!groups[groupIndex].images[imgIndex]) {
       groups[groupIndex].images[imgIndex] = {};
     }
     groups[groupIndex].images[imgIndex][imageType] = base64;
 
-    // Update preview
     const preview = document.getElementById(`preview-slider-${sliderType}-${groupIndex}-${imgIndex}-${imageType}`);
     if (preview) {
       preview.src = base64;
     }
 
-    console.log(`✅ Đã convert hình ${imageType} cho ${sliderType} nhóm ${groupIndex}, hình ${imgIndex}`);
-  } catch (error) {
-    console.error('❌ Lỗi:', error);
+    } catch (error) {
     showErrorNotification('❌ Lỗi!', 'Không thể xử lý hình');
   }
 };
 
-// Add slider group buttons
 document.getElementById('add-slider-group-product-btn')?.addEventListener('click', () => {
-  // Preserve current inputs before re-render
   collectSliderGroupsData('product');
 
   sliderGroupsProduct.push({
@@ -1537,10 +1170,17 @@ document.getElementById('add-slider-group-product-btn')?.addEventListener('click
   });
 
   renderSliderGroups('product');
+
+  // Scroll to new group
+  setTimeout(() => {
+    const container = document.getElementById('slider-groups-product-container');
+    if (container) {
+      container.lastElementChild.scrollIntoView({ behavior: 'smooth', block: 'start' });
+    }
+  }, 100);
 });
 
 document.getElementById('add-slider-group-privilege-btn')?.addEventListener('click', () => {
-  // Preserve current inputs before re-render
   collectSliderGroupsData('privilege');
 
   sliderGroupsPrivilege.push({
@@ -1550,30 +1190,130 @@ document.getElementById('add-slider-group-privilege-btn')?.addEventListener('cli
   });
 
   renderSliderGroups('privilege');
+
+  // Scroll to new group
+  setTimeout(() => {
+    const container = document.getElementById('slider-groups-privilege-container');
+    if (container) {
+      container.lastElementChild.scrollIntoView({ behavior: 'smooth', block: 'start' });
+    }
+  }, 100);
 });
 
 function collectSliderGroupsData(type = 'product') {
   const groups = type === 'product' ? sliderGroupsProduct : sliderGroupsPrivilege;
 
   groups.forEach((group, groupIndex) => {
-    // Collect group name and key
     const nameInput = document.getElementById(`slider-${type}-group-name-${groupIndex}`);
     const keyInput = document.getElementById(`slider-${type}-group-key-${groupIndex}`);
 
     if (nameInput) group.name = nameInput.value;
     if (keyInput) group.key = keyInput.value;
 
-    // Collect images data
     if (group.images) {
       group.images.forEach((img, imgIndex) => {
         const tabInput = document.getElementById(`slider-${type}-${groupIndex}-${imgIndex}-tab`);
         const altInput = document.getElementById(`slider-${type}-${groupIndex}-${imgIndex}-alt`);
         const desInput = document.getElementById(`slider-${type}-${groupIndex}-${imgIndex}-description`);
+        const orderInput = document.getElementById(`slider-${type}-${groupIndex}-${imgIndex}-order`);
 
         if (tabInput) img.tab = tabInput.value;
         if (altInput) img.alt = altInput.value;
         if (desInput) img.des = desInput.value;
+        if (orderInput) img.order = parseInt(orderInput.value) || (imgIndex + 1);
+      });
+
+      // Sort images by order
+      group.images.sort((a, b) => {
+        const orderA = a.order !== undefined ? a.order : 999;
+        const orderB = b.order !== undefined ? b.order : 999;
+        return orderA - orderB;
       });
     }
   });
 }
+
+function collectImagesData() {
+  Object.keys(uploadedImages).forEach(key => {
+    imagesData[key] = uploadedImages[key];
+  });
+
+  collectSliderGroupsData('product');
+  collectSliderGroupsData('privilege');
+
+  imagesData.sliderGroupsProduct = sliderGroupsProduct;
+  imagesData.sliderGroupsPrivilege = sliderGroupsPrivilege;
+}
+
+saveAllBtn?.addEventListener('click', async () => {
+  if (!currentUser) {
+    showErrorNotification('❌ Lỗi!', 'Bạn chưa đăng nhập');
+    return;
+  }
+
+  saveAllBtn.disabled = true;
+  saveAllBtn.innerHTML = '<span class="spinner"></span> Đang lưu...';
+
+  try {
+    collectTextData();
+    collectImagesData();
+    collectNewsData();
+
+    await setDoc(doc(db, TEXT_COLLECTION, 'content'), contentData);
+    await setDoc(doc(db, IMAGES_COLLECTION, 'data'), imagesData);
+
+    showSuccessNotification('✓ Thành công!', 'Đã lưu tất cả dữ liệu');
+  } catch (error) {
+    showErrorNotification('❌ Lỗi!', 'Không thể lưu dữ liệu: ' + error.message);
+  } finally {
+    saveAllBtn.disabled = false;
+    saveAllBtn.textContent = '💾 Lưu tất cả';
+  }
+});
+
+exportDataBtn?.addEventListener('click', async () => {
+  if (!currentUser) {
+    showErrorNotification('❌ Lỗi!', 'Bạn chưa đăng nhập');
+    return;
+  }
+
+  exportDataBtn.disabled = true;
+  exportDataBtn.innerHTML = '<span class="spinner"></span> Đang export...';
+
+  try {
+    // Collect latest data from Firebase
+    const textDoc = await getDoc(doc(db, TEXT_COLLECTION, 'content'));
+    const imagesDoc = await getDoc(doc(db, IMAGES_COLLECTION, 'data'));
+
+    const exportData = {
+      text: textDoc.exists() ? textDoc.data() : {},
+      images: imagesDoc.exists() ? imagesDoc.data() : {},
+      exportedAt: new Date().toISOString(),
+      exportedBy: currentUser.email
+    };
+
+    // Create JSON file
+    const dataStr = JSON.stringify(exportData, null, 2);
+    const blob = new Blob([dataStr], { type: 'application/json' });
+    const url = URL.createObjectURL(blob);
+
+    // Create download link
+    const link = document.createElement('a');
+    link.href = url;
+    const timestamp = new Date().toISOString().split('T')[0];
+    link.download = `essensia-broadway-backup-${timestamp}.json`;
+
+    // Trigger download
+    document.body.appendChild(link);
+    link.click();
+    document.body.removeChild(link);
+    URL.revokeObjectURL(url);
+
+    showSuccessNotification('✓ Thành công!', 'Đã export dữ liệu thành công');
+  } catch (error) {
+    showErrorNotification('❌ Lỗi!', 'Không thể export dữ liệu: ' + error.message);
+  } finally {
+    exportDataBtn.disabled = false;
+    exportDataBtn.textContent = '📥 Export Data (Backup)';
+  }
+});

@@ -15,22 +15,18 @@ let clubhouseAmenitiesAutoPlayInterval = null;
 let clubhouseAmenitiesActivePanels = new Set();
 let clubhouseAmenitiesPanelsOnRight = new Set();
 
-// Park Slider variables
 let parkCurrentSlide = 0;
 let parkSlides = null;
 let parkTotalSlides = 0;
 let parkSliderWrapper = null;
 
 function initSlider() {
-  // Clear existing interval nếu có (phòng trường hợp được gọi lại nhiều lần)
   if (autoPlayInterval) {
     clearInterval(autoPlayInterval);
     autoPlayInterval = null;
   }
 
-  // Tìm clubhouse slider ở trang chủ (có data-slider-group="clubhouse_slider")
   let mainSlider = document.querySelector('.clubhouse-slider[data-slider-group="clubhouse_slider"]');
-  // Fallback: tìm slider không trong popup
   if (!mainSlider) {
     mainSlider = document.querySelector('.clubhouse-slider:not(.popup-container .clubhouse-slider)');
   }
@@ -50,12 +46,8 @@ function initSlider() {
     return false;
   }
 
-  // Luôn bắt đầu từ slide 0 và đồng bộ description
   currentSlide = 0;
   updateSlider();
-
-  // Tắt autoplay để tránh cảm giác "trượt liên tục" và lệch text
-  // Người dùng điều khiển slider bằng arrow / keyboard / swipe
 
   document.addEventListener('keydown', (e) => {
     if (e.key === 'ArrowLeft') {
@@ -84,12 +76,9 @@ function initSlider() {
   return true;
 }
 
-// Expose initSlider to window scope để có thể gọi từ images-loader
-// Phải đặt SAU khi function được định nghĩa
 window.initSlider = initSlider;
 
 function initParkSlider() {
-  // Tìm park slider
   const parkSlider = document.querySelector('.clubhouse-slider[data-slider-group="park_slider"]');
   if (!parkSlider) {
     return false;
@@ -106,17 +95,18 @@ function initParkSlider() {
     return false;
   }
 
-  // Luôn bắt đầu từ slide 0 và đồng bộ description
   parkCurrentSlide = 0;
+  const firstDesc = parkSlider.querySelector('.slide-description[data-slide="0"]');
+  if (firstDesc && !firstDesc.classList.contains('active')) {
+    firstDesc.classList.add('active');
+  }
   updateParkSlider();
 
-  // Keyboard navigation
   const handleKeydown = (e) => {
     const parkSliderElement = document.querySelector('.clubhouse-slider[data-slider-group="park_slider"]');
     if (parkSliderElement && parkSliderElement.closest('.popup-modal')?.classList.contains('active')) {
-      return; // Skip if in popup
+      return;
     }
-    // Only handle if park slider is visible
     const rect = parkSliderElement?.getBoundingClientRect();
     if (rect && rect.top < window.innerHeight && rect.bottom > 0) {
       if (e.key === 'ArrowLeft') {
@@ -128,7 +118,6 @@ function initParkSlider() {
   };
   document.addEventListener('keydown', handleKeydown);
 
-  // Touch swipe
   let touchStartX = 0;
   let touchEndX = 0;
   parkSliderWrapper.addEventListener('touchstart', (e) => {
@@ -152,15 +141,13 @@ function initParkSlider() {
 
 function updateParkSlider() {
   if (!parkSlides) return;
-  
+
   parkSlides.style.transition = 'transform 0.6s cubic-bezier(0.4, 0, 0.2, 1)';
   parkSlides.style.transform = `translateX(-${parkCurrentSlide * 100}%)`;
-  
-  // Tìm park slider container
+
   const parkSlider = document.querySelector('.clubhouse-slider[data-slider-group="park_slider"]');
   if (!parkSlider) return;
-  
-  // Update slide active state
+
   const allSlides = parkSlider.querySelectorAll('.slide');
   allSlides.forEach((slide, index) => {
     if (index === parkCurrentSlide) {
@@ -169,17 +156,27 @@ function updateParkSlider() {
       slide.classList.remove('active');
     }
   });
-  
-  // Update slide descriptions
+
   const descriptions = parkSlider.querySelectorAll('.slide-description');
-  descriptions.forEach((desc) => {
-    const descSlide = parseInt(desc.getAttribute('data-slide'));
-    if (descSlide === parkCurrentSlide) {
-      desc.classList.add('active');
-    } else {
-      desc.classList.remove('active');
+  if (descriptions.length > 0) {
+    descriptions.forEach((desc) => {
+      const descSlide = parseInt(desc.getAttribute('data-slide'));
+      if (descSlide === parkCurrentSlide) {
+        desc.classList.add('active');
+      } else {
+        if (!(parkCurrentSlide === 0 && descSlide === 0)) {
+          desc.classList.remove('active');
+        }
+      }
+    });
+    
+    if (parkCurrentSlide === 0) {
+      const firstDesc = parkSlider.querySelector('.slide-description[data-slide="0"]');
+      if (firstDesc) {
+        firstDesc.classList.add('active');
+      }
     }
-  });
+  }
 }
 
 function moveParkSlide(direction) {
@@ -193,7 +190,6 @@ function moveParkSlide(direction) {
   updateParkSlider();
 }
 
-// Expose to window scope
 window.initParkSlider = initParkSlider;
 window.moveParkSlide = moveParkSlide;
 
@@ -414,14 +410,13 @@ function goToClubhouseAmenitiesSlideFromTab(index) {
 function updateSlider() {
   if (!slides) return;
   slides.style.transform = `translateX(-${currentSlide * 100}%)`;
-  
-  // Tìm đúng slider - ưu tiên tìm slider có data-slider-group="clubhouse_slider"
+
   let mainSlider = document.querySelector('.clubhouse-slider[data-slider-group="clubhouse_slider"]');
   if (!mainSlider) {
     mainSlider = document.querySelector('.clubhouse-slider:not(.popup-container .clubhouse-slider)');
   }
   if (!mainSlider) return;
-  
+
   const panels = mainSlider.querySelectorAll('.panel-item');
   panels.forEach((panel) => {
     const panelSlide = parseInt(panel.getAttribute('data-slide'));
@@ -434,8 +429,7 @@ function updateSlider() {
       if (text) text.classList.remove('active');
     }
   });
-  
-  // Update slide descriptions - QUAN TRỌNG!
+
   const descriptions = mainSlider.querySelectorAll('.slide-description');
   descriptions.forEach((desc) => {
     const descSlide = parseInt(desc.getAttribute('data-slide'));
@@ -445,7 +439,7 @@ function updateSlider() {
       desc.classList.remove('active');
     }
   });
-  
+
   const legacyPanels = mainSlider.querySelectorAll('.left-panel, .right-panel');
   if (tabs) {
     tabs.forEach((tab) => {
@@ -712,48 +706,6 @@ let congVienTabs = null;
 let congVienPreviousSlide = 0;
 let congVienActivePanels = new Set();
 let congVienPanelsOnRight = new Set();
-function initCongVienSlider() {
-  const popup = document.getElementById('congVienPopup');
-  if (!popup) return false;
-  congVienSlides = popup.querySelector('.slides');
-  const modalSlides = popup.querySelectorAll('.slide');
-  congVienTabs = popup.querySelectorAll('.vertical-text');
-  if (!congVienSlides || modalSlides.length === 0) {
-    return false;
-  }
-  congVienTotalSlides = modalSlides.length;
-  congVienCurrentSlide = -1;
-  congVienPreviousSlide = -1;
-  congVienActivePanels.clear();
-  congVienPanelsOnRight.clear();
-  modalSlides.forEach((slide) => {
-    slide.classList.remove('active');
-  });
-  const panels = popup.querySelectorAll('.panel-item');
-  const panelWidth = 50;
-  panels.forEach((panel, index) => {
-    panel.classList.remove('active');
-    const text = panel.querySelector('.vertical-text');
-    if (text) text.classList.remove('active');
-    panel.style.left = `${index * panelWidth}px`;
-    panel.style.right = 'auto';
-    panel.style.transform = '';
-  });
-  if (modalSlides.length > 0) {
-    modalSlides[0].classList.add('active');
-    congVienSlides.style.transform = 'translateX(0%)';
-    if (panels.length > 0) {
-      const firstPanel = panels[0];
-      const firstText = firstPanel.querySelector('.vertical-text');
-      firstPanel.classList.add('active');
-      if (firstText) firstText.classList.add('active');
-      congVienCurrentSlide = 0;
-      congVienPreviousSlide = 0;
-    }
-  }
-  updateCongVienSlider();
-  return true;
-}
 function updateCongVienSlider() {
   const popup = document.getElementById('congVienPopup');
   if (!popup || !congVienSlides) return;
@@ -879,12 +831,6 @@ function openCongVienPopup() {
   if (popup) {
     popup.classList.add('active');
     document.body.style.overflow = 'hidden';
-    setTimeout(() => {
-      initCongVienSlider();
-      if (typeof createParkMarkers === 'function') {
-        createParkMarkers();
-      }
-    }, 100);
   }
 }
 function closeCongVienPopup() {
@@ -1999,7 +1945,6 @@ function startInfoAutoPlay() {
   }
 }
 
-// Expose functions globally for essensia-loader.js
 window.initInfoSlider = initInfoSlider;
 window.startInfoAutoPlay = startInfoAutoPlay;
 
@@ -2056,7 +2001,6 @@ let frameSlides = null;
 let totalFrameSlides = 0;
 let frameAutoPlayInterval = null;
 
-// Slider Group 1 (Commercial slider)
 let currentSliderGroup1Slide = 0;
 let sliderGroup1Slides = null;
 let totalSliderGroup1Slides = 0;
@@ -2082,7 +2026,6 @@ function setupSliderDrag(sliderId, trackElement) {
   if (!state) return;
   state.track = trackElement;
 
-  // Add grab cursor
   trackElement.style.cursor = 'grab';
   trackElement.style.userSelect = 'none';
 
@@ -2103,7 +2046,6 @@ function handleSliderDragStart(e, sliderId) {
   state.track.style.cursor = 'grabbing';
   state.track.style.transition = 'none';
 
-  // Stop autoplay when dragging frame slider
   if (sliderId === 'frameSlider') {
     stopFrameAutoPlay();
   } else if (sliderId === 'sliderGroup1') {
@@ -2180,7 +2122,6 @@ function handleSliderDragEnd(e, sliderId) {
   state.track.style.cursor = 'grab';
   state.track.style.transition = '';
 
-  // Resume autoplay when drag ends for frame slider
   if (sliderId === 'frameSlider') {
     startFrameAutoPlay();
   } else if (sliderId === 'sliderGroup1') {
@@ -2422,10 +2363,8 @@ function initFrameSlider() {
     setupSliderDrag('frameSlider', frameSliderTrack);
   }
 
-  // Start autoplay
   startFrameAutoPlay();
 
-  // Stop autoplay on hover
   if (mainFrameSlider) {
     mainFrameSlider.addEventListener('mouseenter', () => {
       stopFrameAutoPlay();
@@ -2455,7 +2394,6 @@ function updateFrameSlider() {
 function moveFrameSlide(direction) {
   if (!frameSlides || totalFrameSlides === 0) return;
 
-  // Check if dragging - don't move if dragging
   const dragState = sliderDragStates['frameSlider'];
   if (dragState && dragState.isDragging) {
     return;
@@ -2470,16 +2408,15 @@ function moveFrameSlide(direction) {
   updateFrameSlider();
   updateFrameTabs();
 
-  // Reset autoplay when manually moving slides
   startFrameAutoPlay();
 }
 
 function startFrameAutoPlay() {
-  stopFrameAutoPlay(); // Clear any existing interval
+  stopFrameAutoPlay();
   if (totalFrameSlides > 1) {
     frameAutoPlayInterval = setInterval(() => {
       moveFrameSlide(1);
-    }, 5000); // Auto advance every 5 seconds
+    }, 5000);
   }
 }
 
@@ -2490,9 +2427,8 @@ function stopFrameAutoPlay() {
   }
 }
 
-// ===== SLIDER GROUP 1 FUNCTIONS (Commercial Slider) =====
 window.initSliderGroup1 = function() {
-  const sliderGroup1Container = document.querySelector('.frame-slider-section[data-slider-group="slider_group_1"]');
+  const sliderGroup1Container = document.querySelector('.frame-slider-section[data-slider-group="slider_product_1"]');
   if (!sliderGroup1Container) {
     return false;
   }
@@ -2507,10 +2443,8 @@ window.initSliderGroup1 = function() {
   totalSliderGroup1Slides = sliderGroup1Slides.length;
   currentSliderGroup1Slide = 0;
 
-  // Update initial state
   updateSliderGroup1();
 
-  // Setup drag functionality
   if (sliderGroup1Track) {
     initSliderDragState('sliderGroup1', {
       getCurrentSlide: () => currentSliderGroup1Slide,
@@ -2521,10 +2455,8 @@ window.initSliderGroup1 = function() {
     setupSliderDrag('sliderGroup1', sliderGroup1Track);
   }
 
-  // Start autoplay
   startSliderGroup1AutoPlay();
 
-  // Stop autoplay on hover
   if (sliderGroup1Container) {
     sliderGroup1Container.addEventListener('mouseenter', () => {
       stopSliderGroup1AutoPlay();
@@ -2540,7 +2472,7 @@ window.initSliderGroup1 = function() {
 function updateSliderGroup1() {
   if (!sliderGroup1Slides || sliderGroup1Slides.length === 0) return;
 
-  const sliderGroup1Track = document.querySelector('.frame-slider-section[data-slider-group="slider_group_1"] .frame-slider-track');
+  const sliderGroup1Track = document.querySelector('.frame-slider-section[data-slider-group="slider_product_1"] .frame-slider-track');
   if (sliderGroup1Track) {
     const translateX = -currentSliderGroup1Slide * 100;
     sliderGroup1Track.style.transform = `translateX(${translateX}%)`;
@@ -2561,7 +2493,6 @@ window.moveSliderGroup1Slide = function(direction) {
     return;
   }
 
-  // Check if dragging - don't move if dragging
   const dragState = sliderDragStates['sliderGroup1'];
   if (dragState && dragState.isDragging) {
     return;
@@ -2576,16 +2507,15 @@ window.moveSliderGroup1Slide = function(direction) {
 
   updateSliderGroup1();
 
-  // Reset autoplay when manually moving slides
   startSliderGroup1AutoPlay();
 };
 
 function startSliderGroup1AutoPlay() {
-  stopSliderGroup1AutoPlay(); // Clear any existing interval
+  stopSliderGroup1AutoPlay();
   if (totalSliderGroup1Slides > 1) {
     sliderGroup1AutoPlayInterval = setInterval(() => {
       moveSliderGroup1Slide(1);
-    }, 5000); // Auto advance every 5 seconds
+    }, 5000);
   }
 }
 
@@ -2615,7 +2545,6 @@ function switchFrameTab(tabName) {
       frameTabNav.classList.remove('dropdown-open');
     }
 
-    // Reset autoplay when switching tabs
     startFrameAutoPlay();
   }
 }

@@ -1,40 +1,45 @@
-/**
- * ESSENSIA IMAGES LOADER
- * Load hình ảnh từ Firebase và replace vào index.html
- */
+
 
 import { db } from './firebase-config.js';
 import { doc, getDoc } from 'https://www.gstatic.com/firebasejs/10.7.1/firebase-firestore.js';
 
 const IMAGES_COLLECTION = 'essensia_images';
 
-/**
- * Load images khi page ready
- */
 document.addEventListener('DOMContentLoaded', async () => {
 
   try {
     const imagesData = await loadImagesFromFirebase();
     if (imagesData) {
-      // Apply images from admin groups (old structure)
       applyGroupImages(imagesData);
 
-      // Apply slider groups (new structure)
-      if (imagesData.sliderGroups) {
-        applySliderGroups(imagesData.sliderGroups);
-        applyClubhouseSlider(imagesData.sliderGroups);
-        applyParkSlider(imagesData.sliderGroups);
+      // Combine both slider groups (Product & Privilege)
+      let allSliderGroups = [];
+      if (imagesData.sliderGroupsProduct) {
+        console.log('📦 Found sliderGroupsProduct:', imagesData.sliderGroupsProduct);
+        allSliderGroups = allSliderGroups.concat(imagesData.sliderGroupsProduct);
+      }
+      if (imagesData.sliderGroupsPrivilege) {
+        console.log('📦 Found sliderGroupsPrivilege:', imagesData.sliderGroupsPrivilege);
+        allSliderGroups = allSliderGroups.concat(imagesData.sliderGroupsPrivilege);
+      }
+
+      console.log('📦 Total slider groups to apply:', allSliderGroups.length);
+      allSliderGroups.forEach((group, index) => {
+        console.log(`  ${index + 1}. ${group.name} (key: ${group.key}, images: ${group.images?.length || 0})`);
+      });
+
+      if (allSliderGroups.length > 0) {
+        applySliderGroups(allSliderGroups);
+        applyClubhouseSlider(allSliderGroups);
+        applyParkSlider(allSliderGroups);
         refreshDynamicSliders();
       }
     }
   } catch (error) {
-    console.error('❌ Lỗi:', error);
-  }
+    console.error('❌ Error loading images from Firebase:', error);
+    }
 });
 
-/**
- * Load images data từ Firestore
- */
 async function loadImagesFromFirebase() {
   try {
     const docRef = doc(db, IMAGES_COLLECTION, 'data');
@@ -45,13 +50,11 @@ async function loadImagesFromFirebase() {
     }
     return null;
   } catch (error) {
-    console.error('❌ Firestore error:', error);
     return null;
   }
 }
 
 function refreshDynamicSliders() {
-  // Re-init sliders after DOM updates from Firebase
   const reinit = [
     'initFrameSlider',
     'initSliderGroup1',
@@ -71,36 +74,25 @@ function refreshDynamicSliders() {
   }, 0);
 }
 
-/**
- * Apply images từ admin groups (compatibility với old structure)
- * OPTIMIZED: Chỉ load responsive images phù hợp với device
- */
 function applyGroupImages(imagesData) {
   let appliedCount = 0;
 
-  // Detect device type
   const isMobile = window.innerWidth <= 768;
 
-  // Old IMAGE_GROUPS structure mapping
   const oldMappings = {
-    // LOGOS
     logo_broadway: ['img[src*="LOGO-BROADWAY.png"]:not([src*="PRELOAD"])'],
     logo_broadway_preload: ['img[src*="LOGO-BROADWAY-PRELOAD"]'],
     logo_phulong: ['img[src*="logo-phulong.png"]'],
     slogan_graphic: ['img[src*="saibuocthoithuong"]'],
     title_lifestyle: ['img[src*="chuansongthuongluu"]'],
 
-
-    // HERO & BANNERS - RESPONSIVE OPTIMIZATION
     banner_desktop: isMobile ? [] : ['.hero-image picture source[media="(min-width: 769px)"]'],
     banner_mobile: isMobile ? ['.hero-image picture source[media="(max-width: 768px)"], .hero-image picture img'] : ['.hero-image picture img'],
 
-    // HOMEPAGE
     homepage_view_image: ['img[src*="pic-view.png"]'],
     homepage_circle_image: ['img[src*="circle-image.png"]'],
     homepage_title_image: ['img[src*="chuansongthuongluu.svg"]'],
 
-    // LOCATION
     location_title_image: ['img[src*="vitrichienluoc"]'],
     location_travel_time_1: ['img[src*="3phut-image"]'],
     location_travel_time_2: ['img[src*="5phut-img"]'],
@@ -108,7 +100,6 @@ function applyGroupImages(imagesData) {
     location_travel_time_4: ['img[src*="10phut-img"]'],
     location_map_image: ['img[src*="map.svg"]'],
 
-    //Products
     product_background_desktop: isMobile ? [] : ['.role-image picture source[media="(min-width: 769px)"]'],
     product_background_mobile: isMobile ? ['.role-image picture img'] : [],
     product_btn_left_pc: isMobile ? [] : ['.role-sub-image-left picture source[media="(min-width: 769px)"]'],
@@ -119,12 +110,10 @@ function applyGroupImages(imagesData) {
     product_clubhouse: ['.showcase-card:first-child img[src*="clubhouse-pic"]'],
     product_park: ['.showcase-card:last-child img[src*="congvien-pic"]'],
 
-    //Popup Shophouse
     popup_shophouse_title_top_desktop: isMobile ? [] : ['#rolePopup .popup-banner picture source[media="(min-width: 769px)"]'],
     popup_shophouse_title_top_mobile: isMobile ? ['#rolePopup .popup-banner picture img'] : [],
     popup_shophouse_title_desktop: ['#rolePopup img[src*="matbangtoiuu-modal"]'],
-    
-    // Popup Shophouse - Group 1 (Left)
+
     popup_shophouse_tang_1_group_1_desktop: isMobile ? [] : ['#rolePopup .optimal-floor-left-item[data-floor="1"] picture source[media="(min-width: 769px)"]'],
     popup_shophouse_tang_1_group_1_mobile: isMobile ? ['#rolePopup .optimal-floor-left-item[data-floor="1"] picture img'] : [],
     popup_shophouse_tang_2_group_1_desktop: isMobile ? [] : ['#rolePopup .optimal-floor-left-item[data-floor="2"] picture source[media="(min-width: 769px)"]'],
@@ -134,7 +123,6 @@ function applyGroupImages(imagesData) {
     popup_shophouse_tang_4_group_1_desktop: isMobile ? [] : ['#rolePopup .optimal-floor-left-item[data-floor="4"] picture source[media="(min-width: 769px)"]'],
     popup_shophouse_tang_4_group_1_mobile: isMobile ? ['#rolePopup .optimal-floor-left-item[data-floor="4"] picture img'] : [],
 
-    // Popup Shophouse - Group 2 (Right)
     popup_shophouse_tang_1_group_2_desktop: isMobile ? [] : ['#rolePopup .optimal-floor-right-item[data-floor="1"] picture source[media="(min-width: 769px)"]'],
     popup_shophouse_tang_1_group_2_mobile: isMobile ? ['#rolePopup .optimal-floor-right-item[data-floor="1"] picture img'] : [],
     popup_shophouse_tang_2_group_2_desktop: isMobile ? [] : ['#rolePopup .optimal-floor-right-item[data-floor="2"] picture source[media="(min-width: 769px)"]'],
@@ -144,18 +132,15 @@ function applyGroupImages(imagesData) {
     popup_shophouse_tang_4_group_2_desktop: isMobile ? [] : ['#rolePopup .optimal-floor-right-item[data-floor="4"] picture source[media="(min-width: 769px)"]'],
     popup_shophouse_tang_4_group_2_mobile: isMobile ? ['#rolePopup .optimal-floor-right-item[data-floor="4"] picture img'] : [],
 
-    // Popup Shophouse - Group 3 (Text - Mobile only)
     popup_shophouse_tang_1_group_3_mobile: isMobile ? ['#rolePopup .optimal-floor-text-item[data-floor="1"] picture source[media="(max-width: 769px)"]'] : [],
     popup_shophouse_tang_2_group_3_mobile: isMobile ? ['#rolePopup .optimal-floor-text-item[data-floor="2"] picture source[media="(max-width: 769px)"]'] : [],
     popup_shophouse_tang_3_group_3_mobile: isMobile ? ['#rolePopup .optimal-floor-text-item[data-floor="3"] picture source[media="(max-width: 769px)"]'] : [],
     popup_shophouse_tang_4_group_3_mobile: isMobile ? ['#rolePopup .optimal-floor-text-item[data-floor="4"] picture source[media="(max-width: 769px)"]'] : [],
-    
-    //Popup Rewrittenhouse
+
     popup_rewrittenhouse_title_top_desktop: isMobile ? [] : ['#roleSecondPopup .popup-banner picture source[media="(min-width: 769px)"]'],
     popup_rewrittenhouse_title_top_mobile: isMobile ? ['#roleSecondPopup .popup-banner picture img'] : [],
     popup_rewrittenhouse_title_desktop: ['#roleSecondPopup img[src*="matbangtoiuu-modal"]'],
-    
-    // Popup Rewrittenhouse - Group 1 (Left)
+
     popup_rewrittenhouse_tang_1_group_1_desktop: isMobile ? [] : ['#roleSecondPopup .optimal-floor-left-item[data-floor="1"] picture source[media="(min-width: 769px)"]'],
     popup_rewrittenhouse_tang_1_group_1_mobile: isMobile ? ['#roleSecondPopup .optimal-floor-left-item[data-floor="1"] picture img'] : [],
     popup_rewrittenhouse_tang_2_group_1_desktop: isMobile ? [] : ['#roleSecondPopup .optimal-floor-left-item[data-floor="2"] picture source[media="(min-width: 769px)"]'],
@@ -165,7 +150,6 @@ function applyGroupImages(imagesData) {
     popup_rewrittenhouse_tang_4_group_1_desktop: isMobile ? [] : ['#roleSecondPopup .optimal-floor-left-item[data-floor="4"] picture source[media="(min-width: 769px)"]'],
     popup_rewrittenhouse_tang_4_group_1_mobile: isMobile ? ['#roleSecondPopup .optimal-floor-left-item[data-floor="4"] picture img'] : [],
 
-    // Popup Rewrittenhouse - Group 2 (Right)
     popup_rewrittenhouse_tang_1_group_2_desktop: isMobile ? [] : ['#roleSecondPopup .optimal-floor-right-item[data-floor="1"] picture source[media="(min-width: 769px)"]'],
     popup_rewrittenhouse_tang_1_group_2_mobile: isMobile ? ['#roleSecondPopup .optimal-floor-right-item[data-floor="1"] picture img'] : [],
     popup_rewrittenhouse_tang_2_group_2_desktop: isMobile ? [] : ['#roleSecondPopup .optimal-floor-right-item[data-floor="2"] picture source[media="(min-width: 769px)"]'],
@@ -175,23 +159,20 @@ function applyGroupImages(imagesData) {
     popup_rewrittenhouse_tang_4_group_2_desktop: isMobile ? [] : ['#roleSecondPopup .optimal-floor-right-item[data-floor="4"] picture source[media="(min-width: 769px)"]'],
     popup_rewrittenhouse_tang_4_group_2_mobile: isMobile ? ['#roleSecondPopup .optimal-floor-right-item[data-floor="4"] picture img'] : [],
 
-    // Popup Rewrittenhouse - Group 3 (Text - Mobile only)
     popup_rewrittenhouse_tang_1_group_3_mobile: isMobile ? ['#roleSecondPopup .optimal-floor-text-item[data-floor="1"] picture source[media="(max-width: 769px)"]'] : [],
     popup_rewrittenhouse_tang_2_group_3_mobile: isMobile ? ['#roleSecondPopup .optimal-floor-text-item[data-floor="2"] picture source[media="(max-width: 769px)"]'] : [],
     popup_rewrittenhouse_tang_3_group_3_mobile: isMobile ? ['#roleSecondPopup .optimal-floor-text-item[data-floor="3"] picture source[media="(max-width: 769px)"]'] : [],
     popup_rewrittenhouse_tang_4_group_3_mobile: isMobile ? ['#roleSecondPopup .optimal-floor-text-item[data-floor="4"] picture source[media="(max-width: 769px)"]'] : [],
-    
-    // Popup Clubhouse
+
     popup_clubhouse_title_top: ['#clubhousePopup .popup-banner picture img[src*="title-modal-clubhouse.png"]'],
     popup_clubhouse_title_desktop: isMobile ? [] : ['#clubhousePopup .popup_clubhouse_title picture source[media="(min-width: 769px)"]'],
     popup_clubhouse_title_mobile: isMobile ? ['#clubhousePopup .popup_clubhouse_title picture source[media*="max-width"]'] : [],
-    
+
     popup_clubhouse_floor_1: ['#clubhousePopup img[src*="floor-clubhouse-modal.png"]'],
     popup_clubhouse_floor_2: ['#clubhousePopup img[src*="tang2-pic-map.png"]'],
     popup_clubhouse_floor_3: ['#clubhousePopup img[src*="tang3-pic-map.png"]'],
     popup_clubhouse_floor_4: ['#clubhousePopup img[src*="rooftop-pic-map.png"]'],
 
-    // Popup Park
     popup_park_title_top_desktop: isMobile ? [] : ['#parkPopup .popup-banner picture source[media="(min-width: 769px)"]'],
     popup_park_title_top_mobile: isMobile ? ['#parkPopup .popup-banner picture img'] : [],
     popup_park_title_desktop: ['#parkPopup img[src*="matbang-park-modal"]'],
@@ -200,27 +181,22 @@ function applyGroupImages(imagesData) {
     popup_park_legend_image_desktop: ['#parkPopup img[src*="tohoptienichthoithuong"]'],
     popup_park_legend_image_mobile: ['#parkPopup img[src*="tohoptienichthoithuong-mobile"]'],
 
-    // Floor Plan
     master_plan_title_desktop: isMobile ? [] : ['#mat-bang .master-plan-title-section picture source[media="(min-width: 769px)"]'],
     master_plan_title_mobile: isMobile ? ['#mat-bang .master-plan-title-section picture source[media*="max-width"]'] : [],
 
-    // Contact
     contact_image_title_desktop: isMobile ? [] : ['#ket-noi-hom-nay .contact-form-title-section picture source[media="(min-width: 769px)"]'],
     contact_image_title_mobile: isMobile ? ['#ket-noi-hom-nay .contact-form-title-section picture source[media*="max-width"]'] : [],
   };
 
   Object.keys(imagesData).forEach(imageKey => {
-    // Skip dynamicImages object
     if (imageKey === 'dynamicImages') return;
 
     const imageUrl = imagesData[imageKey];
 
-    // Apply nếu có URL (Base64 hoặc remote URL)
     if (!imageUrl) {
       return;
     }
 
-    // Kiểm tra xem có phải Base64 hay remote URL
     if (typeof imageUrl !== 'string') {
       return;
     }
@@ -229,15 +205,13 @@ function applyGroupImages(imagesData) {
     const isRemoteURL = imageUrl.startsWith('https://') || imageUrl.startsWith('http://');
 
     if (!isBase64 && !isRemoteURL) {
-      return; // Skip nếu không phải Base64 hoặc remote URL
+      return;
     }
-    console.log('imageKey', imageKey);
     const selectors = oldMappings[imageKey];
     if (!selectors || selectors.length === 0) {
       return;
     }
 
-    // Apply vào tất cả selectors
     selectors.forEach(selector => {
       const elements = document.querySelectorAll(selector);
       elements.forEach(el => {
@@ -246,12 +220,10 @@ function applyGroupImages(imagesData) {
           appliedCount++;
           const source = isRemoteURL ? 'Remote URL' : 'Base64';
         } else if (el.tagName === 'SOURCE') {
-          // Handle <source> element in <picture>
           el.srcset = imageUrl;
           appliedCount++;
           const source = isRemoteURL ? 'Remote URL' : 'Base64';
         } else {
-          // Background image
           el.style.backgroundImage = `url(${imageUrl})`;
           appliedCount++;
         }
@@ -259,16 +231,11 @@ function applyGroupImages(imagesData) {
     });
   });
 
-  if (appliedCount > 0) {
-  }
 }
 
-/**
- * Apply slider groups từ Firebase
- * Mỗi slider group có thể chứa nhiều hình, mỗi hình có 2 version (desktop + mobile)
- */
 function applySliderGroups(sliderGroups) {
   if (!sliderGroups || sliderGroups.length === 0) {
+    console.log('⚠️ applySliderGroups: No slider groups provided');
     return;
   }
 
@@ -278,56 +245,51 @@ function applySliderGroups(sliderGroups) {
     const { key, images } = group;
 
     if (!key || !images || images.length === 0) {
+      console.log(`⚠️ Skipping group: key="${key}", has ${images?.length || 0} images`);
       return;
     }
 
-    // Tìm container slider theo data-slider-group attribute
     const sliderContainer = document.querySelector(`[data-slider-group="${key}"]`);
 
     if (!sliderContainer) {
+      console.log(`❌ Container not found for key: "${key}"`);
       return;
     }
 
-    // Tìm track container
     const track = sliderContainer.querySelector('.frame-slider-track');
     if (!track) {
+      console.log(`❌ Track not found in container for key: "${key}"`);
       return;
     }
 
-    // Clear existing slides
+    console.log(`✅ Applying slider group "${key}" with ${images.length} images`);
     track.innerHTML = '';
 
     const extraSlideClass = getSliderExtraSlideClass(sliderContainer);
 
-    // Generate slides from Firebase data
     images.forEach((image, index) => {
       const { desktop, mobile, tab, alt } = image;
 
-      // Skip nếu thiếu hình
       if (!desktop || !mobile) {
         return;
       }
 
-      // Create slide element
       const slideDiv = document.createElement('div');
       slideDiv.className = extraSlideClass ? `frame-slide ${extraSlideClass}` : 'frame-slide';
       if (index === 0) {
-        slideDiv.classList.add('active'); // First slide active
+        slideDiv.classList.add('active');
       }
       if (tab) {
         slideDiv.setAttribute('data-tab', tab);
       }
 
-      // Create picture element with responsive sources
       const picture = document.createElement('picture');
 
-      // Desktop source
       const desktopSource = document.createElement('source');
       desktopSource.media = '(min-width: 769px)';
       desktopSource.srcset = desktop;
       picture.appendChild(desktopSource);
 
-      // Mobile img (fallback)
       const img = document.createElement('img');
       img.src = mobile;
       img.alt = alt || `Slide ${index + 1}`;
@@ -342,11 +304,7 @@ function applySliderGroups(sliderGroups) {
 
       appliedSliders++;
     });
-
   });
-
-  if (appliedSliders > 0) {
-  }
 }
 
 function getSliderExtraSlideClass(sliderContainer) {
@@ -363,22 +321,16 @@ function getSliderExtraSlideClass(sliderContainer) {
   return '';
 }
 
-/**
- * Apply clubhouse slider với title và description
- * Slider này có cấu trúc khác: có .slides và .slide-description riêng biệt
- */
 function applyClubhouseSlider(sliderGroups) {
   if (!sliderGroups || sliderGroups.length === 0) {
     return;
   }
 
-  // Tìm clubhouse slider group - thử nhiều keys có thể
-  const clubhouseGroup = sliderGroups.find(group => 
-    group.key === 'clubhouse_slider' || 
-    group.key === 'slider_group_3' ||
+  const clubhouseGroup = sliderGroups.find(group =>
+    group.key === 'clubhouse_slider' ||
     group.key === 'clubhouse'
   );
-  
+
   if (!clubhouseGroup) {
     return;
   }
@@ -389,13 +341,10 @@ function applyClubhouseSlider(sliderGroups) {
 
   const { images } = clubhouseGroup;
 
-  // Tìm container slider
   const sliderContainer = document.querySelector('[data-slider-group="clubhouse_slider"]');
   if (!sliderContainer) {
-    // Thử tìm bằng class
     const fallbackContainer = document.querySelector('.clubhouse-slider:not(.popup-container .clubhouse-slider)');
     if (fallbackContainer) {
-      // Thêm attribute nếu chưa có
       if (!fallbackContainer.hasAttribute('data-slider-group')) {
         fallbackContainer.setAttribute('data-slider-group', 'clubhouse_slider');
       }
@@ -407,89 +356,88 @@ function applyClubhouseSlider(sliderGroups) {
   applyClubhouseSliderToContainer(sliderContainer, images);
 }
 
+function createSlideElement(image, index) {
+  const { desktop, mobile, tab, des, alt } = image;
+
+  const slideDiv = document.createElement('div');
+  slideDiv.className = 'slide';
+  if (index === 0) {
+    slideDiv.classList.add('active');
+  }
+
+  const picture = document.createElement('picture');
+
+  const desktopSource = document.createElement('source');
+  desktopSource.media = '(min-width: 769px)';
+  desktopSource.srcset = desktop;
+  picture.appendChild(desktopSource);
+
+  const img = document.createElement('img');
+  img.src = mobile;
+  img.alt = alt || tab || `Slide ${index + 1}`;
+  if (index === 0) {
+    img.loading = 'lazy';
+  }
+  picture.appendChild(img);
+
+  slideDiv.appendChild(picture);
+  return slideDiv;
+}
+
+function createDescriptionElement(image, index) {
+  const { tab, des } = image;
+
+  const descriptionDiv = document.createElement('div');
+  descriptionDiv.className = 'slide-description fade-in stagger-2';
+  if (index === 0) {
+    descriptionDiv.classList.add('active');
+  }
+  descriptionDiv.setAttribute('data-slide', index.toString());
+
+  if (tab) {
+    const title = document.createElement('h3');
+    title.className = 'slide-title';
+    title.textContent = tab;
+    descriptionDiv.appendChild(title);
+  }
+
+  if (des) {
+    const text = document.createElement('p');
+    text.className = 'slide-text';
+    text.innerHTML = des;
+    descriptionDiv.appendChild(text);
+  }
+
+  return descriptionDiv;
+}
+
 function applyClubhouseSliderToContainer(sliderContainer, images) {
-  // Tìm slides container
   const slidesContainer = sliderContainer.querySelector('.slides');
   if (!slidesContainer) {
     return;
   }
 
-  // Tìm slider-container để append descriptions sau nó
   const sliderContainerDiv = sliderContainer.querySelector('.slider-container');
   if (!sliderContainerDiv) {
     return;
   }
 
-  // Clear existing slides
   slidesContainer.innerHTML = '';
 
-  // Clear existing slide descriptions
   const existingDescriptions = sliderContainer.querySelectorAll('.slide-description');
   existingDescriptions.forEach(desc => desc.remove());
 
-  // Generate slides và descriptions từ Firebase data
   images.forEach((image, index) => {
-    const { desktop, mobile, tab, des, alt } = image;
+    const { desktop, mobile } = image;
 
-    // Skip nếu thiếu hình
     if (!desktop || !mobile) {
       return;
     }
 
-    // Create slide element
-    const slideDiv = document.createElement('div');
-    slideDiv.className = 'slide';
-    if (index === 0) {
-      slideDiv.classList.add('active');
-    }
-
-    // Create picture element with responsive sources (giống format trong HTML)
-    const picture = document.createElement('picture');
-    
-    // Desktop source
-    const desktopSource = document.createElement('source');
-    desktopSource.media = '(min-width: 769px)';
-    desktopSource.srcset = desktop;
-    picture.appendChild(desktopSource);
-
-    // Mobile img (fallback)
-    const img = document.createElement('img');
-    img.src = mobile;
-    img.alt = alt || tab || `Slide ${index + 1}`;
-    if (index === 0) {
-      img.loading = 'lazy';
-    }
-    picture.appendChild(img);
-
-    slideDiv.appendChild(picture);
+    const slideDiv = createSlideElement(image, index);
     slidesContainer.appendChild(slideDiv);
 
-    // Create slide description
-    const descriptionDiv = document.createElement('div');
-    descriptionDiv.className = 'slide-description fade-in stagger-2';
-    if (index === 0) {
-      descriptionDiv.classList.add('active');
-    }
-    descriptionDiv.setAttribute('data-slide', index.toString());
-
-    // Title (từ tab)
-    if (tab) {
-      const title = document.createElement('h3');
-      title.className = 'slide-title';
-      title.textContent = tab;
-      descriptionDiv.appendChild(title);
-    }
-
-    // Description (từ des) - dùng innerHTML để có thể load HTML
-    if (des) {
-      const text = document.createElement('p');
-      text.className = 'slide-text';
-      text.innerHTML = des; // Dùng innerHTML để có thể load HTML
-      descriptionDiv.appendChild(text);
-    }
-
-    // Append description vào slider container (sau slider-container)
-    // Insert sau slider-container div
+    const descriptionDiv = createDescriptionElement(image, index);
     if (sliderContainerDiv.nextSibling) {
       sliderContainer.insertBefore(descriptionDiv, sliderContainerDiv.nextSibling);
     } else {
@@ -497,7 +445,6 @@ function applyClubhouseSliderToContainer(sliderContainer, images) {
     }
   });
 
-  // Re-init slider sau khi load data
   setTimeout(() => {
     if (typeof window.initSlider === 'function') {
       window.initSlider();
@@ -505,27 +452,22 @@ function applyClubhouseSliderToContainer(sliderContainer, images) {
   }, 500);
 }
 
-/**
- * Apply park slider với title và description
- */
 function applyParkSlider(sliderGroups) {
   if (!sliderGroups || sliderGroups.length === 0) {
     return;
   }
 
-  // Tìm park slider group
-  const parkGroup = sliderGroups.find(group => 
-    group.key === 'park_slider' || 
+  const parkGroup = sliderGroups.find(group =>
+    group.key === 'park_slider' ||
     group.key === 'park'
   );
-  
+
   if (!parkGroup || !parkGroup.images || parkGroup.images.length === 0) {
     return;
   }
 
   const { images } = parkGroup;
 
-  // Tìm container slider
   const sliderContainer = document.querySelector('[data-slider-group="park_slider"]');
   if (!sliderContainer) {
     return;
@@ -535,95 +477,54 @@ function applyParkSlider(sliderGroups) {
 }
 
 function applyParkSliderToContainer(sliderContainer, images) {
-  // Tìm slides container
   const slidesContainer = sliderContainer.querySelector('.slides');
   if (!slidesContainer) {
     return;
   }
 
-  // Tìm slider-container để append descriptions sau nó
   const sliderContainerDiv = sliderContainer.querySelector('.slider-container');
   if (!sliderContainerDiv) {
     return;
   }
 
-  // Clear existing slides
   slidesContainer.innerHTML = '';
 
-  // Clear existing slide descriptions
   const existingDescriptions = sliderContainer.querySelectorAll('.slide-description');
   existingDescriptions.forEach(desc => desc.remove());
 
-  // Generate slides và descriptions từ Firebase data
+  const slidesData = [];
   images.forEach((image, index) => {
-    const { desktop, mobile, tab, des, alt } = image;
+    const { desktop, mobile } = image;
 
-    // Skip nếu thiếu hình
     if (!desktop || !mobile) {
       return;
     }
 
-    // Create slide element
-    const slideDiv = document.createElement('div');
-    slideDiv.className = 'slide';
-    if (index === 0) {
-      slideDiv.classList.add('active');
-    }
-
-    // Create picture element with responsive sources
-    const picture = document.createElement('picture');
-    
-    // Desktop source
-    const desktopSource = document.createElement('source');
-    desktopSource.media = '(min-width: 769px)';
-    desktopSource.srcset = desktop;
-    picture.appendChild(desktopSource);
-
-    // Mobile img (fallback)
-    const img = document.createElement('img');
-    img.src = mobile;
-    img.alt = alt || tab || `Slide ${index + 1}`;
-    if (index === 0) {
-      img.loading = 'lazy';
-    }
-    picture.appendChild(img);
-
-    slideDiv.appendChild(picture);
+    const slideDiv = createSlideElement(image, index);
     slidesContainer.appendChild(slideDiv);
 
-    // Create slide description
-    const descriptionDiv = document.createElement('div');
-    descriptionDiv.className = 'slide-description fade-in stagger-2';
-    if (index === 0) {
-      descriptionDiv.classList.add('active');
-    }
-    descriptionDiv.setAttribute('data-slide', index.toString());
-
-    // Title (từ tab)
-    if (tab) {
-      const title = document.createElement('h3');
-      title.className = 'slide-title';
-      title.textContent = tab;
-      descriptionDiv.appendChild(title);
-    }
-
-    // Description (từ des) - dùng innerHTML để có thể load HTML
-    if (des) {
-      const text = document.createElement('p');
-      text.className = 'slide-text';
-      text.innerHTML = des;
-      descriptionDiv.appendChild(text);
-    }
-
-    // Append description vào slider container (sau slider-container)
-    if (sliderContainerDiv.nextSibling) {
-      sliderContainer.insertBefore(descriptionDiv, sliderContainerDiv.nextSibling);
-    } else {
-      sliderContainer.appendChild(descriptionDiv);
-    }
+    slidesData.push({ image, index });
   });
 
-  // Re-init slider sau khi load data
+  for (let i = slidesData.length - 1; i >= 0; i--) {
+    const { image, index } = slidesData[i];
+    const { tab, des } = image;
+
+    if (tab || des) {
+      const descriptionDiv = createDescriptionElement(image, index);
+      if (sliderContainerDiv.nextSibling) {
+        sliderContainer.insertBefore(descriptionDiv, sliderContainerDiv.nextSibling);
+      } else {
+        sliderContainer.appendChild(descriptionDiv);
+      }
+    }
+  }
+
+  const firstDesc = sliderContainer.querySelector('.slide-description[data-slide="0"]');
+  if (firstDesc) {
+    firstDesc.classList.add('active');
+  }
+
   setTimeout(() => {
     if (typeof window.initParkSlider === 'function') {
       window.initParkSlider();

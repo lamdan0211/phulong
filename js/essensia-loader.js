@@ -1,16 +1,10 @@
-/**
- * ESSENSIA BROADWAY - CONTENT LOADER
- * Load dynamic content từ Firebase Firestore vào index.html
- */
+
 
 import { db } from './firebase-config.js';
 import { doc, getDoc } from 'https://www.gstatic.com/firebasejs/10.7.1/firebase-firestore.js';
 
 const ESSENSIA_COLLECTION = 'essensia_broadway';
 
-/**
- * Load content khi page đã sẵn sàng
- */
 document.addEventListener('DOMContentLoaded', async () => {
 
   try {
@@ -18,16 +12,11 @@ document.addEventListener('DOMContentLoaded', async () => {
     if (content) {
       applyContentToPage(content);
     } else {
-      console.warn('⚠️ Không có content trong Firebase, dùng content mặc định');
-    }
+      }
   } catch (error) {
-    console.error('❌ Lỗi khi load content:', error);
-  }
+    }
 });
 
-/**
- * Load content từ Firestore
- */
 async function loadContentFromFirebase() {
   try {
     const docRef = doc(db, ESSENSIA_COLLECTION, 'content');
@@ -38,67 +27,50 @@ async function loadContentFromFirebase() {
     }
     return null;
   } catch (error) {
-    console.error('❌ Lỗi Firestore:', error);
     return null;
   }
 }
 
-/**
- * Apply content vào các elements trong page
- */
 function applyContentToPage(content) {
-  // HOMEPAGE SECTION
   if (content.homepage) {
     applyHomepageContent(content.homepage);
   }
 
-  // LOCATION SECTION
   if (content.location) {
     applyLocationContent(content.location);
   }
-  
-  // PRODUCT SECTION
+
   if (content.product) {
     applyProductContent(content.product);
   }
 
-  // FLOORPLAN SECTION
   if (content.floorplan) {
     applyFloorplanContent(content.floorplan);
   }
 
-  // CONTACT
   if (content.contact) {
     applyContactContent(content.contact);
   }
 
-  // MENU
   if (content.menu) {
     applyMenuContent(content.menu);
   }
 
-  // NEWS SECTION
   if (content.news) {
     applyNewsContent(content.news);
   }
 
-  // FRAME DEPICING SECTION
   if (content.framedepicting) {
     applyFrameDepictingContent(content.framedepicting);
   }
 
-  // Developer
   if (content.developer) {
     applyDeveloperContent(content.developer);
   }
 }
 
-/**
- * Apply Homepage content
- */
-function applyHomepageContent(homepage) 
+function applyHomepageContent(homepage)
 {
-  // Lifestyle description paragraphs (3 đoạn trong section trang-chu)
   const lifestyleTexts = document.querySelectorAll('.lifestyle-text');
   if (lifestyleTexts.length >= 3) {
     if (homepage.description1) lifestyleTexts[0].textContent = homepage.description1;
@@ -108,7 +80,6 @@ function applyHomepageContent(homepage)
 }
 
 function applyLocationContent(location) {
-  // Location description
   const locationText = document.querySelectorAll('.strategic-location-text');
   if (locationText.length >= 2) {
     if (location.description1) locationText[0].textContent = location.description1;
@@ -125,7 +96,6 @@ function applyFloorplanContent(floorplan) {
 }
 
 function applyProductContent(product) {
-  // Product description
   const productText = document.querySelectorAll('.clubhouse-text');
   if (productText.length >= 2) {
     if (product.description1) productText[0].textContent = product.description1;
@@ -139,83 +109,51 @@ function applyProductContent(product) {
   }
 
   const productPopup2Text = document.querySelectorAll('.popup2description');
-  if (productPopup2Text.length >= 1) {
-    if (product.popup2description1) productPopup2Text[0].textContent = product.popup2description1;
+  if (productPopup2Text.length >= 1 && product.popup2description1) {
+    productPopup2Text[0].textContent = product.popup2description1;
   }
+
+  const popup3Mapping = [
+    { class: 'popup3description1', prop: 'popup3description1', useHTML: true },
+    { class: 'popup3description2', prop: 'popup3description2', useHTML: true },
+    { class: 'popup3tang1tab', prop: 'popup3tang1tab', useHTML: false },
+    { class: 'popup3tang1title', prop: 'popup3tang1title', useHTML: true },
+    { class: 'popup3tang1desc', prop: 'popup3tang1desc', useHTML: true },
+    { class: 'popup3tang1detail', prop: 'popup3tang1detail', useHTML: true },
+    { class: 'popup3tang2tab', prop: 'popup3tang2tab', useHTML: true },
+    { class: 'popup3tang2title', prop: 'popup3tang2title', useHTML: true },
+    { class: 'popup3tang2desc', prop: 'popup3tang2desc', useHTML: true },
+    { class: 'popup3tang2detail', prop: 'popup3tang2detail', useHTML: true },
+    { class: 'popup3tang3tab', prop: 'popup3tang3tab', useHTML: true },
+    { class: 'popup3tang3title', prop: 'popup3tang3title', useHTML: true },
+    { class: 'popup3tang3desc', prop: 'popup3tang3desc', useHTML: true },
+    { class: 'popup3tang3detail', prop: 'popup3tang3detail', useHTML: true },
+    { class: 'popup3tang4tab', prop: 'popup3tang4tab', useHTML: true },
+    { class: 'popup3tang4title', prop: 'popup3tang4title', useHTML: true },
+    { class: 'popup3tang4desc', prop: 'popup3tang4desc', useHTML: true },
+    { class: 'popup3tang4detail', prop: 'popup3tang4detail', useHTML: true }
+  ];
 
   const productPopup3Text = document.querySelectorAll('.popup3trans');
   productPopup3Text.forEach(el => {
-    if(el.classList.contains('popup3description1') && product.popup3description1) {
-      if (product.popup3description1) el.innerHTML = product.popup3description1;
-    }
-    if(el.classList.contains('popup3description2') && product.popup3description2) {
-      if (product.popup3description2) el.innerHTML = product.popup3description2;
-    }
-    if(el.classList.contains('popup3tang1tab') && product.popup3tang1tab) {
-      if (product.popup3tang1tab) el.textContent = product.popup3tang1tab;
-    }
-    if(el.classList.contains('popup3tang1title') && product.popup3tang1title) {
-      if (product.popup3tang1title) el.innerHTML = product.popup3tang1title;
-    }
-    if(el.classList.contains('popup3tang1desc') && product.popup3tang1desc) {
-      if (product.popup3tang1desc) el.innerHTML = product.popup3tang1desc;
-    }
-    if(el.classList.contains('popup3tang1detail') && product.popup3tang1detail) {
-      if (product.popup3tang1detail) el.innerHTML = product.popup3tang1detail;
-    }
-    if(el.classList.contains('popup3tang2tab') && product.popup3tang2tab) {
-      if (product.popup3tang2tab) el.innerHTML = product.popup3tang2tab;
-    }
-    if(el.classList.contains('popup3tang2title') && product.popup3tang2title) {
-      if (product.popup3tang2title) el.innerHTML = product.popup3tang2title;
-    }
-    if(el.classList.contains('popup3tang2desc') && product.popup3tang2desc) {
-      if (product.popup3tang2desc) el.innerHTML = product.popup3tang2desc;
-    }
-    if(el.classList.contains('popup3tang2detail') && product.popup3tang2detail) {
-      if (product.popup3tang2detail) el.innerHTML = product.popup3tang2detail;
-    }
-    if(el.classList.contains('popup3tang3tab') && product.popup3tang3tab) {
-      if (product.popup3tang3tab) el.innerHTML = product.popup3tang3tab;
-    }
-    if(el.classList.contains('popup3tang3title') && product.popup3tang3title) {
-      if (product.popup3tang3title) el.innerHTML = product.popup3tang3title;
-    }
-    if(el.classList.contains('popup3tang3desc') && product.popup3tang3desc) {
-      if (product.popup3tang3desc) el.innerHTML = product.popup3tang3desc;
-    }
-    if(el.classList.contains('popup3tang3detail') && product.popup3tang3detail) {
-      if (product.popup3tang3detail) el.innerHTML = product.popup3tang3detail;
-    }
-    if(el.classList.contains('popup3tang4tab') && product.popup3tang4tab) {
-      if (product.popup3tang4tab) el.innerHTML = product.popup3tang4tab;
-    }
-    if(el.classList.contains('popup3tang4title') && product.popup3tang4title) {
-      if (product.popup3tang4title) el.innerHTML = product.popup3tang4title;
-    }
-    if(el.classList.contains('popup3tang4desc') && product.popup3tang4desc) {
-      if (product.popup3tang4desc) el.innerHTML = product.popup3tang4desc;
-    }
-    if(el.classList.contains('popup3tang4detail') && product.popup3tang4detail) {
-      if (product.popup3tang4detail) el.innerHTML = product.popup3tang4detail;
-    }
+    popup3Mapping.forEach(({ class: className, prop, useHTML }) => {
+      if (el.classList.contains(className) && product[prop]) {
+        el[useHTML ? 'innerHTML' : 'textContent'] = product[prop];
+      }
+    });
   });
 
   const productPopup4Text = document.querySelectorAll('.popup4trans');
   productPopup4Text.forEach(el => {
-    if(el.classList.contains('popup4desc') && product.popup4desc) {
-      if (product.popup4desc) el.innerHTML = product.popup4desc;
+    if (el.classList.contains('popup4desc') && product.popup4desc) {
+      el.innerHTML = product.popup4desc;
     }
-
-    if(el.classList.contains('popup4detail') && product.popup4detail) {
-      if (product.popup4detail) el.innerHTML = product.popup4detail;
+    if (el.classList.contains('popup4detail') && product.popup4detail) {
+      el.innerHTML = product.popup4detail;
     }
   });
 }
 
-/**
- * Apply Contact content
- */
 function applyContactContent(contact) {
   if (contact.hotline) {
     const hotlineElements = document.querySelectorAll('a[href^="tel:"]');
@@ -225,6 +163,11 @@ function applyContactContent(contact) {
 
     const hotlineTextElements = document.querySelectorAll('.trans_contact_hotline_number');
     if (hotlineTextElements.length > 0) hotlineTextElements[0].textContent = contact.hotline;
+  }
+
+  if(contact.company) {
+    const companyElements = document.querySelectorAll('.trans_contact_company');
+    if (companyElements.length > 0) companyElements[0].textContent = contact.company;
   }
 
   if(contact.address) {
@@ -259,17 +202,17 @@ function applyContactContent(contact) {
 }
 
 function applyDeveloperContent(developer) {
-  
+
   if(developer.description) {
     const descriptioElements = document.querySelectorAll('.trans_developer_description');
     if (descriptioElements.length > 0) descriptioElements[0].innerHTML = developer.description;
   }
-  
+
   if(developer.partnerstitle) {
     const partnerstitleElements = document.querySelectorAll('.trans_partners_title');
     if (partnerstitleElements.length > 0) partnerstitleElements[0].textContent = developer.partnerstitle;
   }
-  
+
   if(developer.partnersdescription1) {
     const partnersdescription1Elements = document.querySelectorAll('.trans_partners_description_1');
     if (partnersdescription1Elements.length > 0) partnersdescription1Elements[0].textContent = developer.partnersdescription1;
@@ -284,11 +227,10 @@ function applyDeveloperContent(developer) {
     const partnersdescription3Elements = document.querySelectorAll('.trans_partners_description_3');
     if (partnersdescription3Elements.length > 0) partnersdescription3Elements[0].textContent = developer.partnersdescription3;
   }
-  
+
 }
 
 function applyFrameDepictingContent(framedepicting) {
-  // Frame depicting description
   const frameDepictingText = document.querySelectorAll('.frame-tabs-container .frame-tab');
   if (frameDepictingText.length >= 5) {
     if (framedepicting.tongthe) frameDepictingText[0].textContent = framedepicting.tongthe;
@@ -300,7 +242,6 @@ function applyFrameDepictingContent(framedepicting) {
 }
 
 function applyMenuContent(menu) {
-  // Loop through nav_1 to nav_6
   for (let i = 1; i <= 6; i++) {
     const key = `nav_${i}`;
     if (menu[key]) {
@@ -312,9 +253,6 @@ function applyMenuContent(menu) {
   }
 }
 
-/**
- * Apply News content - dynamically load news cards
- */
 function applyNewsContent(news) {
   const infoSliderTrack = document.querySelector('.info-slider-track');
 
@@ -322,17 +260,14 @@ function applyNewsContent(news) {
     return;
   }
 
-  // Clear existing hardcoded news
   infoSliderTrack.innerHTML = '';
 
-  // Generate news cards dynamically
   news.items.forEach(item => {
     const newsCard = document.createElement('a');
     newsCard.href = item.link || '#';
     newsCard.target = '_blank';
     newsCard.className = 'info-card-slide';
 
-    // Handle thumbnail URL - don't add ./ if it's already a full URL
     const thumbnailUrl = item.thumbnail || '';
     const thumbnailSrc = thumbnailUrl.startsWith('http') ? thumbnailUrl : `./${thumbnailUrl}`;
 
@@ -349,15 +284,12 @@ function applyNewsContent(news) {
     infoSliderTrack.appendChild(newsCard);
   });
 
-  // Re-initialize lazy load for dynamically added images
   if (typeof window.LazyLoad !== 'undefined' && typeof window.LazyLoad.init === 'function') {
     setTimeout(() => {
       window.LazyLoad.init();
     }, 50);
   }
 
-  // Re-initialize the info slider after loading news
-  // Check if initInfoSlider exists (defined in main.js)
   if (typeof window.initInfoSlider === 'function') {
     setTimeout(() => {
       const totalSlides = document.querySelectorAll('.info-card-slide').length;

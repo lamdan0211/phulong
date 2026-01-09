@@ -51,11 +51,9 @@ document.addEventListener("DOMContentLoaded", () => {
 function initializeMap() {
   const mapSvg = document.getElementById("mapSvg")
   if (!mapSvg) {
-    console.error("Không tìm thấy mapSvg")
     return
   }
   if (typeof propertyData === 'undefined') {
-    console.error('Dữ liệu chưa được load. Vui lòng đảm bảo data.js được load trước script.js')
     return
   }
   requestAnimationFrame(() => {
@@ -357,14 +355,6 @@ function closeTooltip() {
       tooltip.classList.add("hidden")
     }, 300)
   }
-}
-function getStatusText(status) {
-  const statusMap = {
-    available: "Còn trống",
-    reserved: "Đã đặt cọc",
-    sold: "Đã bán",
-  }
-  return statusMap[status] || status
 }
 let roleSecondModalFirstCurrentSlide = 0
 function moveRoleSecondModalFirstSlide(direction) {
