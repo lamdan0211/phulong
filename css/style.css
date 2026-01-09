@@ -512,14 +512,21 @@ body > * {
 .contact-icon:hover {
   transform: scale(1.05);
 }
+.contact-icon.db-mobile {
+  position: relative;
+  animation: phoneShake 1s ease-in-out infinite;
+  transform-origin: center top;
+}
 .hotline-btn {
   transition: transform 0.3s ease;
   cursor: pointer;
   display: inline-block;
   margin-top: 5px;
+  animation: phonePulse 1.2s ease-in-out infinite;
 }
 .hotline-btn:hover {
   transform: scale(1.05);
+  animation-play-state: paused;
 }
 .hotline-btn img {
   transition: transform 0.3s ease;
@@ -6074,6 +6081,50 @@ img.lazy-loaded {
   }
   100% {
     background-position: 1000px 0;
+  }
+}
+@keyframes phoneShake {
+  0%,
+  100% {
+    transform: rotate(0deg) translateY(0);
+  }
+  10% {
+    transform: rotate(-8deg) translateY(-2px);
+  }
+  20% {
+    transform: rotate(8deg) translateY(2px);
+  }
+  30% {
+    transform: rotate(-6deg) translateY(-1px);
+  }
+  40% {
+    transform: rotate(6deg) translateY(1px);
+  }
+  50% {
+    transform: rotate(-4deg) translateY(-1px);
+  }
+  60% {
+    transform: rotate(4deg) translateY(1px);
+  }
+  70% {
+    transform: rotate(-2deg) translateY(0);
+  }
+  80% {
+    transform: rotate(2deg) translateY(0);
+  }
+  90% {
+    transform: rotate(-1deg) translateY(0);
+  }
+}
+@keyframes phonePulse {
+  0%,
+  100% {
+    transform: scale(1);
+    opacity: 1;
+  }
+  50% {
+    transform: scale(1.05);
+    opacity: 0.9;
   }
 }
 img.lazy:not(.lazy-loaded)::before {
