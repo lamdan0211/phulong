@@ -9,7 +9,9 @@ import {
 import {
   doc,
   getDoc,
-  setDoc
+  setDoc,
+  updateDoc,
+  deleteField
 } from 'https://www.gstatic.com/firebasejs/10.7.1/firebase-firestore.js';
 
 let uploadImageToCloudinary = null;
@@ -31,6 +33,8 @@ const logoutBtn = document.getElementById('logout-btn');
 const userEmailSpan = document.getElementById('user-email');
 const saveAllBtn = document.getElementById('save-all-btn');
 const exportDataBtn = document.getElementById('export-data-btn');
+const importDataBtn = document.getElementById('import-data-btn');
+const importFileInput = document.getElementById('import-file-input');
 const successMessage = document.getElementById('success-message');
 
 let currentUser = null;
@@ -191,12 +195,23 @@ const IMAGE_GROUPS = {
   framedepicting: {
     title: 'Framedepicting',
     images: [
-      { key: 'khung_hinh_khach_hoa_title', label: 'Framedepicting Title Desktop', original: 'khunghinhkhachoa-title.png' },
-      { key: 'khung_hinh_khach_hoa_tong_the', label: 'Floorplan TỔNG THỂ', original: 'slide-khunghinhkhachoa/pic-all-view-slide.jpg' },
-      { key: 'khung_hinh_khach_hoa_shophouse', label: 'Floorplan SHOPHOUSE', original: 'slide-khunghinhkhachoa/shophouse_1920x880.jpg' },
-      { key: 'khung_hinh_khach_hoa_townhouse', label: 'Floorplan TOWNHOUSE', original: 'slide-khunghinhkhachoa/townhouse_1920x880.jpg' },
-      { key: 'khung_hinh_khach_hoa_clubhouse', label: 'Floorplan CLUBHOUSE', original: 'slide-khunghinhkhachoa/clubhouse_1920x880.jpg' },
-      { key: 'khung_hinh_khach_hoa_cong_vien', label: 'Floorplan CÔNG VIÊN', original: 'slide-khunghinhkhachoa/park_1920x880.jpg' },
+      { key: 'khung_hinh_khach_hoa_title_desktop', label: 'Framedepicting Title Desktop', original: 'slide-khunghinhkhachoa/title.png' },
+      { key: 'khung_hinh_khach_hoa_title_mobile', label: 'Framedepicting Title Mobile', original: 'slide-khunghinhkhachoa/title.png' },
+      
+      { key: 'khung_hinh_khach_hoa_tong_the_desktop', label: 'Floorplan TỔNG THỂ Desktop', original: 'slide-khunghinhkhachoa/pic-all-view-slide.jpg' },
+      { key: 'khung_hinh_khach_hoa_tong_the_mobile', label: 'Floorplan TỔNG THỂ Mobile', original: 'slide-khunghinhkhachoa/pic-all-view-slide.jpg' },
+
+      { key: 'khung_hinh_khach_hoa_shophouse_desktop', label: 'Floorplan SHOPHOUSE Desktop', original: 'slide-khunghinhkhachoa/shophouse_1920x880.jpg' },
+      { key: 'khung_hinh_khach_hoa_shophouse_mobile', label: 'Floorplan SHOPHOUSE Mobile', original: 'slide-khunghinhkhachoa/shophouse_1920x880.jpg' },
+      
+      { key: 'khung_hinh_khach_hoa_townhouse_desktop', label: 'Floorplan TOWNHOUSE Desktop', original: 'slide-khunghinhkhachoa/townhouse_1920x880.jpg' },
+      { key: 'khung_hinh_khach_hoa_townhouse_mobile', label: 'Floorplan TOWNHOUSE Mobile', original: 'slide-khunghinhkhachoa/townhouse_1920x880.jpg' },
+      
+      { key: 'khung_hinh_khach_hoa_clubhouse_desktop', label: 'Floorplan CLUBHOUSE Desktop', original: 'slide-khunghinhkhachoa/clubhouse_1920x880.jpg' },
+      { key: 'khung_hinh_khach_hoa_clubhouse_mobile', label: 'Floorplan CLUBHOUSE Mobile', original: 'slide-khunghinhkhachoa/clubhouse_1920x880.jpg' },
+
+      { key: 'khung_hinh_khach_hoa_cong_vien_desktop', label: 'Floorplan CÔNG VIÊN Desktop', original: 'slide-khunghinhkhachoa/park_1920x880.jpg' },
+      { key: 'khung_hinh_khach_hoa_cong_vien_mobile', label: 'Floorplan CÔNG VIÊN Mobile', original: 'slide-khunghinhkhachoa/park_1920x880.jpg' },
     ]
   },
 
@@ -570,7 +585,23 @@ window.handleNewsThumbnailUpload = async function(event, index) {
       preview.src = imageUrl;
     }
 
-    showSuccessNotification('✓ Thành công!', 'Đã tải lên hình thumbnail');
+    if (contentData.news && contentData.news.items && contentData.news.items[index]) {
+      contentData.news.items[index].thumbnail = imageUrl;
+
+      const sanitizeData = (obj) => {
+        return JSON.parse(JSON.stringify(obj, (key, value) => {
+          if (value === null || value === undefined) {
+            return '';
+          }
+          return value;
+        }));
+      };
+
+      const cleanContentData = sanitizeData(contentData);
+      await setDoc(doc(db, TEXT_COLLECTION, 'content'), cleanContentData, { merge: true });
+    }
+
+    showSuccessNotification('✓ Thành công!', 'Đã upload và lưu hình thumbnail');
   } catch (error) {
     showErrorNotification('❌ Lỗi!', 'Không thể tải lên hình: ' + error.message);
   }
@@ -649,6 +680,9 @@ function createImageItem(imageConfig, groupKey) {
             <button class="upload-btn" onclick="document.getElementById('input-${key}').click()">
               ${isUploaded ? '🔄 Thay đổi' : '📁 Upload hình'}
             </button>
+            <button class="btn-delete" onclick="window.deleteImageFromFirebase('${key}', '${groupKey}')" style="margin-top: 0.5rem;">
+              🗑️ Xóa & Load gốc
+            </button>
             ${isUploaded ? '<small style="color: #10b981; display: block; margin-top: 0.5rem;">✓ Đã upload</small>' : ''}
         </div>
     `;
@@ -676,14 +710,20 @@ window.handleImageUpload = async function(event, imageKey, groupKey) {
   }
 
   try {
+    const uploadBtn = event.target.nextElementSibling;
+    if (uploadBtn) {
+      uploadBtn.innerHTML = '<span class="spinner"></span> Đang upload...';
+      uploadBtn.disabled = true;
+    }
+
     let imageUrl;
+    const base64 = await fileToBase64(file);
 
     if (uploadImageToCloudinary) {
-      const base64 = await fileToBase64(file);
       const filename = getOriginalFilename(imageKey);
       imageUrl = await uploadImageToCloudinary(imageKey, base64, filename);
     } else {
-      imageUrl = await fileToBase64(file);
+      imageUrl = base64;
     }
 
     uploadedImages[imageKey] = imageUrl;
@@ -694,20 +734,56 @@ window.handleImageUpload = async function(event, imageKey, groupKey) {
       preview.src = imageUrl;
     }
 
-    const uploadBtn = event.target.nextElementSibling;
+    await setDoc(doc(db, IMAGES_COLLECTION, 'data'), imagesData, { merge: true });
+
     if (uploadBtn) {
       uploadBtn.innerHTML = '🔄 Thay đổi';
+      uploadBtn.disabled = false;
       if (uploadBtn.nextElementSibling && uploadBtn.nextElementSibling.tagName === 'SMALL') {
         uploadBtn.nextElementSibling.style.display = 'block';
       } else {
         const checkmark = document.createElement('small');
         checkmark.style.cssText = 'color: #10b981; display: block; margin-top: 0.5rem;';
-        checkmark.textContent = '✓ Đã upload';
+        checkmark.textContent = '✓ Đã lưu';
         uploadBtn.parentElement.appendChild(checkmark);
       }
     }
+
+    showSuccessNotification('✓ Thành công!', 'Đã upload và lưu hình');
   } catch (error) {
-    showErrorNotification('❌ Lỗi!', 'Không thể upload hình');
+    const uploadBtn = event.target.nextElementSibling;
+    if (uploadBtn) {
+      uploadBtn.innerHTML = '📁 Upload hình';
+      uploadBtn.disabled = false;
+    }
+    showErrorNotification('❌ Lỗi!', 'Không thể upload hình: ' + error.message);
+  }
+};
+
+window.deleteImageFromFirebase = async function(imageKey, groupKey) {
+  if (!confirm('Xóa hình đã upload và load lại hình gốc?')) {
+    return;
+  }
+
+  try {
+    delete uploadedImages[imageKey];
+    delete imagesData[imageKey];
+
+    const updateData = {};
+    updateData[imageKey] = deleteField();
+
+    await updateDoc(doc(db, IMAGES_COLLECTION, 'data'), updateData);
+
+    const preview = document.getElementById(`preview-${imageKey}`);
+    if (preview) {
+      const original = getOriginalFilename(imageKey);
+      preview.src = `images/${original}`;
+    }
+
+    showSuccessNotification('✓ Thành công!', 'Đã xóa hình và load lại hình gốc');
+    renderImageGroup(groupKey);
+  } catch (error) {
+    showErrorNotification('❌ Lỗi!', 'Không thể xóa hình: ' + error.message);
   }
 };
 
@@ -1221,8 +1297,16 @@ window.handleSliderImageUpload = async function(event, groupIndex, imgIndex, ima
       preview.src = imageUrl;
     }
 
-    } catch (error) {
-    showErrorNotification('❌ Lỗi!', 'Không thể xử lý hình');
+    collectSliderGroupsData('product');
+    collectSliderGroupsData('privilege');
+    imagesData.sliderGroupsProduct = sliderGroupsProduct;
+    imagesData.sliderGroupsPrivilege = sliderGroupsPrivilege;
+
+    await setDoc(doc(db, IMAGES_COLLECTION, 'data'), imagesData, { merge: true });
+
+    showSuccessNotification('✓ Thành công!', 'Đã upload và lưu hình slider');
+  } catch (error) {
+    showErrorNotification('❌ Lỗi!', 'Không thể xử lý hình: ' + error.message);
   }
 };
 
@@ -1393,5 +1477,73 @@ exportDataBtn?.addEventListener('click', async () => {
   } finally {
     exportDataBtn.disabled = false;
     exportDataBtn.textContent = '📥 Export Data (Backup)';
+  }
+});
+
+importDataBtn?.addEventListener('click', () => {
+  if (!currentUser) {
+    showErrorNotification('❌ Lỗi!', 'Bạn chưa đăng nhập');
+    return;
+  }
+  importFileInput.click();
+});
+
+importFileInput?.addEventListener('change', async (event) => {
+  const file = event.target.files[0];
+  if (!file) return;
+
+  if (!file.name.endsWith('.json')) {
+    showErrorNotification('❌ Lỗi!', 'Vui lòng chọn file JSON');
+    return;
+  }
+
+  if (!confirm('⚠️ CẢNH BÁO!\n\nImport sẽ GHI ĐÈ toàn bộ dữ liệu hiện tại trên Firebase.\n\nBạn có chắc chắn muốn tiếp tục?')) {
+    importFileInput.value = '';
+    return;
+  }
+
+  importDataBtn.disabled = true;
+  importDataBtn.innerHTML = '<span class="spinner"></span> Đang import...';
+
+  try {
+    const reader = new FileReader();
+    reader.onload = async (e) => {
+      try {
+        const importedData = JSON.parse(e.target.result);
+
+        if (!importedData.text || !importedData.images) {
+          throw new Error('File không đúng định dạng. Cần có cả text và images data.');
+        }
+
+        await setDoc(doc(db, TEXT_COLLECTION, 'content'), importedData.text);
+        await setDoc(doc(db, IMAGES_COLLECTION, 'data'), importedData.images);
+
+        showSuccessNotification('✓ Thành công!', 'Đã import dữ liệu. Đang reload trang...');
+
+        setTimeout(() => {
+          window.location.reload();
+        }, 1500);
+
+      } catch (error) {
+        showErrorNotification('❌ Lỗi!', 'Không thể import dữ liệu: ' + error.message);
+        importDataBtn.disabled = false;
+        importDataBtn.textContent = '📤 Import Data (Restore)';
+      }
+    };
+
+    reader.onerror = () => {
+      showErrorNotification('❌ Lỗi!', 'Không thể đọc file');
+      importDataBtn.disabled = false;
+      importDataBtn.textContent = '📤 Import Data (Restore)';
+    };
+
+    reader.readAsText(file);
+
+  } catch (error) {
+    showErrorNotification('❌ Lỗi!', 'Không thể import dữ liệu: ' + error.message);
+    importDataBtn.disabled = false;
+    importDataBtn.textContent = '📤 Import Data (Restore)';
+  } finally {
+    importFileInput.value = '';
   }
 });

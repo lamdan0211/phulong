@@ -8,7 +8,6 @@ export async function uploadImageToCloudinary(imageKey, base64Data, filename) {
     formData.append('file', base64Data);
     formData.append('upload_preset', CLOUDINARY_CONFIG.uploadPreset);
 
-    const baseName = filename.replace(/\.[^.]+$/, '');
     const safeId = (text) =>
       text
         .toString()
@@ -17,7 +16,9 @@ export async function uploadImageToCloudinary(imageKey, base64Data, filename) {
         .replace(/-+/g, '-')
         .replace(/^[-/]+|[-/]+$/g, '');
 
-    formData.append('public_id', safeId(baseName));
+    const timestamp = Date.now();
+    const publicId = `${safeId(imageKey)}_${timestamp}`;
+    formData.append('public_id', publicId);
 
     if (CLOUDINARY_CONFIG.folder) {
       formData.append('folder', CLOUDINARY_CONFIG.folder);

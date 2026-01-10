@@ -5,7 +5,7 @@
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <title>Admin - Essensia Broadway</title>
-  <link rel="stylesheet" href="css/admin.css">
+  <link rel="stylesheet" href="css/admin.css?v=1.0.0">
 </head>
 
 <body>
@@ -447,11 +447,15 @@
       <button class="btn-save" id="export-data-btn" style="background: #059669; margin-left: 1rem;">
         📥 Export Data (Backup)
       </button>
+      <button class="btn-save" id="import-data-btn" style="background: #7c3aed; margin-left: 1rem;">
+        📤 Import Data (Restore)
+      </button>
+      <input type="file" id="import-file-input" accept=".json" style="display: none;">
     </div>
   </div>
 
   <!-- Admin JS -->
-  <script type="module" src="js/admin.js"></script>
+  <script type="module" src="js/admin.js?v=1.0.0"></script>
 
   <script>
     // Main tab switching (Nội dung vs Hình ảnh)

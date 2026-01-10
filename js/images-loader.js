@@ -177,6 +177,24 @@ function applyGroupImages(imagesData) {
 
     contact_image_title_desktop: isMobile ? [] : ['#ket-noi-hom-nay .contact-form-title-section picture source[media="(min-width: 769px)"]'],
     contact_image_title_mobile: isMobile ? ['#ket-noi-hom-nay .contact-form-title-section picture source[media*="max-width"]'] : [],
+
+    khung_hinh_khach_hoa_title_desktop: isMobile ? [] : ['#khung-hinh-khac-hoa .frame-depiction-header picture source[media="(min-width: 769px)"]'],
+    khung_hinh_khach_hoa_title_mobile: isMobile ? ['#khung-hinh-khac-hoa .frame-depiction-header picture source[media="(max-width: 768px)"], #khung-hinh-khac-hoa .frame-depiction-header picture img'] : ['#khung-hinh-khac-hoa .frame-depiction-header picture img'],
+
+    khung_hinh_khach_hoa_tong_the_desktop: isMobile ? [] : ['#khung-hinh-khac-hoa .frame-slide[data-tab="tong-the"] picture source[media="(min-width: 769px)"]'],
+    khung_hinh_khach_hoa_tong_the_mobile: isMobile ? ['#khung-hinh-khac-hoa .frame-slide[data-tab="tong-the"] picture source[media="(max-width: 768px)"], #khung-hinh-khac-hoa .frame-slide[data-tab="tong-the"] picture img'] : ['#khung-hinh-khac-hoa .frame-slide[data-tab="tong-the"] picture img'],
+
+    khung_hinh_khach_hoa_shophouse_desktop: isMobile ? [] : ['#khung-hinh-khac-hoa .frame-slide[data-tab="shophouse"] picture source[media="(min-width: 769px)"]'],
+    khung_hinh_khach_hoa_shophouse_mobile: isMobile ? ['#khung-hinh-khac-hoa .frame-slide[data-tab="shophouse"] picture source[media="(max-width: 768px)"], #khung-hinh-khac-hoa .frame-slide[data-tab="shophouse"] picture img'] : ['#khung-hinh-khac-hoa .frame-slide[data-tab="shophouse"] picture img'],
+
+    khung_hinh_khach_hoa_townhouse_desktop: isMobile ? [] : ['#khung-hinh-khac-hoa .frame-slide[data-tab="townhouse"] picture source[media="(min-width: 769px)"]'],
+    khung_hinh_khach_hoa_townhouse_mobile: isMobile ? ['#khung-hinh-khac-hoa .frame-slide[data-tab="townhouse"] picture source[media="(max-width: 768px)"], #khung-hinh-khac-hoa .frame-slide[data-tab="townhouse"] picture img'] : ['#khung-hinh-khac-hoa .frame-slide[data-tab="townhouse"] picture img'],
+
+    khung_hinh_khach_hoa_clubhouse_desktop: isMobile ? [] : ['#khung-hinh-khac-hoa .frame-slide[data-tab="clubhouse"] picture source[media="(min-width: 769px)"]'],
+    khung_hinh_khach_hoa_clubhouse_mobile: isMobile ? ['#khung-hinh-khac-hoa .frame-slide[data-tab="clubhouse"] picture source[media="(max-width: 768px)"], #khung-hinh-khac-hoa .frame-slide[data-tab="clubhouse"] picture img'] : ['#khung-hinh-khac-hoa .frame-slide[data-tab="clubhouse"] picture img'],
+
+    khung_hinh_khach_hoa_cong_vien_desktop: isMobile ? [] : ['#khung-hinh-khac-hoa .frame-slide[data-tab="cong-vien"] picture source[media="(min-width: 769px)"]'],
+    khung_hinh_khach_hoa_cong_vien_mobile: isMobile ? ['#khung-hinh-khac-hoa .frame-slide[data-tab="cong-vien"] picture source[media="(max-width: 768px)"], #khung-hinh-khac-hoa .frame-slide[data-tab="cong-vien"] picture img'] : ['#khung-hinh-khac-hoa .frame-slide[data-tab="cong-vien"] picture img'],
   };
 
   Object.keys(imagesData).forEach(imageKey => {
