@@ -1710,9 +1710,20 @@ function initInfoSlider() {
   if (paginationContainer) {
     paginationContainer.innerHTML = '';
     if (totalPages > 1) {
+      // Tạo counter hiển thị số trang
+      const counterSpan = document.createElement('span');
+      counterSpan.className = 'info-slider-counter';
+      counterSpan.textContent = `1 / ${totalPages}`;
+      paginationContainer.appendChild(counterSpan);
+
+      // Tạo container cho dots
+      const dotsContainer = document.createElement('div');
+      dotsContainer.className = 'info-pagination-dots-container';
+
       for (let i = 0; i < totalPages; i++) {
         const dot = document.createElement('span');
         dot.className = 'info-pagination-dot' + (i === 0 ? ' active' : '');
+        dot.setAttribute('data-index', i);
         const dotIndex = i;
         dot.addEventListener('click', (e) => {
           e.preventDefault();
@@ -1732,9 +1743,14 @@ function initInfoSlider() {
             goToInfoSlide(dotIndex);
           }
         }, { passive: false });
-        paginationContainer.appendChild(dot);
+        dotsContainer.appendChild(dot);
       }
-      infoPaginationDots = paginationContainer.querySelectorAll('.info-pagination-dot');
+
+      paginationContainer.appendChild(dotsContainer);
+      infoPaginationDots = dotsContainer.querySelectorAll('.info-pagination-dot');
+
+      // Cập nhật dots ngay sau khi tạo để ẩn bớt dots
+      updatePaginationDots();
     } else {
       paginationContainer.style.display = 'none';
     }
@@ -1903,19 +1919,57 @@ function updatePaginationDots() {
   const isMobile = window.innerWidth <= 560;
   const itemsPerPage = isMobile ? 1 : 3;
   const totalPages = Math.ceil(totalInfoSlides / itemsPerPage);
+
+  // Cập nhật counter
+  const counter = document.querySelector('.info-slider-counter');
+  if (counter) {
+    counter.textContent = `${currentInfoSlide + 1} / ${totalPages}`;
+  }
+
+  // Số dots hiển thị tối đa - ít hơn trên mobile
+  let maxVisibleDots = 5;
+  if (isMobile && totalPages > 10) {
+    maxVisibleDots = 3; // Chỉ hiển thị 3 dots trên mobile nếu có quá nhiều pages
+  } else if (isMobile) {
+    maxVisibleDots = 5;
+  }
+
+  const halfVisible = Math.floor(maxVisibleDots / 2);
+
   infoPaginationDots.forEach((dot, index) => {
-    if (isMobile) {
-      if (index === currentInfoSlide && index < totalPages) {
-        dot.classList.add('active');
-      } else {
-        dot.classList.remove('active');
-      }
+    // Xác định active
+    if (index === currentInfoSlide && index < totalPages) {
+      dot.classList.add('active');
     } else {
-      if (index === currentInfoSlide && index < totalPages) {
-        dot.classList.add('active');
+      dot.classList.remove('active');
+    }
+
+    // Xác định hiển thị hay ẩn dot
+    // Chỉ hiển thị dots trong khoảng xung quanh slide hiện tại
+    let shouldShow = false;
+
+    if (totalPages <= maxVisibleDots) {
+      // Nếu tổng số pages ít, hiển thị tất cả
+      shouldShow = true;
+    } else {
+      // Hiển thị dots xung quanh slide hiện tại
+      if (currentInfoSlide < halfVisible) {
+        // Đang ở đầu
+        shouldShow = index < maxVisibleDots;
+      } else if (currentInfoSlide > totalPages - halfVisible - 1) {
+        // Đang ở cuối
+        shouldShow = index >= totalPages - maxVisibleDots;
       } else {
-        dot.classList.remove('active');
+        // Đang ở giữa
+        shouldShow = index >= currentInfoSlide - halfVisible &&
+                     index <= currentInfoSlide + halfVisible;
       }
+    }
+
+    if (shouldShow) {
+      dot.style.display = 'inline-block';
+    } else {
+      dot.style.display = 'none';
     }
   });
 }
