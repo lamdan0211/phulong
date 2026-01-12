@@ -169,7 +169,7 @@ function updateParkSlider() {
         }
       }
     });
-    
+
     if (parkCurrentSlide === 0) {
       const firstDesc = parkSlider.querySelector('.slide-description[data-slide="0"]');
       if (firstDesc) {
@@ -1711,10 +1711,10 @@ function initInfoSlider() {
     paginationContainer.innerHTML = '';
     if (totalPages > 1) {
       // Tạo counter hiển thị số trang
-      const counterSpan = document.createElement('span');
-      counterSpan.className = 'info-slider-counter';
-      counterSpan.textContent = `1 / ${totalPages}`;
-      paginationContainer.appendChild(counterSpan);
+      // const counterSpan = document.createElement('span');
+      // counterSpan.className = 'info-slider-counter';
+      // counterSpan.textContent = `1 / ${totalPages}`;
+      // paginationContainer.appendChild(counterSpan);
 
       // Tạo container cho dots
       const dotsContainer = document.createElement('div');
@@ -1921,10 +1921,10 @@ function updatePaginationDots() {
   const totalPages = Math.ceil(totalInfoSlides / itemsPerPage);
 
   // Cập nhật counter
-  const counter = document.querySelector('.info-slider-counter');
-  if (counter) {
-    counter.textContent = `${currentInfoSlide + 1} / ${totalPages}`;
-  }
+  // const counter = document.querySelector('.info-slider-counter');
+  // if (counter) {
+  //   counter.textContent = `${currentInfoSlide + 1} / ${totalPages}`;
+  // }
 
   // Số dots hiển thị tối đa - ít hơn trên mobile
   let maxVisibleDots = 5;
@@ -1962,7 +1962,7 @@ function updatePaginationDots() {
       } else {
         // Đang ở giữa
         shouldShow = index >= currentInfoSlide - halfVisible &&
-                     index <= currentInfoSlide + halfVisible;
+          index <= currentInfoSlide + halfVisible;
       }
     }
 
@@ -2481,7 +2481,7 @@ function stopFrameAutoPlay() {
   }
 }
 
-window.initSliderGroup1 = function() {
+window.initSliderGroup1 = function () {
   const sliderGroup1Container = document.querySelector('.frame-slider-section[data-slider-group="slider_product_1"]');
   if (!sliderGroup1Container) {
     return false;
@@ -2541,7 +2541,7 @@ function updateSliderGroup1() {
   });
 }
 
-window.moveSliderGroup1Slide = function(direction) {
+window.moveSliderGroup1Slide = function (direction) {
   if (!sliderGroup1Slides || totalSliderGroup1Slides === 0) {
     initSliderGroup1();
     return;
