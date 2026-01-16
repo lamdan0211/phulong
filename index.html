@@ -343,8 +343,123 @@
                 </div>
               </div>
             </div>
+            <!-- Floor Plan Popup -->
+            <div id="floorPlanPopup" class="floor-plan-popup">
+              <div class="floor-plan-popup-overlay"></div>
+              <div class="floor-plan-popup-content">
+                <div class="logo">
+                  <img src="images/LOGO-BROADWAY.png" alt="Essensia Broadway">
+                </div>
+                <button class="floor-plan-popup-close">
+                  <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                    <line x1="18" y1="6" x2="6" y2="18"></line>
+                    <line x1="6" y1="6" x2="18" y2="18"></line>
+                  </svg>
+                </button>
+                <div class="floor-plan-popup-body">
+                  <div class="floor-plan-popup-image-container" id="popupImageContainer"></div>
+                  <div class="floor-plan-popup-details">
+                    <ul class="popup-details-list">
+                      <!-- Column 1 -->
+                      <li class="popup-detail-item">
+                        <span class="detail-label">SỐ LƯỢNG SẢN PHẨM:</span>
+                        <span class="detail-value" id="popupQuantity">04 căn</span>
+                      </li>
+                      <li class="popup-detail-item">
+                        <span class="detail-label">DIỆN TÍCH XÂY DỰNG:</span>
+                        <span class="detail-value" id="popupConstructionArea">116,30 m²</span>
+                      </li>
+                      <li class="popup-detail-item">
+                        <span class="detail-label">MÃ CĂN:</span>
+                        <span class="detail-value" id="popupUnitCode">TH-13 | TH-15 | TH-18 | TH-20</span>
+                      </li>
+                      <li class="popup-detail-item">
+                        <span class="detail-label">MẬT ĐỘ XÂY DỰNG:</span>
+                        <span class="detail-value" id="popupDensity">75,64%</span>
+                      </li>
+                      <div>
+                      <li class="popup-detail-item" style="margin-bottom: 10px;">
+                        <span class="detail-label">TẦNG CAO:</span>
+                        <span class="detail-value" id="popupFloorInfo">3 tầng + 1 tum</span>
+                      </li>
+
+                      <li class="popup-detail-item">
+                        <span class="detail-label">SỐ PHÒNG NGỦ:</span>
+                        <span class="detail-value" id="popupBedrooms">4 phòng ngủ</span>
+                      </li>
+                      </div>
+                      <li class="popup-detail-item popup-detail-item-special-2">
+                        <span class="detail-label">
+                          <span class="detail-special">TỔNG DIỆN TÍCH</span>
+                          SÀN XÂY DỰNG:
+                        </span>
+                        <span class="detail-value" id="popupTotalArea">374,63 m²</span>
+                      </li>
+                      <li class="popup-detail-item popup-detail-item-special">
+                        <span class="detail-label">HƯỚNG CỬA CHÍNH:</span>
+                        <span class="detail-value" id="popupDirection">Đông Bắc | Tây Nam</span>
+                      </li>
+                      <li class="popup-detail-item popup-detail-item-special">
+                        <span class="detail-label">DIỆN TÍCH KHU ĐẤT:</span>
+                        <span class="detail-value" id="popupLandArea">153,75m² (7,5 x 20 m)</span>
+                      </li>
+
+                      <!-- Column 2 -->
+                      <li class="popup-detail-item popup-detail-item-special">
+                        <span class="detail-label">KHOẢNG LÙI:</span>
+                        <span class="detail-value">
+                          <div class="spacing-grid">
+                            <div class="spacing-item">
+                              <span class="spacing-label">Trước</span>
+                              <span class="spacing-value" id="popupFrontSpace">3 m</span>
+                            </div>
+                            <div class="spacing-item">
+                              <span class="spacing-label">Sau</span>
+                              <span class="spacing-value" id="popupBackSpace">2 m</span>
+                            </div>
+                            <div class="spacing-item">
+                              <span class="spacing-label">Bên hông</span>
+                              <span class="spacing-value" id="popupSideSpace">- - -</span>
+                            </div>
+                          </div>
+                        </span>
+                      </li>
+                    </ul>
+                  </div>
+                  <a class="btn-register" tabindex="-1" role="button"><img src="images/btn-register.png" /></a>
+                </div>
+              </div>
+            </div>
           </div>
         </div>
+
+        <!-- Register Form Popup -->
+        <div id="registerPopup" class="register-popup" style="display: none;">
+          <div class="register-popup-overlay"></div>
+          <div class="register-popup-content">
+            <button class="register-popup-close" aria-label="Close">
+              <svg width="24" height="24" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
+                <line x1="18" y1="6" x2="6" y2="18" stroke="currentColor" stroke-width="2" stroke-linecap="round"/>
+                <line x1="6" y1="6" x2="18" y2="18" stroke="currentColor" stroke-width="2" stroke-linecap="round"/>
+              </svg>
+            </button>
+            <div class="register-popup-body">
+              <h2 class="register-popup-title">Đăng ký tư vấn</h2>
+              <form class="register-popup-form" id="register-popup-form">
+                <input type="text" id="register-fullname" name="fullname" placeholder="Họ và tên*" required>
+                <input type="tel" id="register-phone" name="phone" placeholder="Số điện thoại*" required>
+                <input type="email" id="register-email" name="email" placeholder="Email*" required>
+                <button type="submit" class="register-submit-btn">
+                  <span>Gửi thông tin</span>
+                  <svg width="20" height="20" viewBox="0 0 20 20" fill="none" xmlns="http://www.w3.org/2000/svg">
+                    <path d="M4 10H16M16 10L10 4M16 10L10 16" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
+                  </svg>
+                </button>
+              </form>
+            </div>
+          </div>
+        </div>
+
         <div class="perfect-arrangement-legend fade-in stagger-3">
           <div class="legend-grid">
             <div class="legend-item">
@@ -2071,7 +2186,7 @@
   <script src="js/lazy-load.js?v=1.0.4"></script>
   <script src="js/data.js?v=1.0.4" defer></script>
   <script src="js/main.js?v=1.0.4" defer></script>
-  <script src="js/script.js?v=1.0.4" defer></script>
+  <script type="module" src="js/script.js?v=1.0.4"></script>
   <script>
     window.addEventListener('load', function () {
       const preloader = document.getElementById('preloader');
@@ -2086,6 +2201,9 @@
 
   <!-- Firebase Images Loader -->
   <script type="module" src="js/images-loader.js?v=1.0.4"></script>
+
+  <!-- Floor Plan Popup Firebase Loader -->
+  <script type="module" src="js/popup-firebase-loader.js?v=1.0.4"></script>
 </body>
 
 </html>

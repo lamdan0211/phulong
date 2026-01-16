@@ -1,0 +1,747 @@
+{
+  "text": {
+    "homepage": {
+      "description2": "Với mô hình Art-Urban độc đáo, Essensia Broadway định hình là khu phố thương mại kết hợp nghệ thuật đầu tiên tại khu vực, mang đến giá trị sở hữu khan hiếm với số lượng giới hạn chỉ 87 căn.",
+      "description1": "Ánh đèn rực rỡ, nhịp sống sôi động và tinh thần nghệ thuật lan tỏa trong từng khoảnh khắc - Essensia Broadway mở ra một chuẩn mực sống mới, nơi đô thị được kiến tạo như một không gian trình diễn sống động giữa lòng Nam Sài Gòn.",
+      "description3": "Được kiến tạo bởi Nhà phát triển Phú Long tạo nên một không gian sống thời thượng, đầy cảm hứng và đậm chất riêng."
+    },
+    "framedepicting": {
+      "clubhouse": "CLUBHOUSE",
+      "congvien": "CÔNG VIÊN",
+      "townhouse": "TOWNHOUSE",
+      "tongthe": "TỔNG THỂ",
+      "shophouse": "SHOPHOUSE"
+    },
+    "developer": {
+      "partnersdescription2": "TƯ VẤN THIẾT KẾ FACADE & NỘI THẤT",
+      "partnersdescription1": "TƯ VẤN THIẾT KẾ CẢNH QUAN",
+      "description": "<p>\n  Trong gần hai thập kỷ, Phú Long đã đóng vai trò như \"người đứng sau ánh đèn\", âm thầm kiến\n  tạo nên những chuyển mình ngoạn mục cho phía Nam Sài Gòn. Từ vùng đất hoang sơ dọc trục\n  Nguyễn Hữu Thọ, Phú Long đã xây dựng Dragon City, mở ra một trung tâm đô thị năng động với\n  hàng nghìn căn hộ - biệt thự cao cấp, cộng đồng cư dân văn minh và hệ sinh thái dịch vụ hoàn\n  chỉnh.6\n</p>\n<p>\n  Và giờ đây, Essensia Broadway trở thành chương diễn tiếp theo trong hành trình ấy - một đại\n  lộ thương mại mang tinh thần Broadway đầu tiên của khu vực, nơi Phú Long tiếp tục thể hiện\n  vai trò \"đạo diễn\" của những không gian sống thời thượng và giàu cảm hứng. Essensia Broadway\n  không chỉ là một dự án, mà là lời khẳng định mạnh mẽ cho kỷ nguyên mới của Phú Long: Kiến\n  tạo phong cách sống, nâng tầm trải nghiệm, và thắp sáng tương lai đô thị phía Nam Sài Gòn.\n</p>",
+      "partnersdescription3": "TỔNG ĐẠI LÝ",
+      "partnerstitle": "ĐỐI TÁC ĐỒNG HÀNH"
+    },
+    "menu": {
+      "nav_6": "TIN TỨC",
+      "nav_3": "SẢN PHẨM",
+      "nav_5": "MẶT BẰNG",
+      "nav_2": "VỊ TRÍ",
+      "nav_4": "ĐẶC QUYỀN",
+      "nav_1": "TRANG CHỦ"
+    },
+    "news": {
+      "items": [
+        {
+          "order": 1,
+          "summary": "Trong quỹ đạo tái thiết thương mại phía nam TP.HCM, Essensia Broadway xuất hiện như mảnh ghép dẫn dắt thị trường.",
+          "link": "http://znews.vn/essensia-broadway-nhip-dap-thuong-mai-moi-phia-nam-tphcm-post1611401.html",
+          "thumbnail": "images/news/Panorama_Essensia_4.webp",
+          "title": "1 Essensia Broadway - 'nhịp đập thương mại' mới phía nam TP.HCM"
+        },
+        {
+          "title": "2 Essensia Broadway - bữa tiệc ánh sáng dẫn dắt phong cách sống đô thị",
+          "order": 2,
+          "summary": "Trong phát triển đô thị cao cấp, ánh sáng ngày càng trở thành “chỉ dấu chất lượng” - yếu tố giúp một tuyến phố khác biệt và dễ nhớ.",
+          "thumbnail": "images/news/quan710.jpg",
+          "link": "https://znews.vn/essensia-broadway-bua-tiec-anh-sang-dan-dat-phong-cach-song-do-thi-post1610465.html"
+        },
+        {
+          "link": "https://cafef.vn/art-deco-tu-di-san-kien-truc-den-ban-sac-cua-essensia-broadway-188251210071001254.chn",
+          "thumbnail": "images/news/shutterstock_1554541403_crop16x9.jpg",
+          "order": 3,
+          "summary": "Tựa một sân khấu mở giữa phía Nam TP Hồ Chí Minh đang chuyển mình, Essensia Broadway mang tinh thần Broadway và ngôn ngữ Art-Deco vào từng không gian, tạo nền tảng cho lối sống đậm chất nghệ thuật giữa trái tim khu Nam.",
+          "title": "3 Art-Deco: Từ di sản kiến trúc đến bản sắc của Essensia Broadway"
+        },
+        {
+          "thumbnail": "images/news/4_1.webp",
+          "order": 4,
+          "link": "https://dantri.com.vn/bat-dong-san/essensia-broadway-khi-khong-gian-song-mang-am-huong-nhac-kich-20251203164359515.htm",
+          "summary": "Là tổ hợp Art-Urban ở Nam Sài Gòn, Essensia Broadway kiến tạo không gian khác biệt, nơi mỗi bước chân, mỗi khoảnh khắc đều trở thành một màn trình diễn của phong cách và cảm xúc.",
+          "title": "4 Essensia Broadway - Khi không gian sống mang âm hưởng nhạc kịch"
+        },
+        {
+          "order": 5,
+          "thumbnail": "images/news/img-4061-176528559486253165873-1765325706430637227906.webp",
+          "title": "5 Nhà phát triển Phú Long: Đưa nghệ thuật trở thành nhịp sống mới của Nam Sài Gòn",
+          "summary": "Sự phát triển nhanh của đô thị hiện đại đang khiến nhu cầu sống của cư dân thay đổi đáng kể. Thay vì chỉ tìm một nơi để ở, nhiều người theo đuổi chất lượng sống cao bắt đầu ưu tiên những không gian có bản sắc, trải nghiệm và truyền cảm hứng.",
+          "link": "https://dantri.com.vn/bat-dong-san/nha-phat-trien-phu-long-dua-nghe-thuat-tro-thanh-nhip-song-moi-cua-nam-sai-gon-20251206165255724.htm"
+        },
+        {
+          "link": "https://dantri.com.vn/bat-dong-san/nha-phat-trien-phu-long-dua-nghe-thuat-tro-thanh-nhip-song-moi-cua-nam-sai-gon-20251206165255724.htm",
+          "thumbnail": "images/news/image001jpg-1764754596750.webp?v=0.0.1",
+          "title": "6 Tại sao TP.HCM cần một “sân khấu” đô thị đậm chất Broadway",
+          "summary": "Các đô thị lớn thế giới đều có đại lộ biểu tượng hòa quyện văn hóa, nghệ thuật, thương mại làm nên bản sắc. TP.HCM vẫn thiếu “sân khấu” định danh riêng.",
+          "order": 6
+        },
+        {
+          "thumbnail": "images/news/quan710jpg-1765014488718.webp?v=0.0.1",
+          "link": "https://vnexpress.net/phu-long-khoi-cong-pho-thuong-mai-va-nghe-thuat-tai-khu-nam-tp-hcm-4987385.html",
+          "title": "7 (TCBC) Phú Long khởi công Essensia Broadway - Phố thương mại và nghệ thuật đương đại đầu tiên tại Nam Sài Gòn",
+          "order": 7,
+          "summary": "Essensia Broadway - dự án thấp tầng theo mô hình kết hợp thương mại và nghệ thuật, khởi công ngày 28/11, là dự án thứ ba trong quần thể Essensia Nam Sài Gòn."
+        },
+        {
+          "thumbnail": "images/news/Anh-1_Shutterstock.jpg",
+          "title": "8 Essensia Broadway - bữa tiệc ánh sáng dẫn dắt phong cách sống đô thị",
+          "order": 8,
+          "link": "https://laodong.vn/thong-tin-doanh-nghiep/essensia-broadway-khi-anh-sang-nang-tam-trai-nghiem-va-thuong-hieu-1623852.ldo",
+          "summary": "Nhà phát triển Phú Long ứng dụng ánh sáng tại Essensia Broadway, nâng tầm trải nghiệm sống cư dân và tạo lợi thế cạnh tranh cho các thương hiệu."
+        },
+        {
+          "link": "https://laodong.vn/thong-tin-doanh-nghiep/tai-sao-tphcm-can-mot-san-khau-do-thi-dam-chat-broadway-1620735.ldo#:~:text=N%C6%A1i%20%C4%91%C3%A2y%20quy%20t%E1%BB%A5%20c%E1%BB%99ng,phong%20c%C3%A1ch%20s%E1%BB%91ng%20kh%C3%A1c%20bi%E1%BB%87t.",
+          "title": "9 Tại sao TP.HCM cần một “sân khấu” đô thị đậm chất Broadway",
+          "summary": "Các đô thị lớn thế giới đều có đại lộ biểu tượng hòa quyện văn hóa, nghệ thuật, thương mại làm nên bản sắc. TP.HCM vẫn thiếu “sân khấu” định danh riêng.",
+          "order": 9,
+          "thumbnail": "images/news/news-4.jpg?v=0.0.1"
+        },
+        {
+          "summary": "Là tổ hợp Art-Urban tiên phong tại khu Nam Sài Gòn, Essensia Broadway kiến tạo một không gian hoàn toàn khác biệt, nơi mỗi bước chân, mỗi khoảnh khắc đều trở thành một màn trình diễn của phong cách và cảm xúc.",
+          "order": 10,
+          "title": "10 Essensia Broadway: Sống giữa phố thị Art-Urban, nơi mỗi ngày là một màn trình diễn của phong cách",
+          "thumbnail": "images/news/Fa544260301dbf43e60c.jpg",
+          "link": "https://cafeland.vn/tin-tuc/essensia-broadway-song-giua-pho-thi-art-urban-noi-moi-ngay-la-mot-man-trinh-dien-cua-phong-cach-146339.html"
+        },
+        {
+          "order": 11,
+          "link": "https://vnexpress.net/mo-hinh-pho-thuong-mai-va-nghe-thuat-tai-essensia-broadway-4991779.html",
+          "summary": "31 căn shophouse Essensia Broadway đưa kiến trúc Art-Deco vào thiết kế tạo không gian thương mại kết hợp nghệ thuật trong dự án hơn 25.000 m2 ngay mặt tiền Nguyễn Hữu Thọ.",
+          "title": "11 Mô hình phố thương mại và nghệ thuật Essensia Broadway",
+          "thumbnail": "https://res.cloudinary.com/drlpx4bw5/image/upload/v1767979211/phulong-images/link-22-1.png"
+        },
+        {
+          "title": "12 Tại sao TP.HCM cần một ",
+          "order": 12,
+          "summary": "Trong khi những thành phố lớn trên thế giới đều sở hữu một đại lộ mang tính biểu tượng - nơi văn hóa, nghệ thuật và thương mại hòa quyện để tạo nên bản sắc đô thị - TP.HCM vẫn thiếu một 'sân khấu' đủ sức định danh thành phố.",
+          "thumbnail": "images/news/image-20251203153532-1.jpeg",
+          "link": "https://thanhnien.vn/tai-sao-tphcm-can-mot-san-khau-do-thi-dam-chat-broadway-185251205181008402.htm"
+        },
+        {
+          "title": "13 Nhà phát triển Phú Long: Đưa nghệ thuật trở thành nhịp sống mới của Nam Sài Gòn",
+          "thumbnail": "images/news/image-20251213123654-1.jpeg",
+          "order": 13,
+          "summary": "Sự phát triển nhanh của đô thị hiện đại đang khiến nhu cầu sống của cư dân thay đổi đáng kể. Thay vì chỉ tìm một nơi để ở, nhiều người trẻ thành đạt và các gia đình theo đuổi chất lượng sống cao bắt đầu ưu tiên những không gian có bản sắc, trải nghiệm và khả năng truyền cảm hứng cho cuộc sống hằng ngày.",
+          "link": "https://tienphong.vn/nha-phat-trien-phu-long-dua-nghe-thuat-tro-thanh-nhip-song-moi-cua-nam-sai-gon-post1802422.tpo"
+        },
+        {
+          "order": 14,
+          "title": "14 Art-Deco: Từ di sản kiến trúc đến bản sắc của Essensia Broadway",
+          "thumbnail": "images/news/3-17649324178591997387885.webp",
+          "summary": "Tựa một sân khấu mở giữa Nam Sài Gòn đang chuyển mình, Essensia Broadway mang tinh thần Broadway và ngôn ngữ Art-Deco vào từng không gian, tạo nền tảng cho lối sống đậm chất nghệ thuật giữa trái tim khu Nam.",
+          "link": "https://congluan.vn/art-deco-tu-di-san-kien-truc-den-ban-sac-cua-essensia-broadway-10322007.html"
+        },
+        {
+          "title": "15 Essensia Broadway: “Spotlight” của những thương hiệu tiên phong",
+          "link": "https://cafeland.vn/tin-tuc/essensia-broadway-spotlight-cua-nhung-thuong-hieu-tien-phong-146957.html",
+          "thumbnail": "https://res.cloudinary.com/drlpx4bw5/image/upload/v1767979290/phulong-images/link-24-1.png",
+          "summary": "Những năm gần đây, Nam Sài Gòn trở thành điểm đến giàu sức hút của các thương hiệu bán lẻ, F&B và dịch vụ trải nghiệm. Trong dòng chảy ấy, Essensia Broadway xuất hiện như một tổ hợp Art–Urban thời thượng, quy tụ ba “tính cách” kiến trúc nổi bật: nhà phố thương mại tạo nhịp sôi động tuyến phố, nhà phố liền kề định hình phong cách sống thanh lịch và clubhouse mang tinh thần trình diễn đặc trưng Broadway.",
+          "order": 15
+        },
+        {
+          "thumbnail": "https://res.cloudinary.com/drlpx4bw5/image/upload/v1767979305/phulong-images/link-25.webp",
+          "link": "https://vnexpress.net/hai-tuyen-metro-them-luc-day-cho-dia-oc-khu-nam-tp-hcm-4996246.html",
+          "order": 16,
+          "summary": "Metro số 4, tuyến đường sắt tốc độ cao Bến Thành - Cần Giờ cùng nhiều hạ tầng đang triển khai giúp thêm trục kết nối, thúc đẩy hình thành các phố thương mại, khu dân cư khu Nam.",
+          "title": "16 Hai tuyến metro thêm lực đẩy cho địa ốc khu Nam TP HCM"
+        },
+        {
+          "order": 17,
+          "summary": "Trong tiến trình phát triển đô thị, hạ tầng luôn đi trước một bước, đóng vai trò dẫn dắt dòng vốn, phân bổ lại không gian sống và tái cấu trúc thị trường bất động sản. Sự đầu tư đồng bộ vào mạng lưới giao thông đang giúp TP.HCM nói chung và khu Nam nói riêng bước vào quỹ đạo của chu kỳ phát triển mới, nơi bất động sản dịch chuyển theo hướng phát triển chiều sâu, bền vững và gắn chặt với chất lượng sống đô thị.",
+          "thumbnail": "https://res.cloudinary.com/drlpx4bw5/image/upload/v1767979357/phulong-images/link-26.jpg",
+          "title": "17 Hạ tầng – 'mạch dẫn' cho bất động sản khu Nam TP.HCM bứt tốc trong chu kỳ mới",
+          "link": "https://tienphong.vn/ha-tang-mach-dan-cho-bat-dong-san-khu-nam-tphcm-but-toc-trong-chu-ky-moi-post1806702.tpo"
+        },
+        {
+          "title": "18 Essensia Broadway chinh phục giới thượng lưu bằng đặc quyền lựa chọn nhịp sống",
+          "thumbnail": "https://res.cloudinary.com/drlpx4bw5/image/upload/v1767979391/phulong-images/link-28.jpg",
+          "order": 18,
+          "link": "https://cafef.vn/essensia-broadway-chinh-phuc-gioi-thuong-luu-bang-dac-quyen-lua-chon-nhip-song-188251223165147344.chn",
+          "summary": "Không chỉ mang đến những đặc quyền an cư hạng sang, Essensia Broadway còn là nơi giới thượng lưu định nghĩa nhịp sống của riêng mình. Tại đây, đẳng cấp không nằm ở vị trí hay diện tích mà ở quyền lựa chọn nhịp sống giữa trung tâm Art-Urban không ngừng chuyển động."
+        },
+        {
+          "thumbnail": "https://res.cloudinary.com/drlpx4bw5/image/upload/v1767979430/phulong-images/link-30.webp",
+          "summary": "Các gia đình thượng lưu ngày nay không chỉ tìm kiếm một nơi để ở, mà là không gian sống có “nhịp” - đủ năng động để theo kịp tốc độ đô thị và đủ khoáng đạt để nuôi dưỡng cảm hứng.",
+          "link": "https://tuoitre.vn/cach-essensia-broadway-trau-chuot-trai-nghiem-song-dang-cap-20251225155703599.htm",
+          "order": 19,
+          "title": "19 Cách Essensia Broadway trau chuốt trải nghiệm sống đẳng cấp"
+        },
+        {
+          "order": 20,
+          "thumbnail": "https://res.cloudinary.com/drlpx4bw5/image/upload/v1767979460/phulong-images/link-31.webp",
+          "title": "20 Trau chuốt trải nghiệm sống: Cách Essensia Broadway tái định nghĩa “đẳng cấp”",
+          "summary": "Các gia đình thượng lưu ngày nay không chỉ tìm kiếm một nơi để ở, mà là không gian sống có “nhịp” - đủ năng động để theo kịp tốc độ đô thị và đủ khoáng đạt để nuôi dưỡng cảm hứng. Như một lời hồi đáp trọn vẹn, Essensia Broadway kiến tạo vòng tròn đẳng cấp, nơi những trải nghiệm tinh hoa được kết nối liền mạch từ không gian riêng tư đến nhịp sống cộng đồng.",
+          "link": "https://www.sggp.org.vn/trau-chuot-trai-nghiem-song-cach-essensia-broadway-tai-dinh-nghia-dang-cap-post830516.html"
+        },
+        {
+          "summary": "Với vị thế và thành công đã được khẳng định, giới thành đạt không xem 'nhà' như chốn an trú, mà là không gian để tận hưởng dòng chảy thịnh vượng ngay thềm cửa.",
+          "link": "https://baomoi.com/viet-lai-cach-song-voi-mo-hinh-do-thi-art-urban-cua-essensia-broadway-c54125170.epi?zdlink=Uo9XRcHoRsba8ZeYOszjBcLmQI8i8cblSo8wUo9pOsXbRMLVTN9i8ZeYUc5iRoqsDJ4vDpaqDZOwN2zSBo8i8c5mS6ba8ZeYDZKnEJSvD3Os8drz",
+          "thumbnail": "https://res.cloudinary.com/drlpx4bw5/image/upload/v1767979500/phulong-images/link-33.avif",
+          "title": "21 Viết lại cách sống với mô hình đô thị Art-Urban của Essensia Broadway",
+          "order": 21
+        },
+        {
+          "link": "https://tuoitre.vn/essensia-broadway-diem-sang-khu-nam-khi-nguon-cung-thap-tang-khan-hiem-20251230161359487.htm",
+          "order": 22,
+          "title": "22 Essensia Broadway: Điểm sáng khu Nam khi nguồn cung thấp tầng khan hiếm",
+          "thumbnail": "https://res.cloudinary.com/drlpx4bw5/image/upload/v1767979533/phulong-images/link-34.webp",
+          "summary": "Trong bối cảnh quỹ đất nội đô ngày càng thu hẹp và nguồn cung thấp tầng khan hiếm, Essensia Broadway nổi lên như một trong số ít dự án mới, đón nhịp chuyển động của hạ tầng khu Nam."
+        },
+        {
+          "link": "https://vnexpress.net/phu-long-dua-yeu-to-nghe-thuat-vao-he-tien-ich-essensia-broadway-5000651.html",
+          "thumbnail": "https://res.cloudinary.com/drlpx4bw5/image/upload/v1767979566/phulong-images/link-35.webp",
+          "summary": "Essensia Broadway quy mô hơn 2,5 ha, phát triển tiện ích theo hướng cá nhân hóa trải nghiệm sống, kết hợp yếu tố nghệ thuật vào không gian cộng đồng.",
+          "title": "23 Phú Long đưa yếu tố nghệ thuật vào hệ tiện ích Essensia Broadway",
+          "order": 23
+        },
+        {
+          "order": 24,
+          "summary": "Trong nhịp sống hiện đại, giới tinh hoa định nghĩa chuẩn mực đẳng cấp bằng chất lượng trải nghiệm thay vì những thước đo thuần vật chất.",
+          "link": "https://baomoi.com/hanh-trinh-trai-nghiem-da-tang-tu-loi-song-essensia-broadway-c54192793.epi?zdlink=Uo9XRcHoRsba8ZeYOszjBcLmQI8i8cblSo8wUo9pOsXbRMLVTN9i8ZeYUc5iRoqsDJ4vDpaqDZOwN2zSBo8i8c5mS6ba8ZeYDZKnEJSvD3Os8drz&gidzl=yOKTQ0-7FbZqaXXg2futM_QG46mGdMDVkvyMFagICb-qp15lJPCmMhMG46fEdJCEjCKMQJR8EnS528OpL0",
+          "title": "24 Hành trình trải nghiệm đa tầng từ 'lõi sống' Essensia Broadway",
+          "thumbnail": "https://res.cloudinary.com/drlpx4bw5/image/upload/v1767979592/phulong-images/link-39.webp"
+        }
+      ]
+    },
+    "contact": {
+      "company": "PHU LONG PAVILION",
+      "email": "<a href=\"mailto:info@essensia.com.vn\" target=\"_blank\">info@essensia.com.vn</a>",
+      "sociallinkfacebook": "https://www.facebook.com/EssensiaNSG?locale=vi_VN",
+      "address": "<a href=\"https://maps.app.goo.gl/VKCC825cQWVLa5qE8?g_st=ic\" target=\"_blank\">Tầng G, toà nhà PV Gas<br>673 Nguyễn Hữu Thọ, Nhà Bè, TP Hồ Chí Minh</a>",
+      "sociallinktiktok": "https://www.tiktok.com/@essensianamsaigon",
+      "fromInfo": "Hãy để lại thông tin để đội ngũ tư vấn gửi đến bạn chi tiết về mặt bằng, cung cấp bảng giá và chính sách mới nhất, giúp bạn dễ dàng đưa ra quyết định sở hữu phù hợp nhất.",
+      "copyright": "©2025 Bản quyền thuộc về Nhà phát triển Phú Long",
+      "hotline": "090.629.6868"
+    },
+    "floorplan": {
+      "description1": "Tổng thể dự án được thiết kế như một vũ trụ nghệ thuật đa sắc, nơi trục Nhà phố thương mại là tâm điểm sôi động, Clubhouse là trái tim tiện ích và Nhà phố liền kề là không gian an cư yên tĩnh phía sau. Đặc biệt, khu Công viên Broadway chính là điểm chạm thăng hoa của toàn hành trình, nơi những lễ hội rực rỡ và nhịp sống cộng đồng gắn kết được lan tỏa trọn vẹn trong không gian xanh mở.",
+      "description2": "Từng khu vực được tính toán kỹ lưỡng để tối ưu dòng di chuyển, trải nghiệm và giá trị khai thác. Tại Essensia Broadway, mỗi bước chân đều mở ra những khoảnh khắc sống đa sắc và thăng hoa."
+    },
+    "location": {
+      "description2": "Nằm ở vị trí trung tâm của quần thể Essensia - Celesta đã hình thành, Essensia Broadway thừa hưởng sẵn cộng đồng tinh hoa hiện hữu, nhu cầu tiêu dùng thực và nhịp sống ổn định. Sở hữu lợi thế TOD (Transit-Oriented Development), Essensia Broadway là sự giao thoa giữa trục giao thông, hạ tầng tương lai và cộng đồng sẵn có, từ đó định hình dự án như một tâm điểm kết nối, nơi giá trị không ngừng được nâng tầm theo thời gian.",
+      "description1": "Tọa lạc trên mặt tiền Nguyễn Hữu Thọ - đại lộ phồn hoa kết nối trực tiếp trung tâm và Nam Sài Gòn, Essensia Broadway thừa hưởng lợi thế là điểm giao của những dòng lưu thông sôi động nhất, nơi cư dân, thương mại và dịch vụ liên tục hội tụ. Lợi thế ấy được khuếch đại khi dự án liền kề tuyến Metro số 4 trong tương lai, đưa Essensia Broadway trở thành điểm chạm của kết nối hiện đại và động lực tăng trưởng dài hạn."
+    },
+    "product": {
+      "popup3tang1tab": "TẦNG 1",
+      "popup3tang2desc": "Nếu tầng trệt là nơi kết nối, thì tầng 2 là trung tâm chăm sóc sức khỏe toàn diện. Cư dân có thể tìm thấy sự cân bằng cho cả thể chất lẫn tinh thần tại hệ thống phòng gym hiện đại, phòng Yoga tĩnh tại,... giúp phục hồi năng lượng sau mỗi ngày dài.",
+      "popup4detail": "<div class=\"park-legend-item\">\n  <div class=\"park-legend-number\">1</div>\n  <span class=\"park-legend-label\">Bảng tên dự án 1</span>\n</div>\n<div class=\"park-legend-item\">\n  <div class=\"park-legend-number\">2</div>\n  <span class=\"park-legend-label\">Khu đón tiếp & sân chơi nước</span>\n</div>\n<div class=\"park-legend-item\">\n  <div class=\"park-legend-number\">3</div>\n  <span class=\"park-legend-label\">Chỗ ngồi thư giãn</span>\n</div>\n<div class=\"park-legend-item\">\n  <div class=\"park-legend-number\">4</div>\n  <span class=\"park-legend-label\">Vườn hoa</span>\n</div>\n<div class=\"park-legend-item\">\n  <div class=\"park-legend-number\">5</div>\n  <span class=\"park-legend-label\">Trạm xử lý nước thải</span>\n</div>\n<div class=\"park-legend-item\">\n  <div class=\"park-legend-number\">6</div>\n  <span class=\"park-legend-label\">Nhà vệ sinh công cộng</span>\n</div>\n<div class=\"park-legend-item\">\n  <div class=\"park-legend-number\">7</div>\n  <span class=\"park-legend-label\">Sân thể thao đa năng</span>\n</div>\n<div class=\"park-legend-item\">\n  <div class=\"park-legend-number\">8</div>\n  <span class=\"park-legend-label\">Đường chạy khởi động</span>\n</div>\n<div class=\"park-legend-item\">\n  <div class=\"park-legend-number\">9</div>\n  <span class=\"park-legend-label\">Tượng điêu khắc điểm nhấn</span>\n</div>\n<div class=\"park-legend-item\">\n  <div class=\"park-legend-number\">10</div>\n  <span class=\"park-legend-label\">Khu vực kỹ thuật</span>\n</div>\n<div class=\"park-legend-item\">\n  <div class=\"park-legend-number\">11</div>\n  <span class=\"park-legend-label\">Sân tập thể dục</span>\n</div>\n<div class=\"park-legend-item\">\n  <div class=\"park-legend-number\">12</div>\n  <span class=\"park-legend-label\">Quảng trường đa năng</span>\n</div>\n<div class=\"park-legend-item\">\n  <div class=\"park-legend-number\">13</div>\n  <span class=\"park-legend-label\">Cầu đi bộ điểm nhấn</span>\n</div>\n<div class=\"park-legend-item\">\n  <div class=\"park-legend-number\">14</div>\n  <span class=\"park-legend-label\">Khán đài ngoài trời</span>\n</div>\n<div class=\"park-legend-item\">\n  <div class=\"park-legend-number\">15</div>\n  <span class=\"park-legend-label\">Chòi nghỉ/sân khấu nhỏ</span>\n</div>\n<div class=\"park-legend-item\">\n  <div class=\"park-legend-number\">16</div>\n  <span class=\"park-legend-label\">Không gian nhạc nước</span>\n</div>\n<div class=\"park-legend-item\">\n  <div class=\"park-legend-number\">17</div>\n  <span class=\"park-legend-label\">Lối tiếp cận từ nội khu</span>\n</div>\n<div class=\"park-legend-item\">\n  <div class=\"park-legend-number\">18</div>\n  <span class=\"park-legend-label\">Công viên thú cưng</span>\n</div>\n<div class=\"park-legend-item\">\n  <div class=\"park-legend-number\">19</div>\n  <span class=\"park-legend-label\">Vườn thảo mộc</span>\n</div>\n<div class=\"park-legend-item\">\n  <div class=\"park-legend-number\">20</div>\n  <span class=\"park-legend-label\">Đường reflexology</span>\n</div>\n<div class=\"park-legend-item\">\n  <div class=\"park-legend-number\">21</div>\n  <span class=\"park-legend-label\">Khu vực BBQ</span>\n</div>\n<div class=\"park-legend-item\">\n  <div class=\"park-legend-number\">22</div>\n  <span class=\"park-legend-label\">Bãi cỏ đa năng</span>\n</div>\n<div class=\"park-legend-item\">\n  <div class=\"park-legend-number\">23</div>\n  <span class=\"park-legend-label\">Sàn gỗ ngắm cảnh</span>\n</div>\n<div class=\"park-legend-item\">\n  <div class=\"park-legend-number\">24</div>\n  <span class=\"park-legend-label\">Sân chơi trẻ em</span>\n</div>",
+      "popup1description2": "Sở hữu số lượng giới hạn chỉ 31 căn, mỗi không gian tại đây được lấy cảm hứng từ phong cách The Great Gatsby - biểu tượng của sự quyến rũ và tinh thần Art Deco kinh điển. Dự án mang đến những không gian trình diễn đậm chất nghệ thuật với mặt tiền đại lộ nổi bật. Nhờ khả năng khai thác linh hoạt cho các lĩnh vực F&B, bán lẻ và nhiều dịch vụ hiện đại khác, nơi đây hứa hẹn trở thành tâm điểm giao thương năng động, nơi mỗi thương hiệu đều có cơ hội tỏa sáng giữa nhịp sống không ngừng của Nam Sài Gòn.",
+      "popup3tang1detail": "<div class=\"legend-item\">\n  <div class=\"legend-number\">1.</div>\n  <span class=\"legend-label\">Quầy bar</span>\n</div>\n<div class=\"legend-item\">\n  <div class=\"legend-number\">2.</div>\n  <span class=\"legend-label\">Khu thay đồ nam</span>\n</div>\n<div class=\"legend-item\">\n  <div class=\"legend-number\">2. 1</div>\n  <span class=\"legend-label\">Khu tủ locker</span>\n</div>\n<div class=\"legend-item\">\n  <div class=\"legend-number\">3</div>\n  <span class=\"legend-label\">Khu thay đồ nữ</span>\n</div>\n<div class=\"legend-item\">\n  <div class=\"legend-number\">3. 1</div>\n  <span class=\"legend-label\">Khu tủ locker</span>\n</div>\n<div class=\"legend-item\">\n  <div class=\"legend-number\">3. 2</div>\n  <span class=\"legend-label\">Phòng W.C khuyết tật</span>\n</div>\n<div class=\"legend-item\">\n  <div class=\"legend-number\">4</div>\n  <span class=\"legend-label\">Thang máy</span>\n</div>\n<div class=\"legend-item\">\n  <div class=\"legend-number\">5</div>\n  <span class=\"legend-label\">Cầu thang</span>\n</div>\n<div class=\"legend-item\">\n  <div class=\"legend-number\">6</div>\n  <span class=\"legend-label\">Phòng kho</span>\n</div>\n<div class=\"legend-item\">\n  <div class=\"legend-number\">7</div>\n  <span class=\"legend-label\">Phòng triển lãm/SHCĐ</span>\n</div>\n<div class=\"legend-item\">\n  <div class=\"legend-number\">7. 1</div>\n  <span class=\"legend-label\">Tủ minibar</span>\n</div>\n<div class=\"legend-item\">\n  <div class=\"legend-number\">7. 2</div>\n  <span class=\"legend-label\">Phòng trưng bày Artwork </span>\n</div>\n<div class=\"legend-item\">\n  <div class=\"legend-number\">7. 3</div>\n  <span class=\"legend-label\">Artwork treo tường</span>\n</div>\n<div class=\"legend-item\">\n  <div class=\"legend-number\">7. 4</div>\n  <span class=\"legend-label\">Artwork</span>\n</div>",
+      "popup3tang4tab": "ROOFTOP",
+      "popup3tang4desc": "Rooftop là điểm hẹn trên cao dành cho những khoảnh khắc đáng nhớ. Với khu Cafe Lounge & Pub ngoài trời cùng không gian tổ chức tiệc và các sự kiện nghệ thuật, đây là nơi lý tưởng để cộng đồng cư dân gặp gỡ, kết nối và cùng nhau tận hưởng vẻ đẹp của phố thị từ trên cao.",
+      "popup3tang3tab": "TẦNG 3",
+      "popup3tang3desc": "Tầng 3 của Clubhouse tập trung vào các tiện ích chăm sóc cá nhân và giải trí riêng tư, nơi cư dân có thể tập trung vào việc tái tạo năng lượng, gắn kết sâu hơn với gia đình. Những điểm nhấn nổi bật bao gồm khu Spa & Trị liệu chuyên sâu, Rạp chiếu phim riêng, Khu vui chơi trẻ em an toàn.",
+      "popup3tang1title": "Không gian chào đón &amp; <br>trưng bày nghệ thuật",
+      "popup2description1": "Khơi nguồn từ ý tưởng “The Rewritten House” - ngôi nhà của tương lai, khu nhà phố liền kề của Essensia Broadway là nơi mỗi chủ nhân tự mình viết nên chương mới trong hành trình tỏa sáng. Với số lượng chỉ 56 căn giới hạn, không gian sống được thiết kế theo tinh thần hiện đại, tinh tế và thông minh, hài hòa giữa tiện nghi và cảm xúc thẩm mỹ, mang đến một tổ ấm yên bình nhưng vẫn kết nối trọn vẹn với nhịp sống sôi động xung quanh. Không chỉ đơn thuần là nơi để trở về, mỗi ngôi nhà tại đây còn là một “không gian định danh” dành riêng cho những người tiên phong - nơi bạn tự tin kiến tạo phong cách và định hình giá trị tương lai của chính mình.",
+      "popup1description1": "Tại Essensia Broadway, mỗi nhà phố thương mại không chỉ đơn thuần là không gian kinh doanh, mà còn là một “sàn diễn” để tôn vinh dấu ấn thương hiệu riêng biệt.",
+      "popup3description1": "Clubhouse là không gian tiện ích riêng tư dành cho cộng đồng chủ nhân tinh hoa, nơi hội tụ hồ bơi thác nước sợi quang, phòng gym, lounge thư giãn và các khu sinh hoạt cao cấp. Mỗi trải nghiệm tại đây không chỉ là sự tận hưởng, mà còn là cách khẳng định phong cách sống khác biệt, xứng tầm vị thế của những cư dân Broadway.",
+      "popup3tang1desc": "Là nơi bắt đầu của những trải nghiệm tinh tế và khởi đầu cho mọi hoạt động kết nối cộng đồng. Tại đây, cư dân có thể thư giãn tại khu vực quầy bar, minibar, hoặc dạo bước qua khu trưng bày nghệ thuật trong một không gian sinh hoạt nhẹ nhàng, ấm cúng.",
+      "popup3tang3detail": "<div class=\"legend-item\">\n  <div class=\"legend-number\">14.</div>\n  <span class=\"legend-label\">Khu spa</span>\n</div>\n<div class=\"legend-item\">\n  <div class=\"legend-number\">14. 1</div>\n  <span class=\"legend-label\">Khu lễ tân</span>\n</div>\n<div class=\"legend-item\">\n  <div class=\"legend-number\">14. 2</div>\n  <span class=\"legend-label\">Phòng sauna hồi ngoại kết hợp đá muối</span>\n</div>\n<div class=\"legend-item\">\n  <div class=\"legend-number\">14. 3</div>\n  <span class=\"legend-label\">Phòng tắm/W.C</span>\n</div>\n<div class=\"legend-item\">\n  <div class=\"legend-number\">14. 4</div>\n  <span class=\"legend-label\">Phòng trị liệu</span>\n</div>\n<div class=\"legend-item\">\n  <div class=\"legend-number\">14. 5</div>\n  <span class=\"legend-label\">Khu tắm đá lạnh trị liệu bán ngoài trời </span>\n</div>\n<div class=\"legend-item\">\n  <div class=\"legend-number\">15.</div>\n  <span class=\"legend-label\">Khu vui chơi trẻ em trong nhà </span>\n</div>\n<div class=\"legend-item\">\n  <div class=\"legend-number\">16.</div>\n  <span class=\"legend-label\">Phòng chiếu phim</span>\n</div>\n<div class=\"legend-item\">\n  <div class=\"legend-number\">17.</div>\n  <span class=\"legend-label\">Khu giải trí ngoài trời</span>\n</div>\n<div class=\"legend-item\">\n  <div class=\"legend-number\">18.</div>\n  <span class=\"legend-label\">Phòng vệ sinh nữ</span>\n</div>\n<div class=\"legend-item\">\n  <div class=\"legend-number\">19.</div>\n  <span class=\"legend-label\">Phòng vệ sinh nam</span>\n</div>",
+      "description1": "Bao gồm khu Clubhouse và hệ thống tiện ích hơn 3.000m2, Essensia Broadway bao trọn mọi trải nghiệm từ rèn luyện sức khỏe, nghỉ ngơi thư giãn đến vui chơi giải trí và kết nối cộng đồng. Không dừng lại ở việc đáp ứng nhu cầu sinh hoạt, mỗi không gian tại đây được thiết kế như những phân cảnh liên hoàn, dàn dựng công phu để hoàn thiện vở diễn mang tên “Phong Cách Sống”. Sự kết hợp giữa dấu ấn riêng tư và sự tinh tế trong từng chi tiết tạo nên một đặc quyền tận hưởng dành riêng cho cộng đồng cư dân Essensia Broadway.",
+      "popup4desc": "Công viên được thiết kế theo phong cách Art Deco hiện đại, nơi mỗi chi tiết đều được trau chuốt và các điểm nhấn kiến trúc đều mô phỏng một “Bản nhạc sống động”. Lấy cảm hứng từ “Avenue of Light - Sân khấu của Ánh sáng và Nghệ thuật”, không gian mở ra chuỗi trải nghiệm đa tầng: quảng trường đón tiếp, khu thể thao và rèn luyện sức khỏe, vườn trị liệu đa giác quan, khu gia đình và trẻ em,... và hơn thế nữa. Tất cả hòa quyện tạo nên nhịp sống năng động, giàu cảm xúc giữa lòng đô thị. 1",
+      "popup3tang2tab": "TẦNG 2",
+      "popup3tang4detail": "<div class=\"legend-item\">\n  <div class=\"legend-number\">20.</div>\n  <span class=\"legend-label\">Khu cafe lounge thư giãn tầng thượng</span>\n</div>\n<div class=\"legend-item\">\n  <div class=\"legend-number\">20. 1</div>\n  <span class=\"legend-label\">Quầy pha chế</span>\n</div>\n<div class=\"legend-item\">\n  <div class=\"legend-number\">21.</div>\n  <span class=\"legend-label\">Khu cafe pub tầng thượng</span>\n</div>\n<div class=\"legend-item\">\n  <div class=\"legend-number\">21. 1</div>\n  <span class=\"legend-label\">Quầy pha chế</span>\n</div>\n<div class=\"legend-item\">\n  <div class=\"legend-number\">21. 2</div>\n  <span class=\"legend-label\">Tiểu cảnh nghệ thuật</span>\n</div>\n<div class=\"legend-item\">\n  <div class=\"legend-number\">22.</div>\n  <span class=\"legend-label\">Phòng vệ sinh</span>\n</div>",
+      "popup3tang4title": "Thưởng ngoạn & <br> Giao lưu tinh tế",
+      "popup3tang3title": "Không gian thư giãn & <br> Kết nối gia đình",
+      "popup3tang2detail": "<div class=\"legend-item\">\n  <div class=\"legend-number\">8.</div>\n  <span class=\"legend-label\">Phòng Gym</span>\n</div>\n<div class=\"legend-item\">\n  <div class=\"legend-number\">8. 1</div>\n  <span class=\"legend-label\">Khu máy tập</span>\n</div>\n<div class=\"legend-item\">\n  <div class=\"legend-number\">8. 2</div>\n  <span class=\"legend-label\">Khu nâng tạ</span>\n</div>\n<div class=\"legend-item\">\n  <div class=\"legend-number\">8. 3</div>\n  <span class=\"legend-label\">Tủ nước và locker</span>\n</div>\n<div class=\"legend-item\">\n  <div class=\"legend-number\">9.</div>\n  <span class=\"legend-label\">Phòng yoga</span>\n</div>\n<div class=\"legend-item\">\n  <div class=\"legend-number\">9. 1</div>\n  <span class=\"legend-label\">Tủ dụng cụ yoga</span>\n</div>\n<div class=\"legend-item\">\n  <div class=\"legend-number\">10. 1</div>\n  <span class=\"legend-label\">Khu thư viện kết hợp làm việc chung</span>\n</div>\n<div class=\"legend-item\">\n  <div class=\"legend-number\">10. 2</div>\n  <span class=\"legend-label\">Khu máy in</span>\n</div>\n<div class=\"legend-item\">\n  <div class=\"legend-number\">10. 3</div>\n  <span class=\"legend-label\">Khu bàn làm việc</span>\n</div>\n<div class=\"legend-item\">\n  <div class=\"legend-number\">11.</div>\n  <span class=\"legend-label\">Khu ngồi đọc sách</span>\n</div>\n<div class=\"legend-item\">\n  <div class=\"legend-number\">11. 1</div>\n  <span class=\"legend-label\">Khu thư giãn kết hợp golf giả lập </span>\n</div>\n<div class=\"legend-item\">\n  <div class=\"legend-number\">11. 2</div>\n  <span class=\"legend-label\">Tủ mini bar</span>\n</div>\n<div class=\"legend-item\">\n  <div class=\"legend-number\">11. 3</div>\n  <span class=\"legend-label\">Phòng vệ sinh nữ</span>\n</div>\n<div class=\"legend-item\">\n  <div class=\"legend-number\">11. 4</div>\n  <span class=\"legend-label\">Phòng vệ sinh nam</span>\n</div>",
+      "popup3tang2title": "Tái tạo năng lượng &amp; <br> Phong cách sống",
+      "description2": "Vượt trên những tiện nghi thông thường, hệ thống tiện ích tại đây mở ra một hành trình trải nghiệm đầy cảm hứng – nơi mỗi ngày trôi qua như một màn trình diễn mới. Trong không gian được chăm chút tỉ mỉ, mỗi cư dân trở thành “ngôi sao” của chính phong cách sống mình lựa chọn.",
+      "popup3description2": "Lấy cảm hứng từ concept \"The Agrabah Oasis Club\", Clubhouse là điểm nhấn rực rỡ nhất tại Essensia Broadway, mang đến trải nghiệm tựa như bước vào một \"ốc đảo phép màu\" giữa lòng phố thị. Kiến trúc nơi đây được tạo hình như một cung điện hiện đại với những đường cong mềm mại, mái vòm thanh thoát cùng họa tiết Trung Đông cách điệu tinh xảo, mang đến một thế giới sang trọng và nhiệm màu. Tại đây, nhịp sống Broadway chạm đến ranh giới của mơ và thực, mở ra hành trình trải nghiệm đầy cảm hứng cho mỗi chủ nhân."
+    }
+  },
+  "images": {
+    "khung_hinh_khach_hoa_tong_the_desktop": "https://res.cloudinary.com/drlpx4bw5/image/upload/v1768033199/phulong-images/khung_hinh_khach_hoa_tong_the_desktop_1768033197160.jpg",
+    "sliderGroupsProduct": [
+      {
+        "images": [
+          {
+            "des": "",
+            "alt": "image 5",
+            "mobile": "images/slide-thuongmai/mobile_top_5.png",
+            "tab": "image5",
+            "order": 1,
+            "desktop": "images/slide-thuongmai/top-5.jpg"
+          },
+          {
+            "desktop": "images/slide-thuongmai/top-2.jpg",
+            "mobile": "images/slide-thuongmai/mobile_top_2.png",
+            "des": "",
+            "tab": "image2",
+            "order": 2,
+            "alt": "image 2"
+          },
+          {
+            "tab": "image3",
+            "alt": "image3",
+            "des": "",
+            "order": 3,
+            "mobile": "images/slide-thuongmai/mobile_top_3.png",
+            "desktop": "images/slide-thuongmai/top-3.jpg"
+          },
+          {
+            "tab": "image4",
+            "des": "",
+            "alt": "image 4",
+            "desktop": "images/slide-thuongmai/top-4.jpg",
+            "mobile": "images/slide-thuongmai/mobile_top_4.png",
+            "order": 4
+          },
+          {
+            "tab": "images1",
+            "order": 5,
+            "mobile": "images/slide-thuongmai/mobile_top_1.png",
+            "des": "",
+            "desktop": "images/slide-thuongmai/top-1.png",
+            "alt": "image 1"
+          }
+        ],
+        "key": "slider_product_1",
+        "name": "Nhóm Slider Sản phẩm 1"
+      },
+      {
+        "key": "slider_product_2",
+        "name": "Nhóm Slider Sản phẩm 2",
+        "images": [
+          {
+            "tab": "image1",
+            "des": "",
+            "order": 1,
+            "alt": "image 1",
+            "mobile": "images/slide-thuongmai/1.jpg",
+            "desktop": "images/slide-thuongmai/1.jpg"
+          },
+          {
+            "desktop": "images/slide-thuongmai/2.jpg",
+            "alt": "image 2",
+            "des": "",
+            "order": 2,
+            "mobile": "images/slide-thuongmai/2.jpg",
+            "tab": "image2"
+          },
+          {
+            "order": 3,
+            "tab": "image3",
+            "mobile": "images/slide-thuongmai/3.jpg",
+            "desktop": "images/slide-thuongmai/3.jpg",
+            "des": "",
+            "alt": "image 3"
+          },
+          {
+            "tab": "image4",
+            "des": "",
+            "desktop": "images/slide-thuongmai/4.jpg",
+            "mobile": "images/slide-thuongmai/4.jpg",
+            "alt": "image 4",
+            "order": 4
+          },
+          {
+            "mobile": "images/slide-thuongmai/5.jpg",
+            "order": 5,
+            "des": "",
+            "alt": "image 5",
+            "tab": "image5",
+            "desktop": "images/slide-thuongmai/5.jpg"
+          }
+        ]
+      },
+      {
+        "key": "slider_product_3",
+        "images": [
+          {
+            "des": "",
+            "desktop": "images/slide-nhapholienke/top-1.png",
+            "mobile": "images/slide-nhapholienke/top-mobile-1.jpg",
+            "tab": "image1",
+            "order": 1,
+            "alt": "image 1"
+          },
+          {
+            "des": "",
+            "tab": "image2",
+            "alt": "image 2",
+            "desktop": "images/slide-nhapholienke/top-2.jpg",
+            "mobile": "images/slide-nhapholienke/top-mobile-2.png",
+            "order": 2
+          },
+          {
+            "alt": "",
+            "des": "",
+            "order": 3,
+            "mobile": "https://res.cloudinary.com/drlpx4bw5/image/upload/v1768034023/phulong-images/slider_product_2_2_mobile_1768034022919.jpg",
+            "desktop": "https://res.cloudinary.com/drlpx4bw5/image/upload/v1768034019/phulong-images/slider_product_2_2_desktop_1768034016840.jpg",
+            "tab": ""
+          }
+        ],
+        "name": "Nhóm Slider Sản phẩm 3"
+      },
+      {
+        "name": "Nhóm Slider Sản phẩm 4",
+        "images": [
+          {
+            "desktop": "images/slide-nhapholienke/1.jpg",
+            "alt": "image 1",
+            "des": "",
+            "mobile": "images/slide-nhapholienke/1.jpg",
+            "tab": "image1",
+            "order": 1
+          },
+          {
+            "mobile": "images/slide-nhapholienke/2.jpg",
+            "tab": "image2",
+            "order": 2,
+            "des": "",
+            "alt": "image 2",
+            "desktop": "images/slide-nhapholienke/2.jpg"
+          },
+          {
+            "desktop": "images/slide-nhapholienke/3.jpg",
+            "tab": "image3",
+            "alt": "image 3",
+            "des": "",
+            "mobile": "images/slide-nhapholienke/3.jpg",
+            "order": 3
+          },
+          {
+            "mobile": "images/slide-nhapholienke/6.jpg",
+            "des": "",
+            "desktop": "images/slide-nhapholienke/4.jpg",
+            "order": 4,
+            "tab": "image4",
+            "alt": "image4"
+          },
+          {
+            "tab": "image5",
+            "mobile": "images/slide-nhapholienke/5.jpg",
+            "desktop": "images/slide-nhapholienke/5.jpg",
+            "order": 5,
+            "des": "",
+            "alt": "image 5"
+          }
+        ],
+        "key": "slider_product_4"
+      }
+    ],
+    "khung_hinh_khach_hoa_tong_the_mobile": "https://res.cloudinary.com/drlpx4bw5/image/upload/v1768197571/phulong-images/khung_hinh_khach_hoa_tong_the_mobile_1768197570052.jpg",
+    "khung_hinh_khach_hoa_tong_the": "https://res.cloudinary.com/drlpx4bw5/image/upload/v1768011465/phulong-images/slide-khunghinhkhachoa/pic-all-view-slide.jpg",
+    "sliderGroupsPrivilege": [
+      {
+        "name": "Nhóm Slider Cubhouse",
+        "key": "clubhouse_slider",
+        "images": [
+          {
+            "alt": "KHU CAFE LOUNGE",
+            "mobile": "images/gallary-clubhouse/default.jpg",
+            "order": 1,
+            "tab": "KHU CAFE LOUNGE",
+            "desktop": "images/gallary-clubhouse/default.jpg",
+            "des": "Tọa lạc trên rooftop với thiết kế mở và tầm nhìn thoáng đãng, đây là điểm hẹn lý tưởng cho những buổi gặp gỡ nhẹ nhàng hay những bữa tiệc nhỏ thân mật. Dưới ánh hoàng hôn rực rỡ, cư dân có thể nhâm nhi một tách cafe hay ly vang thượng hạng, tận hưởng sự tĩnh lặng và riêng tư sau một ngày dài."
+          },
+          {
+            "des": "Sở hữu không gian rộng rãi với trang thiết bị hiện đại, từ khu vực tập máy, nâng tạ đến các khoảng không dành riêng cho bài tập cá nhân. Việc tích hợp phòng Gym ngay nội khu giúp cư dân dễ dàng duy trì nhịp sống khỏe khoắn mỗi ngày mà không cần phải di chuyển xa hay phụ thuộc vào các trung tâm bên ngoài.",
+            "desktop": "images/gallary-clubhouse/gym.jpg",
+            "mobile": "images/gallary-clubhouse/gym.jpg",
+            "alt": "PHÒNG GYM",
+            "tab": "PHÒNG GYM",
+            "order": 2
+          },
+          {
+            "mobile": "images/gallary-clubhouse/golf.jpg",
+            "tab": "GOLF GIẢ LẬP",
+            "order": 3,
+            "desktop": "images/gallary-clubhouse/golf.jpg",
+            "alt": "GOLF GIẢ LẬP",
+            "des": "Là tiện ích rất hiếm gặp tại các dự án thấp tầng, mang đến trải nghiệm thể thao thượng lưu cho cộng đồng cư dân. Với công nghệ mô phỏng hiện đại trong không gian kín đáo, đây là nơi lý tưởng để luyện tập kỹ thuật hay giao lưu cùng bạn bè. Sự hiện diện của phòng golf giả lập là minh chứng cho phong cách sống tinh tế và khác biệt tại Essensia Broadway."
+          },
+          {
+            "order": 4,
+            "tab": "SPA THƯ GIÃN",
+            "des": "Hệ thống phòng Spa, xông hơi và trị liệu được bố trí liên hoàn, mở ra hành trình chăm sóc thân - tâm - trí trọn vẹn. Tại đây, cư dân có thể thảnh thơi tái tạo năng lượng và tận hưởng các liệu pháp chăm sóc cơ thể chuyên sâu ngay trong chính khuôn viên sống của mình.",
+            "mobile": "images/gallary-clubhouse/spa.jpg",
+            "desktop": "images/gallary-clubhouse/spa.jpg",
+            "alt": "SPA THƯ GIÃN"
+          },
+          {
+            "tab": "VUI CHƠI TRẺ EM",
+            "alt": "VUI CHƠI TRẺ EM",
+            "order": 5,
+            "des": "Không gian vui chơi trong nhà được đầu tư kỹ lưỡng, đề cao sự an toàn và tính giáo dục. Với các trò chơi vận động và sáng tạo, nơi đây không chỉ giúp trẻ phát triển thể chất mà còn kích thích trí thông minh, mang đến cho những cư dân nhí một tuổi thơ đầy màu sắc và niềm vui.",
+            "mobile": "images/gallary-clubhouse/EB_Kids.jpg",
+            "desktop": "images/gallary-clubhouse/EB_Kids.jpg"
+          },
+          {
+            "alt": "HỒ BƠI THÁC NƯỚC SỢI QUANG",
+            "order": 6,
+            "mobile": "https://res.cloudinary.com/drlpx4bw5/image/upload/v1768197596/phulong-images/slider_privilege_0_5_mobile_1768197597110.jpg",
+            "desktop": "https://res.cloudinary.com/drlpx4bw5/image/upload/v1768032940/phulong-images/slider_privilege_0_5_desktop_1768032938316.jpg",
+            "tab": "HỒ BƠI THÁC NƯỚC SỢI QUANG",
+            "des": "Khu hồ bơi được tạo tác tỉ mỉ từ thiết kế đến công năng, mang đến một thiên đường thư giãn đúng nghĩa để vỗ về cơ thể và tinh thần sau ngày dài. Điểm nhấn đắt giá là thác nước kết hợp hệ thống sợi quang ánh sáng, biến không gian mặt nước thành một vương quốc ánh sáng lung linh, huyền ảo mỗi khi đêm về."
+          },
+          {
+            "mobile": "https://res.cloudinary.com/drlpx4bw5/image/upload/v1768012188/phulong-images/Cinema-resize.jpg",
+            "order": 7,
+            "desktop": "images/gallary-clubhouse/cinema.jpg",
+            "alt": "PHÒNG CHIẾU PHIM",
+            "tab": "PHÒNG CHIẾU PHIM",
+            "des": "Rạp chiếu phim riêng tư với số lượng ghế giới hạn, mang lại trải nghiệm điện ảnh khác biệt hoàn toàn so với các rạp thương mại ồn ào. Đây là không gian hoàn hảo cho những buổi xem phim gia đình ấm cúng hoặc những phút giây giải trí thư giãn cùng nhóm bạn thân trong sự riêng tư tuyệt đối."
+          },
+          {
+            "mobile": "images/gallary-clubhouse/yoga.jpg",
+            "alt": "PHÒNG YOGA",
+            "desktop": "images/gallary-clubhouse/yoga.jpg",
+            "order": 8,
+            "tab": "PHÒNG YOGA",
+            "des": "Một khoảng lặng tách biệt được thiết kế với ánh sáng dịu nhẹ và không gian thông thoáng. Đây là nơi lý tưởng để cư dân tìm lại sự cân bằng nội tâm, giải tỏa áp lực và nuôi dưỡng tinh thần - những giá trị cốt lõi trong nhịp sống đô thị hiện đại."
+          }
+        ]
+      },
+      {
+        "images": [
+          {
+            "order": 1,
+            "tab": "CÔNG VIÊN THÚ CƯNG",
+            "des": "Không gian riêng dành cho các “thành viên bốn chân” với thảm xanh rộng thoáng, cho phép thú cưng tự do vận động. Khu vực ghế nghỉ dưới tán cây là nơi các chủ nuôi gặp gỡ, giao lưu và chia sẻ những khoảnh khắc gắn kết.",
+            "alt": "CÔNG VIÊN THÚ CƯNG",
+            "mobile": "images/gallary-park/cong-vien-thu-cung-mobile.jpg",
+            "desktop": "images/gallary-park/cong-vien-thu-cung.jpg"
+          },
+          {
+            "order": 2,
+            "tab": "SÂN THỂ THAO ĐA NĂNG",
+            "alt": "SÂN THỂ THAO ĐA NĂNG",
+            "desktop": "images/gallary-park/san-the-thao-da-nang.jpg",
+            "des": "Được bao bọc bởi cảnh quan xanh mát, sân thể thao là điểm hẹn cho cư dân rèn luyện thể chất, kết nối cộng đồng và tận hưởng nhịp sống năng động giữa thiên nhiên. Với thiết kế hiện đại, mặt sân đạt chuẩn cùng hệ thống rào chắn an toàn, đây là không gian lý tưởng cho những trận bóng rổ, cầu lông hay tennis kịch tính.",
+            "mobile": "images/gallary-park/san-the-thao-da-nang-mobile.jpg"
+          },
+          {
+            "desktop": "images/gallary-park/khan-dai-ngoai-troi.jpg",
+            "mobile": "images/gallary-park/khan-dai-ngoai-troi-mobile.jpg",
+            "alt": "KHÁN ĐÀI NGOÀI TRỜI",
+            "order": 3,
+            "tab": "KHÁN ĐÀI NGOÀI TRỜI",
+            "des": "Khán đài ngoài trời có thiết kế hình cung hướng hồ, là không gian sinh hoạt cộng đồng giàu cảm xúc. Hệ đèn LED dây tạo hiệu ứng ánh sáng ấn tượng về đêm, mang đến bối cảnh lý tưởng cho các hoạt động văn hóa, thưởng lãm nhạc nước hay những khoảnh khắc nghỉ chân thư thái."
+          },
+          {
+            "tab": "CHÒI NGHỈ CHÂN",
+            "des": "Chòi nghỉ chân được thiết kế như một điểm nhấn bên mặt nước, nơi cư dân thư giãn, gặp gỡ và tận hưởng không gian xanh trong nhịp sống Art-Urban. Với không gian mở và bố cục linh hoạt, khu vực này đồng thời là địa điểm tổ chức các sự kiện cộng đồng quy mô nhỏ, mang đến những khoảnh khắc kết nối sống động giữa cảnh quan và đời sống phố thị.",
+            "alt": "CHÒI NGHỈ CHÂN",
+            "order": 4,
+            "desktop": "images/gallary-park/choi-nghi-chan.jpg",
+            "mobile": "images/gallary-park/choi-nghi-chan-mobile.jpg"
+          },
+          {
+            "desktop": "images/gallary-park/duong-dao-bo.jpg",
+            "tab": "ĐƯỜNG DẠO BỘ",
+            "des": "Đường dạo bộ uốn lượn giữa mảng xanh và kiến trúc, nơi cư dân thong thả tản bộ, trò chuyện và tận hưởng không khí trong lành mỗi ngày. Cây xanh, ánh sáng và các điểm nghỉ chân đan xen hài hòa, tạo nên một nhịp sống mềm mại, thư thái đầy sinh khí.",
+            "mobile": "images/gallary-park/duong-dao-bo-mobile.jpg",
+            "alt": "ĐƯỜNG DẠO BỘ",
+            "order": 5
+          }
+        ],
+        "key": "park_slider",
+        "name": "Nhóm Slider Park"
+      }
+    ],
+    "sliderGroups": [
+      {
+        "key": "slider_product_1",
+        "images": [
+          {
+            "des": "",
+            "tab": "images1",
+            "desktop": "images/slide-thuongmai/top_1.png",
+            "alt": "image 1",
+            "order": 1,
+            "mobile": "images/slide-thuongmai/mobile_top_1.png"
+          },
+          {
+            "order": 2,
+            "tab": "image2",
+            "desktop": "images/slide-thuongmai/top-2.jpg",
+            "alt": "image 2",
+            "mobile": "images/slide-thuongmai/mobile_top_2.png",
+            "des": ""
+          },
+          {
+            "desktop": "images/slide-thuongmai/top-3.jpg",
+            "order": 3,
+            "mobile": "images/slide-thuongmai/mobile_top_3.png",
+            "des": "",
+            "tab": "image3",
+            "alt": "image3"
+          },
+          {
+            "order": 4,
+            "alt": "image 4",
+            "desktop": "images/slide-thuongmai/top-4.jpg",
+            "mobile": "images/slide-thuongmai/mobile_top_4.png",
+            "tab": "image4",
+            "des": ""
+          },
+          {
+            "des": "",
+            "tab": "image5",
+            "order": 5,
+            "mobile": "images/slide-thuongmai/mobile_top_5.jpg",
+            "desktop": "images/slide-thuongmai/top-5.jpg",
+            "alt": "image 5"
+          }
+        ]
+      },
+      {
+        "images": [
+          {
+            "des": "",
+            "alt": "image 1",
+            "tab": "image1",
+            "mobile": "images/slide-thuongmai/1.jpg",
+            "order": 1,
+            "desktop": "images/slide-thuongmai/1.jpg"
+          },
+          {
+            "tab": "image2",
+            "mobile": "images/slide-thuongmai/2.jpg",
+            "alt": "image 2",
+            "order": 2,
+            "desktop": "images/slide-thuongmai/2.jpg",
+            "des": ""
+          },
+          {
+            "des": "",
+            "alt": "image 3",
+            "desktop": "images/slide-thuongmai/3.jpg",
+            "mobile": "images/slide-thuongmai/3.jpg",
+            "order": 3,
+            "tab": "image3"
+          },
+          {
+            "mobile": "images/slide-thuongmai/4.jpg",
+            "tab": "image4",
+            "des": "",
+            "order": 4,
+            "desktop": "images/slide-thuongmai/4.jpg",
+            "alt": "image 4"
+          },
+          {
+            "tab": "image5",
+            "des": "",
+            "desktop": "images/slide-thuongmai/5.jpg",
+            "alt": "image 5",
+            "order": 5,
+            "mobile": "images/slide-thuongmai/5.jpg"
+          }
+        ],
+        "key": "slider_product_2"
+      },
+      {
+        "key": "slider_product_3",
+        "images": [
+          {
+            "order": 1,
+            "alt": "image 1",
+            "tab": "image1",
+            "des": "",
+            "mobile": "images/slide-nhapholienke/top-mobile-1.jpg",
+            "desktop": "images/slide-nhapholienke/top-1.png"
+          },
+          {
+            "desktop": "images/slide-nhapholienke/top-2.jpg",
+            "alt": "image 2",
+            "des": "",
+            "order": 2,
+            "tab": "image2",
+            "mobile": "images/slide-nhapholienke/top-mobile-2.png"
+          }
+        ]
+      },
+      {
+        "key": "slider_product_4",
+        "images": [
+          {
+            "des": "",
+            "tab": "image1",
+            "mobile": "images/slide-nhapholienke/1.jpg",
+            "order": 1,
+            "desktop": "images/slide-nhapholienke/1.jpg",
+            "alt": "image 1"
+          },
+          {
+            "tab": "image2",
+            "mobile": "images/slide-nhapholienke/2.jpg",
+            "order": 2,
+            "desktop": "images/slide-nhapholienke/2.jpg",
+            "alt": "image 2",
+            "des": ""
+          },
+          {
+            "desktop": "images/slide-nhapholienke/3.jpg",
+            "order": 3,
+            "alt": "image 3",
+            "mobile": "images/slide-nhapholienke/3.jpg",
+            "tab": "image3",
+            "des": ""
+          },
+          {
+            "tab": "image4",
+            "mobile": "images/slide-nhapholienke/6.jpg",
+            "desktop": "images/slide-nhapholienke/4.jpg",
+            "alt": "image4",
+            "des": "",
+            "order": 4
+          },
+          {
+            "alt": "image 5",
+            "desktop": "images/slide-nhapholienke/5.jpg",
+            "tab": "image5",
+            "order": 5,
+            "mobile": "images/slide-nhapholienke/5.jpg",
+            "des": ""
+          }
+        ]
+      },
+      {
+        "name": "Nhóm Slider Park",
+        "images": [
+          {
+            "desktop": "images/gallary-park/cong-vien-thu-cung.jpg",
+            "des": "Không gian riêng dành cho các “thành viên bốn chân” với thảm xanh rộng thoáng, cho phép thú cưng tự do vận động. Khu vực ghế nghỉ dưới tán cây là nơi các chủ nuôi gặp gỡ, giao lưu và chia sẻ những khoảnh khắc gắn kết.",
+            "alt": "CÔNG VIÊN THÚ CƯNG",
+            "order": 1,
+            "mobile": "images/gallary-park/cong-vien-thu-cung-mobile.jpg",
+            "tab": "image1"
+          },
+          {
+            "mobile": "images/gallary-park/san-the-thao-da-nang-mobile.jpg",
+            "tab": "image2",
+            "desktop": "images/gallary-park/san-the-thao-da-nang.jpg",
+            "alt": "SÂN THỂ THAO ĐA NĂNG",
+            "des": "Được bao bọc bởi cảnh quan xanh mát, sân thể thao là điểm hẹn cho cư dân rèn luyện thể chất, kết nối cộng đồng và tận hưởng nhịp sống năng động giữa thiên nhiên. Với thiết kế hiện đại, mặt sân đạt chuẩn cùng hệ thống rào chắn an toàn, đây là không gian lý tưởng cho những trận bóng rổ, cầu lông hay tennis kịch tính.",
+            "order": 2
+          },
+          {
+            "desktop": "images/gallary-park/khan-dai-ngoai-troi.jpg",
+            "alt": "KHÁN ĐÀI NGOÀI TRỜI",
+            "tab": "image3",
+            "mobile": "images/gallary-park/khan-dai-ngoai-troi-mobile.jpg",
+            "order": 3,
+            "des": "Khán đài ngoài trời có thiết kế hình cung hướng hồ, là không gian sinh hoạt cộng đồng giàu cảm xúc. Hệ đèn LED dây tạo hiệu ứng ánh sáng ấn tượng về đêm, mang đến bối cảnh lý tưởng cho các hoạt động văn hóa, thưởng lãm nhạc nước hay những khoảnh khắc nghỉ chân thư thái."
+          },
+          {
+            "des": "Chòi nghỉ chân được thiết kế như một điểm nhấn bên mặt nước, nơi cư dân thư giãn, gặp gỡ và tận hưởng không gian xanh trong nhịp sống Art-Urban. Với không gian mở và bố cục linh hoạt, khu vực này đồng thời là địa điểm tổ chức các sự kiện cộng đồng quy mô nhỏ, mang đến những khoảnh khắc kết nối sống động giữa cảnh quan và đời sống phố thị.",
+            "tab": "image4",
+            "desktop": "images/gallary-park/choi-nghi-chan.jpg",
+            "mobile": "images/gallary-park/choi-nghi-chan-mobile.jpg",
+            "alt": "CHÒI NGHỈ CHÂN",
+            "order": 4
+          },
+          {
+            "order": 5,
+            "alt": "ĐƯỜNG DẠO BỘ",
+            "desktop": "images/gallary-park/duong-dao-bo.jpg",
+            "des": "Đường dạo bộ uốn lượn giữa mảng xanh và kiến trúc, nơi cư dân thong thả tản bộ, trò chuyện và tận hưởng không khí trong lành mỗi ngày. Cây xanh, ánh sáng và các điểm nghỉ chân đan xen hài hòa, tạo nên một nhịp sống mềm mại, thư thái đầy sinh khí.",
+            "mobile": "images/gallary-park/duong-dao-bo-mobile.jpg",
+            "tab": "image5"
+          }
+        ],
+        "key": "park_slider"
+      }
+    ]
+  },
+  "exportedAt": "2026-01-15T16:34:11.065Z",
+  "exportedBy": "admin@gmail.com"
+}

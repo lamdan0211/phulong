@@ -1710,13 +1710,7 @@ function initInfoSlider() {
   if (paginationContainer) {
     paginationContainer.innerHTML = '';
     if (totalPages > 1) {
-      // Tạo counter hiển thị số trang
-      // const counterSpan = document.createElement('span');
-      // counterSpan.className = 'info-slider-counter';
-      // counterSpan.textContent = `1 / ${totalPages}`;
-      // paginationContainer.appendChild(counterSpan);
 
-      // Tạo container cho dots
       const dotsContainer = document.createElement('div');
       dotsContainer.className = 'info-pagination-dots-container';
 
@@ -1749,7 +1743,6 @@ function initInfoSlider() {
       paginationContainer.appendChild(dotsContainer);
       infoPaginationDots = dotsContainer.querySelectorAll('.info-pagination-dot');
 
-      // Cập nhật dots ngay sau khi tạo để ẩn bớt dots
       updatePaginationDots();
     } else {
       paginationContainer.style.display = 'none';
@@ -1920,13 +1913,7 @@ function updatePaginationDots() {
   const itemsPerPage = isMobile ? 1 : 3;
   const totalPages = Math.ceil(totalInfoSlides / itemsPerPage);
 
-  // Cập nhật counter
-  // const counter = document.querySelector('.info-slider-counter');
-  // if (counter) {
-  //   counter.textContent = `${currentInfoSlide + 1} / ${totalPages}`;
-  // }
 
-  // Số dots hiển thị tối đa - ít hơn trên mobile
   let maxVisibleDots = 5;
   if (isMobile && totalPages > 10) {
     maxVisibleDots = 3; // Chỉ hiển thị 3 dots trên mobile nếu có quá nhiều pages
@@ -1937,30 +1924,22 @@ function updatePaginationDots() {
   const halfVisible = Math.floor(maxVisibleDots / 2);
 
   infoPaginationDots.forEach((dot, index) => {
-    // Xác định active
     if (index === currentInfoSlide && index < totalPages) {
       dot.classList.add('active');
     } else {
       dot.classList.remove('active');
     }
 
-    // Xác định hiển thị hay ẩn dot
-    // Chỉ hiển thị dots trong khoảng xung quanh slide hiện tại
     let shouldShow = false;
 
     if (totalPages <= maxVisibleDots) {
-      // Nếu tổng số pages ít, hiển thị tất cả
       shouldShow = true;
     } else {
-      // Hiển thị dots xung quanh slide hiện tại
       if (currentInfoSlide < halfVisible) {
-        // Đang ở đầu
         shouldShow = index < maxVisibleDots;
       } else if (currentInfoSlide > totalPages - halfVisible - 1) {
-        // Đang ở cuối
         shouldShow = index >= totalPages - maxVisibleDots;
       } else {
-        // Đang ở giữa
         shouldShow = index >= currentInfoSlide - halfVisible &&
           index <= currentInfoSlide + halfVisible;
       }

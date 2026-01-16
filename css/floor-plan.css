@@ -60,6 +60,346 @@
   color: #333;
   font-weight: 400;
 }
+/* Floor Plan Popup Styles */
+.floor-plan-popup {
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  z-index: 9999;
+  display: none;
+  opacity: 0;
+  transition: opacity 0.3s ease;
+}
+.floor-plan-popup *{
+  box-sizing: border-box;
+}
+.floor-plan-popup.active {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  opacity: 1;
+}
+.floor-plan-popup-overlay {
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  background: rgba(0, 0, 0, 0.7);
+  backdrop-filter: blur(4px);
+}
+.floor-plan-popup-content {
+  position: relative;
+  background: #fff;
+  border-radius: 20px;
+  max-width: 1400px;
+  width: 90%;
+  max-height: 90vh;
+  overflow-y: auto;
+  box-shadow: 0 20px 60px rgba(0, 0, 0, 0.3);
+  transition: transform 0.3s ease;
+  z-index: 10000;
+  padding: 20px;
+  position: relative;
+}
+.floor-plan-popup-content::before {
+    content: "";
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background-image: url(../images/pattern.png?v=0.0.1);
+    background-repeat: repeat;
+    background-position: 0 0;
+    background-attachment: fixed;
+    opacity: 0.12;
+    z-index: 0;
+    pointer-events: none;
+}
+.floor-plan-popup-content .logo{
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 150px;
+  border-radius: 20px 0 0 0;
+}
+.floor-plan-popup-content .logo img{
+  display: block;
+  width: 100%;
+  height: auto;
+  object-fit: contain;
+  vertical-align: middle;
+}
+.floor-plan-popup-content .btn-register{
+  display: block;
+  position: absolute;
+  right: 20px;
+  bottom: 20px;
+}
+.floor-plan-popup-content .btn-register img{
+  display: inline-block;
+  height: 60px;
+  width: auto;
+  vertical-align: middle;
+}
+.floor-plan-popup.active .floor-plan-popup-content {
+  /* transform: scale(1); */
+}
+.floor-plan-popup-close {
+  position: absolute;
+  top: 16px;
+  right: 16px;
+  width: 40px;
+  height: 40px;
+  border: none;
+  background: rgba(0, 0, 0, 0.1);
+  border-radius: 50%;
+  cursor: pointer;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  transition: background 0.2s ease;
+  z-index: 10001;
+}
+.floor-plan-popup-close:hover {
+  background: rgba(0, 0, 0, 0.2);
+}
+.floor-plan-popup-close svg {
+  width: 20px;
+  height: 20px;
+  stroke: #333;
+  pointer-events: none;
+  filter: none;
+}
+.floor-plan-popup-close svg line {
+  stroke: currentColor;
+  stroke-width: 2;
+}
+.floor-plan-popup-body {
+  padding: 0;
+  position: relative;
+  width: 100%;
+  max-width: 12000px;
+  padding-bottom: 20px;
+}
+.floor-plan-popup-image-container {
+  width: 100%;
+  position: relative;
+}
+.floor-plan-popup-image-container img {
+  width: 100%;
+  height: auto;
+  display: block;
+  border-radius: 16px 16px 0 0;
+}
+
+/* Popup Details List Styles */
+.floor-plan-popup-details {
+  padding: 24px 0px;
+}
+
+.popup-details-list {
+  list-style: none;
+  margin: 0;
+  padding: 0;
+  display: grid;
+  grid-template-columns: 1fr;
+  gap: 10px;
+}
+
+/* Desktop - 2 columns */
+@media (min-width: 769px) {
+  .popup-details-list {
+    grid-template-columns: repeat(2, 1fr);
+    column-gap: 40px;
+  }
+}
+
+.popup-detail-item {
+  display: flex;
+  flex-flow: row nowrap;
+  justify-content: flex-start;
+  align-items: center;
+  border: 1px solid #ebe9cb;
+  border-radius: 5px;
+  font-family: "SFU Franklin Gothic";
+}
+
+.detail-label {
+  font-size: 12px;
+  font-weight: 700;
+  background: #ebe9cb;
+  color: #8f2a2a;
+  border-radius: 5px;
+  text-transform: uppercase;
+  line-height: 1.4;
+  padding: 0 10px;
+  width: 240px;
+  height: 30px;
+  line-height: 30px;
+}
+.detail-label .detail-special{
+  font-weight: normal;
+}
+.detail-value {
+  font-size: 15px;
+  font-weight: normal;
+  color: #434244;
+  line-height: 1.2;
+  padding: 0 10px;
+}
+
+.popup-detail-item.popup-detail-item-special .detail-label{
+  height: 40px;
+  line-height: 40px;
+}
+.popup-detail-item.popup-detail-item-special-2 .detail-label{
+  height: 72px;
+  line-height: 1.5;
+  align-items: flex-start;
+  display: flex;
+  justify-content: center;
+  flex-flow: column nowrap;
+}
+/* Spacing grid for "KHOẢNG LÙI" */
+.popup-detail-spacing {
+  grid-column: 1 / -1;
+}
+
+.spacing-grid {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  gap: 16px;
+  margin-top: 0px;
+}
+
+.spacing-item {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 2px;
+}
+
+.spacing-label {
+  font-size: 11px;
+  font-weight: 500;
+  color: #8b6f47;
+  text-transform: uppercase;
+}
+
+.spacing-value {
+  font-size: 16px;
+  color: #2c2c2c;
+}
+
+/* Mobile spacing adjustments */
+@media (max-width: 768px) {
+  .floor-plan-popup-content .logo{
+    display: none;
+  }
+  .floor-plan-popup-details {
+    padding: 20px 0px;
+  }
+
+  .popup-detail-item {
+  }
+
+  .detail-label {
+    font-size: 11px;
+    width: 150px;
+    height: auto;
+  }
+
+  .detail-value {
+    font-size: 12px;
+  }
+
+  .spacing-grid {
+    gap: 12px;
+  }
+  .spacing-label{
+    font-size: 8px;
+  }
+
+  .spacing-value {
+    font-size: 15px;
+  }
+  .floor-plan-popup-content .btn-register{
+    position: relative;
+    display: flex;
+    flex-flow: row nowrap;
+    justify-content: center;
+    align-items: center;
+    margin-top: 0px;
+    right: auto;
+    bottom: auto;
+  }
+  .floor-plan-popup-body{
+    padding-bottom: 0;
+  }
+}
+.floor-plan-popup-title {
+  font-size: 24px;
+  font-weight: 600;
+  color: #222;
+  margin: 0 0 20px 0;
+  font-family: "SFU Franklin Gothic";
+}
+.floor-plan-popup-info {
+  display: grid;
+  grid-template-columns: repeat(2, 1fr);
+  gap: 16px;
+  margin-bottom: 24px;
+  padding: 20px;
+  background: #f8f9fa;
+  border-radius: 12px;
+}
+.popup-info-item {
+  display: flex;
+  flex-direction: column;
+  gap: 4px;
+}
+.popup-info-label {
+  font-size: 12px;
+  color: #666;
+  text-transform: uppercase;
+  letter-spacing: 0.5px;
+  font-weight: 500;
+}
+.popup-info-value {
+  font-size: 16px;
+  color: #222;
+  font-weight: 600;
+}
+.floor-plan-popup-description {
+  padding: 20px;
+  background: #fff;
+  border-radius: 12px;
+  border: 1px solid #e0e0e0;
+  line-height: 1.6;
+  color: #444;
+}
+.floor-plan-popup-description h3 {
+  font-size: 18px;
+  margin: 0 0 12px 0;
+  color: #222;
+}
+.floor-plan-popup-description p {
+  margin: 0 0 12px 0;
+  font-size: 14px;
+}
+.floor-plan-popup-description ul {
+  margin: 0;
+  padding-left: 20px;
+}
+.floor-plan-popup-description li {
+  margin-bottom: 8px;
+  font-size: 14px;
+}
+
 @media (max-width: 768px) {
   h1 {
     font-size: 1.2rem;
@@ -69,5 +409,225 @@
   }
   .info-row {
     font-size: 12px;
+  }
+  .floor-plan-popup-content {
+    max-width: 95%;
+    width: 95%;
+    max-height: 90vh;
+    border-radius: 12px;
+  }
+  .floor-plan-popup-image-container img {
+    border-radius: 12px 12px 0 0;
+  }
+  .floor-plan-popup-details {
+    padding: 20px 0px;
+  }
+  .popup-details-table td {
+    padding: 12px 8px;
+  }
+  .label-cell {
+    font-size: 11px;
+    width: 42%;
+  }
+  .value-cell {
+    font-size: 14px;
+    width: 58%;
+  }
+  .spacing-info span {
+    font-size: 13px;
+  }
+}
+
+/* Register Popup Styles */
+.register-popup {
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  z-index: 10000;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.register-popup-overlay {
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  background: rgba(0, 0, 0, 0.7);
+  backdrop-filter: blur(5px);
+}
+
+.register-popup-content {
+  position: relative;
+  background: #fff;
+  border-radius: 12px;
+  width: 90%;
+  max-width: 500px;
+  max-height: 90vh;
+  overflow-y: auto;
+  box-shadow: 0 10px 40px rgba(0, 0, 0, 0.3);
+  z-index: 1;
+}
+
+.register-popup-close {
+  position: absolute;
+  top: 15px;
+  right: 15px;
+  background: transparent;
+  border: none;
+  cursor: pointer;
+  padding: 5px;
+  z-index: 2;
+  transition: transform 0.2s;
+}
+
+.register-popup-close:hover {
+  transform: rotate(90deg);
+}
+
+.register-popup-close svg {
+  width: 24px;
+  height: 24px;
+  stroke: #333;
+  pointer-events: none;
+}
+
+.register-popup-close svg line {
+  stroke: currentColor;
+  stroke-width: 2;
+}
+
+.register-popup-body {
+  padding: 40px 30px;
+}
+
+.register-popup-title {
+  font-size: 28px;
+  font-weight: bold;
+  color: #333;
+  margin-bottom: 30px;
+  text-align: center;
+}
+
+.register-popup-form {
+  display: flex;
+  flex-direction: column;
+  gap: 20px;
+}
+
+.register-popup-form input {
+  width: 100%;
+  padding: 15px 20px;
+  font-size: 16px;
+  border: 1px solid #ddd;
+  border-radius: 8px;
+  outline: none;
+  transition: border-color 0.3s;
+  box-sizing: border-box;
+}
+
+.register-popup-form input:focus {
+  border-color: #007bff;
+}
+
+.register-popup-form input::placeholder {
+  color: #999;
+}
+
+.register-submit-btn {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 10px;
+  padding: 15px 30px;
+  font-size: 16px;
+  font-weight: bold;
+  color: #fff;
+  background: #5d3a2e;
+  border: none;
+  border-radius: 8px;
+  cursor: pointer;
+  transition: transform 0.2s, box-shadow 0.2s, background 0.2s;
+}
+
+.register-submit-btn:hover {
+  transform: translateY(-2px);
+  box-shadow: 0 5px 15px rgba(93, 58, 46, 0.4);
+  background: #4a2e24;
+}
+
+.register-submit-btn svg {
+  width: 20px;
+  height: 20px;
+  stroke: currentColor;
+}
+
+/* Mobile responsive */
+@media (max-width: 768px) {
+  .register-popup-content {
+    width: 95%;
+    max-width: none;
+  }
+
+  .register-popup-body {
+    padding: 30px 20px;
+  }
+
+  .register-popup-title {
+    font-size: 24px;
+    margin-bottom: 25px;
+  }
+
+  .register-popup-form input {
+    padding: 12px 15px;
+    font-size: 15px;
+  }
+
+  .register-submit-btn {
+    padding: 12px 25px;
+    font-size: 15px;
+  }
+}
+
+/* Register Button Loading State */
+.register-submit-btn.loading {
+  position: relative;
+  pointer-events: none;
+}
+
+.register-submit-btn .submit-loading-spinner {
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  display: flex;
+  flex-direction: row;
+  align-items: center;
+  gap: 8px;
+  z-index: 10;
+}
+
+.register-submit-btn .submit-loading-spinner .spinner {
+  width: 20px;
+  height: 20px;
+  border: 3px solid rgba(255, 255, 255, 0.3);
+  border-top-color: #fff;
+  border-radius: 50%;
+  animation: spin 0.8s linear infinite;
+}
+
+.register-submit-btn .submit-loading-spinner .loading-text {
+  color: #fff;
+  font-size: 14px;
+  font-weight: 600;
+}
+
+@keyframes spin {
+  to {
+    transform: rotate(360deg);
   }
 }

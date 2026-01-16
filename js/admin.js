@@ -1,6 +1,4 @@
-
-
-import { auth, db } from './firebase-config.js';
+import { auth, db, POPUP_COLLECTION_NAME } from './firebase-config.js';
 import {
   signInWithEmailAndPassword,
   signOut,
@@ -18,8 +16,8 @@ let uploadImageToCloudinary = null;
 try {
   const cloudinaryModule = await import('./cloudinary-uploader.js');
   uploadImageToCloudinary = cloudinaryModule.uploadImageToCloudinary;
-  } catch (err) {
-  }
+} catch (err) {
+}
 
 const TEXT_COLLECTION = 'essensia_broadway';
 const IMAGES_COLLECTION = 'essensia_images';
@@ -342,9 +340,8 @@ async function loadAllData() {
     }
     renderSliderGroups('product');
     renderSliderGroups('privilege');
-
-    } catch (error) {
-    }
+  } catch (error) {
+  }
 }
 
 function populateTextForm(data) {
@@ -1547,3 +1544,106 @@ importFileInput?.addEventListener('change', async (event) => {
     importFileInput.value = '';
   }
 });
+
+// ============================================
+// POPUP TYPE MANAGEMENT
+// ============================================
+
+// Switch between popup types
+document.querySelectorAll('.popup-type-btn').forEach(btn => {
+  btn.addEventListener('click', () => {
+    const type = btn.dataset.popupType;
+
+    // Update active button
+    document.querySelectorAll('.popup-type-btn').forEach(b => b.classList.remove('active'));
+    btn.classList.add('active');
+
+    // Update active form
+    document.querySelectorAll('.popup-type-form').forEach(f => f.classList.remove('active'));
+    document.querySelector(`[data-popup-type-form="${type}"]`).classList.add('active');
+  });
+});
+
+// Load popup data from Firestore
+async function loadPopupTypeData() {
+  try {
+    const popupDocRef = doc(db, POPUP_COLLECTION_NAME, 'data');
+    const docSnapshot = await getDoc(popupDocRef);
+
+    if (docSnapshot.exists()) {
+      const data = docSnapshot.data();
+
+      for (let i = 1; i <= 6; i++) {
+        const typeData = data[`type${i}`];
+        if (typeData) {
+          document.getElementById(`popup-type${i}-imageDesktop`).value = typeData.imageDesktop || '';
+          document.getElementById(`popup-type${i}-imageMobile`).value = typeData.imageMobile || '';
+
+          if (typeData.content) {
+            document.getElementById(`popup-type${i}-quantity`).value = typeData.content.quantity || '';
+            document.getElementById(`popup-type${i}-floor`).value = typeData.content.floor || '';
+            document.getElementById(`popup-type${i}-landArea`).value = typeData.content.landArea || '';
+            document.getElementById(`popup-type${i}-bedrooms`).value = typeData.content.bedrooms || '';
+            document.getElementById(`popup-type${i}-direction`).value = typeData.content.direction || '';
+            document.getElementById(`popup-type${i}-constructionArea`).value = typeData.content.constructionArea || '';
+            document.getElementById(`popup-type${i}-density`).value = typeData.content.density || '';
+            document.getElementById(`popup-type${i}-totalArea`).value = typeData.content.totalArea || '';
+            document.getElementById(`popup-type${i}-frontSpace`).value = typeData.content.frontSpace || '';
+            document.getElementById(`popup-type${i}-backSpace`).value = typeData.content.backSpace || '';
+            document.getElementById(`popup-type${i}-sideSpace`).value = typeData.content.sideSpace || '';
+          }
+        }
+      }
+    }
+  } catch (error) {
+  }
+}
+
+window.savePopupType = async function(type, event) {
+  const btn = event?.target || document.querySelector(`[onclick*="savePopupType(${type})"]`);
+  const originalText = btn.textContent;
+
+  try {
+    btn.disabled = true;
+    btn.textContent = '⏳ Đang lưu...';
+
+    const popupData = {
+      imageDesktop: document.getElementById(`popup-type${type}-imageDesktop`).value.trim(),
+      imageMobile: document.getElementById(`popup-type${type}-imageMobile`).value.trim(),
+      content: {
+        quantity: document.getElementById(`popup-type${type}-quantity`).value.trim(),
+        floor: document.getElementById(`popup-type${type}-floor`).value.trim(),
+        landArea: document.getElementById(`popup-type${type}-landArea`).value.trim(),
+        bedrooms: document.getElementById(`popup-type${type}-bedrooms`).value.trim(),
+        direction: document.getElementById(`popup-type${type}-direction`).value.trim(),
+        constructionArea: document.getElementById(`popup-type${type}-constructionArea`).value.trim(),
+        density: document.getElementById(`popup-type${type}-density`).value.trim(),
+        totalArea: document.getElementById(`popup-type${type}-totalArea`).value.trim(),
+        frontSpace: document.getElementById(`popup-type${type}-frontSpace`).value.trim(),
+        backSpace: document.getElementById(`popup-type${type}-backSpace`).value.trim(),
+        sideSpace: document.getElementById(`popup-type${type}-sideSpace`).value.trim()
+      }
+    };
+
+    const popupDocRef = doc(db, POPUP_COLLECTION_NAME, 'data');
+    await setDoc(popupDocRef, {
+      [`type${type}`]: popupData
+    }, { merge: true });
+
+    showSuccessNotification('✅ Thành công!', `Đã lưu Type ${type} thành công!`);
+  } catch (error) {
+    showErrorNotification('❌ Lỗi!', `Không thể lưu Type ${type}: ${error.message}`);
+  } finally {
+    btn.disabled = false;
+    btn.textContent = originalText;
+  }
+};
+
+const floorplanSubtabBtn = document.querySelector('[data-subtab="floorplan"]');
+if (floorplanSubtabBtn) {
+  floorplanSubtabBtn.addEventListener('click', () => {
+    setTimeout(() => {
+      loadPopupTypeData();
+    }, 100);
+  });
+}
