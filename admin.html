@@ -268,7 +268,8 @@
           <!-- Floor Plan Popup Content Management -->
           <hr style="margin: 3rem 0; border: none; border-top: 2px solid #e5e7eb;">
           <h2>🏠 Quản lý Popup Mặt bằng (6 Types)</h2>
-          <p style="color: #6b7280; margin-bottom: 2rem;">Quản lý nội dung popup hiển thị khi click vào mặt bằng trên bản đồ</p>
+          <p style="color: #6b7280; margin-bottom: 2rem;">Quản lý nội dung popup hiển thị khi click vào mặt bằng trên
+            bản đồ</p>
 
           <!-- Popup Type Tabs -->
           <div class="popup-type-tabs" style="display: flex; gap: 10px; margin-bottom: 2rem; flex-wrap: wrap;">
@@ -288,12 +289,36 @@
 
               <div class="form-group">
                 <label>Hình Desktop (URL hoặc đường dẫn)</label>
-                <input type="text" id="popup-type1-imageDesktop" placeholder="images/popup-matcat/pc/1.png">
+                <div style="margin-bottom: 8px;">
+                  <img id="preview-popup-type1-imageDesktop" src=""
+                    style="max-width: 100%; max-height: 200px; display: none; border-radius: 4px; border: 1px solid #ddd; margin-bottom: 8px;">
+                </div>
+                <div style="display: flex; gap: 8px;">
+                  <input type="text" id="popup-type1-imageDesktop" placeholder="images/popup-matcat/pc/1.png"
+                    style="flex: 1;">
+                  <input type="file" id="file-popup-type1-imageDesktop" accept="image/*" style="display: none;"
+                    onchange="window.handlePopupTypeImageUpload(event, 1, 'imageDesktop')">
+                  <button class="btn" id="btn-upload-popup-type1-imageDesktop"
+                    style="background: #f3f4f6; color: #374151; border: 1px solid #d1d5db; width: auto; padding: 0 1rem; white-space: nowrap;"
+                    onclick="document.getElementById('file-popup-type1-imageDesktop').click()">📁 Upload</button>
+                </div>
               </div>
 
               <div class="form-group">
                 <label>Hình Mobile (URL hoặc đường dẫn)</label>
-                <input type="text" id="popup-type1-imageMobile" placeholder="images/popup-matcat/mobile/1.png">
+                <div style="margin-bottom: 8px;">
+                  <img id="preview-popup-type1-imageMobile" src=""
+                    style="max-width: 100%; max-height: 200px; display: none; border-radius: 4px; border: 1px solid #ddd; margin-bottom: 8px;">
+                </div>
+                <div style="display: flex; gap: 8px;">
+                  <input type="text" id="popup-type1-imageMobile" placeholder="images/popup-matcat/mobile/1.png"
+                    style="flex: 1;">
+                  <input type="file" id="file-popup-type1-imageMobile" accept="image/*" style="display: none;"
+                    onchange="window.handlePopupTypeImageUpload(event, 1, 'imageMobile')">
+                  <button class="btn" id="btn-upload-popup-type1-imageMobile"
+                    style="background: #f3f4f6; color: #374151; border: 1px solid #d1d5db; width: auto; padding: 0 1rem; white-space: nowrap;"
+                    onclick="document.getElementById('file-popup-type1-imageMobile').click()">📁 Upload</button>
+                </div>
               </div>
 
               <h4 style="margin: 2rem 0 1rem; color: #5d3a2e;">Thông tin chi tiết:</h4>
@@ -362,12 +387,36 @@
 
               <div class="form-group">
                 <label>Hình Desktop</label>
-                <input type="text" id="popup-type2-imageDesktop" placeholder="images/popup-matcat/pc/2.png">
+                <div style="margin-bottom: 8px;">
+                  <img id="preview-popup-type2-imageDesktop" src=""
+                    style="max-width: 100%; max-height: 200px; display: none; border-radius: 4px; border: 1px solid #ddd; margin-bottom: 8px;">
+                </div>
+                <div style="display: flex; gap: 8px;">
+                  <input type="text" id="popup-type2-imageDesktop" placeholder="images/popup-matcat/pc/2.png"
+                    style="flex: 1;">
+                  <input type="file" id="file-popup-type2-imageDesktop" accept="image/*" style="display: none;"
+                    onchange="window.handlePopupTypeImageUpload(event, 2, 'imageDesktop')">
+                  <button class="btn" id="btn-upload-popup-type2-imageDesktop"
+                    style="background: #f3f4f6; color: #374151; border: 1px solid #d1d5db; width: auto; padding: 0 1rem; white-space: nowrap;"
+                    onclick="document.getElementById('file-popup-type2-imageDesktop').click()">📁 Upload</button>
+                </div>
               </div>
 
               <div class="form-group">
                 <label>Hình Mobile</label>
-                <input type="text" id="popup-type2-imageMobile" placeholder="images/popup-matcat/mobile/2.png">
+                <div style="margin-bottom: 8px;">
+                  <img id="preview-popup-type2-imageMobile" src=""
+                    style="max-width: 100%; max-height: 200px; display: none; border-radius: 4px; border: 1px solid #ddd; margin-bottom: 8px;">
+                </div>
+                <div style="display: flex; gap: 8px;">
+                  <input type="text" id="popup-type2-imageMobile" placeholder="images/popup-matcat/mobile/2.png"
+                    style="flex: 1;">
+                  <input type="file" id="file-popup-type2-imageMobile" accept="image/*" style="display: none;"
+                    onchange="window.handlePopupTypeImageUpload(event, 2, 'imageMobile')">
+                  <button class="btn" id="btn-upload-popup-type2-imageMobile"
+                    style="background: #f3f4f6; color: #374151; border: 1px solid #d1d5db; width: auto; padding: 0 1rem; white-space: nowrap;"
+                    onclick="document.getElementById('file-popup-type2-imageMobile').click()">📁 Upload</button>
+                </div>
               </div>
 
               <h4 style="margin: 2rem 0 1rem; color: #5d3a2e;">Thông tin chi tiết:</h4>
@@ -426,24 +475,51 @@
 
               <div class="form-group">
                 <label>Hình Desktop</label>
-                <input type="text" id="popup-type3-imageDesktop" placeholder="images/popup-matcat/pc/3.png">
+                <div style="margin-bottom: 8px;">
+                  <img id="preview-popup-type3-imageDesktop" src=""
+                    style="max-width: 100%; max-height: 200px; display: none; border-radius: 4px; border: 1px solid #ddd; margin-bottom: 8px;">
+                </div>
+                <div style="display: flex; gap: 8px;">
+                  <input type="text" id="popup-type3-imageDesktop" placeholder="images/popup-matcat/pc/3.png"
+                    style="flex: 1;">
+                  <input type="file" id="file-popup-type3-imageDesktop" accept="image/*" style="display: none;"
+                    onchange="window.handlePopupTypeImageUpload(event, 3, 'imageDesktop')">
+                  <button class="btn" id="btn-upload-popup-type3-imageDesktop"
+                    style="background: #f3f4f6; color: #374151; border: 1px solid #d1d5db; width: auto; padding: 0 1rem; white-space: nowrap;"
+                    onclick="document.getElementById('file-popup-type3-imageDesktop').click()">📁 Upload</button>
+                </div>
               </div>
 
               <div class="form-group">
                 <label>Hình Mobile</label>
-                <input type="text" id="popup-type3-imageMobile" placeholder="images/popup-matcat/mobile/3.png">
+                <div style="margin-bottom: 8px;">
+                  <img id="preview-popup-type3-imageMobile" src=""
+                    style="max-width: 100%; max-height: 200px; display: none; border-radius: 4px; border: 1px solid #ddd; margin-bottom: 8px;">
+                </div>
+                <div style="display: flex; gap: 8px;">
+                  <input type="text" id="popup-type3-imageMobile" placeholder="images/popup-matcat/mobile/3.png"
+                    style="flex: 1;">
+                  <input type="file" id="file-popup-type3-imageMobile" accept="image/*" style="display: none;"
+                    onchange="window.handlePopupTypeImageUpload(event, 3, 'imageMobile')">
+                  <button class="btn" id="btn-upload-popup-type3-imageMobile"
+                    style="background: #f3f4f6; color: #374151; border: 1px solid #d1d5db; width: auto; padding: 0 1rem; white-space: nowrap;"
+                    onclick="document.getElementById('file-popup-type3-imageMobile').click()">📁 Upload</button>
+                </div>
               </div>
 
               <h4 style="margin: 2rem 0 1rem; color: #5d3a2e;">Thông tin chi tiết:</h4>
 
-              <div class="form-group"><label>Số lượng sản phẩm</label><input type="text" id="popup-type3-quantity"></div>
+              <div class="form-group"><label>Số lượng sản phẩm</label><input type="text" id="popup-type3-quantity">
+              </div>
               <div class="form-group"><label>Số tầng</label><input type="text" id="popup-type3-floor"></div>
               <div class="form-group"><label>Diện tích đất</label><input type="text" id="popup-type3-landArea"></div>
               <div class="form-group"><label>Số phòng ngủ</label><input type="text" id="popup-type3-bedrooms"></div>
               <div class="form-group"><label>Hướng</label><input type="text" id="popup-type3-direction"></div>
-              <div class="form-group"><label>Diện tích xây dựng</label><input type="text" id="popup-type3-constructionArea"></div>
+              <div class="form-group"><label>Diện tích xây dựng</label><input type="text"
+                  id="popup-type3-constructionArea"></div>
               <div class="form-group"><label>Mật độ xây dựng</label><input type="text" id="popup-type3-density"></div>
-              <div class="form-group"><label>Tổng diện tích sàn</label><input type="text" id="popup-type3-totalArea"></div>
+              <div class="form-group"><label>Tổng diện tích sàn</label><input type="text" id="popup-type3-totalArea">
+              </div>
               <div class="form-group"><label>Lùi trước</label><input type="text" id="popup-type3-frontSpace"></div>
               <div class="form-group"><label>Lùi sau</label><input type="text" id="popup-type3-backSpace"></div>
               <div class="form-group"><label>Lùi bên</label><input type="text" id="popup-type3-sideSpace"></div>
@@ -455,17 +531,48 @@
             <div class="popup-type-form" data-popup-type-form="4">
               <h3 style="margin-bottom: 1.5rem; color: #5d3a2e;">📝 Type 4 - Nội dung Popup</h3>
 
-              <div class="form-group"><label>Hình Desktop</label><input type="text" id="popup-type4-imageDesktop"></div>
-              <div class="form-group"><label>Hình Mobile</label><input type="text" id="popup-type4-imageMobile"></div>
+              <div class="form-group">
+                <label>Hình Desktop</label>
+                <div style="margin-bottom: 8px;">
+                  <img id="preview-popup-type4-imageDesktop" src=""
+                    style="max-width: 100%; max-height: 200px; display: none; border-radius: 4px; border: 1px solid #ddd; margin-bottom: 8px;">
+                </div>
+                <div style="display: flex; gap: 8px;">
+                  <input type="text" id="popup-type4-imageDesktop" style="flex: 1;">
+                  <input type="file" id="file-popup-type4-imageDesktop" accept="image/*" style="display: none;"
+                    onchange="window.handlePopupTypeImageUpload(event, 4, 'imageDesktop')">
+                  <button class="btn" id="btn-upload-popup-type4-imageDesktop"
+                    style="background: #f3f4f6; color: #374151; border: 1px solid #d1d5db; width: auto; padding: 0 1rem; white-space: nowrap;"
+                    onclick="document.getElementById('file-popup-type4-imageDesktop').click()">📁 Upload</button>
+                </div>
+              </div>
+              <div class="form-group">
+                <label>Hình Mobile</label>
+                <div style="margin-bottom: 8px;">
+                  <img id="preview-popup-type4-imageMobile" src=""
+                    style="max-width: 100%; max-height: 200px; display: none; border-radius: 4px; border: 1px solid #ddd; margin-bottom: 8px;">
+                </div>
+                <div style="display: flex; gap: 8px;">
+                  <input type="text" id="popup-type4-imageMobile" style="flex: 1;">
+                  <input type="file" id="file-popup-type4-imageMobile" accept="image/*" style="display: none;"
+                    onchange="window.handlePopupTypeImageUpload(event, 4, 'imageMobile')">
+                  <button class="btn" id="btn-upload-popup-type4-imageMobile"
+                    style="background: #f3f4f6; color: #374151; border: 1px solid #d1d5db; width: auto; padding: 0 1rem; white-space: nowrap;"
+                    onclick="document.getElementById('file-popup-type4-imageMobile').click()">📁 Upload</button>
+                </div>
+              </div>
               <h4 style="margin: 2rem 0 1rem; color: #5d3a2e;">Thông tin chi tiết:</h4>
-              <div class="form-group"><label>Số lượng sản phẩm</label><input type="text" id="popup-type4-quantity"></div>
+              <div class="form-group"><label>Số lượng sản phẩm</label><input type="text" id="popup-type4-quantity">
+              </div>
               <div class="form-group"><label>Số tầng</label><input type="text" id="popup-type4-floor"></div>
               <div class="form-group"><label>Diện tích đất</label><input type="text" id="popup-type4-landArea"></div>
               <div class="form-group"><label>Số phòng ngủ</label><input type="text" id="popup-type4-bedrooms"></div>
               <div class="form-group"><label>Hướng</label><input type="text" id="popup-type4-direction"></div>
-              <div class="form-group"><label>Diện tích xây dựng</label><input type="text" id="popup-type4-constructionArea"></div>
+              <div class="form-group"><label>Diện tích xây dựng</label><input type="text"
+                  id="popup-type4-constructionArea"></div>
               <div class="form-group"><label>Mật độ xây dựng</label><input type="text" id="popup-type4-density"></div>
-              <div class="form-group"><label>Tổng diện tích sàn</label><input type="text" id="popup-type4-totalArea"></div>
+              <div class="form-group"><label>Tổng diện tích sàn</label><input type="text" id="popup-type4-totalArea">
+              </div>
               <div class="form-group"><label>Lùi trước</label><input type="text" id="popup-type4-frontSpace"></div>
               <div class="form-group"><label>Lùi sau</label><input type="text" id="popup-type4-backSpace"></div>
               <div class="form-group"><label>Lùi bên</label><input type="text" id="popup-type4-sideSpace"></div>
@@ -477,17 +584,48 @@
             <div class="popup-type-form" data-popup-type-form="5">
               <h3 style="margin-bottom: 1.5rem; color: #5d3a2e;">📝 Type 5 - Nội dung Popup</h3>
 
-              <div class="form-group"><label>Hình Desktop</label><input type="text" id="popup-type5-imageDesktop"></div>
-              <div class="form-group"><label>Hình Mobile</label><input type="text" id="popup-type5-imageMobile"></div>
+              <div class="form-group">
+                <label>Hình Desktop</label>
+                <div style="margin-bottom: 8px;">
+                  <img id="preview-popup-type5-imageDesktop" src=""
+                    style="max-width: 100%; max-height: 200px; display: none; border-radius: 4px; border: 1px solid #ddd; margin-bottom: 8px;">
+                </div>
+                <div style="display: flex; gap: 8px;">
+                  <input type="text" id="popup-type5-imageDesktop" style="flex: 1;">
+                  <input type="file" id="file-popup-type5-imageDesktop" accept="image/*" style="display: none;"
+                    onchange="window.handlePopupTypeImageUpload(event, 5, 'imageDesktop')">
+                  <button class="btn" id="btn-upload-popup-type5-imageDesktop"
+                    style="background: #f3f4f6; color: #374151; border: 1px solid #d1d5db; width: auto; padding: 0 1rem; white-space: nowrap;"
+                    onclick="document.getElementById('file-popup-type5-imageDesktop').click()">📁 Upload</button>
+                </div>
+              </div>
+              <div class="form-group">
+                <label>Hình Mobile</label>
+                <div style="margin-bottom: 8px;">
+                  <img id="preview-popup-type5-imageMobile" src=""
+                    style="max-width: 100%; max-height: 200px; display: none; border-radius: 4px; border: 1px solid #ddd; margin-bottom: 8px;">
+                </div>
+                <div style="display: flex; gap: 8px;">
+                  <input type="text" id="popup-type5-imageMobile" style="flex: 1;">
+                  <input type="file" id="file-popup-type5-imageMobile" accept="image/*" style="display: none;"
+                    onchange="window.handlePopupTypeImageUpload(event, 5, 'imageMobile')">
+                  <button class="btn" id="btn-upload-popup-type5-imageMobile"
+                    style="background: #f3f4f6; color: #374151; border: 1px solid #d1d5db; width: auto; padding: 0 1rem; white-space: nowrap;"
+                    onclick="document.getElementById('file-popup-type5-imageMobile').click()">📁 Upload</button>
+                </div>
+              </div>
               <h4 style="margin: 2rem 0 1rem; color: #5d3a2e;">Thông tin chi tiết:</h4>
-              <div class="form-group"><label>Số lượng sản phẩm</label><input type="text" id="popup-type5-quantity"></div>
+              <div class="form-group"><label>Số lượng sản phẩm</label><input type="text" id="popup-type5-quantity">
+              </div>
               <div class="form-group"><label>Số tầng</label><input type="text" id="popup-type5-floor"></div>
               <div class="form-group"><label>Diện tích đất</label><input type="text" id="popup-type5-landArea"></div>
               <div class="form-group"><label>Số phòng ngủ</label><input type="text" id="popup-type5-bedrooms"></div>
               <div class="form-group"><label>Hướng</label><input type="text" id="popup-type5-direction"></div>
-              <div class="form-group"><label>Diện tích xây dựng</label><input type="text" id="popup-type5-constructionArea"></div>
+              <div class="form-group"><label>Diện tích xây dựng</label><input type="text"
+                  id="popup-type5-constructionArea"></div>
               <div class="form-group"><label>Mật độ xây dựng</label><input type="text" id="popup-type5-density"></div>
-              <div class="form-group"><label>Tổng diện tích sàn</label><input type="text" id="popup-type5-totalArea"></div>
+              <div class="form-group"><label>Tổng diện tích sàn</label><input type="text" id="popup-type5-totalArea">
+              </div>
               <div class="form-group"><label>Lùi trước</label><input type="text" id="popup-type5-frontSpace"></div>
               <div class="form-group"><label>Lùi sau</label><input type="text" id="popup-type5-backSpace"></div>
               <div class="form-group"><label>Lùi bên</label><input type="text" id="popup-type5-sideSpace"></div>
@@ -499,17 +637,48 @@
             <div class="popup-type-form" data-popup-type-form="6">
               <h3 style="margin-bottom: 1.5rem; color: #5d3a2e;">📝 Type 6 - Nội dung Popup</h3>
 
-              <div class="form-group"><label>Hình Desktop</label><input type="text" id="popup-type6-imageDesktop"></div>
-              <div class="form-group"><label>Hình Mobile</label><input type="text" id="popup-type6-imageMobile"></div>
+              <div class="form-group">
+                <label>Hình Desktop</label>
+                <div style="margin-bottom: 8px;">
+                  <img id="preview-popup-type6-imageDesktop" src=""
+                    style="max-width: 100%; max-height: 200px; display: none; border-radius: 4px; border: 1px solid #ddd; margin-bottom: 8px;">
+                </div>
+                <div style="display: flex; gap: 8px;">
+                  <input type="text" id="popup-type6-imageDesktop" style="flex: 1;">
+                  <input type="file" id="file-popup-type6-imageDesktop" accept="image/*" style="display: none;"
+                    onchange="window.handlePopupTypeImageUpload(event, 6, 'imageDesktop')">
+                  <button class="btn" id="btn-upload-popup-type6-imageDesktop"
+                    style="background: #f3f4f6; color: #374151; border: 1px solid #d1d5db; width: auto; padding: 0 1rem; white-space: nowrap;"
+                    onclick="document.getElementById('file-popup-type6-imageDesktop').click()">📁 Upload</button>
+                </div>
+              </div>
+              <div class="form-group">
+                <label>Hình Mobile</label>
+                <div style="margin-bottom: 8px;">
+                  <img id="preview-popup-type6-imageMobile" src=""
+                    style="max-width: 100%; max-height: 200px; display: none; border-radius: 4px; border: 1px solid #ddd; margin-bottom: 8px;">
+                </div>
+                <div style="display: flex; gap: 8px;">
+                  <input type="text" id="popup-type6-imageMobile" style="flex: 1;">
+                  <input type="file" id="file-popup-type6-imageMobile" accept="image/*" style="display: none;"
+                    onchange="window.handlePopupTypeImageUpload(event, 6, 'imageMobile')">
+                  <button class="btn" id="btn-upload-popup-type6-imageMobile"
+                    style="background: #f3f4f6; color: #374151; border: 1px solid #d1d5db; width: auto; padding: 0 1rem; white-space: nowrap;"
+                    onclick="document.getElementById('file-popup-type6-imageMobile').click()">📁 Upload</button>
+                </div>
+              </div>
               <h4 style="margin: 2rem 0 1rem; color: #5d3a2e;">Thông tin chi tiết:</h4>
-              <div class="form-group"><label>Số lượng sản phẩm</label><input type="text" id="popup-type6-quantity"></div>
+              <div class="form-group"><label>Số lượng sản phẩm</label><input type="text" id="popup-type6-quantity">
+              </div>
               <div class="form-group"><label>Số tầng</label><input type="text" id="popup-type6-floor"></div>
               <div class="form-group"><label>Diện tích đất</label><input type="text" id="popup-type6-landArea"></div>
               <div class="form-group"><label>Số phòng ngủ</label><input type="text" id="popup-type6-bedrooms"></div>
               <div class="form-group"><label>Hướng</label><input type="text" id="popup-type6-direction"></div>
-              <div class="form-group"><label>Diện tích xây dựng</label><input type="text" id="popup-type6-constructionArea"></div>
+              <div class="form-group"><label>Diện tích xây dựng</label><input type="text"
+                  id="popup-type6-constructionArea"></div>
               <div class="form-group"><label>Mật độ xây dựng</label><input type="text" id="popup-type6-density"></div>
-              <div class="form-group"><label>Tổng diện tích sàn</label><input type="text" id="popup-type6-totalArea"></div>
+              <div class="form-group"><label>Tổng diện tích sàn</label><input type="text" id="popup-type6-totalArea">
+              </div>
               <div class="form-group"><label>Lùi trước</label><input type="text" id="popup-type6-frontSpace"></div>
               <div class="form-group"><label>Lùi sau</label><input type="text" id="popup-type6-backSpace"></div>
               <div class="form-group"><label>Lùi bên</label><input type="text" id="popup-type6-sideSpace"></div>

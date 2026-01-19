@@ -12,9 +12,9 @@
   <link rel="preload" href="images/LOGO-BROADWAY-PRELOAD.png" as="image">
   <link rel="preload" href="images/banner-top-mobile.png" as="image" media="(max-width: 768px)">
   <link rel="preload" href="images/banner-top.png" as="image" media="(min-width: 769px)">
-  <link rel="stylesheet" href="css/fonts.css?v=1.0.4">
-  <link rel="stylesheet" href="css/style.css?v=1.0.4">
-  <link rel="stylesheet" href="css/floor-plan.css?v=1.0.4">
+  <link rel="stylesheet" href="css/fonts.css?v=1.0.9">
+  <link rel="stylesheet" href="css/style.css?v=1.0.9">
+  <link rel="stylesheet" href="css/floor-plan.css?v=1.0.9">
   <script>(function (w, d, s, l, i) {
       w[l] = w[l] || []; w[l].push({
         'gtm.start':
@@ -378,15 +378,15 @@
                         <span class="detail-value" id="popupDensity">75,64%</span>
                       </li>
                       <div>
-                      <li class="popup-detail-item" style="margin-bottom: 10px;">
-                        <span class="detail-label">TẦNG CAO:</span>
-                        <span class="detail-value" id="popupFloorInfo">3 tầng + 1 tum</span>
-                      </li>
+                        <li class="popup-detail-item" style="margin-bottom: 5px;">
+                          <span class="detail-label">TẦNG CAO:</span>
+                          <span class="detail-value" id="popupFloorInfo">3 tầng + 1 tum</span>
+                        </li>
 
-                      <li class="popup-detail-item">
-                        <span class="detail-label">SỐ PHÒNG NGỦ:</span>
-                        <span class="detail-value" id="popupBedrooms">4 phòng ngủ</span>
-                      </li>
+                        <li class="popup-detail-item">
+                          <span class="detail-label">SỐ PHÒNG NGỦ:</span>
+                          <span class="detail-value" id="popupBedrooms">4 phòng ngủ</span>
+                        </li>
                       </div>
                       <li class="popup-detail-item popup-detail-item-special-2">
                         <span class="detail-label">
@@ -439,21 +439,32 @@
           <div class="register-popup-content">
             <button class="register-popup-close" aria-label="Close">
               <svg width="24" height="24" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
-                <line x1="18" y1="6" x2="6" y2="18" stroke="currentColor" stroke-width="2" stroke-linecap="round"/>
-                <line x1="6" y1="6" x2="18" y2="18" stroke="currentColor" stroke-width="2" stroke-linecap="round"/>
+                <line x1="18" y1="6" x2="6" y2="18" stroke="currentColor" stroke-width="2" stroke-linecap="round" />
+                <line x1="6" y1="6" x2="18" y2="18" stroke="currentColor" stroke-width="2" stroke-linecap="round" />
               </svg>
             </button>
             <div class="register-popup-body">
-              <h2 class="register-popup-title">Đăng ký tư vấn</h2>
+              <div class="register-popup-title">
+                <picture>
+                  <source media="(min-width: 769px)" srcset="images/ketnoihomnay.svg">
+                  <source media="(max-width: 768px)" srcset="images/ketnoihomnay-mobile.svg">
+                  <img src="images/ketnoihomnay-mobile.svg" alt="Tổ hợp tiện ích thời thượng">
+                </picture>
+              </div>
+              <div class="form-description-wrapper">
+                <p class="trans_contact_fromInfo">Hãy để lại thông tin để đội ngũ tư vấn gửi đến
+                  bạn chi tiết về mặt bằng, cung cấp bảng giá và chính sách mới nhất, giúp bạn dễ dàng đưa ra quyết định
+                  sở hữu phù hợp nhất.</p>
+              </div>
               <form class="register-popup-form" id="register-popup-form">
                 <input type="text" id="register-fullname" name="fullname" placeholder="Họ và tên*" required>
                 <input type="tel" id="register-phone" name="phone" placeholder="Số điện thoại*" required>
                 <input type="email" id="register-email" name="email" placeholder="Email*" required>
                 <button type="submit" class="register-submit-btn">
-                  <span>Gửi thông tin</span>
-                  <svg width="20" height="20" viewBox="0 0 20 20" fill="none" xmlns="http://www.w3.org/2000/svg">
-                    <path d="M4 10H16M16 10L10 4M16 10L10 16" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
-                  </svg>
+                  <span>
+                    <img src="images/btn-dangkyngay.svg" alt="Đăng ký ngay" loading="lazy"
+                      class="connect-submit-btn-img">
+                  </span>
                 </button>
               </form>
             </div>
@@ -2183,10 +2194,10 @@
       loadFloorPlanSVG();
     }
   </script>
-  <script src="js/lazy-load.js?v=1.0.4"></script>
-  <script src="js/data.js?v=1.0.4" defer></script>
-  <script src="js/main.js?v=1.0.4" defer></script>
-  <script type="module" src="js/script.js?v=1.0.4"></script>
+  <script src="js/lazy-load.js?v=1.0.9"></script>
+  <script src="js/data.js?v=1.0.9" defer></script>
+  <script src="js/main.js?v=1.0.9" defer></script>
+  <script type="module" src="js/script.js?v=1.0.9"></script>
   <script>
     window.addEventListener('load', function () {
       const preloader = document.getElementById('preloader');
@@ -2197,13 +2208,13 @@
   </script>
 
   <!-- Firebase Content Loader -->
-  <script type="module" src="js/essensia-loader.js?v=1.0.4"></script>
+  <script type="module" src="js/essensia-loader.js?v=1.0.9"></script>
 
   <!-- Firebase Images Loader -->
-  <script type="module" src="js/images-loader.js?v=1.0.4"></script>
+  <script type="module" src="js/images-loader.js?v=1.0.9"></script>
 
   <!-- Floor Plan Popup Firebase Loader -->
-  <script type="module" src="js/popup-firebase-loader.js?v=1.0.4"></script>
+  <script type="module" src="js/popup-firebase-loader.js?v=1.0.9"></script>
 </body>
 
 </html>

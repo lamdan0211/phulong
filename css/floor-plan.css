@@ -72,7 +72,7 @@
   opacity: 0;
   transition: opacity 0.3s ease;
 }
-.floor-plan-popup *{
+.floor-plan-popup * {
   box-sizing: border-box;
 }
 .floor-plan-popup.active {
@@ -105,41 +105,41 @@
   position: relative;
 }
 .floor-plan-popup-content::before {
-    content: "";
-    position: absolute;
-    top: 0;
-    left: 0;
-    width: 100%;
-    height: 100%;
-    background-image: url(../images/pattern.png?v=0.0.1);
-    background-repeat: repeat;
-    background-position: 0 0;
-    background-attachment: fixed;
-    opacity: 0.12;
-    z-index: 0;
-    pointer-events: none;
+  content: "";
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  background-image: url(../images/pattern.png?v=0.0.1);
+  background-repeat: repeat;
+  background-position: 0 0;
+  background-attachment: fixed;
+  opacity: 0.12;
+  z-index: 0;
+  pointer-events: none;
 }
-.floor-plan-popup-content .logo{
+.floor-plan-popup-content .logo {
   position: absolute;
   top: 0;
   left: 0;
   width: 150px;
   border-radius: 20px 0 0 0;
 }
-.floor-plan-popup-content .logo img{
+.floor-plan-popup-content .logo img {
   display: block;
   width: 100%;
   height: auto;
   object-fit: contain;
   vertical-align: middle;
 }
-.floor-plan-popup-content .btn-register{
+.floor-plan-popup-content .btn-register {
   display: block;
   position: absolute;
-  right: 20px;
-  bottom: 20px;
+  right: 10px;
+  bottom: 10px;
 }
-.floor-plan-popup-content .btn-register img{
+.floor-plan-popup-content .btn-register img {
   display: inline-block;
   height: 60px;
   width: auto;
@@ -182,8 +182,7 @@
   padding: 0;
   position: relative;
   width: 100%;
-  max-width: 12000px;
-  padding-bottom: 20px;
+  padding-bottom: 10px;
 }
 .floor-plan-popup-image-container {
   width: 100%;
@@ -207,14 +206,14 @@
   padding: 0;
   display: grid;
   grid-template-columns: 1fr;
-  gap: 10px;
+  gap: 5px;
 }
 
 /* Desktop - 2 columns */
 @media (min-width: 769px) {
   .popup-details-list {
     grid-template-columns: repeat(2, 1fr);
-    column-gap: 40px;
+    column-gap: 10px;
   }
 }
 
@@ -224,40 +223,45 @@
   justify-content: flex-start;
   align-items: center;
   border: 1px solid #ebe9cb;
-  border-radius: 5px;
+  border-radius: 3px;
   font-family: "SFU Franklin Gothic";
-}
-
-.detail-label {
-  font-size: 12px;
-  font-weight: 700;
-  background: #ebe9cb;
-  color: #8f2a2a;
-  border-radius: 5px;
-  text-transform: uppercase;
-  line-height: 1.4;
-  padding: 0 10px;
-  width: 240px;
-  height: 30px;
-  line-height: 30px;
-}
-.detail-label .detail-special{
-  font-weight: normal;
-}
-.detail-value {
-  font-size: 15px;
-  font-weight: normal;
-  color: #434244;
-  line-height: 1.2;
-  padding: 0 10px;
-}
-
-.popup-detail-item.popup-detail-item-special .detail-label{
   height: 40px;
   line-height: 40px;
 }
-.popup-detail-item.popup-detail-item-special-2 .detail-label{
-  height: 72px;
+
+.detail-label {
+  font-size: 14px;
+  font-weight: 700;
+  background: #ebe9cb;
+  color: #8f2a2a;
+  border-radius: 3px;
+  text-transform: uppercase;
+  padding: 0 5px;
+  width: 200px;
+  height: 100%;
+  line-height: 38px;
+}
+.detail-label .detail-special {
+  font-weight: normal;
+}
+.detail-value {
+  font-size: 16px;
+  font-weight: normal;
+  color: #434244;
+  line-height: 1.2;
+  padding: 0 5px;
+}
+.popup-detail-item.popup-detail-item-special {
+  height: 50px;
+  line-height: 50px;
+}
+.popup-detail-item.popup-detail-item-special .detail-label {
+  line-height: 48px;
+}
+.popup-detail-item.popup-detail-item-special-2 {
+  height: 87px;
+}
+.popup-detail-item.popup-detail-item-special-2 .detail-label {
   line-height: 1.5;
   align-items: flex-start;
   display: flex;
@@ -284,7 +288,7 @@
 }
 
 .spacing-label {
-  font-size: 11px;
+  font-size: 13px;
   font-weight: 500;
   color: #8b6f47;
   text-transform: uppercase;
@@ -297,14 +301,15 @@
 
 /* Mobile spacing adjustments */
 @media (max-width: 768px) {
-  .floor-plan-popup-content .logo{
+  .floor-plan-popup-content .logo {
     display: none;
   }
   .floor-plan-popup-details {
     padding: 20px 0px;
   }
 
-  .popup-detail-item {
+  .popup-detail-item.popup-detail-item-special-2 {
+    height: auto;
   }
 
   .detail-label {
@@ -320,14 +325,14 @@
   .spacing-grid {
     gap: 12px;
   }
-  .spacing-label{
-    font-size: 8px;
+  .spacing-label {
+    font-size: 10px;
   }
 
   .spacing-value {
-    font-size: 15px;
+    font-size: 14px;
   }
-  .floor-plan-popup-content .btn-register{
+  .floor-plan-popup-content .btn-register {
     position: relative;
     display: flex;
     flex-flow: row nowrap;
@@ -337,7 +342,7 @@
     right: auto;
     bottom: auto;
   }
-  .floor-plan-popup-body{
+  .floor-plan-popup-body {
     padding-bottom: 0;
   }
 }
@@ -450,7 +455,9 @@
   align-items: center;
   justify-content: center;
 }
-
+.register-popup img {
+  max-width: 100%;
+}
 .register-popup-overlay {
   position: absolute;
   top: 0;
@@ -463,26 +470,53 @@
 
 .register-popup-content {
   position: relative;
-  background: #fff;
+  background: #d5c9aa;
   border-radius: 12px;
   width: 90%;
-  max-width: 500px;
-  max-height: 90vh;
-  overflow-y: auto;
+  max-width: 1900px;
+  height: auto;
+  /* Changed from max-height: 90vh and overflow-y: auto to display button outside */
+  overflow: visible;
   box-shadow: 0 10px 40px rgba(0, 0, 0, 0.3);
   z-index: 1;
 }
 
+.register-popup-content::before {
+  content: "";
+  position: absolute;
+  left: 0;
+  top: 0;
+  width: 100%;
+  height: 100%;
+  z-index: 1;
+  pointer-events: none;
+  background-image: url("../images/bg-popup-form.jpg");
+  background-repeat: no-repeat;
+  background-size: cover;
+  background-position: center;
+}
+
+/* Desktop styles (Default) */
 .register-popup-close {
   position: absolute;
-  top: 15px;
-  right: 15px;
-  background: transparent;
+  top: 20px;
+  right: 20px;
+  background: #8f2a2a;
   border: none;
   cursor: pointer;
-  padding: 5px;
-  z-index: 2;
+  padding: 0;
+  z-index: 10;
   transition: transform 0.2s;
+  width: 40px;
+  height: 40px;
+  border-radius: 50%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.register-popup-close::before {
+  content: none;
 }
 
 .register-popup-close:hover {
@@ -490,19 +524,61 @@
 }
 
 .register-popup-close svg {
-  width: 24px;
-  height: 24px;
-  stroke: #333;
+  width: 20px;
+  height: 20px;
+  stroke: #fff;
   pointer-events: none;
 }
 
 .register-popup-close svg line {
-  stroke: currentColor;
+  stroke: #fff;
   stroke-width: 2;
+}
+
+/* Mobile responsive - Overwrite for "seal" style */
+@media (max-width: 768px) {
+  .register-popup-close {
+    top: -25px;
+    right: auto;
+    left: 50%;
+    transform: translateX(-50%);
+    background: #d5c9aa;
+    border: 1px solid #d5c9aa;
+    width: 50px;
+    height: 50px;
+  }
+
+  .register-popup-close::before {
+    content: "";
+    position: absolute;
+    top: 5px;
+    left: 5px;
+    width: calc(100% - 10px);
+    height: calc(100% - 10px);
+    border-radius: 50%;
+    border: 1px solid #8f2a2a;
+  }
+
+  .register-popup-close:hover {
+    transform: translateX(-50%) rotate(90deg);
+  }
+
+  .register-popup-close svg {
+    width: 24px;
+    height: 24px;
+    stroke: #8f2a2a;
+  }
+
+  .register-popup-close svg line {
+    stroke: #8f2a2a;
+  }
 }
 
 .register-popup-body {
   padding: 40px 30px;
+  max-height: 80vh;
+  overflow-y: auto;
+  border-radius: 12px;
 }
 
 .register-popup-title {
@@ -511,12 +587,25 @@
   color: #333;
   margin-bottom: 30px;
   text-align: center;
+  position: relative;
+  z-index: 2;
 }
-
+.form-description-wrapper {
+  position: relative;
+  z-index: 2;
+  color: black;
+  max-width: 500px;
+  margin: 0 auto 10px auto;
+}
 .register-popup-form {
   display: flex;
   flex-direction: column;
   gap: 20px;
+  position: relative;
+  z-index: 2;
+  width: 100%;
+  max-width: 500px;
+  margin: 0 auto;
 }
 
 .register-popup-form input {
@@ -539,6 +628,7 @@
 }
 
 .register-submit-btn {
+  background: none;
   display: flex;
   align-items: center;
   justify-content: center;
@@ -546,18 +636,16 @@
   padding: 15px 30px;
   font-size: 16px;
   font-weight: bold;
-  color: #fff;
-  background: #5d3a2e;
   border: none;
   border-radius: 8px;
   cursor: pointer;
-  transition: transform 0.2s, box-shadow 0.2s, background 0.2s;
+  transition:
+    transform 0.2s,
+    box-shadow 0.2s;
 }
 
 .register-submit-btn:hover {
   transform: translateY(-2px);
-  box-shadow: 0 5px 15px rgba(93, 58, 46, 0.4);
-  background: #4a2e24;
 }
 
 .register-submit-btn svg {

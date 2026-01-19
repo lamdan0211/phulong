@@ -1576,8 +1576,29 @@ async function loadPopupTypeData() {
       for (let i = 1; i <= 6; i++) {
         const typeData = data[`type${i}`];
         if (typeData) {
-          document.getElementById(`popup-type${i}-imageDesktop`).value = typeData.imageDesktop || '';
-          document.getElementById(`popup-type${i}-imageMobile`).value = typeData.imageMobile || '';
+          const desktopImg = typeData.imageDesktop || '';
+          const mobileImg = typeData.imageMobile || '';
+
+          const desktopInput = document.getElementById(`popup-type${i}-imageDesktop`);
+          const mobileInput = document.getElementById(`popup-type${i}-imageMobile`);
+
+          if (desktopInput) {
+            desktopInput.value = desktopImg;
+            const preview = document.getElementById(`preview-popup-type${i}-imageDesktop`);
+            if (preview) {
+              preview.src = desktopImg;
+              preview.style.display = desktopImg ? 'block' : 'none';
+            }
+          }
+
+          if (mobileInput) {
+            mobileInput.value = mobileImg;
+            const preview = document.getElementById(`preview-popup-type${i}-imageMobile`);
+            if (preview) {
+              preview.src = mobileImg;
+              preview.style.display = mobileImg ? 'block' : 'none';
+            }
+          }
 
           if (typeData.content) {
             document.getElementById(`popup-type${i}-quantity`).value = typeData.content.quantity || '';
@@ -1638,6 +1659,85 @@ window.savePopupType = async function(type, event) {
     btn.textContent = originalText;
   }
 };
+
+
+window.handlePopupTypeImageUpload = async function(event, type, field) {
+  const file = event.target.files[0];
+  if (!file) return;
+
+  if (!file.type.startsWith('image/')) {
+    showErrorNotification('⚠️ Lỗi!', 'Vui lòng chọn file hình ảnh');
+    return;
+  }
+
+  const btnId = `btn-upload-popup-type${type}-${field}`;
+  const btn = document.getElementById(btnId);
+  const originalText = btn ? btn.innerHTML : '📁 Upload';
+
+  try {
+    if (btn) {
+      btn.innerHTML = '<span class="spinner"></span>';
+      btn.disabled = true;
+    }
+
+    const base64 = await fileToBase64(file);
+    let imageUrl = base64;
+
+    if (uploadImageToCloudinary) {
+      const filename = `${field}_${type}_${Date.now()}`;
+      // Use a consistent key structure if needed, or unique to allow history
+      // Here using unique specific to popup types
+      const imageKey = `popup_type_${type}_${field}`;
+      imageUrl = await uploadImageToCloudinary(imageKey, base64, file.name);
+    }
+
+    // Update Input
+    const inputId = `popup-type${type}-${field}`;
+    const input = document.getElementById(inputId);
+    if (input) {
+      input.value = imageUrl;
+      // Trigger change event if needed
+    }
+
+    // Update Preview
+    const previewId = `preview-popup-type${type}-${field}`;
+    const preview = document.getElementById(previewId);
+    if (preview) {
+      preview.src = imageUrl;
+      preview.style.display = 'block';
+    }
+
+    showSuccessNotification('✓ Thành công!', 'Đã upload hình ảnh');
+  } catch (error) {
+    console.error(error);
+    showErrorNotification('❌ Lỗi!', 'Không thể upload hình: ' + error.message);
+  } finally {
+    if (btn) {
+      btn.innerHTML = originalText;
+      btn.disabled = false;
+    }
+    event.target.value = '';
+  }
+};
+
+// Add listener for manual input changes to update preview
+document.addEventListener('DOMContentLoaded', () => {
+  for (let i = 1; i <= 6; i++) {
+    ['imageDesktop', 'imageMobile'].forEach(field => {
+      const input = document.getElementById(`popup-type${i}-${field}`);
+      if (input) {
+        input.addEventListener('input', (e) => {
+          const val = e.target.value;
+          const preview = document.getElementById(`preview-popup-type${i}-${field}`);
+          if (preview) {
+            preview.src = val;
+            preview.style.display = val ? 'block' : 'none';
+          }
+        });
+      }
+    });
+  }
+});
 
 const floorplanSubtabBtn = document.querySelector('[data-subtab="floorplan"]');
 if (floorplanSubtabBtn) {
