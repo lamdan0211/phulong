@@ -1,0 +1,968 @@
+@page
+@model AdminModel
+@{
+    Layout = null;
+}
+<!DOCTYPE html>
+<html lang="vi">
+
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Admin - Essensia Broadway</title>
+  <link rel="stylesheet" href="css/admin.css?v=1.0.0">
+</head>
+
+<body>
+  <!-- Login Container -->
+    @if (!User.Identity.IsAuthenticated)
+    {
+    <div id="login-container">
+        <div class="login-box">
+            <h1>🏢 Admin Panel</h1>
+            <p style="text-align: center; color: #6b7280; margin-bottom: 2rem;">Essensia Broadway</p>
+            @if (!string.IsNullOrEmpty(Model.ErrorMessage))
+            {
+                <div id="login-error" class="error-message">@Model.ErrorMessage</div>
+            }
+            <form method="post" asp-page-handler="Login">
+                <div class="form-group">
+                    <label for="email">Tài khoản</label>
+                    <input type="text" id="email" name="username" required placeholder="admin">
+                </div>
+                <div class="form-group">
+                    <label for="password">Mật khẩu</label>
+                    <input type="password" id="password" name="password" required placeholder="••••••••">
+                </div>
+                <button type="submit" class="btn btn-primary" id="login-btn">
+                    Đăng nhập
+                </button>
+            </form>
+        </div>
+    </div>
+    }
+
+  <!-- Admin Container -->
+    @if (User.Identity.IsAuthenticated)
+    {
+  <!-- Main Layout Wrapper -->
+  <div class="main-layout">
+    <!-- Header -->
+    <div class="admin-header">
+      <h1>🏢 QUẢN LÝ ESSENSIA BROADWAY</h1>
+      <div class="user-info">
+        <span class="user-email" id="user-email">@User.Identity.Name</span>
+        <form method="post" asp-page-handler="Logout" style="display:inline;">
+            <button type="submit" class="btn-logout" id="logout-btn">Đăng xuất</button>
+        </form>
+      </div>
+    </div>
+
+    <!-- Admin Content Container (Sidebar + Main) -->
+    <div id="admin-container">
+    
+    <div class="success-message" id="success-message" style="display: none;">
+      ✅ Đã lưu thành công!
+    </div>
+
+    <!-- Sidebar Navigation Tabs -->
+    <div class="tabs sidebar">
+      <button class="tab-btn active" data-tab="content">
+        <span class="icon">📝</span> Nội dung Text
+      </button>
+      <button class="tab-btn" data-tab="images">
+        <span class="icon">🖼️</span> Quản lý Hình ảnh
+      </button>
+      <button class="tab-btn" data-tab="users">
+        <span class="icon">👤</span> Tài khoản
+      </button>
+    </div>
+
+    <!-- ============================================= -->
+    <!-- TAB 1: NỘI DUNG TEXT -->
+    <!-- ============================================= -->
+    <div class="tab-content active" id="tab-content">
+      <!-- Sub-tabs for text content -->
+      <div class="tabs" style="margin-top: 1rem; border-top: 1px solid #e5e7eb; padding-top: 1rem;">
+        <button class="subtab-btn active" data-subtab="homepage">🏠 Trang chủ</button>
+        <button class="subtab-btn" data-subtab="location">📍 Vị trí</button>
+        <button class="subtab-btn" data-subtab="product">🏗️ Sản phẩm</button>
+        <button class="subtab-btn" data-subtab="privilege">🏗️ Đặc quyền</button>
+        <button class="subtab-btn" data-subtab="floorplan">🏗️ Mặt bằng</button>
+        <button class="subtab-btn" data-subtab="news">📰 Tin tức</button>
+        <button class="subtab-btn" data-subtab="framedepicting">📰 Khung hình khắc họa</button>
+        <button class="subtab-btn" data-subtab="contact">📞 Liên hệ</button>
+        <button class="subtab-btn" data-subtab="all-text">🧩 Khác</button>
+      </div>
+
+      <!-- Hero Section -->
+      <div class="subtab-content active" id="subtab-homepage">
+        <div class="section-editor">
+          <h2>🏠 Trang chủ</h2>
+          <div id="homepage-grid"></div>
+          <div class="form-group">
+            <label>Mô tả 1</label>
+            <textarea id="homepage-desc1" rows="3"></textarea>
+          </div>
+          <div class="form-group">
+            <label>Mô tả 2</label>
+            <textarea id="homepage-desc2" rows="3"></textarea>
+          </div>
+          <div class="form-group">
+            <label>Mô tả 3</label>
+            <textarea id="homepage-desc3" rows="3"></textarea>
+          </div>
+        </div>
+      </div>
+
+      <!-- Location Section -->
+      <div class="subtab-content" id="subtab-location">
+        <div class="section-editor">
+          <h2>🏗️ Mặt bằng</h2>
+          <div id="location-grid"></div>
+          <div class="form-group">
+            <label>Mô tả 1</label>
+            <textarea id="location-desc1" rows="3"></textarea>
+          </div>
+          <div class="form-group">
+            <label>Mô tả 2</label>
+            <textarea id="location-desc2" rows="3"></textarea>
+          </div>
+
+        </div>
+      </div>
+
+      <!-- Product Section -->
+      <div class="subtab-content" id="subtab-product">
+        <div class="section-editor">
+          <h2>🏗️ Sản phẩm</h2>
+          <div id="product-grid"></div>
+          <div class="form-group">
+            <label>Mô tả 1</label>
+            <textarea id="product-desc1" rows="5"></textarea>
+          </div>
+          <div class="form-group">
+            <label>Mô tả 2</label>
+            <textarea id="product-desc2" rows="5"></textarea>
+          </div>
+
+          <h2>Popup Shophouse</h2>
+          <div id="popupShophouse-grid"></div>
+          <div class="form-group">
+            <label>Mô tả 1</label>
+            <textarea id="product-popup1-desc1" rows="5"></textarea>
+          </div>
+          <div class="form-group">
+            <label>Mô tả 2</label>
+            <textarea id="product-popup1-desc2" rows="5"></textarea>
+          </div>
+
+          <h2>Popup Rewritten House</h2>
+          <div id="popupRewrittenHouse-grid"></div>
+          <div class="form-group">
+            <label>Mô tả 1</label>
+            <textarea id="product-popup2-desc1" rows="5"></textarea>
+          </div>
+
+
+          <h2>🎞️ Product Slider Groups</h2>
+          <p style="color: #6b7280; margin-bottom: 1rem;">
+            Quản lý các nhóm slider popup cho Sản phẩm (Shophouse, Rewritten House...). Mỗi nhóm có thể chứa nhiều hình
+            (desktop + mobile).
+          </p>
+          <div id="slider-groups-product-container"></div>
+          <button class="btn-add" id="add-slider-group-product-btn">+ Thêm nhóm slider sản phẩm</button>
+        </div>
+      </div>
+
+      <!-- Privilege Section -->
+      <div class="subtab-content" id="subtab-privilege">
+        <div class="section-editor">
+          <h2>Popup Club House</h2>
+          <div id="popupClubhouse-grid"></div>
+          <div class="form-group">
+            <label>Mô tả 1</label>
+            <textarea id="product-popup3-desc1" rows="5"></textarea>
+          </div>
+          <div class="form-group">
+            <label>Mô tả 2</label>
+            <textarea id="product-popup3-desc2" rows="5"></textarea>
+          </div>
+          <h2>Tầng 1</h2>
+          <div class="form-group">
+            <label>Tab</label>
+            <input type="text" id="product-popup3-tang1-tab">
+          </div>
+          <div class="form-group">
+            <label>Tiêu đề</label>
+            <input type="text" id="product-popup3-tang1-title">
+          </div>
+          <div class="form-group">
+            <label>Mô tả</label>
+            <textarea id="product-popup3-tang1-desc" rows="5"></textarea>
+          </div>
+          <div class="form-group">
+            <label>Chi tiết</label>
+            <textarea id="product-popup3-tang1-detail" rows="5"></textarea>
+          </div>
+          <h2>Tầng 2</h2>
+          <div class="form-group">
+            <label>Tab</label>
+            <input type="text" id="product-popup3-tang2-tab">
+          </div>
+          <div class="form-group">
+            <label>Tiêu đề</label>
+            <input type="text" id="product-popup3-tang2-title">
+          </div>
+          <div class="form-group">
+            <label>Mô tả</label>
+            <textarea id="product-popup3-tang2-desc" rows="5"></textarea>
+          </div>
+          <div class="form-group">
+            <label>Chi tiết</label>
+            <textarea id="product-popup3-tang2-detail" rows="5"></textarea>
+          </div>
+          <h2>Tầng 3</h2>
+          <div class="form-group">
+            <label>Tab</label>
+            <input type="text" id="product-popup3-tang3-tab">
+          </div>
+          <div class="form-group">
+            <label>Tiêu đề</label>
+            <input type="text" id="product-popup3-tang3-title">
+          </div>
+          <div class="form-group">
+            <label>Mô tả</label>
+            <textarea id="product-popup3-tang3-desc" rows="5"></textarea>
+          </div>
+          <div class="form-group">
+            <label>Chi tiết</label>
+            <textarea id="product-popup3-tang3-detail" rows="5"></textarea>
+          </div>
+          <h2>Tầng 4</h2>
+          <div class="form-group">
+            <label>Tab</label>
+            <input type="text" id="product-popup3-tang4-tab">
+          </div>
+          <div class="form-group">
+            <label>Tiêu đề</label>
+            <input type="text" id="product-popup3-tang4-title">
+          </div>
+          <div class="form-group">
+            <label>Mô tả</label>
+            <textarea id="product-popup3-tang4-desc" rows="5"></textarea>
+          </div>
+          <div class="form-group">
+            <label>Chi tiết</label>
+            <textarea id="product-popup3-tang4-detail" rows="5"></textarea>
+          </div>
+
+          <h2>Popup Park</h2>
+          <div id="popupPark-grid"></div>
+          <div class="form-group">
+            <label>Mô tả</label>
+            <textarea id="product-popup4-desc" rows="5"></textarea>
+          </div>
+          <div class="form-group">
+            <label>Chi tiết sơ đồ</label>
+            <textarea id="product-popup4-detail" rows="5"></textarea>
+          </div>
+          <h2>🎞️ Privilege Slider Groups</h2>
+          <p style="color: #6b7280; margin-bottom: 1rem;">
+            Quản lý các nhóm slider popup cho Đặc quyền (Clubhouse, Park...). Mỗi nhóm có thể chứa nhiều hình
+            (desktop + mobile).
+          </p>
+          <div id="slider-groups-privilege-container"></div>
+          <button class="btn-add" id="add-slider-group-privilege-btn">+ Thêm nhóm slider đặc quyền</button>
+        </div>
+      </div>
+
+      <!-- Location Section -->
+      <div class="subtab-content" id="subtab-floorplan">
+        <div class="section-editor">
+          <h2>🏗️ Mặt bằng</h2>
+          <div id="floorplan-grid"></div>
+          <div class="form-group">
+            <label>Mô tả 1</label>
+            <textarea id="floorplan-desc1" rows="3"></textarea>
+          </div>
+          <div class="form-group">
+            <label>Mô tả 2</label>
+            <textarea id="floorplan-desc2" rows="3"></textarea>
+          </div>
+
+          <!-- Floor Plan Popup Content Management -->
+          <hr style="margin: 3rem 0; border: none; border-top: 2px solid #e5e7eb;">
+          <h2>🏠 Quản lý Popup Mặt bằng (6 Types)</h2>
+          <p style="color: #6b7280; margin-bottom: 2rem;">Quản lý nội dung popup hiển thị khi click vào mặt bằng trên
+            bản đồ</p>
+
+          <!-- Popup Type Tabs -->
+          <div class="popup-type-tabs" style="display: flex; gap: 10px; margin-bottom: 2rem; flex-wrap: wrap;">
+            <button class="popup-type-btn active" data-popup-type="1">Type 1</button>
+            <button class="popup-type-btn" data-popup-type="2">Type 2</button>
+            <button class="popup-type-btn" data-popup-type="3">Type 3</button>
+            <button class="popup-type-btn" data-popup-type="4">Type 4</button>
+            <button class="popup-type-btn" data-popup-type="5">Type 5</button>
+            <button class="popup-type-btn" data-popup-type="6">Type 6</button>
+          </div>
+
+          <!-- Popup Type Content Forms -->
+          <div id="popup-type-forms">
+            <!-- Type 1 -->
+            <div class="popup-type-form active" data-popup-type-form="1">
+              <h3 style="margin-bottom: 1.5rem; color: #5d3a2e;">📝 Type 1 - Nội dung Popup</h3>
+
+              <div class="form-group">
+                <label>Hình Desktop (URL hoặc đường dẫn)</label>
+                <div style="margin-bottom: 8px;">
+                  <img id="preview-popup-type1-imageDesktop" src=""
+                    style="max-width: 100%; max-height: 200px; display: none; border-radius: 4px; border: 1px solid #ddd; margin-bottom: 8px;">
+                </div>
+                <div style="display: flex; gap: 8px;">
+                  <input type="text" id="popup-type1-imageDesktop" placeholder="images/popup-matcat/pc/1.png"
+                    style="flex: 1;">
+                  <input type="file" id="file-popup-type1-imageDesktop" accept="image/*" style="display: none;"
+                    onchange="window.handlePopupTypeImageUpload(event, 1, 'imageDesktop')">
+                  <button class="btn" id="btn-upload-popup-type1-imageDesktop"
+                    style="background: #f3f4f6; color: #374151; border: 1px solid #d1d5db; width: auto; padding: 0 1rem; white-space: nowrap;"
+                    onclick="document.getElementById('file-popup-type1-imageDesktop').click()">📁 Upload</button>
+                </div>
+              </div>
+
+              <div class="form-group">
+                <label>Hình Mobile (URL hoặc đường dẫn)</label>
+                <div style="margin-bottom: 8px;">
+                  <img id="preview-popup-type1-imageMobile" src=""
+                    style="max-width: 100%; max-height: 200px; display: none; border-radius: 4px; border: 1px solid #ddd; margin-bottom: 8px;">
+                </div>
+                <div style="display: flex; gap: 8px;">
+                  <input type="text" id="popup-type1-imageMobile" placeholder="images/popup-matcat/mobile/1.png"
+                    style="flex: 1;">
+                  <input type="file" id="file-popup-type1-imageMobile" accept="image/*" style="display: none;"
+                    onchange="window.handlePopupTypeImageUpload(event, 1, 'imageMobile')">
+                  <button class="btn" id="btn-upload-popup-type1-imageMobile"
+                    style="background: #f3f4f6; color: #374151; border: 1px solid #d1d5db; width: auto; padding: 0 1rem; white-space: nowrap;"
+                    onclick="document.getElementById('file-popup-type1-imageMobile').click()">📁 Upload</button>
+                </div>
+              </div>
+
+              <h4 style="margin: 2rem 0 1rem; color: #5d3a2e;">Thông tin chi tiết:</h4>
+
+              <div class="form-group">
+                <label>Số lượng sản phẩm</label>
+                <input type="text" id="popup-type1-quantity" placeholder="04 căn">
+              </div>
+
+              <div class="form-group">
+                <label>Số tầng (hỗ trợ HTML: &lt;b&gt;, &lt;br&gt;)</label>
+                <input type="text" id="popup-type1-floor" placeholder="3 tầng + 1 tum">
+              </div>
+
+              <div class="form-group">
+                <label>Diện tích đất (hỗ trợ HTML: &lt;b&gt;, &lt;br&gt;)</label>
+                <input type="text" id="popup-type1-landArea" placeholder="153,75 m² <b>(7,5 x 20 m)</b>">
+              </div>
+
+              <div class="form-group">
+                <label>Số phòng ngủ</label>
+                <input type="text" id="popup-type1-bedrooms" placeholder="4 phòng ngủ">
+              </div>
+
+              <div class="form-group">
+                <label>Hướng</label>
+                <input type="text" id="popup-type1-direction" placeholder="Đông Bắc | Tây Nam">
+              </div>
+
+              <div class="form-group">
+                <label>Diện tích xây dựng</label>
+                <input type="text" id="popup-type1-constructionArea" placeholder="116,30 m²">
+              </div>
+
+              <div class="form-group">
+                <label>Mật độ xây dựng</label>
+                <input type="text" id="popup-type1-density" placeholder="75,64%">
+              </div>
+
+              <div class="form-group">
+                <label>Tổng diện tích sàn</label>
+                <input type="text" id="popup-type1-totalArea" placeholder="374,63 m²">
+              </div>
+
+              <div class="form-group">
+                <label>Lùi trước</label>
+                <input type="text" id="popup-type1-frontSpace" placeholder="3 m">
+              </div>
+
+              <div class="form-group">
+                <label>Lùi sau</label>
+                <input type="text" id="popup-type1-backSpace" placeholder="2 m">
+              </div>
+
+              <div class="form-group">
+                <label>Lùi bên</label>
+                <input type="text" id="popup-type1-sideSpace" placeholder="- - -">
+              </div>
+
+              <button class="btn btn-primary" onclick="savePopupType(1, event)">💾 Lưu Type 1</button>
+            </div>
+
+            <!-- Type 2 -->
+            <div class="popup-type-form" data-popup-type-form="2">
+              <h3 style="margin-bottom: 1.5rem; color: #5d3a2e;">📝 Type 2 - Nội dung Popup</h3>
+
+              <div class="form-group">
+                <label>Hình Desktop</label>
+                <div style="margin-bottom: 8px;">
+                  <img id="preview-popup-type2-imageDesktop" src=""
+                    style="max-width: 100%; max-height: 200px; display: none; border-radius: 4px; border: 1px solid #ddd; margin-bottom: 8px;">
+                </div>
+                <div style="display: flex; gap: 8px;">
+                  <input type="text" id="popup-type2-imageDesktop" placeholder="images/popup-matcat/pc/2.png"
+                    style="flex: 1;">
+                  <input type="file" id="file-popup-type2-imageDesktop" accept="image/*" style="display: none;"
+                    onchange="window.handlePopupTypeImageUpload(event, 2, 'imageDesktop')">
+                  <button class="btn" id="btn-upload-popup-type2-imageDesktop"
+                    style="background: #f3f4f6; color: #374151; border: 1px solid #d1d5db; width: auto; padding: 0 1rem; white-space: nowrap;"
+                    onclick="document.getElementById('file-popup-type2-imageDesktop').click()">📁 Upload</button>
+                </div>
+              </div>
+
+              <div class="form-group">
+                <label>Hình Mobile</label>
+                <div style="margin-bottom: 8px;">
+                  <img id="preview-popup-type2-imageMobile" src=""
+                    style="max-width: 100%; max-height: 200px; display: none; border-radius: 4px; border: 1px solid #ddd; margin-bottom: 8px;">
+                </div>
+                <div style="display: flex; gap: 8px;">
+                  <input type="text" id="popup-type2-imageMobile" placeholder="images/popup-matcat/mobile/2.png"
+                    style="flex: 1;">
+                  <input type="file" id="file-popup-type2-imageMobile" accept="image/*" style="display: none;"
+                    onchange="window.handlePopupTypeImageUpload(event, 2, 'imageMobile')">
+                  <button class="btn" id="btn-upload-popup-type2-imageMobile"
+                    style="background: #f3f4f6; color: #374151; border: 1px solid #d1d5db; width: auto; padding: 0 1rem; white-space: nowrap;"
+                    onclick="document.getElementById('file-popup-type2-imageMobile').click()">📁 Upload</button>
+                </div>
+              </div>
+
+              <h4 style="margin: 2rem 0 1rem; color: #5d3a2e;">Thông tin chi tiết:</h4>
+
+              <div class="form-group">
+                <label>Số lượng sản phẩm</label>
+                <input type="text" id="popup-type2-quantity">
+              </div>
+              <div class="form-group">
+                <label>Số tầng</label>
+                <input type="text" id="popup-type2-floor">
+              </div>
+              <div class="form-group">
+                <label>Diện tích đất</label>
+                <input type="text" id="popup-type2-landArea">
+              </div>
+              <div class="form-group">
+                <label>Số phòng ngủ</label>
+                <input type="text" id="popup-type2-bedrooms">
+              </div>
+              <div class="form-group">
+                <label>Hướng</label>
+                <input type="text" id="popup-type2-direction">
+              </div>
+              <div class="form-group">
+                <label>Diện tích xây dựng</label>
+                <input type="text" id="popup-type2-constructionArea">
+              </div>
+              <div class="form-group">
+                <label>Mật độ xây dựng</label>
+                <input type="text" id="popup-type2-density">
+              </div>
+              <div class="form-group">
+                <label>Tổng diện tích sàn</label>
+                <input type="text" id="popup-type2-totalArea">
+              </div>
+              <div class="form-group">
+                <label>Lùi trước</label>
+                <input type="text" id="popup-type2-frontSpace">
+              </div>
+              <div class="form-group">
+                <label>Lùi sau</label>
+                <input type="text" id="popup-type2-backSpace">
+              </div>
+              <div class="form-group">
+                <label>Lùi bên</label>
+                <input type="text" id="popup-type2-sideSpace">
+              </div>
+
+              <button class="btn btn-primary" onclick="savePopupType(2, event)">💾 Lưu Type 2</button>
+            </div>
+
+            <!-- Type 3 -->
+            <div class="popup-type-form" data-popup-type-form="3">
+              <h3 style="margin-bottom: 1.5rem; color: #5d3a2e;">📝 Type 3 - Nội dung Popup</h3>
+
+              <div class="form-group">
+                <label>Hình Desktop</label>
+                <div style="margin-bottom: 8px;">
+                  <img id="preview-popup-type3-imageDesktop" src=""
+                    style="max-width: 100%; max-height: 200px; display: none; border-radius: 4px; border: 1px solid #ddd; margin-bottom: 8px;">
+                </div>
+                <div style="display: flex; gap: 8px;">
+                  <input type="text" id="popup-type3-imageDesktop" placeholder="images/popup-matcat/pc/3.png"
+                    style="flex: 1;">
+                  <input type="file" id="file-popup-type3-imageDesktop" accept="image/*" style="display: none;"
+                    onchange="window.handlePopupTypeImageUpload(event, 3, 'imageDesktop')">
+                  <button class="btn" id="btn-upload-popup-type3-imageDesktop"
+                    style="background: #f3f4f6; color: #374151; border: 1px solid #d1d5db; width: auto; padding: 0 1rem; white-space: nowrap;"
+                    onclick="document.getElementById('file-popup-type3-imageDesktop').click()">📁 Upload</button>
+                </div>
+              </div>
+
+              <div class="form-group">
+                <label>Hình Mobile</label>
+                <div style="margin-bottom: 8px;">
+                  <img id="preview-popup-type3-imageMobile" src=""
+                    style="max-width: 100%; max-height: 200px; display: none; border-radius: 4px; border: 1px solid #ddd; margin-bottom: 8px;">
+                </div>
+                <div style="display: flex; gap: 8px;">
+                  <input type="text" id="popup-type3-imageMobile" placeholder="images/popup-matcat/mobile/3.png"
+                    style="flex: 1;">
+                  <input type="file" id="file-popup-type3-imageMobile" accept="image/*" style="display: none;"
+                    onchange="window.handlePopupTypeImageUpload(event, 3, 'imageMobile')">
+                  <button class="btn" id="btn-upload-popup-type3-imageMobile"
+                    style="background: #f3f4f6; color: #374151; border: 1px solid #d1d5db; width: auto; padding: 0 1rem; white-space: nowrap;"
+                    onclick="document.getElementById('file-popup-type3-imageMobile').click()">📁 Upload</button>
+                </div>
+              </div>
+
+              <h4 style="margin: 2rem 0 1rem; color: #5d3a2e;">Thông tin chi tiết:</h4>
+
+              <div class="form-group"><label>Số lượng sản phẩm</label><input type="text" id="popup-type3-quantity">
+              </div>
+              <div class="form-group"><label>Số tầng</label><input type="text" id="popup-type3-floor"></div>
+              <div class="form-group"><label>Diện tích đất</label><input type="text" id="popup-type3-landArea"></div>
+              <div class="form-group"><label>Số phòng ngủ</label><input type="text" id="popup-type3-bedrooms"></div>
+              <div class="form-group"><label>Hướng</label><input type="text" id="popup-type3-direction"></div>
+              <div class="form-group"><label>Diện tích xây dựng</label><input type="text"
+                  id="popup-type3-constructionArea"></div>
+              <div class="form-group"><label>Mật độ xây dựng</label><input type="text" id="popup-type3-density"></div>
+              <div class="form-group"><label>Tổng diện tích sàn</label><input type="text" id="popup-type3-totalArea">
+              </div>
+              <div class="form-group"><label>Lùi trước</label><input type="text" id="popup-type3-frontSpace"></div>
+              <div class="form-group"><label>Lùi sau</label><input type="text" id="popup-type3-backSpace"></div>
+              <div class="form-group"><label>Lùi bên</label><input type="text" id="popup-type3-sideSpace"></div>
+
+              <button class="btn btn-primary" onclick="savePopupType(3, event)">💾 Lưu Type 3</button>
+            </div>
+
+            <!-- Type 4 -->
+            <div class="popup-type-form" data-popup-type-form="4">
+              <h3 style="margin-bottom: 1.5rem; color: #5d3a2e;">📝 Type 4 - Nội dung Popup</h3>
+
+              <div class="form-group">
+                <label>Hình Desktop</label>
+                <div style="margin-bottom: 8px;">
+                  <img id="preview-popup-type4-imageDesktop" src=""
+                    style="max-width: 100%; max-height: 200px; display: none; border-radius: 4px; border: 1px solid #ddd; margin-bottom: 8px;">
+                </div>
+                <div style="display: flex; gap: 8px;">
+                  <input type="text" id="popup-type4-imageDesktop" style="flex: 1;">
+                  <input type="file" id="file-popup-type4-imageDesktop" accept="image/*" style="display: none;"
+                    onchange="window.handlePopupTypeImageUpload(event, 4, 'imageDesktop')">
+                  <button class="btn" id="btn-upload-popup-type4-imageDesktop"
+                    style="background: #f3f4f6; color: #374151; border: 1px solid #d1d5db; width: auto; padding: 0 1rem; white-space: nowrap;"
+                    onclick="document.getElementById('file-popup-type4-imageDesktop').click()">📁 Upload</button>
+                </div>
+              </div>
+              <div class="form-group">
+                <label>Hình Mobile</label>
+                <div style="margin-bottom: 8px;">
+                  <img id="preview-popup-type4-imageMobile" src=""
+                    style="max-width: 100%; max-height: 200px; display: none; border-radius: 4px; border: 1px solid #ddd; margin-bottom: 8px;">
+                </div>
+                <div style="display: flex; gap: 8px;">
+                  <input type="text" id="popup-type4-imageMobile" style="flex: 1;">
+                  <input type="file" id="file-popup-type4-imageMobile" accept="image/*" style="display: none;"
+                    onchange="window.handlePopupTypeImageUpload(event, 4, 'imageMobile')">
+                  <button class="btn" id="btn-upload-popup-type4-imageMobile"
+                    style="background: #f3f4f6; color: #374151; border: 1px solid #d1d5db; width: auto; padding: 0 1rem; white-space: nowrap;"
+                    onclick="document.getElementById('file-popup-type4-imageMobile').click()">📁 Upload</button>
+                </div>
+              </div>
+              <h4 style="margin: 2rem 0 1rem; color: #5d3a2e;">Thông tin chi tiết:</h4>
+              <div class="form-group"><label>Số lượng sản phẩm</label><input type="text" id="popup-type4-quantity">
+              </div>
+              <div class="form-group"><label>Số tầng</label><input type="text" id="popup-type4-floor"></div>
+              <div class="form-group"><label>Diện tích đất</label><input type="text" id="popup-type4-landArea"></div>
+              <div class="form-group"><label>Số phòng ngủ</label><input type="text" id="popup-type4-bedrooms"></div>
+              <div class="form-group"><label>Hướng</label><input type="text" id="popup-type4-direction"></div>
+              <div class="form-group"><label>Diện tích xây dựng</label><input type="text"
+                  id="popup-type4-constructionArea"></div>
+              <div class="form-group"><label>Mật độ xây dựng</label><input type="text" id="popup-type4-density"></div>
+              <div class="form-group"><label>Tổng diện tích sàn</label><input type="text" id="popup-type4-totalArea">
+              </div>
+              <div class="form-group"><label>Lùi trước</label><input type="text" id="popup-type4-frontSpace"></div>
+              <div class="form-group"><label>Lùi sau</label><input type="text" id="popup-type4-backSpace"></div>
+              <div class="form-group"><label>Lùi bên</label><input type="text" id="popup-type4-sideSpace"></div>
+
+              <button class="btn btn-primary" onclick="savePopupType(4, event)">💾 Lưu Type 4</button>
+            </div>
+
+            <!-- Type 5 -->
+            <div class="popup-type-form" data-popup-type-form="5">
+              <h3 style="margin-bottom: 1.5rem; color: #5d3a2e;">📝 Type 5 - Nội dung Popup</h3>
+
+              <div class="form-group">
+                <label>Hình Desktop</label>
+                <div style="margin-bottom: 8px;">
+                  <img id="preview-popup-type5-imageDesktop" src=""
+                    style="max-width: 100%; max-height: 200px; display: none; border-radius: 4px; border: 1px solid #ddd; margin-bottom: 8px;">
+                </div>
+                <div style="display: flex; gap: 8px;">
+                  <input type="text" id="popup-type5-imageDesktop" style="flex: 1;">
+                  <input type="file" id="file-popup-type5-imageDesktop" accept="image/*" style="display: none;"
+                    onchange="window.handlePopupTypeImageUpload(event, 5, 'imageDesktop')">
+                  <button class="btn" id="btn-upload-popup-type5-imageDesktop"
+                    style="background: #f3f4f6; color: #374151; border: 1px solid #d1d5db; width: auto; padding: 0 1rem; white-space: nowrap;"
+                    onclick="document.getElementById('file-popup-type5-imageDesktop').click()">📁 Upload</button>
+                </div>
+              </div>
+              <div class="form-group">
+                <label>Hình Mobile</label>
+                <div style="margin-bottom: 8px;">
+                  <img id="preview-popup-type5-imageMobile" src=""
+                    style="max-width: 100%; max-height: 200px; display: none; border-radius: 4px; border: 1px solid #ddd; margin-bottom: 8px;">
+                </div>
+                <div style="display: flex; gap: 8px;">
+                  <input type="text" id="popup-type5-imageMobile" style="flex: 1;">
+                  <input type="file" id="file-popup-type5-imageMobile" accept="image/*" style="display: none;"
+                    onchange="window.handlePopupTypeImageUpload(event, 5, 'imageMobile')">
+                  <button class="btn" id="btn-upload-popup-type5-imageMobile"
+                    style="background: #f3f4f6; color: #374151; border: 1px solid #d1d5db; width: auto; padding: 0 1rem; white-space: nowrap;"
+                    onclick="document.getElementById('file-popup-type5-imageMobile').click()">📁 Upload</button>
+                </div>
+              </div>
+              <h4 style="margin: 2rem 0 1rem; color: #5d3a2e;">Thông tin chi tiết:</h4>
+              <div class="form-group"><label>Số lượng sản phẩm</label><input type="text" id="popup-type5-quantity">
+              </div>
+              <div class="form-group"><label>Số tầng</label><input type="text" id="popup-type5-floor"></div>
+              <div class="form-group"><label>Diện tích đất</label><input type="text" id="popup-type5-landArea"></div>
+              <div class="form-group"><label>Số phòng ngủ</label><input type="text" id="popup-type5-bedrooms"></div>
+              <div class="form-group"><label>Hướng</label><input type="text" id="popup-type5-direction"></div>
+              <div class="form-group"><label>Diện tích xây dựng</label><input type="text"
+                  id="popup-type5-constructionArea"></div>
+              <div class="form-group"><label>Mật độ xây dựng</label><input type="text" id="popup-type5-density"></div>
+              <div class="form-group"><label>Tổng diện tích sàn</label><input type="text" id="popup-type5-totalArea">
+              </div>
+              <div class="form-group"><label>Lùi trước</label><input type="text" id="popup-type5-frontSpace"></div>
+              <div class="form-group"><label>Lùi sau</label><input type="text" id="popup-type5-backSpace"></div>
+              <div class="form-group"><label>Lùi bên</label><input type="text" id="popup-type5-sideSpace"></div>
+
+              <button class="btn btn-primary" onclick="savePopupType(5, event)">💾 Lưu Type 5</button>
+            </div>
+
+            <!-- Type 6 -->
+            <div class="popup-type-form" data-popup-type-form="6">
+              <h3 style="margin-bottom: 1.5rem; color: #5d3a2e;">📝 Type 6 - Nội dung Popup</h3>
+
+              <div class="form-group">
+                <label>Hình Desktop</label>
+                <div style="margin-bottom: 8px;">
+                  <img id="preview-popup-type6-imageDesktop" src=""
+                    style="max-width: 100%; max-height: 200px; display: none; border-radius: 4px; border: 1px solid #ddd; margin-bottom: 8px;">
+                </div>
+                <div style="display: flex; gap: 8px;">
+                  <input type="text" id="popup-type6-imageDesktop" style="flex: 1;">
+                  <input type="file" id="file-popup-type6-imageDesktop" accept="image/*" style="display: none;"
+                    onchange="window.handlePopupTypeImageUpload(event, 6, 'imageDesktop')">
+                  <button class="btn" id="btn-upload-popup-type6-imageDesktop"
+                    style="background: #f3f4f6; color: #374151; border: 1px solid #d1d5db; width: auto; padding: 0 1rem; white-space: nowrap;"
+                    onclick="document.getElementById('file-popup-type6-imageDesktop').click()">📁 Upload</button>
+                </div>
+              </div>
+              <div class="form-group">
+                <label>Hình Mobile</label>
+                <div style="margin-bottom: 8px;">
+                  <img id="preview-popup-type6-imageMobile" src=""
+                    style="max-width: 100%; max-height: 200px; display: none; border-radius: 4px; border: 1px solid #ddd; margin-bottom: 8px;">
+                </div>
+                <div style="display: flex; gap: 8px;">
+                  <input type="text" id="popup-type6-imageMobile" style="flex: 1;">
+                  <input type="file" id="file-popup-type6-imageMobile" accept="image/*" style="display: none;"
+                    onchange="window.handlePopupTypeImageUpload(event, 6, 'imageMobile')">
+                  <button class="btn" id="btn-upload-popup-type6-imageMobile"
+                    style="background: #f3f4f6; color: #374151; border: 1px solid #d1d5db; width: auto; padding: 0 1rem; white-space: nowrap;"
+                    onclick="document.getElementById('file-popup-type6-imageMobile').click()">📁 Upload</button>
+                </div>
+              </div>
+              <h4 style="margin: 2rem 0 1rem; color: #5d3a2e;">Thông tin chi tiết:</h4>
+              <div class="form-group"><label>Số lượng sản phẩm</label><input type="text" id="popup-type6-quantity">
+              </div>
+              <div class="form-group"><label>Số tầng</label><input type="text" id="popup-type6-floor"></div>
+              <div class="form-group"><label>Diện tích đất</label><input type="text" id="popup-type6-landArea"></div>
+              <div class="form-group"><label>Số phòng ngủ</label><input type="text" id="popup-type6-bedrooms"></div>
+              <div class="form-group"><label>Hướng</label><input type="text" id="popup-type6-direction"></div>
+              <div class="form-group"><label>Diện tích xây dựng</label><input type="text"
+                  id="popup-type6-constructionArea"></div>
+              <div class="form-group"><label>Mật độ xây dựng</label><input type="text" id="popup-type6-density"></div>
+              <div class="form-group"><label>Tổng diện tích sàn</label><input type="text" id="popup-type6-totalArea">
+              </div>
+              <div class="form-group"><label>Lùi trước</label><input type="text" id="popup-type6-frontSpace"></div>
+              <div class="form-group"><label>Lùi sau</label><input type="text" id="popup-type6-backSpace"></div>
+              <div class="form-group"><label>Lùi bên</label><input type="text" id="popup-type6-sideSpace"></div>
+
+              <button class="btn btn-primary" onclick="savePopupType(6, event)">💾 Lưu Type 6</button>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <!-- News Section -->
+      <div class="subtab-content" id="subtab-news">
+        <div class="section-editor">
+          <h2>📰 Tin tức</h2>
+
+          <div id="news-grid"></div>
+          <div id="news-items-container"></div>
+          <button class="btn-add" id="add-news-btn">+ Thêm tin mới</button>
+        </div>
+      </div>
+
+      <!-- Location Section -->
+      <div class="subtab-content" id="subtab-framedepicting">
+        <div class="section-editor">
+          <h2>🏗️ Khung hình khắc họa</h2>
+          <div id="framedepicting-grid"></div>
+          <div class="form-group">
+            <label>Text TỔNG THỂ</label>
+            <input type="text" id="framedepicting-tong-the">
+          </div>
+          <div class="form-group">
+            <label>Text SHOPHOUSE</label>
+            <input type="text" id="framedepicting-shophouse">
+          </div>
+          <div class="form-group">
+            <label>Text TOWNHOUSE</label>
+            <input type="text" id="framedepicting-townhouse">
+          </div>
+          <div class="form-group">
+            <label>Text CLUBHOUSE</label>
+            <input type="text" id="framedepicting-clubhouse">
+          </div>
+          <div class="form-group">
+            <label>Text CÔNG VIÊN</label>
+            <input type="text" id="framedepicting-cong-vien">
+          </div>
+        </div>
+      </div>
+
+      <!-- Contact Section -->
+      <div class="subtab-content" id="subtab-contact">
+        <div class="section-editor">
+          <h2>📞 Liên hệ</h2>
+          <div id="contact-grid"></div>
+          <div class="form-group">
+            <label>Company</label>
+            <input type="text" id="contact-company">
+          </div>
+          <div class="form-group">
+            <label>Hotline</label>
+            <input type="text" id="contact-hotline">
+          </div>
+          <div class="form-group">
+            <label>Email</label>
+            <input type="email" id="contact-email">
+          </div>
+          <div class="form-group">
+            <label>Địa chỉ văn phòng</label>
+            <textarea id="contact-address" rows="2"></textarea>
+          </div>
+          <div class="form-group">
+            <label>Miêu tả form liên hệ</label>
+            <textarea id="contact-from-info" rows="2"></textarea>
+          </div>
+          <div class="form-group">
+            <label>Copyright</label>
+            <input type="text" id="contact-copyright">
+          </div>
+          <div class="form-group">
+            <label>Tiktok link</label>
+            <input type="text" id="social-link-tiktok">
+          </div>
+          <div class="form-group">
+            <label>Facebook link</label>
+            <input type="text" id="social-link-facebook">
+          </div>
+        </div>
+      </div>
+
+      <!-- All Sections (Auto) -->
+      <div class="subtab-content" id="subtab-all-text">
+        <div class="section-editor">
+          <h2>🧩 Menu</h2>
+          <div class="form-group">
+            <label>TRANG CHỦ</label>
+            <input type="text" id="nav_1">
+          </div>
+          <div class="form-group">
+            <label>VỊ TRÍ</label>
+            <input type="text" id="nav_2">
+          </div>
+          <div class="form-group">
+            <label>SẢN PHẨM</label>
+            <input type="text" id="nav_3">
+          </div>
+          <div class="form-group">
+            <label>ĐẶC QUYỀN</label>
+            <input type="text" id="nav_4">
+          </div>
+          <div class="form-group">
+            <label>MẶT BẰNG</label>
+            <input type="text" id="nav_5">
+          </div>
+          <div class="form-group">
+            <label>TIN TỨC</label>
+            <input type="text" id="nav_6">
+          </div>
+
+          <h2>🧩 Nhà phát triển</h2>
+          <div id="developer-grid"></div>
+          <div class="form-group">
+            <label>Giới thiệu</label>
+            <textarea id="developer-description" rows="5"></textarea>
+          </div>
+          <div class="form-group">
+            <label>Partners Title</label>
+            <input type="text" id="partners_description_title">
+          </div>
+          <div class="form-group">
+            <label>Partners Description 1</label>
+            <input type="text" id="partners_description_1">
+          </div>
+          <div class="form-group">
+            <label>Partners Description 2</label>
+            <input type="text" id="partners_description_2">
+          </div>
+          <div class="form-group">
+            <label>Partners Description 3</label>
+            <input type="text" id="partners_description_3">
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <!-- ============================================= -->
+    <!-- TAB 2: QUẢN LÝ HÌNH ẢNH -->
+    <!-- ============================================= -->
+    <div class="tab-content" id="tab-images">
+      <!-- Sub-tabs for image groups -->
+      <div class="tabs" style="margin-top: 1rem; border-top: 1px solid #e5e7eb; padding-top: 1rem;">
+        <button class="subtab-btn active" data-subtab="logos">🏢 Logos (5)</button>
+        <button class="subtab-btn" data-subtab="hero-images">🎨 Hero/Banners (6)</button>
+      </div>
+
+      <!-- Logos Group -->
+      <div class="subtab-content active" id="subtab-logos">
+        <div class="section-editor">
+          <h2>🏢 Logos & Branding</h2>
+          <p style="color: #6b7280;">Logo và các graphic chính của dự án - Click vào ảnh để xem full size</p>
+          <div id="logos-grid"></div>
+        </div>
+      </div>
+
+      <!-- Hero Images Group -->
+      <div class="subtab-content" id="subtab-hero-images">
+        <div class="section-editor">
+          <h2>🎨 Hero Section & Banners</h2>
+          <p style="color: #6b7280;">Banner chính, hero images - Click vào ảnh để xem full size</p>
+          <div id="hero-grid"></div>
+        </div>
+      </div>
+
+    </div>
+
+    <!-- ============================================= -->
+    <!-- TAB 3: QUẢN LÝ TÀI KHOẢN -->
+    <!-- ============================================= -->
+    <div class="tab-content" id="tab-users">
+      <div class="section-editor">
+        <h2>👤 Danh sách tài khoản</h2>
+        <p style="color: #6b7280;">Quản lý tài khoản đăng nhập Admin</p>
+        
+        <div class="user-management-actions" style="margin-bottom: 30px;">
+           <div class="add-user-card">
+             <div class="card-header">
+               <h4>✨ Thêm tài khoản quản trị</h4>
+             </div>
+             <div class="card-body">
+               <div class="input-group">
+                 <div class="input-wrapper">
+                   <label for="new-username">Tên đăng nhập</label>
+                   <div class="input-icon-wrapper">
+                     <span class="input-icon">👤</span>
+                     <input type="text" id="new-username" placeholder="Nhập username">
+                   </div>
+                 </div>
+                 <div class="input-wrapper">
+                   <label for="new-password">Mật khẩu</label>
+                   <div class="input-icon-wrapper">
+                     <span class="input-icon">🔒</span>
+                     <input type="text" id="new-password" placeholder="Nhập password">
+                   </div>
+                 </div>
+               </div>
+               <div class="card-footer">
+                 <button class="btn-add-user" onclick="addUser()">
+                   <span class="plus-icon">+</span> Thêm tài khoản
+                 </button>
+               </div>
+             </div>
+           </div>
+        </div>
+
+        <table class="data-table" style="width: 100%; border-collapse: collapse; margin-top: 1rem;">
+          <thead>
+            <tr style="background: #f3f4f6; text-align: left;">
+              <th style="padding: 12px; border-bottom: 2px solid #e5e7eb;">Username</th>
+              <th style="padding: 12px; border-bottom: 2px solid #e5e7eb;">Password</th>
+              <th style="padding: 12px; border-bottom: 2px solid #e5e7eb; width: 100px;">Thao tác</th>
+            </tr>
+          </thead>
+          <tbody id="users-table-body">
+            <!-- User rows will be rendered here -->
+          </tbody>
+        </table>
+      </div>
+    </div>
+
+    <!-- Action Buttons -->
+    <div class="action-buttons">
+      <button class="btn-save" id="save-all-btn">
+        💾 Lưu tất cả thay đổi
+      </button>
+      <input type="file" id="import-file-input" accept=".json" style="display: none;">
+    </div>
+  </div> <!-- End Admin Container -->
+  </div> <!-- End Main Layout -->
+    }
+
+  <!-- Image Fullsize Modal -->
+  <div id="image-modal" class="image-modal">
+    <div class="image-modal-overlay" onclick="closeImageModal()"></div>
+    <div class="image-modal-content">
+      <div class="image-modal-header">
+        <h3 id="image-modal-title">Xem hình ảnh</h3>
+        <button class="image-modal-close" onclick="closeImageModal()">&times;</button>
+      </div>
+      <div class="image-modal-body">
+        <img id="image-modal-preview" src="" alt="Preview">
+      </div>
+      <div class="image-modal-footer">
+        <button class="btn-secondary" onclick="closeImageModal()">Đóng</button>
+      </div>
+    </div>
+  </div>
+
+  <!-- Admin JS -->
+
+  <script type="module" src="js/admin-local.js?v=1.0.1"></script>
+</body>
+</html>

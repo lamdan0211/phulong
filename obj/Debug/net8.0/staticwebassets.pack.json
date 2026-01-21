@@ -1,0 +1,1013 @@
+{
+  "Files": [
+    {
+      "Id": "/Users/khahan/Downloads/html/phulong/wwwroot/css/admin.css",
+      "PackagePath": "staticwebassets/css/admin.css"
+    },
+    {
+      "Id": "/Users/khahan/Downloads/html/phulong/wwwroot/css/floor-plan.css",
+      "PackagePath": "staticwebassets/css/floor-plan.css"
+    },
+    {
+      "Id": "/Users/khahan/Downloads/html/phulong/wwwroot/css/fonts.css",
+      "PackagePath": "staticwebassets/css/fonts.css"
+    },
+    {
+      "Id": "/Users/khahan/Downloads/html/phulong/wwwroot/css/style.css",
+      "PackagePath": "staticwebassets/css/style.css"
+    },
+    {
+      "Id": "/Users/khahan/Downloads/html/phulong/wwwroot/fonts/SFUFranklinGothicBook.TTF",
+      "PackagePath": "staticwebassets/fonts/SFUFranklinGothicBook.TTF"
+    },
+    {
+      "Id": "/Users/khahan/Downloads/html/phulong/wwwroot/fonts/SFUFranklinGothicBook.woff2",
+      "PackagePath": "staticwebassets/fonts/SFUFranklinGothicBook.woff2"
+    },
+    {
+      "Id": "/Users/khahan/Downloads/html/phulong/wwwroot/fonts/SFUFranklinGothicBookOblique.TTF",
+      "PackagePath": "staticwebassets/fonts/SFUFranklinGothicBookOblique.TTF"
+    },
+    {
+      "Id": "/Users/khahan/Downloads/html/phulong/wwwroot/fonts/SFUFranklinGothicBookOblique.woff2",
+      "PackagePath": "staticwebassets/fonts/SFUFranklinGothicBookOblique.woff2"
+    },
+    {
+      "Id": "/Users/khahan/Downloads/html/phulong/wwwroot/fonts/SFUFranklinGothicDemi.TTF",
+      "PackagePath": "staticwebassets/fonts/SFUFranklinGothicDemi.TTF"
+    },
+    {
+      "Id": "/Users/khahan/Downloads/html/phulong/wwwroot/fonts/SFUFranklinGothicDemi.woff2",
+      "PackagePath": "staticwebassets/fonts/SFUFranklinGothicDemi.woff2"
+    },
+    {
+      "Id": "/Users/khahan/Downloads/html/phulong/wwwroot/fonts/SFUFranklinGothicHeavy.TTF",
+      "PackagePath": "staticwebassets/fonts/SFUFranklinGothicHeavy.TTF"
+    },
+    {
+      "Id": "/Users/khahan/Downloads/html/phulong/wwwroot/fonts/SFUFranklinGothicHeavy.woff2",
+      "PackagePath": "staticwebassets/fonts/SFUFranklinGothicHeavy.woff2"
+    },
+    {
+      "Id": "/Users/khahan/Downloads/html/phulong/wwwroot/fonts/SVN-Harman Script.ttf",
+      "PackagePath": "staticwebassets/fonts/SVN-Harman Script.ttf"
+    },
+    {
+      "Id": "/Users/khahan/Downloads/html/phulong/wwwroot/fonts/SVN-Harman Script.woff2",
+      "PackagePath": "staticwebassets/fonts/SVN-Harman Script.woff2"
+    },
+    {
+      "Id": "/Users/khahan/Downloads/html/phulong/wwwroot/fonts/Times Sans Serif 400.ttf",
+      "PackagePath": "staticwebassets/fonts/Times Sans Serif 400.ttf"
+    },
+    {
+      "Id": "/Users/khahan/Downloads/html/phulong/wwwroot/fonts/Times Sans Serif 400.woff2",
+      "PackagePath": "staticwebassets/fonts/Times Sans Serif 400.woff2"
+    },
+    {
+      "Id": "/Users/khahan/Downloads/html/phulong/wwwroot/images/10phut-img.png",
+      "PackagePath": "staticwebassets/images/10phut-img.png"
+    },
+    {
+      "Id": "/Users/khahan/Downloads/html/phulong/wwwroot/images/360-icon.png",
+      "PackagePath": "staticwebassets/images/360-icon.png"
+    },
+    {
+      "Id": "/Users/khahan/Downloads/html/phulong/wwwroot/images/3phut-image.png",
+      "PackagePath": "staticwebassets/images/3phut-image.png"
+    },
+    {
+      "Id": "/Users/khahan/Downloads/html/phulong/wwwroot/images/5phut-img.png",
+      "PackagePath": "staticwebassets/images/5phut-img.png"
+    },
+    {
+      "Id": "/Users/khahan/Downloads/html/phulong/wwwroot/images/7phut-img.png",
+      "PackagePath": "staticwebassets/images/7phut-img.png"
+    },
+    {
+      "Id": "/Users/khahan/Downloads/html/phulong/wwwroot/images/HOTLINE.png",
+      "PackagePath": "staticwebassets/images/HOTLINE.png"
+    },
+    {
+      "Id": "/Users/khahan/Downloads/html/phulong/wwwroot/images/LOGO-BROADWAY-PRELOAD.png",
+      "PackagePath": "staticwebassets/images/LOGO-BROADWAY-PRELOAD.png"
+    },
+    {
+      "Id": "/Users/khahan/Downloads/html/phulong/wwwroot/images/LOGO-BROADWAY.png",
+      "PackagePath": "staticwebassets/images/LOGO-BROADWAY.png"
+    },
+    {
+      "Id": "/Users/khahan/Downloads/html/phulong/wwwroot/images/README.md",
+      "PackagePath": "staticwebassets/images/README.md"
+    },
+    {
+      "Id": "/Users/khahan/Downloads/html/phulong/wwwroot/images/SCROLL.svg",
+      "PackagePath": "staticwebassets/images/SCROLL.svg"
+    },
+    {
+      "Id": "/Users/khahan/Downloads/html/phulong/wwwroot/images/Tiktok.png",
+      "PackagePath": "staticwebassets/images/Tiktok.png"
+    },
+    {
+      "Id": "/Users/khahan/Downloads/html/phulong/wwwroot/images/arrow-nav-mobile.png",
+      "PackagePath": "staticwebassets/images/arrow-nav-mobile.png"
+    },
+    {
+      "Id": "/Users/khahan/Downloads/html/phulong/wwwroot/images/back-scroll.png",
+      "PackagePath": "staticwebassets/images/back-scroll.png"
+    },
+    {
+      "Id": "/Users/khahan/Downloads/html/phulong/wwwroot/images/banner-top-mobile.png",
+      "PackagePath": "staticwebassets/images/banner-top-mobile.png"
+    },
+    {
+      "Id": "/Users/khahan/Downloads/html/phulong/wwwroot/images/banner-top.png",
+      "PackagePath": "staticwebassets/images/banner-top.png"
+    },
+    {
+      "Id": "/Users/khahan/Downloads/html/phulong/wwwroot/images/bg-footer-1.png",
+      "PackagePath": "staticwebassets/images/bg-footer-1.png"
+    },
+    {
+      "Id": "/Users/khahan/Downloads/html/phulong/wwwroot/images/bg-footer.png",
+      "PackagePath": "staticwebassets/images/bg-footer.png"
+    },
+    {
+      "Id": "/Users/khahan/Downloads/html/phulong/wwwroot/images/bg-left-clubhouse-modal.png.png",
+      "PackagePath": "staticwebassets/images/bg-left-clubhouse-modal.png.png"
+    },
+    {
+      "Id": "/Users/khahan/Downloads/html/phulong/wwwroot/images/bg-main-menu.png",
+      "PackagePath": "staticwebassets/images/bg-main-menu.png"
+    },
+    {
+      "Id": "/Users/khahan/Downloads/html/phulong/wwwroot/images/bg-nav-mobile.png",
+      "PackagePath": "staticwebassets/images/bg-nav-mobile.png"
+    },
+    {
+      "Id": "/Users/khahan/Downloads/html/phulong/wwwroot/images/bg-popup-form.jpg",
+      "PackagePath": "staticwebassets/images/bg-popup-form.jpg"
+    },
+    {
+      "Id": "/Users/khahan/Downloads/html/phulong/wwwroot/images/bg-red.png",
+      "PackagePath": "staticwebassets/images/bg-red.png"
+    },
+    {
+      "Id": "/Users/khahan/Downloads/html/phulong/wwwroot/images/bg-right-clubhouse-modal.png",
+      "PackagePath": "staticwebassets/images/bg-right-clubhouse-modal.png"
+    },
+    {
+      "Id": "/Users/khahan/Downloads/html/phulong/wwwroot/images/botrikhoahoc.svg",
+      "PackagePath": "staticwebassets/images/botrikhoahoc.svg"
+    },
+    {
+      "Id": "/Users/khahan/Downloads/html/phulong/wwwroot/images/btn-dangkyngay.svg",
+      "PackagePath": "staticwebassets/images/btn-dangkyngay.svg"
+    },
+    {
+      "Id": "/Users/khahan/Downloads/html/phulong/wwwroot/images/btn-left.png",
+      "PackagePath": "staticwebassets/images/btn-left.png"
+    },
+    {
+      "Id": "/Users/khahan/Downloads/html/phulong/wwwroot/images/btn-register.png",
+      "PackagePath": "staticwebassets/images/btn-register.png"
+    },
+    {
+      "Id": "/Users/khahan/Downloads/html/phulong/wwwroot/images/btn-right.png",
+      "PackagePath": "staticwebassets/images/btn-right.png"
+    },
+    {
+      "Id": "/Users/khahan/Downloads/html/phulong/wwwroot/images/chuansongthuongluu.svg",
+      "PackagePath": "staticwebassets/images/chuansongthuongluu.svg"
+    },
+    {
+      "Id": "/Users/khahan/Downloads/html/phulong/wwwroot/images/circle-image.png",
+      "PackagePath": "staticwebassets/images/circle-image.png"
+    },
+    {
+      "Id": "/Users/khahan/Downloads/html/phulong/wwwroot/images/close-modal.svg",
+      "PackagePath": "staticwebassets/images/close-modal.svg"
+    },
+    {
+      "Id": "/Users/khahan/Downloads/html/phulong/wwwroot/images/clubhouse-pic.png",
+      "PackagePath": "staticwebassets/images/clubhouse-pic.png"
+    },
+    {
+      "Id": "/Users/khahan/Downloads/html/phulong/wwwroot/images/congvien-pic.png",
+      "PackagePath": "staticwebassets/images/congvien-pic.png"
+    },
+    {
+      "Id": "/Users/khahan/Downloads/html/phulong/wwwroot/images/dacquyenthuongluu-mobile.svg",
+      "PackagePath": "staticwebassets/images/dacquyenthuongluu-mobile.svg"
+    },
+    {
+      "Id": "/Users/khahan/Downloads/html/phulong/wwwroot/images/dacquyenthuongluu.svg",
+      "PackagePath": "staticwebassets/images/dacquyenthuongluu.svg"
+    },
+    {
+      "Id": "/Users/khahan/Downloads/html/phulong/wwwroot/images/dacquyentrainghiem-mobile.svg",
+      "PackagePath": "staticwebassets/images/dacquyentrainghiem-mobile.svg"
+    },
+    {
+      "Id": "/Users/khahan/Downloads/html/phulong/wwwroot/images/dacquyentrainghiem.svg",
+      "PackagePath": "staticwebassets/images/dacquyentrainghiem.svg"
+    },
+    {
+      "Id": "/Users/khahan/Downloads/html/phulong/wwwroot/images/fb-icon.png",
+      "PackagePath": "staticwebassets/images/fb-icon.png"
+    },
+    {
+      "Id": "/Users/khahan/Downloads/html/phulong/wwwroot/images/floor-clubhouse-modal.png",
+      "PackagePath": "staticwebassets/images/floor-clubhouse-modal.png"
+    },
+    {
+      "Id": "/Users/khahan/Downloads/html/phulong/wwwroot/images/floor-plan.svg",
+      "PackagePath": "staticwebassets/images/floor-plan.svg"
+    },
+    {
+      "Id": "/Users/khahan/Downloads/html/phulong/wwwroot/images/floor/left-shophouse-tang1-mobile.png",
+      "PackagePath": "staticwebassets/images/floor/left-shophouse-tang1-mobile.png"
+    },
+    {
+      "Id": "/Users/khahan/Downloads/html/phulong/wwwroot/images/floor/left-shophouse-tang1.png",
+      "PackagePath": "staticwebassets/images/floor/left-shophouse-tang1.png"
+    },
+    {
+      "Id": "/Users/khahan/Downloads/html/phulong/wwwroot/images/floor/left-shophouse-tang2-mobile.png",
+      "PackagePath": "staticwebassets/images/floor/left-shophouse-tang2-mobile.png"
+    },
+    {
+      "Id": "/Users/khahan/Downloads/html/phulong/wwwroot/images/floor/left-shophouse-tang2.png",
+      "PackagePath": "staticwebassets/images/floor/left-shophouse-tang2.png"
+    },
+    {
+      "Id": "/Users/khahan/Downloads/html/phulong/wwwroot/images/floor/left-shophouse-tang3-mobile.png",
+      "PackagePath": "staticwebassets/images/floor/left-shophouse-tang3-mobile.png"
+    },
+    {
+      "Id": "/Users/khahan/Downloads/html/phulong/wwwroot/images/floor/left-shophouse-tang3.png",
+      "PackagePath": "staticwebassets/images/floor/left-shophouse-tang3.png"
+    },
+    {
+      "Id": "/Users/khahan/Downloads/html/phulong/wwwroot/images/floor/left-shophouse-tang4-mobile.png",
+      "PackagePath": "staticwebassets/images/floor/left-shophouse-tang4-mobile.png"
+    },
+    {
+      "Id": "/Users/khahan/Downloads/html/phulong/wwwroot/images/floor/left-shophouse-tang4.png",
+      "PackagePath": "staticwebassets/images/floor/left-shophouse-tang4.png"
+    },
+    {
+      "Id": "/Users/khahan/Downloads/html/phulong/wwwroot/images/floor/right-shophouse-tang1-mobile.png",
+      "PackagePath": "staticwebassets/images/floor/right-shophouse-tang1-mobile.png"
+    },
+    {
+      "Id": "/Users/khahan/Downloads/html/phulong/wwwroot/images/floor/right-shophouse-tang1.png",
+      "PackagePath": "staticwebassets/images/floor/right-shophouse-tang1.png"
+    },
+    {
+      "Id": "/Users/khahan/Downloads/html/phulong/wwwroot/images/floor/right-shophouse-tang2-mobile.png",
+      "PackagePath": "staticwebassets/images/floor/right-shophouse-tang2-mobile.png"
+    },
+    {
+      "Id": "/Users/khahan/Downloads/html/phulong/wwwroot/images/floor/right-shophouse-tang2.png",
+      "PackagePath": "staticwebassets/images/floor/right-shophouse-tang2.png"
+    },
+    {
+      "Id": "/Users/khahan/Downloads/html/phulong/wwwroot/images/floor/right-shophouse-tang3-mobile.png",
+      "PackagePath": "staticwebassets/images/floor/right-shophouse-tang3-mobile.png"
+    },
+    {
+      "Id": "/Users/khahan/Downloads/html/phulong/wwwroot/images/floor/right-shophouse-tang3.png",
+      "PackagePath": "staticwebassets/images/floor/right-shophouse-tang3.png"
+    },
+    {
+      "Id": "/Users/khahan/Downloads/html/phulong/wwwroot/images/floor/right-shophouse-tang4-mobile.png",
+      "PackagePath": "staticwebassets/images/floor/right-shophouse-tang4-mobile.png"
+    },
+    {
+      "Id": "/Users/khahan/Downloads/html/phulong/wwwroot/images/floor/right-shophouse-tang4.png",
+      "PackagePath": "staticwebassets/images/floor/right-shophouse-tang4.png"
+    },
+    {
+      "Id": "/Users/khahan/Downloads/html/phulong/wwwroot/images/floor/text-tang-1-mobile.png",
+      "PackagePath": "staticwebassets/images/floor/text-tang-1-mobile.png"
+    },
+    {
+      "Id": "/Users/khahan/Downloads/html/phulong/wwwroot/images/floor/text-tang-2-mobile.png",
+      "PackagePath": "staticwebassets/images/floor/text-tang-2-mobile.png"
+    },
+    {
+      "Id": "/Users/khahan/Downloads/html/phulong/wwwroot/images/floor/text-tang-3-mobile.png",
+      "PackagePath": "staticwebassets/images/floor/text-tang-3-mobile.png"
+    },
+    {
+      "Id": "/Users/khahan/Downloads/html/phulong/wwwroot/images/floor/text-tang-4-mobile.png",
+      "PackagePath": "staticwebassets/images/floor/text-tang-4-mobile.png"
+    },
+    {
+      "Id": "/Users/khahan/Downloads/html/phulong/wwwroot/images/gallary-clubhouse/EB_IceThre_V1.jpg",
+      "PackagePath": "staticwebassets/images/gallary-clubhouse/EB_IceThre_V1.jpg"
+    },
+    {
+      "Id": "/Users/khahan/Downloads/html/phulong/wwwroot/images/gallary-clubhouse/EB_Kids.jpg",
+      "PackagePath": "staticwebassets/images/gallary-clubhouse/EB_Kids.jpg"
+    },
+    {
+      "Id": "/Users/khahan/Downloads/html/phulong/wwwroot/images/gallary-clubhouse/cinema.jpg",
+      "PackagePath": "staticwebassets/images/gallary-clubhouse/cinema.jpg"
+    },
+    {
+      "Id": "/Users/khahan/Downloads/html/phulong/wwwroot/images/gallary-clubhouse/default.jpg",
+      "PackagePath": "staticwebassets/images/gallary-clubhouse/default.jpg"
+    },
+    {
+      "Id": "/Users/khahan/Downloads/html/phulong/wwwroot/images/gallary-clubhouse/golf.jpg",
+      "PackagePath": "staticwebassets/images/gallary-clubhouse/golf.jpg"
+    },
+    {
+      "Id": "/Users/khahan/Downloads/html/phulong/wwwroot/images/gallary-clubhouse/gym.jpg",
+      "PackagePath": "staticwebassets/images/gallary-clubhouse/gym.jpg"
+    },
+    {
+      "Id": "/Users/khahan/Downloads/html/phulong/wwwroot/images/gallary-clubhouse/hoboisoiquang.jpg",
+      "PackagePath": "staticwebassets/images/gallary-clubhouse/hoboisoiquang.jpg"
+    },
+    {
+      "Id": "/Users/khahan/Downloads/html/phulong/wwwroot/images/gallary-clubhouse/spa.jpg",
+      "PackagePath": "staticwebassets/images/gallary-clubhouse/spa.jpg"
+    },
+    {
+      "Id": "/Users/khahan/Downloads/html/phulong/wwwroot/images/gallary-clubhouse/yoga.jpg",
+      "PackagePath": "staticwebassets/images/gallary-clubhouse/yoga.jpg"
+    },
+    {
+      "Id": "/Users/khahan/Downloads/html/phulong/wwwroot/images/gallary-park/choi-nghi-chan-mobile.jpg",
+      "PackagePath": "staticwebassets/images/gallary-park/choi-nghi-chan-mobile.jpg"
+    },
+    {
+      "Id": "/Users/khahan/Downloads/html/phulong/wwwroot/images/gallary-park/choi-nghi-chan.jpg",
+      "PackagePath": "staticwebassets/images/gallary-park/choi-nghi-chan.jpg"
+    },
+    {
+      "Id": "/Users/khahan/Downloads/html/phulong/wwwroot/images/gallary-park/cong-vien-thu-cung-mobile.jpg",
+      "PackagePath": "staticwebassets/images/gallary-park/cong-vien-thu-cung-mobile.jpg"
+    },
+    {
+      "Id": "/Users/khahan/Downloads/html/phulong/wwwroot/images/gallary-park/cong-vien-thu-cung.jpg",
+      "PackagePath": "staticwebassets/images/gallary-park/cong-vien-thu-cung.jpg"
+    },
+    {
+      "Id": "/Users/khahan/Downloads/html/phulong/wwwroot/images/gallary-park/duong-dao-bo-mobile.jpg",
+      "PackagePath": "staticwebassets/images/gallary-park/duong-dao-bo-mobile.jpg"
+    },
+    {
+      "Id": "/Users/khahan/Downloads/html/phulong/wwwroot/images/gallary-park/duong-dao-bo.jpg",
+      "PackagePath": "staticwebassets/images/gallary-park/duong-dao-bo.jpg"
+    },
+    {
+      "Id": "/Users/khahan/Downloads/html/phulong/wwwroot/images/gallary-park/khan-dai-ngoai-troi-mobile.jpg",
+      "PackagePath": "staticwebassets/images/gallary-park/khan-dai-ngoai-troi-mobile.jpg"
+    },
+    {
+      "Id": "/Users/khahan/Downloads/html/phulong/wwwroot/images/gallary-park/khan-dai-ngoai-troi.jpg",
+      "PackagePath": "staticwebassets/images/gallary-park/khan-dai-ngoai-troi.jpg"
+    },
+    {
+      "Id": "/Users/khahan/Downloads/html/phulong/wwwroot/images/gallary-park/san-the-thao-da-nang-mobile.jpg",
+      "PackagePath": "staticwebassets/images/gallary-park/san-the-thao-da-nang-mobile.jpg"
+    },
+    {
+      "Id": "/Users/khahan/Downloads/html/phulong/wwwroot/images/gallary-park/san-the-thao-da-nang.jpg",
+      "PackagePath": "staticwebassets/images/gallary-park/san-the-thao-da-nang.jpg"
+    },
+    {
+      "Id": "/Users/khahan/Downloads/html/phulong/wwwroot/images/gallary-role-modal-1.png",
+      "PackagePath": "staticwebassets/images/gallary-role-modal-1.png"
+    },
+    {
+      "Id": "/Users/khahan/Downloads/html/phulong/wwwroot/images/galllary-toamancu-top.png",
+      "PackagePath": "staticwebassets/images/galllary-toamancu-top.png"
+    },
+    {
+      "Id": "/Users/khahan/Downloads/html/phulong/wwwroot/images/icon-hotline.png",
+      "PackagePath": "staticwebassets/images/icon-hotline.png"
+    },
+    {
+      "Id": "/Users/khahan/Downloads/html/phulong/wwwroot/images/ketnoihomnay-mobile.svg",
+      "PackagePath": "staticwebassets/images/ketnoihomnay-mobile.svg"
+    },
+    {
+      "Id": "/Users/khahan/Downloads/html/phulong/wwwroot/images/ketnoihomnay.svg",
+      "PackagePath": "staticwebassets/images/ketnoihomnay.svg"
+    },
+    {
+      "Id": "/Users/khahan/Downloads/html/phulong/wwwroot/images/khonggiannoithat.png",
+      "PackagePath": "staticwebassets/images/khonggiannoithat.png"
+    },
+    {
+      "Id": "/Users/khahan/Downloads/html/phulong/wwwroot/images/khunghinhkhachoa.png",
+      "PackagePath": "staticwebassets/images/khunghinhkhachoa.png"
+    },
+    {
+      "Id": "/Users/khahan/Downloads/html/phulong/wwwroot/images/khunghinhkhachoa.svg",
+      "PackagePath": "staticwebassets/images/khunghinhkhachoa.svg"
+    },
+    {
+      "Id": "/Users/khahan/Downloads/html/phulong/wwwroot/images/line-divider-footer-mobile.png",
+      "PackagePath": "staticwebassets/images/line-divider-footer-mobile.png"
+    },
+    {
+      "Id": "/Users/khahan/Downloads/html/phulong/wwwroot/images/line-divider-footer.png",
+      "PackagePath": "staticwebassets/images/line-divider-footer.png"
+    },
+    {
+      "Id": "/Users/khahan/Downloads/html/phulong/wwwroot/images/logo-parner-1.png",
+      "PackagePath": "staticwebassets/images/logo-parner-1.png"
+    },
+    {
+      "Id": "/Users/khahan/Downloads/html/phulong/wwwroot/images/logo-parner-2.png",
+      "PackagePath": "staticwebassets/images/logo-parner-2.png"
+    },
+    {
+      "Id": "/Users/khahan/Downloads/html/phulong/wwwroot/images/logo-parner-3.png",
+      "PackagePath": "staticwebassets/images/logo-parner-3.png"
+    },
+    {
+      "Id": "/Users/khahan/Downloads/html/phulong/wwwroot/images/logo-phulong.png",
+      "PackagePath": "staticwebassets/images/logo-phulong.png"
+    },
+    {
+      "Id": "/Users/khahan/Downloads/html/phulong/wwwroot/images/map.svg",
+      "PackagePath": "staticwebassets/images/map.svg"
+    },
+    {
+      "Id": "/Users/khahan/Downloads/html/phulong/wwwroot/images/matbang-park-modal.png",
+      "PackagePath": "staticwebassets/images/matbang-park-modal.png"
+    },
+    {
+      "Id": "/Users/khahan/Downloads/html/phulong/wwwroot/images/matbangtoiuu-modal.svg",
+      "PackagePath": "staticwebassets/images/matbangtoiuu-modal.svg"
+    },
+    {
+      "Id": "/Users/khahan/Downloads/html/phulong/wwwroot/images/middle-img.png",
+      "PackagePath": "staticwebassets/images/middle-img.png"
+    },
+    {
+      "Id": "/Users/khahan/Downloads/html/phulong/wwwroot/images/news/3-17649324178591997387885.webp",
+      "PackagePath": "staticwebassets/images/news/3-17649324178591997387885.webp"
+    },
+    {
+      "Id": "/Users/khahan/Downloads/html/phulong/wwwroot/images/news/4_1.webp",
+      "PackagePath": "staticwebassets/images/news/4_1.webp"
+    },
+    {
+      "Id": "/Users/khahan/Downloads/html/phulong/wwwroot/images/news/Anh-1_Shutterstock.jpg",
+      "PackagePath": "staticwebassets/images/news/Anh-1_Shutterstock.jpg"
+    },
+    {
+      "Id": "/Users/khahan/Downloads/html/phulong/wwwroot/images/news/Anh-2_Hoang-Luan.jpg",
+      "PackagePath": "staticwebassets/images/news/Anh-2_Hoang-Luan.jpg"
+    },
+    {
+      "Id": "/Users/khahan/Downloads/html/phulong/wwwroot/images/news/Fa544260301dbf43e60c.jpg",
+      "PackagePath": "staticwebassets/images/news/Fa544260301dbf43e60c.jpg"
+    },
+    {
+      "Id": "/Users/khahan/Downloads/html/phulong/wwwroot/images/news/Panorama_Essensia_4.webp",
+      "PackagePath": "staticwebassets/images/news/Panorama_Essensia_4.webp"
+    },
+    {
+      "Id": "/Users/khahan/Downloads/html/phulong/wwwroot/images/news/image-20251203153532-1.jpeg",
+      "PackagePath": "staticwebassets/images/news/image-20251203153532-1.jpeg"
+    },
+    {
+      "Id": "/Users/khahan/Downloads/html/phulong/wwwroot/images/news/image-20251213123654-1.jpeg",
+      "PackagePath": "staticwebassets/images/news/image-20251213123654-1.jpeg"
+    },
+    {
+      "Id": "/Users/khahan/Downloads/html/phulong/wwwroot/images/news/image.jpg",
+      "PackagePath": "staticwebassets/images/news/image.jpg"
+    },
+    {
+      "Id": "/Users/khahan/Downloads/html/phulong/wwwroot/images/news/image001jpg-1764754596750.webp",
+      "PackagePath": "staticwebassets/images/news/image001jpg-1764754596750.webp"
+    },
+    {
+      "Id": "/Users/khahan/Downloads/html/phulong/wwwroot/images/news/img-4061-176528559486253165873-1765325706430637227906.webp",
+      "PackagePath": "staticwebassets/images/news/img-4061-176528559486253165873-1765325706430637227906.webp"
+    },
+    {
+      "Id": "/Users/khahan/Downloads/html/phulong/wwwroot/images/news/news-4.jpg",
+      "PackagePath": "staticwebassets/images/news/news-4.jpg"
+    },
+    {
+      "Id": "/Users/khahan/Downloads/html/phulong/wwwroot/images/news/quan710.jpg",
+      "PackagePath": "staticwebassets/images/news/quan710.jpg"
+    },
+    {
+      "Id": "/Users/khahan/Downloads/html/phulong/wwwroot/images/news/quan710jpg-1765014488718.webp",
+      "PackagePath": "staticwebassets/images/news/quan710jpg-1765014488718.webp"
+    },
+    {
+      "Id": "/Users/khahan/Downloads/html/phulong/wwwroot/images/news/shutterstock_1554541403_crop16x9.jpg",
+      "PackagePath": "staticwebassets/images/news/shutterstock_1554541403_crop16x9.jpg"
+    },
+    {
+      "Id": "/Users/khahan/Downloads/html/phulong/wwwroot/images/next-btn.png",
+      "PackagePath": "staticwebassets/images/next-btn.png"
+    },
+    {
+      "Id": "/Users/khahan/Downloads/html/phulong/wwwroot/images/next-btn.svg",
+      "PackagePath": "staticwebassets/images/next-btn.svg"
+    },
+    {
+      "Id": "/Users/khahan/Downloads/html/phulong/wwwroot/images/next-news.png",
+      "PackagePath": "staticwebassets/images/next-news.png"
+    },
+    {
+      "Id": "/Users/khahan/Downloads/html/phulong/wwwroot/images/next-scroll.png",
+      "PackagePath": "staticwebassets/images/next-scroll.png"
+    },
+    {
+      "Id": "/Users/khahan/Downloads/html/phulong/wwwroot/images/pattern.png",
+      "PackagePath": "staticwebassets/images/pattern.png"
+    },
+    {
+      "Id": "/Users/khahan/Downloads/html/phulong/wwwroot/images/pic-mobile/btn-left-mobile.png",
+      "PackagePath": "staticwebassets/images/pic-mobile/btn-left-mobile.png"
+    },
+    {
+      "Id": "/Users/khahan/Downloads/html/phulong/wwwroot/images/pic-mobile/btn-right-mobile.png",
+      "PackagePath": "staticwebassets/images/pic-mobile/btn-right-mobile.png"
+    },
+    {
+      "Id": "/Users/khahan/Downloads/html/phulong/wwwroot/images/pic-mobile/middle-img-mobile.png",
+      "PackagePath": "staticwebassets/images/pic-mobile/middle-img-mobile.png"
+    },
+    {
+      "Id": "/Users/khahan/Downloads/html/phulong/wwwroot/images/pic-view.png",
+      "PackagePath": "staticwebassets/images/pic-view.png"
+    },
+    {
+      "Id": "/Users/khahan/Downloads/html/phulong/wwwroot/images/popup-matcat/mobile/1.png",
+      "PackagePath": "staticwebassets/images/popup-matcat/mobile/1.png"
+    },
+    {
+      "Id": "/Users/khahan/Downloads/html/phulong/wwwroot/images/popup-matcat/mobile/2.png",
+      "PackagePath": "staticwebassets/images/popup-matcat/mobile/2.png"
+    },
+    {
+      "Id": "/Users/khahan/Downloads/html/phulong/wwwroot/images/popup-matcat/mobile/3.png",
+      "PackagePath": "staticwebassets/images/popup-matcat/mobile/3.png"
+    },
+    {
+      "Id": "/Users/khahan/Downloads/html/phulong/wwwroot/images/popup-matcat/mobile/4.png",
+      "PackagePath": "staticwebassets/images/popup-matcat/mobile/4.png"
+    },
+    {
+      "Id": "/Users/khahan/Downloads/html/phulong/wwwroot/images/popup-matcat/mobile/5.png",
+      "PackagePath": "staticwebassets/images/popup-matcat/mobile/5.png"
+    },
+    {
+      "Id": "/Users/khahan/Downloads/html/phulong/wwwroot/images/popup-matcat/mobile/6.png",
+      "PackagePath": "staticwebassets/images/popup-matcat/mobile/6.png"
+    },
+    {
+      "Id": "/Users/khahan/Downloads/html/phulong/wwwroot/images/popup-matcat/pc/1.png",
+      "PackagePath": "staticwebassets/images/popup-matcat/pc/1.png"
+    },
+    {
+      "Id": "/Users/khahan/Downloads/html/phulong/wwwroot/images/popup-matcat/pc/2.png",
+      "PackagePath": "staticwebassets/images/popup-matcat/pc/2.png"
+    },
+    {
+      "Id": "/Users/khahan/Downloads/html/phulong/wwwroot/images/popup-matcat/pc/3.png",
+      "PackagePath": "staticwebassets/images/popup-matcat/pc/3.png"
+    },
+    {
+      "Id": "/Users/khahan/Downloads/html/phulong/wwwroot/images/popup-matcat/pc/4.png",
+      "PackagePath": "staticwebassets/images/popup-matcat/pc/4.png"
+    },
+    {
+      "Id": "/Users/khahan/Downloads/html/phulong/wwwroot/images/popup-matcat/pc/5.png",
+      "PackagePath": "staticwebassets/images/popup-matcat/pc/5.png"
+    },
+    {
+      "Id": "/Users/khahan/Downloads/html/phulong/wwwroot/images/popup-matcat/pc/6.png",
+      "PackagePath": "staticwebassets/images/popup-matcat/pc/6.png"
+    },
+    {
+      "Id": "/Users/khahan/Downloads/html/phulong/wwwroot/images/pre-btn.png",
+      "PackagePath": "staticwebassets/images/pre-btn.png"
+    },
+    {
+      "Id": "/Users/khahan/Downloads/html/phulong/wwwroot/images/pre-btn.svg",
+      "PackagePath": "staticwebassets/images/pre-btn.svg"
+    },
+    {
+      "Id": "/Users/khahan/Downloads/html/phulong/wwwroot/images/pre-news.png",
+      "PackagePath": "staticwebassets/images/pre-news.png"
+    },
+    {
+      "Id": "/Users/khahan/Downloads/html/phulong/wwwroot/images/right-shophouse.png",
+      "PackagePath": "staticwebassets/images/right-shophouse.png"
+    },
+    {
+      "Id": "/Users/khahan/Downloads/html/phulong/wwwroot/images/rooftop-pic-map.png",
+      "PackagePath": "staticwebassets/images/rooftop-pic-map.png"
+    },
+    {
+      "Id": "/Users/khahan/Downloads/html/phulong/wwwroot/images/saibuocthoithuong.svg",
+      "PackagePath": "staticwebassets/images/saibuocthoithuong.svg"
+    },
+    {
+      "Id": "/Users/khahan/Downloads/html/phulong/wwwroot/images/sankhaukinhdoanh-mobile.png",
+      "PackagePath": "staticwebassets/images/sankhaukinhdoanh-mobile.png"
+    },
+    {
+      "Id": "/Users/khahan/Downloads/html/phulong/wwwroot/images/sankhaukinhdoanh.png",
+      "PackagePath": "staticwebassets/images/sankhaukinhdoanh.png"
+    },
+    {
+      "Id": "/Users/khahan/Downloads/html/phulong/wwwroot/images/sapdathoanhao-mobile.png",
+      "PackagePath": "staticwebassets/images/sapdathoanhao-mobile.png"
+    },
+    {
+      "Id": "/Users/khahan/Downloads/html/phulong/wwwroot/images/sapdathoanhao.png",
+      "PackagePath": "staticwebassets/images/sapdathoanhao.png"
+    },
+    {
+      "Id": "/Users/khahan/Downloads/html/phulong/wwwroot/images/slide-khunghinhkhachoa/clubhouse_1920x880.jpg",
+      "PackagePath": "staticwebassets/images/slide-khunghinhkhachoa/clubhouse_1920x880.jpg"
+    },
+    {
+      "Id": "/Users/khahan/Downloads/html/phulong/wwwroot/images/slide-khunghinhkhachoa/park_1920x880.jpg",
+      "PackagePath": "staticwebassets/images/slide-khunghinhkhachoa/park_1920x880.jpg"
+    },
+    {
+      "Id": "/Users/khahan/Downloads/html/phulong/wwwroot/images/slide-khunghinhkhachoa/pic-all-view-slide.jpg",
+      "PackagePath": "staticwebassets/images/slide-khunghinhkhachoa/pic-all-view-slide.jpg"
+    },
+    {
+      "Id": "/Users/khahan/Downloads/html/phulong/wwwroot/images/slide-khunghinhkhachoa/shophouse_1920x880.jpg",
+      "PackagePath": "staticwebassets/images/slide-khunghinhkhachoa/shophouse_1920x880.jpg"
+    },
+    {
+      "Id": "/Users/khahan/Downloads/html/phulong/wwwroot/images/slide-khunghinhkhachoa/title.png",
+      "PackagePath": "staticwebassets/images/slide-khunghinhkhachoa/title.png"
+    },
+    {
+      "Id": "/Users/khahan/Downloads/html/phulong/wwwroot/images/slide-khunghinhkhachoa/townhouse_1920x880.jpg",
+      "PackagePath": "staticwebassets/images/slide-khunghinhkhachoa/townhouse_1920x880.jpg"
+    },
+    {
+      "Id": "/Users/khahan/Downloads/html/phulong/wwwroot/images/slide-nhapholienke/1.jpg",
+      "PackagePath": "staticwebassets/images/slide-nhapholienke/1.jpg"
+    },
+    {
+      "Id": "/Users/khahan/Downloads/html/phulong/wwwroot/images/slide-nhapholienke/2.jpg",
+      "PackagePath": "staticwebassets/images/slide-nhapholienke/2.jpg"
+    },
+    {
+      "Id": "/Users/khahan/Downloads/html/phulong/wwwroot/images/slide-nhapholienke/3.jpg",
+      "PackagePath": "staticwebassets/images/slide-nhapholienke/3.jpg"
+    },
+    {
+      "Id": "/Users/khahan/Downloads/html/phulong/wwwroot/images/slide-nhapholienke/4.jpg",
+      "PackagePath": "staticwebassets/images/slide-nhapholienke/4.jpg"
+    },
+    {
+      "Id": "/Users/khahan/Downloads/html/phulong/wwwroot/images/slide-nhapholienke/5.jpg",
+      "PackagePath": "staticwebassets/images/slide-nhapholienke/5.jpg"
+    },
+    {
+      "Id": "/Users/khahan/Downloads/html/phulong/wwwroot/images/slide-nhapholienke/6.jpg",
+      "PackagePath": "staticwebassets/images/slide-nhapholienke/6.jpg"
+    },
+    {
+      "Id": "/Users/khahan/Downloads/html/phulong/wwwroot/images/slide-nhapholienke/top-1.png",
+      "PackagePath": "staticwebassets/images/slide-nhapholienke/top-1.png"
+    },
+    {
+      "Id": "/Users/khahan/Downloads/html/phulong/wwwroot/images/slide-nhapholienke/top-2.jpg",
+      "PackagePath": "staticwebassets/images/slide-nhapholienke/top-2.jpg"
+    },
+    {
+      "Id": "/Users/khahan/Downloads/html/phulong/wwwroot/images/slide-nhapholienke/top-3.jpg",
+      "PackagePath": "staticwebassets/images/slide-nhapholienke/top-3.jpg"
+    },
+    {
+      "Id": "/Users/khahan/Downloads/html/phulong/wwwroot/images/slide-nhapholienke/top-mobile-1.jpg",
+      "PackagePath": "staticwebassets/images/slide-nhapholienke/top-mobile-1.jpg"
+    },
+    {
+      "Id": "/Users/khahan/Downloads/html/phulong/wwwroot/images/slide-nhapholienke/top-mobile-2.png",
+      "PackagePath": "staticwebassets/images/slide-nhapholienke/top-mobile-2.png"
+    },
+    {
+      "Id": "/Users/khahan/Downloads/html/phulong/wwwroot/images/slide-thuongmai/1.jpg",
+      "PackagePath": "staticwebassets/images/slide-thuongmai/1.jpg"
+    },
+    {
+      "Id": "/Users/khahan/Downloads/html/phulong/wwwroot/images/slide-thuongmai/2.jpg",
+      "PackagePath": "staticwebassets/images/slide-thuongmai/2.jpg"
+    },
+    {
+      "Id": "/Users/khahan/Downloads/html/phulong/wwwroot/images/slide-thuongmai/3.jpg",
+      "PackagePath": "staticwebassets/images/slide-thuongmai/3.jpg"
+    },
+    {
+      "Id": "/Users/khahan/Downloads/html/phulong/wwwroot/images/slide-thuongmai/4.jpg",
+      "PackagePath": "staticwebassets/images/slide-thuongmai/4.jpg"
+    },
+    {
+      "Id": "/Users/khahan/Downloads/html/phulong/wwwroot/images/slide-thuongmai/5.jpg",
+      "PackagePath": "staticwebassets/images/slide-thuongmai/5.jpg"
+    },
+    {
+      "Id": "/Users/khahan/Downloads/html/phulong/wwwroot/images/slide-thuongmai/mobile_top_1.png",
+      "PackagePath": "staticwebassets/images/slide-thuongmai/mobile_top_1.png"
+    },
+    {
+      "Id": "/Users/khahan/Downloads/html/phulong/wwwroot/images/slide-thuongmai/mobile_top_2.png",
+      "PackagePath": "staticwebassets/images/slide-thuongmai/mobile_top_2.png"
+    },
+    {
+      "Id": "/Users/khahan/Downloads/html/phulong/wwwroot/images/slide-thuongmai/mobile_top_3.png",
+      "PackagePath": "staticwebassets/images/slide-thuongmai/mobile_top_3.png"
+    },
+    {
+      "Id": "/Users/khahan/Downloads/html/phulong/wwwroot/images/slide-thuongmai/mobile_top_4.png",
+      "PackagePath": "staticwebassets/images/slide-thuongmai/mobile_top_4.png"
+    },
+    {
+      "Id": "/Users/khahan/Downloads/html/phulong/wwwroot/images/slide-thuongmai/mobile_top_5.png",
+      "PackagePath": "staticwebassets/images/slide-thuongmai/mobile_top_5.png"
+    },
+    {
+      "Id": "/Users/khahan/Downloads/html/phulong/wwwroot/images/slide-thuongmai/top-1.png",
+      "PackagePath": "staticwebassets/images/slide-thuongmai/top-1.png"
+    },
+    {
+      "Id": "/Users/khahan/Downloads/html/phulong/wwwroot/images/slide-thuongmai/top-2.jpg",
+      "PackagePath": "staticwebassets/images/slide-thuongmai/top-2.jpg"
+    },
+    {
+      "Id": "/Users/khahan/Downloads/html/phulong/wwwroot/images/slide-thuongmai/top-3.jpg",
+      "PackagePath": "staticwebassets/images/slide-thuongmai/top-3.jpg"
+    },
+    {
+      "Id": "/Users/khahan/Downloads/html/phulong/wwwroot/images/slide-thuongmai/top-4.jpg",
+      "PackagePath": "staticwebassets/images/slide-thuongmai/top-4.jpg"
+    },
+    {
+      "Id": "/Users/khahan/Downloads/html/phulong/wwwroot/images/slide-thuongmai/top-5.jpg",
+      "PackagePath": "staticwebassets/images/slide-thuongmai/top-5.jpg"
+    },
+    {
+      "Id": "/Users/khahan/Downloads/html/phulong/wwwroot/images/tamdienthongtin-mobile.svg",
+      "PackagePath": "staticwebassets/images/tamdienthongtin-mobile.svg"
+    },
+    {
+      "Id": "/Users/khahan/Downloads/html/phulong/wwwroot/images/tamdienthongtin.svg",
+      "PackagePath": "staticwebassets/images/tamdienthongtin.svg"
+    },
+    {
+      "Id": "/Users/khahan/Downloads/html/phulong/wwwroot/images/tang2-pic-map.png",
+      "PackagePath": "staticwebassets/images/tang2-pic-map.png"
+    },
+    {
+      "Id": "/Users/khahan/Downloads/html/phulong/wwwroot/images/tang3-pic-map.png",
+      "PackagePath": "staticwebassets/images/tang3-pic-map.png"
+    },
+    {
+      "Id": "/Users/khahan/Downloads/html/phulong/wwwroot/images/title-modal-clubhouse.png",
+      "PackagePath": "staticwebassets/images/title-modal-clubhouse.png"
+    },
+    {
+      "Id": "/Users/khahan/Downloads/html/phulong/wwwroot/images/title-modal-park.png",
+      "PackagePath": "staticwebassets/images/title-modal-park.png"
+    },
+    {
+      "Id": "/Users/khahan/Downloads/html/phulong/wwwroot/images/toamancu-mobile.png",
+      "PackagePath": "staticwebassets/images/toamancu-mobile.png"
+    },
+    {
+      "Id": "/Users/khahan/Downloads/html/phulong/wwwroot/images/toamancu.png",
+      "PackagePath": "staticwebassets/images/toamancu.png"
+    },
+    {
+      "Id": "/Users/khahan/Downloads/html/phulong/wwwroot/images/tohoptienichthoithuong-mobile.svg",
+      "PackagePath": "staticwebassets/images/tohoptienichthoithuong-mobile.svg"
+    },
+    {
+      "Id": "/Users/khahan/Downloads/html/phulong/wwwroot/images/tohoptienichthoithuong.svg",
+      "PackagePath": "staticwebassets/images/tohoptienichthoithuong.svg"
+    },
+    {
+      "Id": "/Users/khahan/Downloads/html/phulong/wwwroot/images/town/left-town-1-mobile.png",
+      "PackagePath": "staticwebassets/images/town/left-town-1-mobile.png"
+    },
+    {
+      "Id": "/Users/khahan/Downloads/html/phulong/wwwroot/images/town/left-town-1.png",
+      "PackagePath": "staticwebassets/images/town/left-town-1.png"
+    },
+    {
+      "Id": "/Users/khahan/Downloads/html/phulong/wwwroot/images/town/left-town-2-mobile.png",
+      "PackagePath": "staticwebassets/images/town/left-town-2-mobile.png"
+    },
+    {
+      "Id": "/Users/khahan/Downloads/html/phulong/wwwroot/images/town/left-town-2.png",
+      "PackagePath": "staticwebassets/images/town/left-town-2.png"
+    },
+    {
+      "Id": "/Users/khahan/Downloads/html/phulong/wwwroot/images/town/left-town-3-mobile.png",
+      "PackagePath": "staticwebassets/images/town/left-town-3-mobile.png"
+    },
+    {
+      "Id": "/Users/khahan/Downloads/html/phulong/wwwroot/images/town/left-town-3.png",
+      "PackagePath": "staticwebassets/images/town/left-town-3.png"
+    },
+    {
+      "Id": "/Users/khahan/Downloads/html/phulong/wwwroot/images/town/left-town-4-mobile.png",
+      "PackagePath": "staticwebassets/images/town/left-town-4-mobile.png"
+    },
+    {
+      "Id": "/Users/khahan/Downloads/html/phulong/wwwroot/images/town/left-town-4.png",
+      "PackagePath": "staticwebassets/images/town/left-town-4.png"
+    },
+    {
+      "Id": "/Users/khahan/Downloads/html/phulong/wwwroot/images/town/right-town-1-mobile.png",
+      "PackagePath": "staticwebassets/images/town/right-town-1-mobile.png"
+    },
+    {
+      "Id": "/Users/khahan/Downloads/html/phulong/wwwroot/images/town/right-town-1.png",
+      "PackagePath": "staticwebassets/images/town/right-town-1.png"
+    },
+    {
+      "Id": "/Users/khahan/Downloads/html/phulong/wwwroot/images/town/right-town-2-mobile.png",
+      "PackagePath": "staticwebassets/images/town/right-town-2-mobile.png"
+    },
+    {
+      "Id": "/Users/khahan/Downloads/html/phulong/wwwroot/images/town/right-town-2.png",
+      "PackagePath": "staticwebassets/images/town/right-town-2.png"
+    },
+    {
+      "Id": "/Users/khahan/Downloads/html/phulong/wwwroot/images/town/right-town-3-mobile.png",
+      "PackagePath": "staticwebassets/images/town/right-town-3-mobile.png"
+    },
+    {
+      "Id": "/Users/khahan/Downloads/html/phulong/wwwroot/images/town/right-town-3.png",
+      "PackagePath": "staticwebassets/images/town/right-town-3.png"
+    },
+    {
+      "Id": "/Users/khahan/Downloads/html/phulong/wwwroot/images/town/right-town-4-mobile.png",
+      "PackagePath": "staticwebassets/images/town/right-town-4-mobile.png"
+    },
+    {
+      "Id": "/Users/khahan/Downloads/html/phulong/wwwroot/images/town/right-town-4.png",
+      "PackagePath": "staticwebassets/images/town/right-town-4.png"
+    },
+    {
+      "Id": "/Users/khahan/Downloads/html/phulong/wwwroot/images/town/town-text-1-mobile.png",
+      "PackagePath": "staticwebassets/images/town/town-text-1-mobile.png"
+    },
+    {
+      "Id": "/Users/khahan/Downloads/html/phulong/wwwroot/images/town/town-text-2-mobile.png",
+      "PackagePath": "staticwebassets/images/town/town-text-2-mobile.png"
+    },
+    {
+      "Id": "/Users/khahan/Downloads/html/phulong/wwwroot/images/town/town-text-3-mobile.png",
+      "PackagePath": "staticwebassets/images/town/town-text-3-mobile.png"
+    },
+    {
+      "Id": "/Users/khahan/Downloads/html/phulong/wwwroot/images/town/town-text-4-mobile.png",
+      "PackagePath": "staticwebassets/images/town/town-text-4-mobile.png"
+    },
+    {
+      "Id": "/Users/khahan/Downloads/html/phulong/wwwroot/images/trensankhaunay-mobile.svg",
+      "PackagePath": "staticwebassets/images/trensankhaunay-mobile.svg"
+    },
+    {
+      "Id": "/Users/khahan/Downloads/html/phulong/wwwroot/images/trensankhaunay.svg",
+      "PackagePath": "staticwebassets/images/trensankhaunay.svg"
+    },
+    {
+      "Id": "/Users/khahan/Downloads/html/phulong/wwwroot/images/vitrichienluoc.svg",
+      "PackagePath": "staticwebassets/images/vitrichienluoc.svg"
+    },
+    {
+      "Id": "/Users/khahan/Downloads/html/phulong/wwwroot/js/admin-local.js",
+      "PackagePath": "staticwebassets/js/admin-local.js"
+    },
+    {
+      "Id": "/Users/khahan/Downloads/html/phulong/wwwroot/js/admin.js",
+      "PackagePath": "staticwebassets/js/admin.js"
+    },
+    {
+      "Id": "/Users/khahan/Downloads/html/phulong/wwwroot/js/cloudinary-config.js",
+      "PackagePath": "staticwebassets/js/cloudinary-config.js"
+    },
+    {
+      "Id": "/Users/khahan/Downloads/html/phulong/wwwroot/js/cloudinary-uploader.js",
+      "PackagePath": "staticwebassets/js/cloudinary-uploader.js"
+    },
+    {
+      "Id": "/Users/khahan/Downloads/html/phulong/wwwroot/js/data.js",
+      "PackagePath": "staticwebassets/js/data.js"
+    },
+    {
+      "Id": "/Users/khahan/Downloads/html/phulong/wwwroot/js/essensia-loader-local.js",
+      "PackagePath": "staticwebassets/js/essensia-loader-local.js"
+    },
+    {
+      "Id": "/Users/khahan/Downloads/html/phulong/wwwroot/js/essensia-loader.js",
+      "PackagePath": "staticwebassets/js/essensia-loader.js"
+    },
+    {
+      "Id": "/Users/khahan/Downloads/html/phulong/wwwroot/js/firebase-config.js",
+      "PackagePath": "staticwebassets/js/firebase-config.js"
+    },
+    {
+      "Id": "/Users/khahan/Downloads/html/phulong/wwwroot/js/images-loader-local.js",
+      "PackagePath": "staticwebassets/js/images-loader-local.js"
+    },
+    {
+      "Id": "/Users/khahan/Downloads/html/phulong/wwwroot/js/images-loader.js",
+      "PackagePath": "staticwebassets/js/images-loader.js"
+    },
+    {
+      "Id": "/Users/khahan/Downloads/html/phulong/wwwroot/js/lazy-load.js",
+      "PackagePath": "staticwebassets/js/lazy-load.js"
+    },
+    {
+      "Id": "/Users/khahan/Downloads/html/phulong/wwwroot/js/main.js",
+      "PackagePath": "staticwebassets/js/main.js"
+    },
+    {
+      "Id": "/Users/khahan/Downloads/html/phulong/wwwroot/js/popup-firebase-loader.js",
+      "PackagePath": "staticwebassets/js/popup-firebase-loader.js"
+    },
+    {
+      "Id": "/Users/khahan/Downloads/html/phulong/wwwroot/js/popup-loader-local.js",
+      "PackagePath": "staticwebassets/js/popup-loader-local.js"
+    },
+    {
+      "Id": "/Users/khahan/Downloads/html/phulong/wwwroot/js/script.js",
+      "PackagePath": "staticwebassets/js/script.js"
+    },
+    {
+      "Id": "/Users/khahan/Downloads/html/phulong/wwwroot/uploads/193d936e-ae28-4bb2-a8a4-42164a882a1d_blog.jpg",
+      "PackagePath": "staticwebassets/uploads/193d936e-ae28-4bb2-a8a4-42164a882a1d_blog.jpg"
+    },
+    {
+      "Id": "/Users/khahan/Downloads/html/phulong/wwwroot/uploads/1bde1b32-223d-4727-9ff8-15f5a36d3ba5_404-error-page.jpg",
+      "PackagePath": "staticwebassets/uploads/1bde1b32-223d-4727-9ff8-15f5a36d3ba5_404-error-page.jpg"
+    },
+    {
+      "Id": "/Users/khahan/Downloads/html/phulong/wwwroot/uploads/1f2cc775-d9c5-4614-88a3-2c1252b520a5_404-error-page.jpg",
+      "PackagePath": "staticwebassets/uploads/1f2cc775-d9c5-4614-88a3-2c1252b520a5_404-error-page.jpg"
+    },
+    {
+      "Id": "/Users/khahan/Downloads/html/phulong/wwwroot/uploads/5b7e195b-02ba-4f05-a709-273d82081b13_404-error-page.jpg",
+      "PackagePath": "staticwebassets/uploads/5b7e195b-02ba-4f05-a709-273d82081b13_404-error-page.jpg"
+    },
+    {
+      "Id": "/Users/khahan/Downloads/html/phulong/wwwroot/uploads/63218f0f-95d6-4c9c-9c34-baa4753d7259_case-studies.jpg",
+      "PackagePath": "staticwebassets/uploads/63218f0f-95d6-4c9c-9c34-baa4753d7259_case-studies.jpg"
+    },
+    {
+      "Id": "/Users/khahan/Downloads/html/phulong/wwwroot/uploads/a6c1246f-87a6-40c9-836b-ba8a077d4dd7_blog.jpg",
+      "PackagePath": "staticwebassets/uploads/a6c1246f-87a6-40c9-836b-ba8a077d4dd7_blog.jpg"
+    },
+    {
+      "Id": "/Users/khahan/Downloads/html/phulong/wwwroot/uploads/ac483083-53cf-4b2e-9854-ef7999e5844e_404-error-page.jpg",
+      "PackagePath": "staticwebassets/uploads/ac483083-53cf-4b2e-9854-ef7999e5844e_404-error-page.jpg"
+    },
+    {
+      "Id": "/Users/khahan/Downloads/html/phulong/wwwroot/uploads/beb04e2e-7e15-4942-983e-039fcae0c099_about-us.jpg",
+      "PackagePath": "staticwebassets/uploads/beb04e2e-7e15-4942-983e-039fcae0c099_about-us.jpg"
+    },
+    {
+      "Id": "/Users/khahan/Downloads/html/phulong/wwwroot/uploads/d47c4505-db1c-4a88-a4f1-c9b71190c57c_global-kit-styles.jpg",
+      "PackagePath": "staticwebassets/uploads/d47c4505-db1c-4a88-a4f1-c9b71190c57c_global-kit-styles.jpg"
+    },
+    {
+      "Id": "obj/Debug/net8.0/staticwebassets/msbuild.PhuLongDotNet.Microsoft.AspNetCore.StaticWebAssets.props",
+      "PackagePath": "build\\Microsoft.AspNetCore.StaticWebAssets.props"
+    },
+    {
+      "Id": "obj/Debug/net8.0/staticwebassets/msbuild.build.PhuLongDotNet.props",
+      "PackagePath": "build\\PhuLongDotNet.props"
+    },
+    {
+      "Id": "obj/Debug/net8.0/staticwebassets/msbuild.buildMultiTargeting.PhuLongDotNet.props",
+      "PackagePath": "buildMultiTargeting\\PhuLongDotNet.props"
+    },
+    {
+      "Id": "obj/Debug/net8.0/staticwebassets/msbuild.buildTransitive.PhuLongDotNet.props",
+      "PackagePath": "buildTransitive\\PhuLongDotNet.props"
+    }
+  ],
+  "ElementsToRemove": []
+}
