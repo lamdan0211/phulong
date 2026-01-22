@@ -3,6 +3,33 @@
 @model IndexModel
 @{
     Layout = null;
+    string headerScript = "";
+    string bodyScript = "";
+    if (Model.ContentData != null && Model.ContentData.TryGetValue("scripts", out var scriptsObj))
+    {
+        if (scriptsObj is JsonElement scriptsElement)
+        {
+            if (scriptsElement.TryGetProperty("header", out var headerProp)) headerScript = headerProp.GetString() ?? "";
+            if (scriptsElement.TryGetProperty("body", out var bodyProp)) bodyScript = bodyProp.GetString() ?? "";
+        }
+    }
+
+    bool show360 = true;
+    bool showHotline = true;
+    bool showFacebook = true;
+    bool showTiktok = true;
+    string link360 = "";
+    if (Model.ContentData != null && Model.ContentData.TryGetValue("floating", out var floatingObj))
+    {
+        if (floatingObj is JsonElement floatingElement)
+        {
+            if (floatingElement.TryGetProperty("show_360", out var p1)) show360 = p1.ValueKind == JsonValueKind.True;
+            if (floatingElement.TryGetProperty("show_hotline", out var p2)) showHotline = p2.ValueKind == JsonValueKind.True;
+            if (floatingElement.TryGetProperty("show_facebook", out var p3)) showFacebook = p3.ValueKind == JsonValueKind.True;
+            if (floatingElement.TryGetProperty("show_tiktok", out var p4)) showTiktok = p4.ValueKind == JsonValueKind.True;
+            if (floatingElement.TryGetProperty("link_360", out var p5)) link360 = p5.GetString() ?? "";
+        }
+    }
 }
 <!DOCTYPE html>
 <html lang="vi">
@@ -21,19 +48,11 @@
   <link rel="stylesheet" href="css/fonts.css?v=1.0.9">
   <link rel="stylesheet" href="css/style.css?v=1.0.9">
   <link rel="stylesheet" href="css/floor-plan.css?v=1.0.9">
-  <script>(function (w, d, s, l, i) {
-      w[l] = w[l] || []; w[l].push({
-        'gtm.start':
-          new Date().getTime(), event: 'gtm.js'
-      }); var f = d.getElementsByTagName(s)[0],
-        j = d.createElement(s), dl = l != 'dataLayer' ? '&l=' + l : ''; j.async = true; j.src =
-          'https://www.googletagmanager.com/gtm.js?id=' + i + dl; f.parentNode.insertBefore(j, f);
-    })(window, document, 'script', 'dataLayer', 'GTM-N6BWPKQS');</script>
+  @Html.Raw(headerScript)
 </head>
 
 <body style="max-width: 1920px; margin: 0 auto;">
-  <noscript><iframe src="https://www.googletagmanager.com/ns.html?id=GTM-N6BWPKQS" height="0" width="0"
-      style="display:none;visibility:hidden"></iframe></noscript>
+  @Html.Raw(bodyScript)
   <div id="preloader">
     <div class="loader-content">
       <img src="images/LOGO-BROADWAY-PRELOAD.png" alt="PhuLong" class="loader-icon">
@@ -786,23 +805,41 @@
   </main>
   <div class="floating-contact">
     <div class="nav-contact group-1">
-      <a href="tel:0906296868" target="_blank" class="contact-icon db-mobile" aria-label="Facebook">
-        <img src="images/icon-hotline.png" alt="Hotline 24/7">
-      </a>
-      <a href="https://www.tiktok.com/@@essensianamsaigon" target="_blank"
-        class="contact-icon trans_contact_sociallinktiktok" aria-label="Facebook">
-        <img src="images/Tiktok.png" alt="Tiktok">
-      </a>
-      <a href="https://www.facebook.com/EssensiaNSG?locale=vi_VN" target="_blank"
-        class="contact-icon trans_contact_sociallinkfacebook" aria-label="Facebook">
-        <img src="images/fb-icon.png" alt="Facebook">
-      </a>
+      @if (show360)
+      {
+        <a href="@link360" target="_blank" class="contact-icon" aria-label="360 Tour">
+          <img src="images/360-icon.png" alt="360 Tour">
+        </a>
+      }
+      @if (showHotline)
+      {
+        <a href="tel:0906296868" target="_blank" class="contact-icon db-mobile" aria-label="Hotline">
+          <img src="images/icon-hotline.png" alt="Hotline 24/7">
+        </a>
+      }
+      @if (showTiktok)
+      {
+        <a href="https://www.tiktok.com/@@essensianamsaigon" target="_blank"
+          class="contact-icon trans_contact_sociallinktiktok" aria-label="Tiktok">
+          <img src="images/Tiktok.png" alt="Tiktok">
+        </a>
+      }
+      @if (showFacebook)
+      {
+        <a href="https://www.facebook.com/EssensiaNSG?locale=vi_VN" target="_blank"
+          class="contact-icon trans_contact_sociallinkfacebook" aria-label="Facebook">
+          <img src="images/fb-icon.png" alt="Facebook">
+        </a>
+      }
     </div>
-    <div class="nav-contact group-2 db-pc">
-      <a href="tel:0906296868" target="_blank" class="hotline-btn">
-        <img src="images/HOTLINE.png" alt="Hotline 24/7">
-      </a>
-    </div>
+    @if (showHotline)
+    {
+      <div class="nav-contact group-2 db-pc">
+        <a href="tel:0906296868" target="_blank" class="hotline-btn">
+          <img src="images/HOTLINE.png" alt="Hotline 24/7">
+        </a>
+      </div>
+    }
   </div>
   <div id="congVienPopup" class="popup-modal">
     <div class="popup-overlay" onclick="closeCongVienPopup()"></div>

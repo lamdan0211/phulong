@@ -1,4 +1,15 @@
 {
+  "scripts": {
+    "header": "\u003Cscript\u003E(function (w, d, s, l, i) {\n      w[l] = w[l] || []; w[l].push({\n        \u0027gtm.start\u0027:\n          new Date().getTime(), event: \u0027gtm.js\u0027\n      }); var f = d.getElementsByTagName(s)[0],\n        j = d.createElement(s), dl = l != \u0027dataLayer\u0027 ? \u0027\u0026l=\u0027 \u002B l : \u0027\u0027; j.async = true; j.src =\n          \u0027https://www.googletagmanager.com/gtm.js?id=\u0027 \u002B i \u002B dl; f.parentNode.insertBefore(j, f);\n    })(window, document, \u0027script\u0027, \u0027dataLayer\u0027, \u0027GTM-N6BWPKQS\u0027);\u003C/script\u003E",
+    "body": "\u003Cnoscript\u003E\u003Ciframe src=\u0022https://www.googletagmanager.com/ns.html?id=GTM-N6BWPKQS\u0022 height=\u00220\u0022 width=\u00220\u0022\n      style=\u0022display:none;visibility:hidden\u0022\u003E\u003C/iframe\u003E\u003C/noscript\u003E"
+  },
+  "floating": {
+    "show_360": false,
+    "link_360": "https://essensia-broadway.info/",
+    "show_hotline": true,
+    "show_facebook": true,
+    "show_tiktok": true
+  },
   "homepage": {
     "description1": "\u00C1nh \u0111\u00E8n r\u1EF1c r\u1EE1, nh\u1ECBp s\u1ED1ng s\u00F4i \u0111\u1ED9ng v\u00E0 tinh th\u1EA7n ngh\u1EC7 thu\u1EADt lan t\u1ECFa trong t\u1EEBng kho\u1EA3nh kh\u1EAFc - Essensia Broadway m\u1EDF ra m\u1ED9t chu\u1EA9n m\u1EF1c s\u1ED1ng m\u1EDBi, n\u01A1i \u0111\u00F4 th\u1ECB \u0111\u01B0\u1EE3c ki\u1EBFn t\u1EA1o nh\u01B0 m\u1ED9t kh\u00F4ng gian tr\u00ECnh di\u1EC5n s\u1ED1ng \u0111\u1ED9ng gi\u1EEFa l\u00F2ng Nam S\u00E0i G\u00F2n.",
     "description2": "V\u1EDBi m\u00F4 h\u00ECnh Art-Urban \u0111\u1ED9c \u0111\u00E1o, Essensia Broadway \u0111\u1ECBnh h\u00ECnh l\u00E0 khu ph\u1ED1 th\u01B0\u01A1ng m\u1EA1i k\u1EBFt h\u1EE3p ngh\u1EC7 thu\u1EADt \u0111\u1EA7u ti\u00EAn t\u1EA1i khu v\u1EF1c, mang \u0111\u1EBFn gi\u00E1 tr\u1ECB s\u1EDF h\u1EEFu khan hi\u1EBFm v\u1EDBi s\u1ED1 l\u01B0\u1EE3ng gi\u1EDBi h\u1EA1n ch\u1EC9 87 c\u0103n.",

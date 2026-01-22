@@ -92,6 +92,7 @@
         <button class="subtab-btn" data-subtab="news">📰 Tin tức</button>
         <button class="subtab-btn" data-subtab="framedepicting">📰 Khung hình khắc họa</button>
         <button class="subtab-btn" data-subtab="contact">📞 Liên hệ</button>
+        <button class="subtab-btn" data-subtab="scripts">⚙️ Script</button>
         <button class="subtab-btn" data-subtab="all-text">🧩 Khác</button>
       </div>
 
@@ -794,9 +795,61 @@
         </div>
       </div>
 
+      <!-- Scripts Section -->
+      <div class="subtab-content" id="subtab-scripts">
+        <div class="section-editor">
+          <h2>⚙️ Cấu hình Google Scripts</h2>
+          <p style="color: #6b7280; margin-bottom: 20px;">Quản lý mã nhúng (Google Tag Manager, Facebook Pixel, Tracking...) - Cần nhập đúng định dạng thẻ &lt;script&gt; hoặc &lt;noscript&gt;.</p>
+          <div class="form-group">
+            <label>Header Script (Chèn vào trong thẻ &lt;head&gt;)</label>
+            <textarea id="scripts-header" rows="12" placeholder="<!-- Google Tag Manager --> ..."></textarea>
+          </div>
+          <div class="form-group" style="margin-top: 20px;">
+            <label>Body Script (Chèn vào ngay sau thẻ &lt;body&gt;)</label>
+            <textarea id="scripts-body" rows="12" placeholder="<!-- Google Tag Manager (noscript) --> ..."></textarea>
+          </div>
+        </div>
+      </div>
+
       <!-- All Sections (Auto) -->
       <div class="subtab-content" id="subtab-all-text">
         <div class="section-editor">
+          <h2>🧩 Cấu hình Floating Icons</h2>
+          <div class="switch-container">
+            <div class="switch-group">
+              <span class="switch-label">Icon 360</span>
+              <label class="switch">
+                <input type="checkbox" id="show-icon-360">
+                <span class="slider"></span>
+              </label>
+            </div>
+            <div class="form-group" style="padding-left: 20px; border-bottom: 1px solid #e5e7eb; padding-bottom: 10px;">
+              <label>Link 360 Tour</label>
+              <input type="text" id="link-360-tour" placeholder="https://...">
+            </div>
+            <div class="switch-group">
+              <span class="switch-label">Icon Hotline</span>
+              <label class="switch">
+                <input type="checkbox" id="show-icon-hotline">
+                <span class="slider"></span>
+              </label>
+            </div>
+            <div class="switch-group">
+              <span class="switch-label">Icon Facebook</span>
+              <label class="switch">
+                <input type="checkbox" id="show-icon-facebook">
+                <span class="slider"></span>
+              </label>
+            </div>
+            <div class="switch-group">
+              <span class="switch-label">Icon Tiktok</span>
+              <label class="switch">
+                <input type="checkbox" id="show-icon-tiktok">
+                <span class="slider"></span>
+              </label>
+            </div>
+          </div>
+
           <h2>🧩 Menu</h2>
           <div class="form-group">
             <label>TRANG CHỦ</label>

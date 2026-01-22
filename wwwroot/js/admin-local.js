@@ -348,14 +348,25 @@ function populateTextForm(data) {
     'nav_3': 'menu.nav_3',
     'nav_4': 'menu.nav_4',
     'nav_5': 'menu.nav_5',
-    'nav_6': 'menu.nav_6'
+    'nav_6': 'menu.nav_6',
+    'scripts-header': 'scripts.header',
+    'scripts-body': 'scripts.body',
+    'show-icon-360': 'floating.show_360',
+    'link-360-tour': 'floating.link_360',
+    'show-icon-hotline': 'floating.show_hotline',
+    'show-icon-facebook': 'floating.show_facebook',
+    'show-icon-tiktok': 'floating.show_tiktok'
   };
 
   for (const [id, path] of Object.entries(mapping)) {
     const el = document.getElementById(id);
     if (el) {
       const value = getValueByPath(data, path);
-      el.value = value || '';
+      if (el.type === 'checkbox') {
+        el.checked = value === true || value === 'true';
+      } else {
+        el.value = value || '';
+      }
     }
   }
 }
@@ -431,14 +442,22 @@ async function saveAllData() {
     'nav_3': 'menu.nav_3',
     'nav_4': 'menu.nav_4',
     'nav_5': 'menu.nav_5',
-    'nav_6': 'menu.nav_6'
+    'nav_6': 'menu.nav_6',
+    'scripts-header': 'scripts.header',
+    'scripts-body': 'scripts.body',
+    'show-icon-360': 'floating.show_360',
+    'link-360-tour': 'floating.link_360',
+    'show-icon-hotline': 'floating.show_hotline',
+    'show-icon-facebook': 'floating.show_facebook',
+    'show-icon-tiktok': 'floating.show_tiktok'
   };
 
   // Update global contentData with latest values from text form mapping
   for (const [id, path] of Object.entries(mapping)) {
     const el = document.getElementById(id);
     if (el) {
-      setValueByPath(contentData, path, el.value);
+      const value = el.type === 'checkbox' ? el.checked : el.value;
+      setValueByPath(contentData, path, value);
     }
   }
 
