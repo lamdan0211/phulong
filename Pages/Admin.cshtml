@@ -15,7 +15,7 @@
 
 <body>
   <!-- Login Container -->
-    @if (!User.Identity.IsAuthenticated)
+    @if (User.Identity?.IsAuthenticated != true)
     {
     <div id="login-container">
         <div class="login-box">
@@ -43,7 +43,7 @@
     }
 
   <!-- Admin Container -->
-    @if (User.Identity.IsAuthenticated)
+    @if (User.Identity?.IsAuthenticated == true)
     {
   <!-- Main Layout Wrapper -->
   <div class="main-layout">
@@ -51,7 +51,7 @@
     <div class="admin-header">
       <h1>🏢 QUẢN LÝ ESSENSIA BROADWAY</h1>
       <div class="user-info">
-        <span class="user-email" id="user-email">@User.Identity.Name</span>
+        <span class="user-email" id="user-email">@User.Identity?.Name</span>
         <form method="post" asp-page-handler="Logout" style="display:inline;">
             <button type="submit" class="btn-logout" id="logout-btn">Đăng xuất</button>
         </form>

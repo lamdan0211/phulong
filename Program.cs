@@ -1,4 +1,5 @@
 using Microsoft.AspNetCore.Authentication.Cookies;
+using WebMarkupMin.AspNetCoreLatest;
 
 var builder = WebApplication.CreateBuilder(args);
 
@@ -6,6 +7,14 @@ var builder = WebApplication.CreateBuilder(args);
 builder.Services.AddRazorPages();
 builder.Services.AddControllers(); // For API endpoints if needed
 builder.Services.AddScoped<PhuLongDotNet.Services.JsonDataService>();
+
+builder.Services.AddWebMarkupMin(options =>
+    {
+        options.AllowMinificationInDevelopmentEnvironment = true;
+        options.AllowCompressionInDevelopmentEnvironment = true;
+    })
+    .AddHtmlMinification()
+    .AddHttpCompression();
 
 builder.Services.AddAuthentication(CookieAuthenticationDefaults.AuthenticationScheme)
     .AddCookie(options =>
@@ -25,6 +34,8 @@ if (!app.Environment.IsDevelopment())
 
 app.UseHttpsRedirection();
 app.UseStaticFiles();
+
+app.UseWebMarkupMin();
 
 app.UseRouting();
 

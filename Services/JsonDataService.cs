@@ -21,11 +21,11 @@ public class JsonDataService
         var path = GetDataPath(fileName);
         if (!File.Exists(path))
         {
-            return default;
+            return default!;
         }
 
         var json = await File.ReadAllTextAsync(path);
-        return JsonSerializer.Deserialize<T>(json);
+        return JsonSerializer.Deserialize<T>(json)!;
     }
 
     public async Task WriteJsonAsync<T>(string fileName, T data)
